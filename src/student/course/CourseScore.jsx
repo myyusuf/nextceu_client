@@ -1,9 +1,10 @@
 
 import React from 'react';
 import axios from 'axios';
-import { Row, Col, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Row, Col, FormGroup, FormControl, Button, ControlLabel } from 'react-bootstrap';
+import Constant from '../../Constant';
 
-const COURSES_URL = '/api/courses';
+const COURSES_URL = `${Constant.serverUrl}/api/courses`;
 
 class CourseScore extends React.Component {
 

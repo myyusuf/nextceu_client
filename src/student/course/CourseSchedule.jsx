@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Row, Col, Modal, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
+import Constant from '../../Constant';
 
-const COURSES_URL = '/api/courses';
+const COURSES_URL = `${Constant.serverUrl}/api/courses`;
 
 class CourseSchedule extends React.Component {
 

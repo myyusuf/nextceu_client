@@ -2,8 +2,10 @@ import React from 'react';
 import { Modal, Button, Row, Col, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 import axios from 'axios';
-
+import Constant from '../../Constant';
 import LevelSelect from '../../level/LevelSelect';
+
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class CourseAddByLevelWindow extends React.Component {
 
@@ -135,7 +137,7 @@ class CourseAddByLevelWindow extends React.Component {
 
     const form = this.state.courseByLevel;
     form.formType = 'LEVEL';
-    axios.post(`/api/students/${this.state.student.id}/courses`,
+    axios.post(`${STUDENTS_URL}/${this.state.student.id}/courses`,
       form)
     .then((response) => {
       this.close();

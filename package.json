@@ -20,18 +20,10 @@
   "homepage": "https://github.com/myyusuf/nextceu#readme",
   "dependencies": {
     "axios": "^0.16.2",
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "dhtmlx-gantt": "^4.1.0",
-    "ejs": "^2.5.6",
-    "express": "~4.15.2",
-    "jade": "~1.11.0",
     "jquery": "^3.2.1",
     "jquery-browser": "^1.10.2-1",
     "moment": "^2.18.1",
     "morgan": "~1.8.1",
-    "pg": "^6.2.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
@@ -40,8 +32,6 @@
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1",
     "screenfull": "^3.2.2",
-    "sequelize": "^4.1.0",
-    "serve-favicon": "~2.4.2",
     "webpack": "^2.6.1"
   },
   "devDependencies": {

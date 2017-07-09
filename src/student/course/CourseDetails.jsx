@@ -7,8 +7,9 @@ import CourseSchedule from './CourseSchedule';
 import CourseScore from './CourseScore';
 import CourseSeminar from './CourseSeminar';
 import CourseProblem from './CourseProblemList';
+import Constant from '../../Constant';
 
-const COURSES_URL = '/api/courses';
+const COURSES_URL = `${Constant.serverUrl}/api/courses`;
 
 class CourseDetails extends React.Component {
 
