@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Row, Col, Panel, Button, ListGroup, ListGroupItem, Badge, ProgressBar, Grid } from 'react-bootstrap';
 import StudentAddWindow from './StudentAddWindow';
+import Constant from '../Constant';
 
-const STUDENTS_URL = '/api/students';
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class StudentPage extends React.Component {
 // const StudentPage = () => {

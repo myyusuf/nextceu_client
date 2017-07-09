@@ -3,6 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Tabs, Tab, SplitButton, MenuItem, Row, Col, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import CourseAddByLevelWindow from './CourseAddByLevelWindow';
+import Constant from '../../Constant';
+
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class CourseList extends React.Component {
 
@@ -35,7 +38,7 @@ class CourseList extends React.Component {
   }
 
   getCourses() {
-    axios.get(`/api/students/${this.state.student.id}/courses`)
+    axios.get(`${STUDENTS_URL}/${this.state.student.id}/courses`)
     .then((response) => {
       const courses = response.data;
       this.setState({

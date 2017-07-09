@@ -3,8 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Tabs, Tab, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import LevelSelect from '../level/LevelSelect';
+import Constant from '../Constant';
 
-const STUDENTS_URL = '/api/students';
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class StudentProfile extends React.Component {
 

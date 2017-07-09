@@ -6,8 +6,9 @@ import { Grid, Row, Col, Pager, Button } from 'react-bootstrap';
 import StudentProfile from './StudentProfile';
 import CourseList from './course/CourseList';
 import CourseDetails from './course/CourseDetails';
+import Constant from '../Constant';
 
-const STUDENTS_URL = '/api/students';
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class StudentView extends React.Component {
 
