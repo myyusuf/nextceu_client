@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { FormControl } from 'react-bootstrap';
+import Constant from '../Constant';
 
-const DEPARTMENTS_URL = '/api/departments';
+const DEPARTMENTS_URL = `${Constant.serverUrl}/api/departments`;
 
 class DepartmentSelect extends React.Component {
 
