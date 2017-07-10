@@ -65,7 +65,7 @@ class Sidebar extends React.Component {
                             </a>
                           </li>
                           <li className="">
-                            <a href="cards.html" className="ripple">
+                            <a href="#/hospitals" className="ripple">
                               <span className="pull-right nav-label"></span>
                               <span className="nav-icon">
                                 <img src="" data-svg-replace="img/icons/radio-waves.svg" alt="MenuItem" className="hidden" />
