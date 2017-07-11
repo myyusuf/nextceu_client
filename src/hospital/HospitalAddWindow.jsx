@@ -10,9 +10,11 @@ class HospitalWindow extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const hospital = props.hospital || {}
     this.state = {
-      hospital: {},
-      showModal: this.props.showModal,
+      hospital,
+      showModal: props.showModal,
       validation: {
         code: {
           state: null,
@@ -34,6 +36,7 @@ class HospitalWindow extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       showModal: nextProps.showModal,
+      hospital: nextProps.hospital,
     });
   }
 
@@ -105,15 +108,30 @@ class HospitalWindow extends React.Component {
       return;
     }
 
-    axios.post(HOSPITALS_URL,
-      this.state.hospital)
-    .then((response) => {
-      this.close();
-      this.props.onSaveSuccess();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const hospital = this.state.hospital;
+
+    if (hospital.id) {
+      axios.put(`${HOSPITALS_URL}/${hospital.id}`,
+        hospital)
+      .then((response) => {
+        this.close();
+        this.props.onSaveSuccess();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } else {
+      axios.post(HOSPITALS_URL,
+        hospital)
+      .then((response) => {
+        this.close();
+        this.props.onSaveSuccess();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
   }
 
   close() {

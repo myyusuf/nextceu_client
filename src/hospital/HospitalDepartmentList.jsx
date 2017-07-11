@@ -6,22 +6,26 @@ import Constant from '../Constant';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
 
-class HospitalList extends React.Component {
+class HospitalDepartmentList extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const hospitalId = this.props.match.params.hospitalId;
+
     this.state = {
-      hospitals: [],
-      searchText: '',
-      showHospitalAddWindow: false,
+      hospitalId,
+      hospital: {},
+      hospitalDepartments: [],
+      showHospitalDeaprtmentAddWindow: false,
     };
     this.loadData = this.loadData.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.searchChange = this.searchChange.bind(this);
 
-    this.showHospitalAddWindow = this.showHospitalAddWindow.bind(this);
-    this.showHospitalEditWindow = this.showHospitalEditWindow.bind(this);
-    this.onAddHospitalSuccess = this.onAddHospitalSuccess.bind(this);
+    this.showHospitalDepartmentAddWindow = this.showHospitalDepartmentAddWindow.bind(this);
+    this.showHospitalDepartmentEditWindow = this.showHospitalDepartmentEditWindow.bind(this);
+    this.onAddHospitalDepartmentSuccess = this.onAddHospitalDepartmentSuccess.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +33,7 @@ class HospitalList extends React.Component {
   }
 
   loadData() {
-    axios.get(HOSPITALS_URL, { params: { searchText: this.state.searchText } })
+    axios.get(`${HOSPITALS_URL}/${this.state.hospitalId}/departments`, { params: { searchText: this.state.searchText } })
     .then((response) => {
       this.setState({
         hospitals: response.data,
@@ -47,10 +51,10 @@ class HospitalList extends React.Component {
     });
   }
 
-  confirmDelete(hospital) {
+  confirmDelete(hospitalDepartment) {
     const result = confirm(`Anda akan menghapus rumah sakit : ${hospital.name}?`);
     if (result) {
-      axios.delete(`${HOSPITALS_URL}/${hospital.id}`)
+      axios.delete(`${HOSPITALS_URL}/${this.state.hospitalId}/departments/${hospitalDepartment.id}`)
       .then((response) => {
         console.log(response);
         this.loadData();
@@ -61,46 +65,46 @@ class HospitalList extends React.Component {
     }
   }
 
-  showHospitalAddWindow() {
+  showHospitalDepartmentAddWindow() {
     this.setState({
-      hospital: {},
-      showHospitalAddWindow: true,
+      hospitalDepartment: {},
+      showHospitalDepartmentAddWindow: true,
     });
   }
 
-  showHospitalEditWindow(hospital) {
+  showHospitalDepartmentEditWindow(hospitalDepartment) {
     this.setState({
-      hospital,
-      showHospitalAddWindow: true,
+      hospitalDepartment,
+      showHospitalDepartmentAddWindow: true,
     });
   }
 
-  onAddHospitalSuccess() {
+  onAddHospitalDepartmentSuccess() {
     this.setState({
-      hospital: {},
-      showHospitalAddWindow: false,
+      hospitalDepartment: {},
+      showHospitalDepartmentAddWindow: false,
     }, () => {
       this.loadData();
     });
   }
 
   render() {
-    const hospitalComponents = [];
-    for (let i = 0; i < this.state.hospitals.length; i += 1) {
-      const hospital = this.state.hospitals[i];
-      hospitalComponents.push(
-        <tr key={hospital.id}>
+    const hospitalDepartmentComponents = [];
+    for (let i = 0; i < this.state.hospitalDepartments.length; i += 1) {
+      const hospitalDepartment = this.state.hospitalDepartments[i];
+      hospitalDepartmentComponents.push(
+        <tr key={hospitalDepartment.id}>
           <td>{ i + 1 }</td>
-          <td>{hospital.code}</td>
-          <td>{hospital.name}</td>
+          <td>{hospitalDepartment.code}</td>
+          <td>{hospitalDepartment.name}</td>
           <td>
             <Button
               bsStyle="default" style={{ marginRight: 5 }} bsSize="small"
-              onClick={() => this.showHospitalEditWindow(hospital)}
+              onClick={() => this.showHospitalDepartmentEditWindow(hospitalDepartment)}
             >
               <i className="fa fa-edit" />
             </Button>
-            <Button bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(hospital)}>
+            <Button bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(hospitalDepartment)}>
               <i className="fa fa-remove" />
             </Button>
           </td>
@@ -117,7 +121,7 @@ class HospitalList extends React.Component {
           <i className="fa fa-search" />
         </Button>
         {' '}
-        <Button bsStyle="success" onClick={this.showHospitalAddWindow}>
+        <Button bsStyle="success" onClick={this.showHospitalDepartmentAddWindow}>
           <i className="fa fa-plus" />
         </Button>
       </Form>
@@ -136,19 +140,19 @@ class HospitalList extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {hospitalComponents}
+                {hospitalDepartmentComponents}
               </tbody>
             </Table>
           </Panel>
         </Col>
         <HospitalAddWindow
           hospital={this.state.hospital}
-          showModal={this.state.showHospitalAddWindow}
-          onSaveSuccess={this.onAddHospitalSuccess}
+          showModal={this.state.showHospitalDepartmentAddWindow}
+          onSaveSuccess={this.onAddHospitalDepartmentSuccess}
         />
       </Row>
     );
   }
 }
 
-export default HospitalList;
+export default HospitalDepartmentList;
