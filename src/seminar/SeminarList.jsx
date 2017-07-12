@@ -48,7 +48,7 @@ class SeminarList extends React.Component {
   }
 
   confirmDelete(seminar) {
-    const result = confirm(`Anda akan menghapus rumah sakit : ${seminar.name}?`);
+    const result = confirm(`Anda akan menghapus seminar : ${seminar.name}?`);
     if (result) {
       axios.delete(`${SEMINAR_URL}/${seminar.id}`)
       .then((response) => {
@@ -93,6 +93,7 @@ class SeminarList extends React.Component {
           <td>{ i + 1 }</td>
           <td>{seminar.code}</td>
           <td>{seminar.name}</td>
+          <td>{seminar.eventDate}</td>
           <td>
             <Button
               bsStyle="default" style={{ marginRight: 5 }} bsSize="small"
@@ -132,6 +133,7 @@ class SeminarList extends React.Component {
                   <th>No</th>
                   <th>Kode</th>
                   <th>Nama</th>
+                  <th>Tanggal</th>
                   <th>Action</th>
                 </tr>
               </thead>
