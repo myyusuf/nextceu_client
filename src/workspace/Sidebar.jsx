@@ -75,6 +75,16 @@ class Sidebar extends React.Component {
                             </a>
                           </li>
                           <li className="">
+                            <a href="#/seminars" className="ripple">
+                              <span className="pull-right nav-label"></span>
+                              <span className="nav-icon">
+                                <img src="" data-svg-replace="img/icons/radio-waves.svg" alt="MenuItem" className="hidden" />
+                              </span>
+                              <span>Seminar</span>
+                              <span className="md-ripple"></span>
+                            </a>
+                          </li>
+                          <li className="">
                               <a href="#" className="ripple">
                                   <span className="pull-right nav-caret"><em className="ion-ios-arrow-right"></em></span><span className="pull-right nav-label"></span><span className="nav-icon">
                                   <img src="" data-svg-replace="images/icons/connection-bars.svg" alt="MenuItem" className="hidden" /></span>
@@ -82,9 +92,32 @@ class Sidebar extends React.Component {
                               </a>
                               <ul className="sidebar-subnav">
                                   <li className="">
-                                    <a href="cards.html" className="ripple">
+                                    <a href="#/costunits" className="ripple">
 
                                       <span>Cost Unit</span>
+                                      <span className="md-ripple"></span>
+                                    </a>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li className="">
+                              <a href="#" className="ripple">
+                                  <span className="pull-right nav-caret"><em className="ion-ios-arrow-right"></em></span><span className="pull-right nav-label"></span><span className="nav-icon">
+                                  <img src="" data-svg-replace="images/icons/connection-bars.svg" alt="MenuItem" className="hidden" /></span>
+                                  <span>Settings</span>
+                              </a>
+                              <ul className="sidebar-subnav">
+                                  <li className="">
+                                    <a href="#/users" className="ripple">
+
+                                      <span>User</span>
+                                      <span className="md-ripple"></span>
+                                    </a>
+                                  </li>
+                                  <li className="">
+                                    <a href="#/roles" className="ripple">
+
+                                      <span>Role</span>
                                       <span className="md-ripple"></span>
                                     </a>
                                   </li>

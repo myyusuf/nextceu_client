@@ -6,7 +6,7 @@ import Constant from '../Constant';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
 
-class HospitalDepartmentList extends React.Component {
+class HospitalSchedule extends React.Component {
 
   constructor(props) {
     super(props);
@@ -155,4 +155,4 @@ class HospitalDepartmentList extends React.Component {
   }
 }
 
-export default HospitalDepartmentList;
+export default HospitalSchedule;

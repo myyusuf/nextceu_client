@@ -7,6 +7,7 @@ import DepartmentEdit from './department/DepartmentEdit';
 import StudentList from './student/StudentList';
 import StudentView from './student/StudentView';
 import HospitalList from './hospital/HospitalList';
+import UserList from './settings/UserList';
 import Dashboard from './dashboard/Dashboard';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/departments" component={DepartmentList} />
       <Route path="/hospitals" component={HospitalList} />
+      <Route path="/users" component={UserList} />
       <Route path="/departments_add" component={DepartmentEdit} />
       <Route path="/departments_edit/:departmentId" component={DepartmentEdit} />
       <Route path="/students" component={StudentList} />
