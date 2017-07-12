@@ -48,7 +48,7 @@ class UserList extends React.Component {
   }
 
   confirmDelete(user) {
-    const result = confirm(`Anda akan menghapus rumah sakit : ${user.name}?`);
+    const result = confirm(`Anda akan menghapus user : ${user.name}?`);
     if (result) {
       axios.delete(`${USERS_URL}/${user.id}`)
       .then((response) => {
@@ -88,11 +88,13 @@ class UserList extends React.Component {
     const userComponents = [];
     for (let i = 0; i < this.state.users.length; i += 1) {
       const user = this.state.users[i];
+      const roleName = user.Role ? user.Role.name : '';
       userComponents.push(
         <tr key={user.id}>
           <td>{ i + 1 }</td>
           <td>{user.username}</td>
           <td>{user.name}</td>
+          <td>{roleName}</td>
           <td>
             <Button
               bsStyle="default" style={{ marginRight: 5 }} bsSize="small"
@@ -132,6 +134,7 @@ class UserList extends React.Component {
                   <th>No</th>
                   <th>Username</th>
                   <th>Nama</th>
+                  <th>Role</th>
                   <th>Action</th>
                 </tr>
               </thead>

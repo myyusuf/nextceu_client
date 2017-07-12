@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import RoleSelect from '../settings/RoleSelect';
 import Constant from '../Constant';
 
 const USERS_URL = `${Constant.serverUrl}/api/users`;
@@ -17,6 +18,10 @@ const getValidationFields = () => {
       message: '',
     },
     name: {
+      state: null,
+      message: '',
+    },
+    role: {
       state: null,
       message: '',
     },
@@ -43,9 +48,13 @@ class UserWindow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const user = nextProps.user;
+    if (user.Role) {
+      user.role = user.Role.id;
+    }
     this.setState({
       showModal: nextProps.showModal,
-      user: nextProps.user,
+      user,
     });
   }
 
@@ -104,6 +113,15 @@ class UserWindow extends React.Component {
     } else {
       result.name.state = 'success';
       result.name.message = '';
+    }
+
+    if (!user.role) {
+      result.role.state = 'error';
+      result.role.message = 'Role wajib diisi';
+      result.status = false;
+    } else {
+      result.role.state = 'success';
+      result.role.message = '';
     }
 
     return result;
@@ -208,6 +226,20 @@ class UserWindow extends React.Component {
                     onChange={this.handleInputChange}
                   />
                   <HelpBlock>{this.state.validation.name.message}</HelpBlock>
+                  <FormControl.Feedback />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12}>
+                <FormGroup controlId={'name'} validationState={this.state.validation.role.state}>
+                  <ControlLabel>Role</ControlLabel>
+                  <RoleSelect
+                    name="role"
+                    value={this.state.user.role}
+                    onChange={this.handleInputChange}
+                  />
+                  <HelpBlock>{this.state.validation.role.message}</HelpBlock>
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>

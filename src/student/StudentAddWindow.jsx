@@ -2,8 +2,9 @@ import React from 'react';
 import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Constant from '../Constant';
 
-const STUDENTS_URL = '/api/students';
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
 class StudentWindow extends React.Component {
 
