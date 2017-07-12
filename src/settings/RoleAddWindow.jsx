@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Constant from '../Constant';
 
-const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
+const ROLES_URL = `${Constant.serverUrl}/api/roles`;
 
 const getValidationFields = () => {
   return {
@@ -20,14 +20,14 @@ const getValidationFields = () => {
   };
 };
 
-class HospitalWindow extends React.Component {
+class RoleWindow extends React.Component {
 
   constructor(props) {
     super(props);
 
-    const hospital = props.hospital || {}
+    const role = props.role || {}
     this.state = {
-      hospital,
+      role,
       showModal: props.showModal,
       validation: getValidationFields(),
     };
@@ -40,7 +40,7 @@ class HospitalWindow extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       showModal: nextProps.showModal,
-      hospital: nextProps.hospital,
+      role: nextProps.role,
     });
   }
 
@@ -49,24 +49,24 @@ class HospitalWindow extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    const hospital = this.state.hospital;
-    hospital[name] = value;
+    const role = this.state.role;
+    role[name] = value;
 
-    const validation = this.validate(hospital);
+    const validation = this.validate(role);
     this.setState({
-      hospital,
+      role,
       validation,
     });
   }
 
-  validate(hospital) {
+  validate(role) {
     const result = getValidationFields();
 
-    if (!hospital.code) {
+    if (!role.code) {
       result.code.state = 'error';
       result.code.message = 'Stambuk baru wajib diisi';
       result.status = false;
-    } else if (hospital.code.length < 3) {
+    } else if (role.code.length < 3) {
       result.code.state = 'error';
       result.code.message = 'Minimum panjang stambuk adalah tiga karakter';
       result.status = false;
@@ -75,11 +75,11 @@ class HospitalWindow extends React.Component {
       result.code.message = '';
     }
 
-    if (!hospital.name) {
+    if (!role.name) {
       result.name.state = 'error';
       result.name.message = 'Nama wajib diisi';
       result.status = false;
-    } else if (hospital.name.length < 3) {
+    } else if (role.name.length < 3) {
       result.name.state = 'error';
       result.name.message = 'Minimum panjang nama adalah tiga karakter';
       result.status = false;
@@ -93,7 +93,7 @@ class HospitalWindow extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const validation = this.validate(this.state.hospital);
+    const validation = this.validate(this.state.role);
     if (!validation.status) {
       this.setState({
         validation,
@@ -101,11 +101,11 @@ class HospitalWindow extends React.Component {
       return;
     }
 
-    const hospital = this.state.hospital;
+    const role = this.state.role;
 
-    if (hospital.id) {
-      axios.put(`${HOSPITALS_URL}/${hospital.id}`,
-        hospital)
+    if (role.id) {
+      axios.put(`${ROLES_URL}/${role.id}`,
+        role)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -114,8 +114,8 @@ class HospitalWindow extends React.Component {
         console.log(error);
       });
     } else {
-      axios.post(HOSPITALS_URL,
-        hospital)
+      axios.post(ROLES_URL,
+        role)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -130,7 +130,7 @@ class HospitalWindow extends React.Component {
   close() {
     this.setState({
       showModal: false,
-      hospital: {},
+      role: {},
       validation: getValidationFields(),
     }, () => {
       this.props.onSaveSuccess();
@@ -156,7 +156,7 @@ class HospitalWindow extends React.Component {
                   <FormControl
                     type="text"
                     name="code"
-                    value={this.state.hospital.code}
+                    value={this.state.role.code}
                     onChange={this.handleInputChange}
                   />
                   <HelpBlock>{this.state.validation.code.message}</HelpBlock>
@@ -171,7 +171,7 @@ class HospitalWindow extends React.Component {
                   <FormControl
                     type="text"
                     name="name"
-                    value={this.state.hospital.name}
+                    value={this.state.role.name}
                     onChange={this.handleInputChange}
                   />
                   <HelpBlock>{this.state.validation.name.message}</HelpBlock>
@@ -191,8 +191,8 @@ class HospitalWindow extends React.Component {
   }
 }
 
-HospitalWindow.propTypes = {
+RoleWindow.propTypes = {
   // onSaveSuccess: PropTypes.shape({}).isRequired,
 };
 
-export default HospitalWindow;
+export default RoleWindow;
