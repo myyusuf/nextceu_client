@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Constant from '../Constant';
 
-const ROLES_URL = `${Constant.serverUrl}/api/roles`;
+const SEMINARS_URL = `${Constant.serverUrl}/api/seminars`;
 
 const getValidationFields = () => {
   return {
@@ -20,14 +20,14 @@ const getValidationFields = () => {
   };
 };
 
-class RoleWindow extends React.Component {
+class SeminarWindow extends React.Component {
 
   constructor(props) {
     super(props);
 
-    const role = props.role || {}
+    const seminar = props.seminar || {}
     this.state = {
-      role,
+      seminar,
       showModal: props.showModal,
       validation: getValidationFields(),
     };
@@ -40,7 +40,7 @@ class RoleWindow extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       showModal: nextProps.showModal,
-      role: nextProps.role,
+      seminar: nextProps.seminar,
     });
   }
 
@@ -49,24 +49,24 @@ class RoleWindow extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    const role = this.state.role;
-    role[name] = value;
+    const seminar = this.state.seminar;
+    seminar[name] = value;
 
-    const validation = this.validate(role);
+    const validation = this.validate(seminar);
     this.setState({
-      role,
+      seminar,
       validation,
     });
   }
 
-  validate(role) {
+  validate(seminar) {
     const result = getValidationFields();
 
-    if (!role.code) {
+    if (!seminar.code) {
       result.code.state = 'error';
       result.code.message = 'Kode wajib diisi';
       result.status = false;
-    } else if (role.code.length < 3) {
+    } else if (seminar.code.length < 3) {
       result.code.state = 'error';
       result.code.message = 'Minimum panjang kode adalah tiga karakter';
       result.status = false;
@@ -75,11 +75,11 @@ class RoleWindow extends React.Component {
       result.code.message = '';
     }
 
-    if (!role.name) {
+    if (!seminar.name) {
       result.name.state = 'error';
       result.name.message = 'Nama wajib diisi';
       result.status = false;
-    } else if (role.name.length < 3) {
+    } else if (seminar.name.length < 3) {
       result.name.state = 'error';
       result.name.message = 'Minimum panjang nama adalah tiga karakter';
       result.status = false;
@@ -93,7 +93,7 @@ class RoleWindow extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const validation = this.validate(this.state.role);
+    const validation = this.validate(this.state.seminar);
     if (!validation.status) {
       this.setState({
         validation,
@@ -101,11 +101,11 @@ class RoleWindow extends React.Component {
       return;
     }
 
-    const role = this.state.role;
+    const seminar = this.state.seminar;
 
-    if (role.id) {
-      axios.put(`${ROLES_URL}/${role.id}`,
-        role)
+    if (seminar.id) {
+      axios.put(`${SEMINARS_URL}/${seminar.id}`,
+        seminar)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -114,8 +114,8 @@ class RoleWindow extends React.Component {
         console.log(error);
       });
     } else {
-      axios.post(ROLES_URL,
-        role)
+      axios.post(SEMINARS_URL,
+        seminar)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -130,7 +130,7 @@ class RoleWindow extends React.Component {
   close() {
     this.setState({
       showModal: false,
-      role: {},
+      seminar: {},
       validation: getValidationFields(),
     }, () => {
       this.props.onSaveSuccess();
@@ -156,7 +156,7 @@ class RoleWindow extends React.Component {
                   <FormControl
                     type="text"
                     name="code"
-                    value={this.state.role.code}
+                    value={this.state.seminar.code}
                     onChange={this.handleInputChange}
                   />
                   <HelpBlock>{this.state.validation.code.message}</HelpBlock>
@@ -171,7 +171,7 @@ class RoleWindow extends React.Component {
                   <FormControl
                     type="text"
                     name="name"
-                    value={this.state.role.name}
+                    value={this.state.seminar.name}
                     onChange={this.handleInputChange}
                   />
                   <HelpBlock>{this.state.validation.name.message}</HelpBlock>
@@ -191,8 +191,8 @@ class RoleWindow extends React.Component {
   }
 }
 
-RoleWindow.propTypes = {
+SeminarWindow.propTypes = {
   // onSaveSuccess: PropTypes.shape({}).isRequired,
 };
 
-export default RoleWindow;
+export default SeminarWindow;
