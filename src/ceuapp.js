@@ -11,10 +11,12 @@ import SeminarList from './seminar/SeminarList';
 import UserList from './settings/UserList';
 import RoleList from './settings/RoleList';
 import Dashboard from './dashboard/Dashboard';
+import LoginWindow from './login/LoginWindow';
 
 ReactDOM.render(
   <HashRouter>
     <Workspace>
+      <Route path="/login" component={LoginWindow} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/departments" component={DepartmentList} />
       <Route path="/hospitals" component={HospitalList} />

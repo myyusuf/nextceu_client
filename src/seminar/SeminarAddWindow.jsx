@@ -144,7 +144,7 @@ class SeminarWindow extends React.Component {
         onHide={this.close}
       >
         <Modal.Header>
-          <Modal.Title>Tambah Rumah Sakit</Modal.Title>
+          <Modal.Title>Tambah Seminar</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

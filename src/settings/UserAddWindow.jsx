@@ -180,7 +180,7 @@ class UserWindow extends React.Component {
         onHide={this.close}
       >
         <Modal.Header>
-          <Modal.Title>Tambah Rumah Sakit</Modal.Title>
+          <Modal.Title>Tambah User</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

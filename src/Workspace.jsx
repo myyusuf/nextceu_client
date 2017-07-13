@@ -4,7 +4,9 @@ import Sidebar from './workspace/Sidebar';
 
 const Workspace = ({ children }) => {
 
-  return (
+  console.log(window.location.hash);
+
+  let component = (
     <div className="layout-container">
       <Header />
       <Sidebar />
@@ -16,6 +18,18 @@ const Workspace = ({ children }) => {
         </footer>
       </div>
     </div>
+  );
+
+  if (window.location.hash === '#/login') {
+    component = (
+      <div className="layout-container">
+        { children }
+      </div>
+    );
+  }
+
+  return (
+    component
   );
 };
 

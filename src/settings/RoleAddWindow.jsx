@@ -144,7 +144,7 @@ class RoleWindow extends React.Component {
         onHide={this.close}
       >
         <Modal.Header>
-          <Modal.Title>Tambah Rumah Sakit</Modal.Title>
+          <Modal.Title>Tambah Role</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
