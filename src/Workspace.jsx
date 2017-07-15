@@ -26,6 +26,11 @@ const Workspace = ({ children }) => {
         { children }
       </div>
     );
+  } else {
+    console.log('---------------->', window.sessionStorage.getItem('token'));
+    if (!window.sessionStorage.getItem('token')) {
+      window.location.href = '#/login';
+    }
   }
 
   return (

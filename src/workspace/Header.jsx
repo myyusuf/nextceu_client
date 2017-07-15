@@ -15,7 +15,7 @@ class Header extends React.Component {
   onSelect(eventKey, event) {
     console.log(eventKey);
     if (eventKey === 3) {
-      window.sessionStorage.setItem('token', null);
+      window.sessionStorage.removeItem('token');
       window.location.href = '#/login';
     }
   }

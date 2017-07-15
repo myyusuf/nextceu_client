@@ -57,7 +57,7 @@ class LoginWindow extends React.Component {
               <div className="mv-lg block-center img-responsive thumb64" />
               <form id="user-login" action="" name="loginForm" noValidate="" className="card b0 form-validate">
                 <div className="card-offset pb0">
-                  <div className="card-offset-item text-right"><a href="signup.html" className="btn-raised btn btn-info btn-circle btn-lg"><em className="ion-person-add"></em></a></div>
+                  <div className="card-offset-item text-right"><a href="#/login" className="btn-raised btn btn-info btn-circle btn-lg"><em className="ion-person-add"></em></a></div>
                   <div className="card-offset-item text-right hidden">
                     <div className="btn btn-success btn-circle btn-lg"><em className="ion-checkmark-round"></em></div>
                   </div>
@@ -83,9 +83,10 @@ class LoginWindow extends React.Component {
                 <button type="button" className="btn btn-primary btn-flat" onClick={this.signIn}>Authenticate</button>
               </form>
               <div className="text-center text-sm"><a href="recover.html" className="text-inherit">Forgot password?</a></div>
-              <div className="text-center text-sm">
+              <div className="text-center text-sm" style={{ marginTop: 10 }}>
                 <em>
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                  Clinical Education Unit Fakultas Kedokteran Universitas Muslim Indonesia (UMI).
+                  &copy; UMI 2017. All rights reserved.
                 </em>
               </div>
           </div>
