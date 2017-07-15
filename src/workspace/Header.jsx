@@ -8,6 +8,16 @@ class Header extends React.Component {
     this.state = {
       pageTitle: 'Administration',
     };
+
+    this.onSelect = this.onSelect.bind(this);
+  }
+
+  onSelect(eventKey, event) {
+    console.log(eventKey);
+    if (eventKey === 3) {
+      window.sessionStorage.setItem('token', null);
+      window.location.href = '#/login';
+    }
   }
 
 
@@ -34,19 +44,19 @@ class Header extends React.Component {
                       <em className="ion-ios-search-strong"></em>
                   </a>
               </li>
-              <Dropdown id="basic-nav-dropdown" pullRight componentClass="li">
+              <Dropdown id="basic-nav-dropdown" pullRight componentClass="li" onSelect={this.onSelect}>
                   <Dropdown.Toggle useAnchor noCaret className="has-badge ripple">
                     <em className="ion-person"></em>
                     <sup className="badge bg-danger">3</sup>
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="md-dropdown-menu" >
-                    <MenuItem eventKey={3.1}>
+                    <MenuItem eventKey={1}>
                         <em className="ion-home icon-fw"></em>
                         Profile
                     </MenuItem>
-                      <MenuItem eventKey={3.2}><em className="ion-gear-a icon-fw"></em>Messages</MenuItem>
+                      <MenuItem eventKey={2}><em className="ion-gear-a icon-fw"></em>Messages</MenuItem>
                       <MenuItem divider />
-                      <MenuItem eventKey={3.3}><em className="ion-log-out icon-fw"></em>Logout</MenuItem>
+                      <MenuItem eventKey={3}><em className="ion-log-out icon-fw"></em>Logout</MenuItem>
                   </Dropdown.Menu>
               </Dropdown>
               <li>

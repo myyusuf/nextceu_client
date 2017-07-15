@@ -32,10 +32,19 @@ class LoginWindow extends React.Component {
     axios.post(SIGNIN_URL,
       this.state)
     .then((response) => {
+      const token = response.data.token;
+      if (typeof(Storage) !== "undefined") {
+        window.sessionStorage.setItem('token', token);
+        window.location.href = '#/dashboard';
+      } else {
+          alert('Sorry! No Web Storage support..');
+      }
+
       console.log(response);
     })
     .catch((error) => {
       console.log(error);
+      alert(`Login error: ${error.message}`);
     });
   }
 
