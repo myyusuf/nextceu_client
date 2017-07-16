@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Row, Col, Panel, Button, ListGroup, ListGroupItem, Badge, ProgressBar, Grid } from 'react-bootstrap';
 import StudentAddWindow from './StudentAddWindow';
+import LevelSelect from '../level/LevelSelect';
 import Constant from '../Constant';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
@@ -13,12 +14,18 @@ class StudentPage extends React.Component {
     super(props);
     this.state = {
       students: [],
+      searchText: '',
+      level: '',
       showStudentAddWindow: false,
     };
 
     this.showStudentAddWindow = this.showStudentAddWindow.bind(this);
     this.onAddStudentSuccess = this.onAddStudentSuccess.bind(this);
     this.viewStudent = this.viewStudent.bind(this);
+
+    this.getStudents = this.getStudents.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +33,12 @@ class StudentPage extends React.Component {
   }
 
   getStudents() {
-    axios.get(STUDENTS_URL)
+    axios.get(STUDENTS_URL, {
+      params: {
+        searchText: this.state.searchText,
+        level: this.state.level,
+      },
+    })
     .then((response) => {
       this.setState({
         students: response.data,
@@ -34,6 +46,22 @@ class StudentPage extends React.Component {
     })
     .catch((error) => {
       console.log(error);
+    });
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      searchText: value,
+    });
+  }
+
+  handleSelectChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      level: value,
     });
   }
 
@@ -127,33 +155,44 @@ class StudentPage extends React.Component {
 
               <Row>
                 <Col sm={12}>
-                  <div className="input-group" style={{ padding: 10, marginBottom: 10 }}>
-                    <input type="text" className="form-control" placeholder="Stambuk atau Nama"/><span className="input-group-btn">
-                    <button type="button" className="btn btn-default">Search</button></span>
+                  <div style={{ paddingLeft: 10, paddingRight: 10, marginBottom: 0, marginTop: 20 }}>
+                    <LevelSelect
+                      name="level"
+                      onChange={this.handleSelectChange}
+                    />
                   </div>
                 </Col>
-
               </Row>
+
+              <Row>
+                <Col sm={12}>
+                  <div className="input-group" style={{ padding: 10, marginBottom: 20 }}>
+                    <input type="text" onChange={this.handleInputChange} className="form-control" placeholder="Stambuk atau Nama"/><span className="input-group-btn">
+                    <button type="button" className="btn btn-default" onClick={this.getStudents}>Search</button></span>
+                  </div>
+                </Col>
+              </Row>
+
               <div id="markers-list" className="list-group">
                   <a data-panto-marker="0" className="list-group-item">
                       <em className="pull-right ion-ios-arrow-forward"></em>
                       Aktif
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-success">350</span>
+                        <span className="badge bg-success"></span>
                       </span>
                   </a>
                   <a data-panto-marker="1" className="list-group-item">
                       <em className="pull-right ion-ios-arrow-forward"></em>
                       Ujian UKMPPD
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-primary">30</span>
+                        <span className="badge bg-primary"></span>
                       </span>
                   </a>
                   <a data-panto-marker="2" className="list-group-item">
                       <em className="pull-right ion-ios-arrow-forward">
                       </em>Bermasalah
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-danger">30</span>
+                        <span className="badge bg-danger"></span>
                       </span>
                   </a>
               </div>
