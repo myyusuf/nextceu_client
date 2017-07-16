@@ -183,7 +183,7 @@ class StudentList extends React.Component {
                   <button
                     type="button"
                     className="btn btn-labeled btn-success ripple"
-                    style={{ marginLeft: 15, marginTop: 15, marginBottom: 10 }}
+                    style={{ marginLeft: 15, marginTop: 25, marginBottom: 10 }}
                     onClick={this.showStudentAddWindow}
                   >
                     Mahasiswa

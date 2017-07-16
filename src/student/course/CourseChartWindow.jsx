@@ -38,7 +38,6 @@ class CourseChartWindow extends React.Component {
       data: this.state.chartData,
     };
 
-    console.log('---------->', data);
     return (
       <Modal
         dialogClassName="chart-modal"

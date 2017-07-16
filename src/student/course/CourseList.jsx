@@ -195,7 +195,7 @@ class CourseList extends React.Component {
         defaultActiveKey={1}
         id="uncontrolled-tab-example"
       >
-        <Tab eventKey={1} title="Tingkat 1" style={{ marginTop: -10 }}>
+        <Tab eventKey={1} title="TINGKAT 1" style={{ marginTop: -10 }}>
           <Row>
             <Col md={6} mdOffset={6}>
               <div style={{ display: 'flex', justifyContent: 'flex-end' }} className="text-right">
@@ -244,7 +244,7 @@ class CourseList extends React.Component {
             onClose={this.onAddCourseSuccess}
           />
         </Tab>
-        <Tab eventKey={2} title="Tingkat 2">Tab 2 content</Tab>
+        <Tab eventKey={2} title="TINGKAT 2">Tab 2 content</Tab>
       </Tabs>
     );
   }
