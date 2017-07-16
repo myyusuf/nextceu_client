@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
         <div className="content-heading bg-white">
           <Row>
             <Col sm={9}>
-              <h4 className="m0 text-thin">Welcome to CEU dashboard</h4>
+              <h4 className="m0 text-thin">CEU dashboard</h4>
               <small>Dashboard for admin</small>
             </Col>
             <Col sm={3} className="text-right hidden-xs">
@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
                 type="button"
                 className="mt-sm btn btn-labeled btn-default ripple"
               >
-                Apps
+                Chart
                 <span className="btn-label btn-label-right">
                   <i className="ion-plus-round" />
                 </span>

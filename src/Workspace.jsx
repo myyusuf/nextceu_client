@@ -4,11 +4,11 @@ import Sidebar from './workspace/Sidebar';
 
 const Workspace = ({ children }) => {
 
-  console.log(window.location.hash);
+  const location = (window.location.hash);
 
   let component = (
     <div className="layout-container">
-      <Header />
+      <Header location={location} />
       <Sidebar />
       <div className="sidebar-layout-obfuscator" />
       <div className="main-container">

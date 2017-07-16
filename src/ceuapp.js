@@ -17,6 +17,7 @@ ReactDOM.render(
   <HashRouter>
     <Workspace>
       <Route path="/login" component={LoginWindow} />
+      
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/departments" component={DepartmentList} />
       <Route path="/hospitals" component={HospitalList} />
