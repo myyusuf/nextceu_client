@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Tabs, Tab, SplitButton, MenuItem, Row, Col, ListGroup, Button } from 'react-bootstrap';
 import CourseAddByLevelWindow from './CourseAddByLevelWindow';
+import CourseAddByDepartmentWindow from './CourseAddByDepartmentWindow';
 import Constant from '../../Constant';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
@@ -21,6 +22,7 @@ class CourseList extends React.Component {
 
     this.addCourseButtonSelect = this.addCourseButtonSelect.bind(this);
     this.onAddCourseSuccess = this.onAddCourseSuccess.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +30,6 @@ class CourseList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    console.log('-------------------->');
     this.setState({
       student: nextProps.student,
     }, () => {
@@ -71,6 +71,20 @@ class CourseList extends React.Component {
     });
   }
 
+  confirmDelete(course) {
+    const result = confirm(`Anda akan menghapus bagian : ${course.title}?`);
+    if (result) {
+      axios.delete(`${STUDENTS_URL}/${this.state.student.id}/courses/${course.id}`)
+      .then((response) => {
+        console.log(response);
+        this.getCourses();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  }
+
   render() {
 
     const level1Courses = this.state.courses;
@@ -93,7 +107,7 @@ class CourseList extends React.Component {
                 <strong>Bagian : </strong>{course.Department.name}
               </div>
               <div className="text-right">
-                <Button bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(department)}>
+                <Button bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(course)}>
                   <i className="fa fa-remove" />
                 </Button>
               </div>
@@ -142,6 +156,12 @@ class CourseList extends React.Component {
           <CourseAddByLevelWindow
             student={this.state.student}
             showModal={this.state.showCourseAddByLevelWindow}
+            onSaveSuccess={this.onAddCourseSuccess}
+          />
+
+          <CourseAddByDepartmentWindow
+            student={this.state.student}
+            showModal={this.state.showCourseAddByDepartmentWindow}
             onSaveSuccess={this.onAddCourseSuccess}
           />
         </Tab>
