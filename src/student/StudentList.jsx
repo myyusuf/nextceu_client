@@ -119,9 +119,9 @@ class StudentList extends React.Component {
     });
   }
 
-  viewStudent(studentId) {
+  viewStudent(studentId, path = 'profile') {
     // window.location.href = `#/students_details/${student.id}/profile`;
-    window.location.href = `#/students_view/${studentId}/profile`;
+    window.location.href = `#/students_view/${studentId}/${path}`;
   }
 
   showStudentAddWindow() {
@@ -142,6 +142,7 @@ class StudentList extends React.Component {
   render() {
     const studentThumbnails = [];
     const students = this.state.students;
+    const now = 75;
 
     for (let i = 0; i < students.length; i += 1) {
       const student = students[i];
@@ -156,18 +157,14 @@ class StudentList extends React.Component {
                 </button>
               </div>
               <Row>
-                  <Col lg={4} md={8}><a href=""><img src="images/user/02.jpg" alt="Contact" className="fw img-responsive" /></a></Col>
+                  <Col lg={4} md={8}><a href=""><img src="https://s3-ap-southeast-1.amazonaws.com/ceu-sg1-1/images/user.png" alt="Contact" className="fw img-responsive" /></a></Col>
               </Row>
               <h5>{student.name}</h5>
-              <p className="mt"><em className="ion-android-list mr-sm"></em><span>{student.oldSid} {student.newSid}</span></p>
-              <p className="mt">Proin est sapien, convallis non hendrerit nec</p>
+              <p className=""><span>{student.oldSid} {student.newSid}</span></p>
+              <p className=""><span className="badge bg-info" style={{ padding: 10 }} onClick={() => this.viewStudent(student.id, 'course')}>Radiologi</span></p>
             </div>
             <div className="card-footer text-center">
-              <button type="button" className="btn btn-default btn-xs"><em className="ion-email icon-lg icon-fw"></em></button>
-              <button type="button" className="btn btn-default btn-xs"><em className="ion-social-facebook icon-lg icon-fw"></em></button>
-              <button type="button" className="btn btn-default btn-xs"><em className="ion-social-twitter icon-lg icon-fw"></em></button>
-              <button type="button" className="btn btn-default btn-xs"><em className="ion-social-linkedin icon-lg icon-fw"></em></button>
-              <button type="button" className="btn btn-default btn-xs"><em className="ion-social-skype icon-lg icon-fw"></em></button>
+              <ProgressBar now={now} bsStyle="" />
             </div>
           </div>
         </Col>

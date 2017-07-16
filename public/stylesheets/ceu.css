@@ -5,3 +5,6 @@
 .custom-modal {
   width: 253px;
 }
+
+.progress {height: 7px; margin: 0}
+.progress-bar { line-height: 7px; }

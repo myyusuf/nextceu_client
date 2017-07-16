@@ -90,7 +90,7 @@ class StudentView extends React.Component {
               <Row>
 
                 <Col sm={12} className="text-left">
-                  <img src="images/user/02.jpg" alt="Contact" className="fw img-responsive" style={{ padding: 20 }} />
+                  <img src="https://s3-ap-southeast-1.amazonaws.com/ceu-sg1-1/images/user.png" alt="Contact" className="fw img-responsive" style={{ padding: 20 }} />
                 </Col>
               </Row>
 
@@ -129,15 +129,11 @@ class StudentView extends React.Component {
                       <em className="pull-right ion-ios-arrow-forward"></em>
                       Nilai UKMPPD
                   </a>
-                  <a data-panto-marker="1" className="list-group-item">
-                      <em className="pull-right ion-ios-arrow-forward"></em>
-                      Seminar
-                  </a>
                   <a data-panto-marker="2" className="list-group-item">
                       <em className="pull-right ion-ios-arrow-forward">
                       </em>Masalah
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-danger">30</span>
+                        <span className="badge bg-danger"></span>
                       </span>
                   </a>
                   <li data-panto-marker="2" className="list-group-item">

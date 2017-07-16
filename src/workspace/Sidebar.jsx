@@ -24,7 +24,9 @@ class Sidebar extends React.Component {
               </div>
               <div className="sidebar-content">
                   <div className="sidebar-toolbar text-center">
-                      <a href=""><img src="images/user/01.jpg" alt="Profile" className="img-circle thumb64" /></a>
+                      <a href="">
+                        <img src="https://s3-ap-southeast-1.amazonaws.com/ceu-sg1-1/images/user.png" alt="Profile" className="img-circle thumb64" />
+                      </a>
                       <div className="mt">Welcome, Administrator</div>
                   </div>
                   <nav className="sidebar-nav">
