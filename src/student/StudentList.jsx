@@ -6,9 +6,10 @@ import LevelSelect from '../level/LevelSelect';
 import Constant from '../Constant';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
+const STUDENTS_STATUS_URL = `${Constant.serverUrl}/api/students_status`;
 
-class StudentPage extends React.Component {
-// const StudentPage = () => {
+class StudentList extends React.Component {
+// const StudentList = () => {
 
   constructor(props) {
     super(props);
@@ -16,6 +17,10 @@ class StudentPage extends React.Component {
       students: [],
       searchText: '',
       level: '',
+      status: '',
+      activeStatusCount: '',
+      ukmppdStatusCount: '',
+      problemStatusCount: '',
       showStudentAddWindow: false,
     };
 
@@ -26,10 +31,12 @@ class StudentPage extends React.Component {
     this.getStudents = this.getStudents.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
   }
 
   componentDidMount() {
     this.getStudents();
+    this.getStatusCount();
   }
 
   getStudents() {
@@ -37,11 +44,48 @@ class StudentPage extends React.Component {
       params: {
         searchText: this.state.searchText,
         level: this.state.level,
+        status: this.state.status,
       },
     })
     .then((response) => {
       this.setState({
         students: response.data,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  getStatusCount() {
+    axios.get(STUDENTS_STATUS_URL)
+    .then((response) => {
+      const statuses = response.data;
+      let activeStatusCount = 0;
+      let ukmppdStatusCount = 0;
+      let problemStatusCount = 0;
+
+      for (let i = 0; i < statuses.length; i += 1) {
+        const status = statuses[i];
+        switch (status.status) {
+          case 'ACTIVE':
+            activeStatusCount = status.statusCount;
+            break;
+          case 'UKMMPD':
+            ukmppdStatusCount = status.statusCount;
+            break;
+          case 'PROBLEM':
+            problemStatusCount = status.statusCount;
+            break;
+          default:
+            break;
+        }
+      }
+
+      this.setState({
+        activeStatusCount,
+        ukmppdStatusCount,
+        problemStatusCount,
       });
     })
     .catch((error) => {
@@ -62,6 +106,16 @@ class StudentPage extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       level: value,
+    }, () => {
+      this.getStudents();
+    });
+  }
+
+  handleStatusChange(status) {
+    this.setState({
+      status,
+    }, () => {
+      this.getStudents();
     });
   }
 
@@ -81,6 +135,7 @@ class StudentPage extends React.Component {
       showStudentAddWindow: false,
     }, () => {
       this.getStudents();
+      this.getStatusCount();
     });
   }
 
@@ -90,18 +145,7 @@ class StudentPage extends React.Component {
 
     for (let i = 0; i < students.length; i += 1) {
       const student = students[i];
-      let studentLevel = '';
-      switch (student.level) {
-        case 1:
-          studentLevel = 'Tingkat 1';
-          break;
-        case 2:
-          studentLevel = 'Tingkat 2';
-          break;
-        default:
-          studentLevel = '0';
-          break;
-      }
+
       studentThumbnails.push(
         <Col md={4} sm={6} key={student.id}>
           <div className="card">
@@ -142,7 +186,7 @@ class StudentPage extends React.Component {
                   <button
                     type="button"
                     className="btn btn-labeled btn-success ripple"
-                    style={{ marginLeft: 10, marginTop: 20, marginBottom: 10 }}
+                    style={{ marginLeft: 15, marginTop: 15, marginBottom: 10 }}
                     onClick={this.showStudentAddWindow}
                   >
                     Mahasiswa
@@ -154,8 +198,8 @@ class StudentPage extends React.Component {
               </Row>
 
               <Row>
-                <Col sm={12}>
-                  <div style={{ paddingLeft: 10, paddingRight: 10, marginBottom: 0, marginTop: 20 }}>
+                <Col sm={9}>
+                  <div style={{ paddingLeft: 15, paddingRight: 15, marginBottom: 10, marginTop: 15 }}>
                     <LevelSelect
                       name="level"
                       onChange={this.handleSelectChange}
@@ -166,33 +210,33 @@ class StudentPage extends React.Component {
 
               <Row>
                 <Col sm={12}>
-                  <div className="input-group" style={{ padding: 10, marginBottom: 20 }}>
+                  <div className="input-group" style={{ paddingLeft: 15, paddingRight: 15, marginBottom: 20 }}>
                     <input type="text" onChange={this.handleInputChange} className="form-control" placeholder="Stambuk atau Nama"/><span className="input-group-btn">
                     <button type="button" className="btn btn-default" onClick={this.getStudents}>Search</button></span>
                   </div>
                 </Col>
               </Row>
 
-              <div id="markers-list" className="list-group">
-                  <a data-panto-marker="0" className="list-group-item">
+              <div id="markers-list" className="list-group" style={{ paddingLeft: 15, paddingRight: 15 }}>
+                  <a data-panto-marker="0" className={this.state.status === 'ACTIVE' ? 'list-group-item active' : 'list-group-item'} onClick={() => this.handleStatusChange('ACTIVE')}>
                       <em className="pull-right ion-ios-arrow-forward"></em>
                       Aktif
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-success"></span>
+                        <span className="badge">{this.state.activeStatusCount}</span>
                       </span>
                   </a>
-                  <a data-panto-marker="1" className="list-group-item">
+                  <a data-panto-marker="1" className={this.state.status === 'UKMPPD' ? 'list-group-item active' : 'list-group-item'} onClick={() => this.handleStatusChange('UKMPPD')}>
                       <em className="pull-right ion-ios-arrow-forward"></em>
                       Ujian UKMPPD
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-primary"></span>
+                        <span className="badge">{this.state.ukmppdStatusCount}</span>
                       </span>
                   </a>
-                  <a data-panto-marker="2" className="list-group-item">
+                  <a data-panto-marker="2" className={this.state.status === 'PROBLEM' ? 'list-group-item active' : 'list-group-item'} onClick={() => this.handleStatusChange('PROBLEM')}>
                       <em className="pull-right ion-ios-arrow-forward">
                       </em>Bermasalah
                       <span className="pull-right nav-label" style={{ marginRight: 20 }}>
-                        <span className="badge bg-danger"></span>
+                        <span className="badge">{this.state.problemStatusCount}</span>
                       </span>
                   </a>
               </div>
@@ -221,4 +265,4 @@ class StudentPage extends React.Component {
   }
 }
 
-export default StudentPage;
+export default StudentList;

@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
                         <li className="active">
                           <a href="#/dashboard" className="ripple">
                             <span className="pull-right nav-label">
-                              <span className="badge bg-success">2</span>
+                              <span className="badge bg-success"></span>
                             </span>
                             <span className="nav-icon">
                               <img src="images/icons/aperture.svg" alt="MenuItem" style={{ color: 'blue' }} />
