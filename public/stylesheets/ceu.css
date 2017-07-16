@@ -6,5 +6,9 @@
   width: 253px;
 }
 
+.chart-modal {
+  width: 95%;
+}
+
 .progress {height: 7px; margin: 0}
 .progress-bar { line-height: 7px; }

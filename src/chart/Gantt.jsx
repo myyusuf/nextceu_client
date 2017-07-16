@@ -5,7 +5,12 @@ import 'dhtmlx-gantt';
 export default class Gantt extends Component {
   componentDidMount() {
     gantt.init(this.ganttContainer);
-    gantt.parse(this.props.tasks);
+    // gantt.parse(this.props.tasks);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    gantt.clearAll();
+    gantt.parse(nextProps.tasks);
   }
 
   render() {

@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Tabs, Tab, SplitButton, MenuItem, Row, Col, ListGroup, Button } from 'react-bootstrap';
 import CourseAddByLevelWindow from './CourseAddByLevelWindow';
 import CourseAddByDepartmentWindow from './CourseAddByDepartmentWindow';
+import CourseChartWindow from './CourseChartWindow';
 import Constant from '../../Constant';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
@@ -17,12 +19,15 @@ class CourseList extends React.Component {
       student: props.student,
       showCourseAddByLevelWindow: false,
       showCourseAddByDepartmentWindow: false,
+      showChart: false,
       courses: [],
+      chartData: [],
     };
 
     this.addCourseButtonSelect = this.addCourseButtonSelect.bind(this);
     this.onAddCourseSuccess = this.onAddCourseSuccess.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
+    this.showChart = this.showChart.bind(this);
   }
 
   componentDidMount() {
@@ -41,13 +46,68 @@ class CourseList extends React.Component {
     axios.get(`${STUDENTS_URL}/${this.state.student.id}/courses`)
     .then((response) => {
       const courses = response.data;
+      const chartData = this.parseChartData(courses);
       this.setState({
         courses,
+        chartData,
       });
     })
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  parseChartData(courses) {
+    const result = [];
+    let childId = 100000000;
+    for (let i = 0; i < courses.length; i += 1) {
+      const course = courses[i];
+      const mainSchedule = {
+        id: course.id,
+        text: course.title,
+        color: course.Department.color,
+        start_date: moment(course.planStartDate).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate).format('DD-MM-YYYY'),
+      };
+
+      const hospitalSchedule1 = {
+        id: course.id + childId,
+        parent: course.id,
+        text: 'RS 1',
+        color: '#D6DBDF',
+        start_date: moment(course.planStartDate1).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate1).format('DD-MM-YYYY'),
+      };
+
+      childId += 1;
+
+      const clinic = {
+        id: course.id + childId,
+        parent: course.id,
+        text: 'Puskesmas',
+        color: '#D6DBDF',
+        start_date: moment(course.planStartDate2).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate2).format('DD-MM-YYYY'),
+      };
+
+      childId += 1;
+
+      const hospitalSchedule2 = {
+        id: course.id + childId,
+        parent: course.id,
+        text: 'RS 2',
+        color: '#D6DBDF',
+        start_date: moment(course.planStartDate3).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate3).format('DD-MM-YYYY'),
+      };
+
+      result.push(mainSchedule);
+      result.push(hospitalSchedule1);
+      result.push(clinic);
+      result.push(hospitalSchedule2);
+    }
+
+    return result;
   }
 
   addCourseButtonSelect(eventKey, event) {
@@ -66,6 +126,7 @@ class CourseList extends React.Component {
     this.setState({
       showCourseAddByLevelWindow: false,
       showCourseAddByDepartmentWindow: false,
+      showChart: false,
     }, () => {
       this.getCourses();
     });
@@ -85,15 +146,26 @@ class CourseList extends React.Component {
     }
   }
 
-  render() {
+  showChart(level) {
+    if (level === 1) {
+      this.setState({
+        showChart: true,
+      });
+    } else if (level === 2) {
+      this.setState({
+        showChart: true,
+      });
+    }
+  }
 
+  render() {
     const level1Courses = this.state.courses;
     const level1CoursesEl = [];
     for (let i = 0; i < level1Courses.length; i += 1) {
       const course = level1Courses[i];
 
       level1CoursesEl.push(
-        <div className="panel panel-default">
+        <div className="panel panel-default" key={course.id}>
             <div className="panel-heading">
                 <div className="panel-title">
                   <div style={{ display: 'flex' }}>
@@ -130,6 +202,7 @@ class CourseList extends React.Component {
                 <button style={{ marginRight: 10 }}
                   type="button"
                   className="btn btn-labeled btn-default ripple"
+                  onClick={() => { this.showChart(1); }}
                 >
                   Chart
                   <span className="btn-label btn-label-right">
@@ -163,6 +236,12 @@ class CourseList extends React.Component {
             student={this.state.student}
             showModal={this.state.showCourseAddByDepartmentWindow}
             onSaveSuccess={this.onAddCourseSuccess}
+          />
+
+          <CourseChartWindow
+            chartData={this.state.chartData}
+            showModal={this.state.showChart}
+            onClose={this.onAddCourseSuccess}
           />
         </Tab>
         <Tab eventKey={2} title="Tingkat 2">Tab 2 content</Tab>
