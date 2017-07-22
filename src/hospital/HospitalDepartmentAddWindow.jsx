@@ -1,19 +1,18 @@
 import React from 'react';
-import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import Constant from '../Constant';
 import DepartmentSelect from '../department/DepartmentSelect';
 
-const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
+const HOSPITAL_DEPARTMENTS_URL = `${Constant.serverUrl}/api/hospitaldepartments`;
 
 const getValidationFields = () => {
   return {
-    code: {
+    department: {
       state: null,
       message: '',
     },
-    name: {
+    quota: {
       state: null,
       message: '',
     },
@@ -21,15 +20,16 @@ const getValidationFields = () => {
   };
 };
 
-class HospitalWindow extends React.Component {
+class HospitalDepartmentWindow extends React.Component {
 
   constructor(props) {
     super(props);
 
-    const hospital = props.hospital || {}
+    const hospitalId = props.hospitalId || null;
+    const hospitalDepartment = props.hospitalDepartment || {};
     this.state = {
-      hospital,
-      showModal: props.showModal,
+      hospitalId,
+      hospitalDepartment,
       validation: getValidationFields(),
     };
 
@@ -41,7 +41,8 @@ class HospitalWindow extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       showModal: nextProps.showModal,
-      hospital: nextProps.hospital,
+      hospitalId: nextProps.hospitalId,
+      hospitalDepartment: nextProps.hospitalDepartment,
     });
   }
 
@@ -50,43 +51,35 @@ class HospitalWindow extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    const hospital = this.state.hospital;
-    hospital[name] = value;
+    const hospitalDepartment = this.state.hospitalDepartment;
+    hospitalDepartment[name] = value;
 
-    const validation = this.validate(hospital);
+    const validation = this.validate(hospitalDepartment);
     this.setState({
-      hospital,
+      hospitalDepartment,
       validation,
     });
   }
 
-  validate(hospital) {
+  validate(hospitalDepartment) {
     const result = getValidationFields();
 
-    if (!hospital.code) {
-      result.code.state = 'error';
-      result.code.message = 'Stambuk baru wajib diisi';
-      result.status = false;
-    } else if (hospital.code.length < 3) {
-      result.code.state = 'error';
-      result.code.message = 'Minimum panjang stambuk adalah tiga karakter';
+    if (!hospitalDepartment.department) {
+      result.department.state = 'error';
+      result.department.message = 'Bagian wajib diisi';
       result.status = false;
     } else {
-      result.code.state = 'success';
-      result.code.message = '';
+      result.department.state = 'success';
+      result.department.message = '';
     }
 
-    if (!hospital.name) {
-      result.name.state = 'error';
-      result.name.message = 'Nama wajib diisi';
-      result.status = false;
-    } else if (hospital.name.length < 3) {
-      result.name.state = 'error';
-      result.name.message = 'Minimum panjang nama adalah tiga karakter';
+    if (!hospitalDepartment.quota) {
+      result.quota.state = 'error';
+      result.quota.message = 'Quota wajib diisi';
       result.status = false;
     } else {
-      result.name.state = 'success';
-      result.name.message = '';
+      result.quota.state = 'success';
+      result.quota.message = '';
     }
 
     return result;
@@ -94,7 +87,7 @@ class HospitalWindow extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const validation = this.validate(this.state.hospital);
+    const validation = this.validate(this.state.hospitalDepartment);
     if (!validation.status) {
       this.setState({
         validation,
@@ -102,10 +95,11 @@ class HospitalWindow extends React.Component {
       return;
     }
 
-    const hospital = this.state.hospital;
-    if (hospital.id) {
-      axios.put(`${HOSPITALS_URL}/${hospital.id}`,
-        hospital)
+    const hospitalDepartment = this.state.hospitalDepartment;
+
+    if (hospitalDepartment.id) {
+      axios.put(`${HOSPITAL_DEPARTMENTS_URL}/${hospitalDepartment.id}`,
+        hospitalDepartment)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -114,8 +108,8 @@ class HospitalWindow extends React.Component {
         console.log(error);
       });
     } else {
-      axios.post(HOSPITALS_URL,
-        hospital)
+      axios.post(`${HOSPITAL_DEPARTMENTS_URL}`,
+        hospitalDepartment)
       .then((response) => {
         this.close();
         this.props.onSaveSuccess();
@@ -129,7 +123,8 @@ class HospitalWindow extends React.Component {
   close() {
     this.setState({
       showModal: false,
-      hospital: {},
+      hospitalId: null,
+      hospitalDepartment: {},
       validation: getValidationFields(),
     }, () => {
       this.props.onSaveSuccess();
@@ -143,37 +138,45 @@ class HospitalWindow extends React.Component {
         onHide={this.close}
       >
         <Modal.Header>
-          <Modal.Title>Tambah Rumah Sakit</Modal.Title>
+          <Modal.Title>Tambah Bagian</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <form>
             <Row>
               <Col xs={12} md={12}>
-                <FormGroup controlId={'code'} validationState={this.state.validation.code.state}>
+                <FormGroup controlId={'department'} validationState={this.state.validation.department.state}>
                   <ControlLabel>Kode</ControlLabel>
                   <FormControl
                     type="text"
-                    name="code"
-                    value={this.state.hospital.code}
+                    name="department"
+                    value={this.state.hospitalDepartment.department}
                     onChange={this.handleInputChange}
                   />
-                  <HelpBlock>{this.state.validation.code.message}</HelpBlock>
+                  <HelpBlock>{this.state.validation.department.message}</HelpBlock>
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
             </Row>
             <Row>
+              <Col md={6}>
+                <DepartmentSelect
+                  onChange={this.onSelectDepartment}
+                  value={this.state.hospitalDepartment.Department.id}
+                />
+              </Col>
+            </Row>
+            <Row>
               <Col xs={12} md={12}>
-                <FormGroup controlId={'name'} validationState={this.state.validation.name.state}>
+                <FormGroup controlId={'quota'} validationState={this.state.validation.quota.state}>
                   <ControlLabel>Nama</ControlLabel>
                   <FormControl
                     type="text"
-                    name="name"
-                    value={this.state.hospital.name}
+                    name="quota"
+                    value={this.state.hospitalDepartment.quota}
                     onChange={this.handleInputChange}
                   />
-                  <HelpBlock>{this.state.validation.name.message}</HelpBlock>
+                  <HelpBlock>{this.state.validation.quota.message}</HelpBlock>
                   <FormControl.Feedback />
                 </FormGroup>
               </Col>
@@ -190,8 +193,8 @@ class HospitalWindow extends React.Component {
   }
 }
 
-HospitalWindow.propTypes = {
+HospitalDepartmentWindow.propTypes = {
   // onSaveSuccess: PropTypes.shape({}).isRequired,
 };
 
-export default HospitalWindow;
+export default HospitalDepartmentWindow;
