@@ -3,6 +3,7 @@ import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBloc
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Constant from '../Constant';
+import DepartmentSelect from '../department/DepartmentSelect';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
 
@@ -28,12 +29,17 @@ class HospitalWindow extends React.Component {
     const hospital = props.hospital || {}
     this.state = {
       hospital,
+      selectedDepartment: '',
+      selectedDepartmentObj: null,
+      hospitalDepartments: [],
       showModal: props.showModal,
       validation: getValidationFields(),
     };
 
     this.close = this.close.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.onSelectDepartmentObj = this.onSelectDepartmentObj.bind(this);
+    this.addDepartment = this.addDepartment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -57,6 +63,34 @@ class HospitalWindow extends React.Component {
       hospital,
       validation,
     });
+  }
+
+  onSelectDepartmentObj(obj) {
+    this.setState({
+      selectedDepartment: obj.id,
+      selectedDepartmentObj: obj,
+    });
+  }
+
+  addDepartment() {
+    if (!this.state.selectedDepartmentObj) return;
+
+    const foundDepartment = this.state.hospitalDepartments.find((department) => {
+      return department.id === this.state.selectedDepartmentObj.id;
+    });
+
+    if (!foundDepartment) {
+      const hospitalDepartments = [];
+      hospitalDepartments.push(...this.state.hospitalDepartments);
+      hospitalDepartments.push(this.state.selectedDepartmentObj);
+      this.setState({
+        hospitalDepartments,
+        selectedDepartment: '',
+        selectedDepartmentObj: null,
+      });
+    } else {
+      alert('Non unique department');
+    }
   }
 
   validate(hospital) {
@@ -130,6 +164,9 @@ class HospitalWindow extends React.Component {
     this.setState({
       showModal: false,
       hospital: {},
+      selectedDepartment: '',
+      selectedDepartmentObj: null,
+      hospitalDepartments: [],
       validation: getValidationFields(),
     }, () => {
       this.props.onSaveSuccess();
@@ -137,6 +174,24 @@ class HospitalWindow extends React.Component {
   }
 
   render() {
+    const hospitalDepartmentsComponents = [];
+    for (let i = 0; i < this.state.hospitalDepartments.length; i += 1) {
+      const department = this.state.hospitalDepartments[i];
+      hospitalDepartmentsComponents.push(
+        <ListGroupItem key={department.id}>
+          <Row>
+            <Col md={11}>
+              { department.name } ({ department.code })
+            </Col>
+            <Col md={1}>
+              <Button className="text-right" bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(department)}>
+                <i className="fa fa-remove" />
+              </Button>
+            </Col>
+          </Row>
+        </ListGroupItem>
+      );
+    }
     return (
       <Modal
         show={this.state.showModal}
@@ -178,11 +233,21 @@ class HospitalWindow extends React.Component {
                 </FormGroup>
               </Col>
             </Row>
-            <Row>
+            <Row style={{ marginTop: 20 }}>
+              <Col md={4}>
+                <DepartmentSelect
+                  onChangeWithObject={this.onSelectDepartmentObj}
+                  value={this.state.selectedDepartment}
+                />
+              </Col>
+              <Col md={2}>
+                <Button bsStyle="info" onClick={this.addDepartment}>Add</Button>
+              </Col>
+            </Row>
+            <Row style={{ marginTop: 20 }}>
               <Col xs={12} md={12}>
                 <ListGroup>
-                  <ListGroupItem>Item 1</ListGroupItem>
-                  <ListGroupItem>Item 2</ListGroupItem>
+                  {hospitalDepartmentsComponents}
                 </ListGroup>
               </Col>
             </Row>

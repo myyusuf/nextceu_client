@@ -12,6 +12,8 @@ class DepartmentSelect extends React.Component {
     this.state = {
       departments: [],
     }
+
+    this.onSelectionChange = this.onSelectionChange.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,21 @@ class DepartmentSelect extends React.Component {
     .catch((error) => {
       console.log(error);
     });
+  }
+  onSelectionChange(event) {
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
+
+    if (this.props.onChangeWithObject) {
+      const departmentId = parseInt(event.target.value, 10);
+      const selectedObjects = this.state.departments.find((department) => {
+        return department.id === departmentId;
+      });
+
+      const foundObject = selectedObjects ? selectedObjects : null;
+      this.props.onChangeWithObject(foundObject);
+    }
   }
 
   render() {
@@ -39,7 +56,7 @@ class DepartmentSelect extends React.Component {
         componentClass="select"
         name={this.props.name}
         value={this.props.value}
-        onChange={this.props.onChange}
+        onChange={this.onSelectionChange}
       >
         {optionsEl}
       </FormControl>
