@@ -28,16 +28,18 @@ class CourseProblemList extends React.Component {
   }
 
   loadData() {
-    const courseId = this.state.course.id;
-    axios.get(`${COURSES_URL}/${courseId}/problems`)
-    .then((response) => {
-      this.setState({
-        problems: response.data,
+    if (this.state.course.id) {
+      const courseId = this.state.course.id;
+      axios.get(`${COURSES_URL}/${courseId}/problems`)
+      .then((response) => {
+        this.setState({
+          problems: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    }
   }
 
   searchChange(event) {
