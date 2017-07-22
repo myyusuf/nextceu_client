@@ -31,10 +31,10 @@ class Header extends React.Component {
         title = 'Dashboard';
       } else if (this.props.location.indexOf('students') > 0) {
         title = 'Mahasiswa';
+      } else if (this.props.location.indexOf('hospitals') > 0 || this.props.location.indexOf('hospital_departments') > 0) {
+        title = 'Rumah Sakit';
       } else if (this.props.location.indexOf('departments') > 0) {
         title = 'Bagian';
-      } else if (this.props.location.indexOf('hospitals') > 0) {
-        title = 'Rumah Sakit';
       } else if (this.props.location.indexOf('seminars') > 0) {
         title = 'Seminar';
       } else if (this.props.location.indexOf('users') > 0) {

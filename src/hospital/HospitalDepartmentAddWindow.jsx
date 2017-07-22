@@ -39,10 +39,14 @@ class HospitalDepartmentWindow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
+    const hospitalDepartment = nextProps.hospitalDepartment;
+    hospitalDepartment.department = hospitalDepartment.Department ? hospitalDepartment.Department.id : '';
+
     this.setState({
       showModal: nextProps.showModal,
       hospitalId: nextProps.hospitalId,
-      hospitalDepartment: nextProps.hospitalDepartment,
+      hospitalDepartment,
     });
   }
 
@@ -96,6 +100,7 @@ class HospitalDepartmentWindow extends React.Component {
     }
 
     const hospitalDepartment = this.state.hospitalDepartment;
+    hospitalDepartment.hospital = this.state.hospitalId;
 
     if (hospitalDepartment.id) {
       axios.put(`${HOSPITAL_DEPARTMENTS_URL}/${hospitalDepartment.id}`,
@@ -144,14 +149,13 @@ class HospitalDepartmentWindow extends React.Component {
         <Modal.Body>
           <form>
             <Row>
-              <Col xs={12} md={12}>
+              <Col md={6}>
                 <FormGroup controlId={'department'} validationState={this.state.validation.department.state}>
-                  <ControlLabel>Kode</ControlLabel>
-                  <FormControl
-                    type="text"
+                  <ControlLabel>Bagian</ControlLabel>
+                  <DepartmentSelect
                     name="department"
-                    value={this.state.hospitalDepartment.department}
                     onChange={this.handleInputChange}
+                    value={this.state.hospitalDepartment.department}
                   />
                   <HelpBlock>{this.state.validation.department.message}</HelpBlock>
                   <FormControl.Feedback />
@@ -160,18 +164,10 @@ class HospitalDepartmentWindow extends React.Component {
             </Row>
             <Row>
               <Col md={6}>
-                <DepartmentSelect
-                  onChange={this.onSelectDepartment}
-                  value={this.state.hospitalDepartment.Department.id}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={12}>
                 <FormGroup controlId={'quota'} validationState={this.state.validation.quota.state}>
-                  <ControlLabel>Nama</ControlLabel>
+                  <ControlLabel>Quota</ControlLabel>
                   <FormControl
-                    type="text"
+                    type="number"
                     name="quota"
                     value={this.state.hospitalDepartment.quota}
                     onChange={this.handleInputChange}

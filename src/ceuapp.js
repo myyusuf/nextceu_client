@@ -7,6 +7,7 @@ import DepartmentEdit from './department/DepartmentEdit';
 import StudentList from './student/StudentList';
 import StudentView from './student/StudentView';
 import HospitalList from './hospital/HospitalList';
+import HospitalDepartmentList from './hospital/HospitalDepartmentList';
 import SeminarList from './seminar/SeminarList';
 import UserList from './settings/UserList';
 import RoleList from './settings/RoleList';
@@ -17,10 +18,11 @@ ReactDOM.render(
   <HashRouter>
     <Workspace>
       <Route path="/login" component={LoginWindow} />
-      
+
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/departments" component={DepartmentList} />
       <Route path="/hospitals" component={HospitalList} />
+      <Route path="/hospital_departments/:hospitalId" component={HospitalDepartmentList} />
       <Route path="/seminars" component={SeminarList} />
       <Route path="/users" component={UserList} />
       <Route path="/roles" component={RoleList} />

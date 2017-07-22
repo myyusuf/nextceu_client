@@ -96,7 +96,7 @@ class HospitalList extends React.Component {
           <td>
             <Button
               bsStyle="default" style={{ marginRight: 5 }} bsSize="small"
-              href={`#/hospitals_schedule/${hospital.id}`}
+              href={`#/hospital_departments/${hospital.id}`}
             >
               <i className="fa fa-ellipsis-h" />
             </Button>
