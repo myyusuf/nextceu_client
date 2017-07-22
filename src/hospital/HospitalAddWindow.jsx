@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Modal, Button, Row, Col, FormGroup, FormControl, ControlLabel, HelpBlock, ListGroup, ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Constant from '../Constant';
@@ -124,7 +124,6 @@ class HospitalWindow extends React.Component {
         console.log(error);
       });
     }
-
   }
 
   close() {
@@ -177,6 +176,14 @@ class HospitalWindow extends React.Component {
                   <HelpBlock>{this.state.validation.name.message}</HelpBlock>
                   <FormControl.Feedback />
                 </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={12}>
+                <ListGroup>
+                  <ListGroupItem>Item 1</ListGroupItem>
+                  <ListGroupItem>Item 2</ListGroupItem>
+                </ListGroup>
               </Col>
             </Row>
           </form>

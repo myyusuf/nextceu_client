@@ -1,4 +1,5 @@
 var path = require('path');
+const BabiliPlugin = require('babili-webpack-plugin');
 
 module.exports = {
   entry: './src/ceuapp.js',
@@ -23,5 +24,8 @@ module.exports = {
         loader: 'style!css!'
       }
     ],
-  }
+  },
+  // plugins: [
+  //   new BabiliPlugin({}, {}),
+  // ],
 };

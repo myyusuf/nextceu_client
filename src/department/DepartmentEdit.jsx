@@ -3,8 +3,43 @@ import axios from 'axios';
 import { Row, Col, Modal, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
 import { SketchPicker } from 'react-color';
 import Constant from '../Constant';
+import LevelSelect from '../level/LevelSelect';
 
 const DEPARTMENTS_URL = `${Constant.serverUrl}/api/departments`;
+
+const getValidationFields = () => {
+  return {
+    code: {
+      state: null,
+      message: '',
+    },
+    name: {
+      state: null,
+      message: '',
+    },
+    level: {
+      state: null,
+      message: '',
+    },
+    duration: {
+      state: null,
+      message: '',
+    },
+    duration1: {
+      state: null,
+      message: '',
+    },
+    duration2: {
+      state: null,
+      message: '',
+    },
+    duration3: {
+      state: null,
+      message: '',
+    },
+    status: true,
+  };
+};
 
 class DeartmentEdit extends React.Component {
 
@@ -23,17 +58,7 @@ class DeartmentEdit extends React.Component {
       department,
       showModal: false,
       color: '',
-      validation: {
-        code: {
-          state: null,
-          message: '',
-        },
-        name: {
-          state: null,
-          message: '',
-        },
-        status: true,
-      },
+      validation: getValidationFields(),
     };
 
     this.pickColor = this.pickColor.bind(this);
@@ -74,18 +99,7 @@ class DeartmentEdit extends React.Component {
   }
 
   validate(department) {
-    const result =
-      {
-        code: {
-          state: null,
-          message: '',
-        },
-        name: {
-          state: null,
-          message: '',
-        },
-        status: true,
-      };
+    const result = getValidationFields();
 
     if (!department.code) {
       result.code.state = 'error';
@@ -111,6 +125,51 @@ class DeartmentEdit extends React.Component {
     } else {
       result.name.state = 'success';
       result.name.message = '';
+    }
+
+    if (!department.level) {
+      result.level.state = 'error';
+      result.level.message = 'Level wajib diisi';
+      result.status = false;
+    } else {
+      result.level.state = 'success';
+      result.level.message = '';
+    }
+
+    if (!department.duration) {
+      result.duration.state = 'error';
+      result.duration.message = 'Durasi wajib diisi';
+      result.status = false;
+    } else {
+      result.duration.state = 'success';
+      result.duration.message = '';
+    }
+
+    if (!department.duration1) {
+      result.duration1.state = 'error';
+      result.duration1.message = 'Durasi RS 1 wajib diisi';
+      result.status = false;
+    } else {
+      result.duration1.state = 'success';
+      result.duration1.message = '';
+    }
+
+    if (!department.duration2) {
+      result.duration2.state = 'error';
+      result.duration2.message = 'Durasi RS 2 wajib diisi';
+      result.status = false;
+    } else {
+      result.duration2.state = 'success';
+      result.duration2.message = '';
+    }
+
+    if (!department.duration3) {
+      result.duration3.state = 'error';
+      result.duration3.message = 'Durasi puskesmas wajib diisi';
+      result.status = false;
+    } else {
+      result.duration3.state = 'success';
+      result.duration3.message = '';
     }
 
     return result;
@@ -168,7 +227,6 @@ class DeartmentEdit extends React.Component {
         console.log(error);
       });
     }
-
   }
 
   render() {
@@ -208,9 +266,26 @@ class DeartmentEdit extends React.Component {
                     </FormGroup>
                   </Col>
                 </Row>
-                <FormGroup controlId={'3'}>
-                  <Row>
-                    <Col xs={8} md={4}>
+                <Row>
+                  <Col xs={8} md={4}>
+                    <FormGroup
+                      controlId="level"
+                      validationState={this.state.validation.level.state}
+                    >
+                      <ControlLabel>Tingkat</ControlLabel>
+                      <LevelSelect
+                        name="level"
+                        value={this.state.department.level}
+                        onChange={this.handleInputChange}
+                      />
+                      <HelpBlock>{this.state.validation.level.message}</HelpBlock>
+                      <FormControl.Feedback />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={8} md={4}>
+                    <FormGroup controlId={'duration'} validationState={this.state.validation.duration.state}>
                       <ControlLabel>Durasi (Minggu)</ControlLabel>
                       <FormControl
                         type="number"
@@ -218,38 +293,52 @@ class DeartmentEdit extends React.Component {
                         value={this.state.department.duration}
                         onChange={this.handleInputChange}
                       />
-                    </Col>
-                  </Row>
-                </FormGroup>
+                      <HelpBlock>{this.state.validation.duration.message}</HelpBlock>
+                      <FormControl.Feedback />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
                 <FormGroup controlId={'4'}>
                   <Row>
                     <Col xs={8} md={4}>
-                      <ControlLabel>Durasi RS 1</ControlLabel>
-                      <FormControl
-                        type="number"
-                        name="duration1"
-                        value={this.state.department.duration1}
-                        onChange={this.handleInputChange}
-                      />
+                      <FormGroup controlId={'duration1'} validationState={this.state.validation.duration1.state}>
+                        <ControlLabel>Durasi RS 1</ControlLabel>
+                        <FormControl
+                          type="number"
+                          name="duration1"
+                          value={this.state.department.duration1}
+                          onChange={this.handleInputChange}
+                        />
+                        <HelpBlock>{this.state.validation.duration1.message}</HelpBlock>
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </Col>
                     <Col xs={8} md={4}>
-                      <ControlLabel>Durasi RS 2</ControlLabel>
-                      <FormControl
-                        type="number"
-                        name="duration2"
-                        value={this.state.department.duration2}
-                        onChange={this.handleInputChange}
-                      />
+                      <FormGroup controlId={'duration2'} validationState={this.state.validation.duration2.state}>
+                        <ControlLabel>Durasi RS 2</ControlLabel>
+                        <FormControl
+                          type="number"
+                          name="duration2"
+                          value={this.state.department.duration2}
+                          onChange={this.handleInputChange}
+                        />
+                        <HelpBlock>{this.state.validation.duration2.message}</HelpBlock>
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </Col>
                     <Col xs={8} md={4} >
-                      <ControlLabel>Durasi Puskesmas</ControlLabel>
-                      <FormControl
-                        type="number"
-                        name="duration3"
-                        value={this.state.department.duration3}
-                        onChange={this.handleInputChange}
-                      />
+                      <FormGroup controlId={'duration3'} validationState={this.state.validation.duration3.state}>
+                        <ControlLabel>Durasi Puskesmas</ControlLabel>
+                        <FormControl
+                          type="number"
+                          name="duration3"
+                          value={this.state.department.duration3}
+                          onChange={this.handleInputChange}
+                        />
+                        <HelpBlock>{this.state.validation.duration3.message}</HelpBlock>
+                        <FormControl.Feedback />
+                      </FormGroup>
                     </Col>
                   </Row>
                 </FormGroup>
