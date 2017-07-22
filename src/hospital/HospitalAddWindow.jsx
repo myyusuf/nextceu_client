@@ -40,6 +40,7 @@ class HospitalWindow extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSelectDepartmentObj = this.onSelectDepartmentObj.bind(this);
     this.addDepartment = this.addDepartment.bind(this);
+    this.deleteDepartment = this.deleteDepartment.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,6 +48,7 @@ class HospitalWindow extends React.Component {
     this.setState({
       showModal: nextProps.showModal,
       hospital: nextProps.hospital,
+      hospitalDepartments: nextProps.hospital.Departments || [],
     });
   }
 
@@ -93,6 +95,17 @@ class HospitalWindow extends React.Component {
     }
   }
 
+  deleteDepartment(departmentToBeDeleted) {
+    const hospitalDepartments = this.state.hospitalDepartments;
+    const filterdHospitalDepartments = hospitalDepartments.filter((department) => {
+      return department.id !== departmentToBeDeleted.id;
+    });
+    
+    this.setState({
+      hospitalDepartments: filterdHospitalDepartments,
+    });
+  }
+
   validate(hospital) {
     const result = getValidationFields();
 
@@ -136,6 +149,9 @@ class HospitalWindow extends React.Component {
     }
 
     const hospital = this.state.hospital;
+    hospital.departments = this.state.hospitalDepartments.map((hospitalDepartment) => {
+      return hospitalDepartment.id;
+    });
 
     if (hospital.id) {
       axios.put(`${HOSPITALS_URL}/${hospital.id}`,
@@ -180,11 +196,14 @@ class HospitalWindow extends React.Component {
       hospitalDepartmentsComponents.push(
         <ListGroupItem key={department.id}>
           <Row>
-            <Col md={11}>
-              { department.name } ({ department.code })
+            <Col md={1}>
+              <div style={{ width: 35, height: 35, borderRadius: '50%', backgroundColor: department.color }} />
+            </Col>
+            <Col md={10}>
+              <div style={{ marginTop: 5 }}>{ department.name } ({ department.code })</div>
             </Col>
             <Col md={1}>
-              <Button className="text-right" bsStyle="danger" bsSize="small" onClick={() => this.confirmDelete(department)}>
+              <Button className="text-right" bsStyle="danger" bsSize="small" onClick={() => this.deleteDepartment(department)}>
                 <i className="fa fa-remove" />
               </Button>
             </Col>
