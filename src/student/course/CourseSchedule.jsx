@@ -83,6 +83,7 @@ class CourseSchedule extends React.Component {
     this.onSelectHospital = this.onSelectHospital.bind(this);
     this.onHospitalSelected = this.onHospitalSelected.bind(this);
     this.clearSelectedHospital = this.clearSelectedHospital.bind(this);
+    this.onSelectHospitalCancel = this.onSelectHospitalCancel.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -100,8 +101,14 @@ class CourseSchedule extends React.Component {
     });
   }
 
+  onSelectHospitalCancel() {
+    this.setState({
+      hospitalSelectWindowType: 0,
+      showHospitalSelectWindow: false,
+    });
+  }
+
   onHospitalSelected(selectedHospital) {
-    console.log(selectedHospital);
     this.setState({
       selectedHospital,
       showHospitalSelectWindow: false,
@@ -741,6 +748,9 @@ class CourseSchedule extends React.Component {
         <HospitalSelect
           showModal={this.state.showHospitalSelectWindow}
           onHospitalSelected={this.onHospitalSelected}
+          onClose={this.onSelectHospitalCancel}
+          department={this.state.course.Department}
+          student={this.state.course.Student}
         />
       </Row>
     );

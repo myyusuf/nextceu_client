@@ -12,6 +12,8 @@ class HospitalSelect extends React.Component {
 
     this.state = {
       hospitals: [],
+      department: props.department,
+      student: props.student,
       selectedHospital: null,
       showModal: props.showModal,
     };
@@ -28,6 +30,8 @@ class HospitalSelect extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       showModal: nextProps.showModal,
+      department: nextProps.department,
+      student: nextProps.student,
       selectedHospital: null,
     }, () => {
       this.loadData();
@@ -35,7 +39,14 @@ class HospitalSelect extends React.Component {
   }
 
   loadData() {
-    axios.get(HOSPITAL_SELECT_URL, { params: { hospitalType: 1 } })
+    axios.get(HOSPITAL_SELECT_URL, {
+      params:
+      {
+        hospitalType: 1,
+        department: this.state.department ? this.state.department.id : '',
+        student: this.state.student ? this.state.student.id : '',
+      },
+    })
     .then((response) => {
       this.setState({
         hospitals: response.data,
@@ -68,9 +79,12 @@ class HospitalSelect extends React.Component {
 
   close() {
     this.setState({
-      showModal: false,
       hospitals: [],
       selectedHospital: null,
+    }, () => {
+      if (this.state.showModal) {
+        this.props.onClose();
+      }
     });
   }
 
@@ -101,20 +115,22 @@ class HospitalSelect extends React.Component {
               <span className="badge bg-success">{ hospital.studentsInDepartmentCount }</span>
             </Col>
             <Col md={2}>
-              <span className="badge bg-default">{ hospital.studentsInDepartmentCount }</span>
+              <span className="badge bg-default">{ hospital.studentHistoryCount }</span>
             </Col>
           </Row>
         </Panel>
       );
     }
-
+    const title = (
+      <div>{ this.state.department ? this.state.department.name : '' }</div>
+    );
     return (
       <Modal
         show={this.state.showModal}
         onHide={this.close}
       >
         <Modal.Header>
-          <Modal.Title>Pilih Rumah Sakit</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -122,6 +138,10 @@ class HospitalSelect extends React.Component {
         </Modal.Body>
 
         <Modal.Footer>
+          <span className="badge bg-info" style={{ marginRight: 10 }}>Kuota</span>
+          <span className="badge bg-success" style={{ marginRight: 10 }}>Terisi</span>
+          <span className="badge bg-danger" style={{ marginRight: 10 }}>Terisi Penuh</span>
+          <span className="badge bg-default" style={{ marginRight: 50 }}>History</span>
           <Button onClick={this.close}>Cancel</Button>
           <Button bsStyle="primary" onClick={this.selectHospital}>Save</Button>
         </Modal.Footer>
