@@ -105,7 +105,11 @@ class CourseList extends React.Component {
       result.push(hospitalSchedule1);
       result.push(clinic);
       result.push(hospitalSchedule2);
+
+      childId += 300;
     }
+
+    console.log('>>>>>>>', result);
 
     return result;
   }
