@@ -10,5 +10,9 @@
   width: 95%;
 }
 
+.hospital-select-modal {
+  width: 55%;
+}
+
 .progress {height: 7px; margin: 0}
 .progress-bar { line-height: 7px; }

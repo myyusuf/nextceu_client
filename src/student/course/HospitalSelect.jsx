@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Button, Panel, Row, Col, Badge } from 'react-bootstrap';
+import DatePicker from 'react-bootstrap-date-picker';
+import { Modal, Button, Panel, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Constant from '../../Constant';
 
@@ -16,11 +17,17 @@ class HospitalSelect extends React.Component {
       student: props.student,
       selectedHospital: null,
       showModal: props.showModal,
+      formattedStartDate: null,
+      startDate: null,
+      formattedEndDate: null,
+      endDate: null,
     };
 
     this.close = this.close.bind(this);
     this.selectHospital = this.selectHospital.bind(this);
     this.panelClick = this.panelClick.bind(this);
+
+    this.handleDateInputChange1 = this.handleDateInputChange1.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +40,10 @@ class HospitalSelect extends React.Component {
       department: nextProps.department,
       student: nextProps.student,
       selectedHospital: null,
+      formattedStartDate: null,
+      startDate: null,
+      formattedEndDate: null,
+      endDate: null,
     }, () => {
       this.loadData();
     });
@@ -88,6 +99,20 @@ class HospitalSelect extends React.Component {
     });
   }
 
+  handleDateInputChange1(value, formattedValue) {
+    this.setState({
+      formattedStartDate: formattedValue,
+      startDate: value,
+    });
+  }
+
+  handleDateInputChange2(value, formattedValue) {
+    this.setState({
+      formattedEndDate: formattedValue,
+      endDate: value,
+    });
+  }
+
   render() {
     const hospitalListItems = [];
     for (let i = 0; i < this.state.hospitals.length; i += 1) {
@@ -122,12 +147,40 @@ class HospitalSelect extends React.Component {
       );
     }
     const title = (
-      <div>{ this.state.department ? this.state.department.name : '' }</div>
+      <div>
+        <Row>
+          <Col md={5}>
+            { this.state.department ? this.state.department.name : '' }
+          </Col>
+          <Col md={3}>
+            <DatePicker
+              name="startDate"
+              dateFormat="DD/MM/YYYY"
+              value={this.state.startDate}
+              onChange={this.handleDateInputChange1}
+            />
+          </Col>
+          <Col md={3}>
+            <DatePicker
+              name="endDate"
+              dateFormat="DD/MM/YYYY"
+              value={this.state.endDate}
+              onChange={this.handleDateInputChange2}
+            />
+          </Col>
+          <Col md={1}>
+            <Button bsStyle="default" bsSize="small" onClick={() => this.loadData()}>
+              <i className="fa fa-refresh" />
+            </Button>
+          </Col>
+        </Row>
+      </div>
     );
     return (
       <Modal
         show={this.state.showModal}
         onHide={this.close}
+        dialogClassName="hospital-select-modal"
       >
         <Modal.Header>
           <Modal.Title>{title}</Modal.Title>
