@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Row, Col, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Row, Col, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock, InputGroup, Glyphicon } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 import Constant from '../../Constant';
 import HospitalSelect from './HospitalSelect';
@@ -82,11 +82,14 @@ class CourseSchedule extends React.Component {
 
     this.onSelectHospital = this.onSelectHospital.bind(this);
     this.onHospitalSelected = this.onHospitalSelected.bind(this);
+    this.clearSelectedHospital = this.clearSelectedHospital.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    const selectedHospital = nextProps.course ? nextProps.course.hospital1 : null;
     this.setState({
       course: nextProps.course,
+      selectedHospital,
     });
   }
 
@@ -102,6 +105,12 @@ class CourseSchedule extends React.Component {
     this.setState({
       selectedHospital,
       showHospitalSelectWindow: false,
+    });
+  }
+
+  clearSelectedHospital() {
+    this.setState({
+      selectedHospital: null,
     });
   }
 
@@ -407,6 +416,7 @@ class CourseSchedule extends React.Component {
     }
 
     const course = this.state.course;
+    course.hospital1 = this.state.selectedHospital ? this.state.selectedHospital.id : null;
     // course.updateType = 'SCHEDULE';
 
     axios.put(`${COURSES_URL}/${this.state.course.id}`,
@@ -556,12 +566,17 @@ class CourseSchedule extends React.Component {
                     controlId="hospital1"
                   >
                     <ControlLabel>Rumah Sakit</ControlLabel>
-                    <FormControl
-                      type="text"
-                      name="hospital1"
-                      value={this.state.selectedHospital ? this.state.selectedHospital.name : ''}
-                      disabled
-                    />
+                    <InputGroup>
+                      <FormControl
+                        type="text"
+                        name="hospital1"
+                        value={this.state.selectedHospital ? this.state.selectedHospital.name : ''}
+                        disabled
+                      />
+                      <InputGroup.Button>
+                        <Button bsStyle="default" onClick={this.clearSelectedHospital}>x</Button>
+                      </InputGroup.Button>
+                    </InputGroup>
                   </FormGroup>
                 </Col>
                 <Col md={1}>

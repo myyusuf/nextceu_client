@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Panel } from 'react-bootstrap';
+import { Modal, Button, Panel, Row, Col, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import Constant from '../../Constant';
 
@@ -90,7 +90,20 @@ class HospitalSelect extends React.Component {
           style={{ marginBottom: 10, backgroundColor }}
           onClick={() => this.panelClick(hospital)}
         >
-          { hospital.name }
+          <Row>
+            <Col md={6}>
+              { hospital.name }
+            </Col>
+            <Col md={2}>
+              <span className="badge bg-info">{ hospital.departmentQuota }</span>
+            </Col>
+            <Col md={2}>
+              <span className="badge bg-success">{ hospital.studentsInDepartmentCount }</span>
+            </Col>
+            <Col md={2}>
+              <span className="badge bg-default">{ hospital.studentsInDepartmentCount }</span>
+            </Col>
+          </Row>
         </Panel>
       );
     }
