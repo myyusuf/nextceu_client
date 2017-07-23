@@ -1,10 +1,49 @@
 import React from 'react';
 import axios from 'axios';
-import { Row, Col, Modal, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Row, Col, Panel, FormGroup, FormControl, Button, ControlLabel, HelpBlock } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 import Constant from '../../Constant';
+import HospitalSelect from './HospitalSelect';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
+
+const getValidationFields = () => {
+  return {
+    planStartDate: {
+      state: null,
+      message: '',
+    },
+    planEndDate: {
+      state: null,
+      message: '',
+    },
+    planStartDate1: {
+      state: null,
+      message: '',
+    },
+    planEndDate1: {
+      state: null,
+      message: '',
+    },
+    planStartDate2: {
+      state: null,
+      message: '',
+    },
+    planEndDate2: {
+      state: null,
+      message: '',
+    },
+    planStartDate3: {
+      state: null,
+      message: '',
+    },
+    planEndDate3: {
+      state: null,
+      message: '',
+    },
+    status: true,
+  };
+};
 
 class CourseSchedule extends React.Component {
 
@@ -13,41 +52,10 @@ class CourseSchedule extends React.Component {
 
     this.state = {
       course: props.course,
-      validation: {
-        planStartDate: {
-          state: null,
-          message: '',
-        },
-        planEndDate: {
-          state: null,
-          message: '',
-        },
-        planStartDate1: {
-          state: null,
-          message: '',
-        },
-        planEndDate1: {
-          state: null,
-          message: '',
-        },
-        planStartDate2: {
-          state: null,
-          message: '',
-        },
-        planEndDate2: {
-          state: null,
-          message: '',
-        },
-        planStartDate3: {
-          state: null,
-          message: '',
-        },
-        planEndDate3: {
-          state: null,
-          message: '',
-        },
-        status: true,
-      },
+      hospitalSelectWindowType: 0,
+      showHospitalSelectWindow: false,
+      selectedHospital: null,
+      validation: getValidationFields(),
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -71,11 +79,29 @@ class CourseSchedule extends React.Component {
     this.handleDateInputChange15 = this.handleDateInputChange15.bind(this);
     this.handleDateInputChange16 = this.handleDateInputChange16.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.onSelectHospital = this.onSelectHospital.bind(this);
+    this.onHospitalSelected = this.onHospitalSelected.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       course: nextProps.course,
+    });
+  }
+
+  onSelectHospital() {
+    this.setState({
+      hospitalSelectWindowType: 1,
+      showHospitalSelectWindow: true,
+    });
+  }
+
+  onHospitalSelected(selectedHospital) {
+    console.log(selectedHospital);
+    this.setState({
+      selectedHospital,
+      showHospitalSelectWindow: false,
     });
   }
 
@@ -293,42 +319,7 @@ class CourseSchedule extends React.Component {
   }
 
   validate(course) {
-    const result =
-      {
-        planStartDate: {
-          state: null,
-          message: '',
-        },
-        planEndDate: {
-          state: null,
-          message: '',
-        },
-        planStartDate1: {
-          state: null,
-          message: '',
-        },
-        planEndDate1: {
-          state: null,
-          message: '',
-        },
-        planStartDate2: {
-          state: null,
-          message: '',
-        },
-        planEndDate2: {
-          state: null,
-          message: '',
-        },
-        planStartDate3: {
-          state: null,
-          message: '',
-        },
-        planEndDate3: {
-          state: null,
-          message: '',
-        },
-        status: true,
-      };
+    const result = getValidationFields();
 
     if (!course.planStartDate) {
       result.planStartDate.state = 'error';
@@ -559,6 +550,26 @@ class CourseSchedule extends React.Component {
                   </FormGroup>
                 </Col>
               </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup
+                    controlId="hospital1"
+                  >
+                    <ControlLabel>Rumah Sakit</ControlLabel>
+                    <FormControl
+                      type="text"
+                      name="hospital1"
+                      value={this.state.selectedHospital ? this.state.selectedHospital.name : ''}
+                      disabled
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={1}>
+                  <Button type="button" bsStyle="primary" style={{ marginTop: 25 }} onClick={this.onSelectHospital}>
+                    Pilih Rumah Sakit
+                  </Button>
+                </Col>
+              </Row>
             </Panel>
 
             <Panel header="Jadwal Puskesmas">
@@ -620,6 +631,25 @@ class CourseSchedule extends React.Component {
                       onChange={this.handleDateInputChange12}
                     />
                   </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup
+                    controlId="hospital1"
+                  >
+                    <ControlLabel>Puskesmas</ControlLabel>
+                    <FormControl
+                      type="text"
+                      name="clinic"
+                      disabled
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={1}>
+                  <Button type="button" bsStyle="primary" style={{ marginTop: 25 }}>
+                    Pilih Puskesmas
+                  </Button>
                 </Col>
               </Row>
             </Panel>
@@ -692,6 +722,11 @@ class CourseSchedule extends React.Component {
             </Button>
           </form>
         </Col>
+
+        <HospitalSelect
+          showModal={this.state.showHospitalSelectWindow}
+          onHospitalSelected={this.onHospitalSelected}
+        />
       </Row>
     );
   }
