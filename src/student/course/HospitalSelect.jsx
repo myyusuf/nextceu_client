@@ -18,9 +18,9 @@ class HospitalSelect extends React.Component {
       selectedHospital: null,
       showModal: props.showModal,
       formattedStartDate: null,
-      startDate: null,
+      startDate: props.startDate,
       formattedEndDate: null,
-      endDate: null,
+      endDate: props.endDate,
     };
 
     this.close = this.close.bind(this);
@@ -28,6 +28,7 @@ class HospitalSelect extends React.Component {
     this.panelClick = this.panelClick.bind(this);
 
     this.handleDateInputChange1 = this.handleDateInputChange1.bind(this);
+    this.handleDateInputChange2 = this.handleDateInputChange2.bind(this);
   }
 
   componentDidMount() {
@@ -41,9 +42,9 @@ class HospitalSelect extends React.Component {
       student: nextProps.student,
       selectedHospital: null,
       formattedStartDate: null,
-      startDate: null,
+      startDate: nextProps.startDate,
       formattedEndDate: null,
-      endDate: null,
+      endDate: nextProps.endDate,
     }, () => {
       this.loadData();
     });
@@ -56,6 +57,8 @@ class HospitalSelect extends React.Component {
         hospitalType: 1,
         department: this.state.department ? this.state.department.id : '',
         student: this.state.student ? this.state.student.id : '',
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
       },
     })
     .then((response) => {

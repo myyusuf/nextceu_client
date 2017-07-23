@@ -751,6 +751,8 @@ class CourseSchedule extends React.Component {
           onClose={this.onSelectHospitalCancel}
           department={this.state.course.Department}
           student={this.state.course.Student}
+          startDate={this.state.course.planStartDate1}
+          endDate={this.state.course.planEndDate1}
         />
       </Row>
     );
