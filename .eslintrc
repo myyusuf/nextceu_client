@@ -4,6 +4,7 @@
     "no-console":0,
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
     "no-param-reassign": ["error", { "props": false }],
-    "strict": ["error", "global"]
+    "strict": ["error", "global"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

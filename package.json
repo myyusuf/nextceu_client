@@ -5,8 +5,10 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "test": "mocha"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,10 @@
     "react-bootstrap-date-picker": "^5.0.1",
     "react-color": "^2.12.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "screenfull": "^3.2.2",
     "webpack": "^2.6.1"
   },
