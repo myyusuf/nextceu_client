@@ -5,6 +5,7 @@ import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
 import { Link } from 'react-router-dom';
 import './Workspace.css';
 import StudentListContainer from '../../../containers/StudentListContainer';
@@ -35,12 +36,15 @@ const Workspace = () => (
       <Row>
         <Col span={7}>
           <Row>
-            <Col span={24} className="Workspace-student-search-container">
-            <Search
-              placeholder="Name or SID"
-              className="Workspace-student-search"
-              onSearch={value => console.log(value)}
-            />
+            <Col span={20} className="Workspace-student-search-container">
+              <Search
+                placeholder="Name or SID"
+                className="Workspace-student-search"
+                onSearch={value => console.log(value)}
+              />
+            </Col>
+            <Col span={4}>
+              <Button type="primary" shape="circle" icon="plus" style={{ marginTop: 20 }}/>
             </Col>
           </Row>
           <Row>
