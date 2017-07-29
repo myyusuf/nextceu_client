@@ -1,0 +1,22 @@
+.StudentList-container {
+  margin: 0;
+  padding: 0;
+}
+.StudentList-container li {
+  width: 100%;
+  padding: 10px;
+  list-style: none;
+}
+
+.StudentList-item-selected {
+  background-color: #108ee9;
+  color: #fff;
+}
+
+.StudentList-item-text {
+  font-size: 14px;
+}
+
+.StudentList-item-sub-text {
+  float: right;
+}

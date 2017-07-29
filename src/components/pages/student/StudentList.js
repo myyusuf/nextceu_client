@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import Button from 'antd/lib/button';
+import './StudentList.css';
 
 const StudentList = ({ students }) => (
-  <ul>
+  <ul className="StudentList-container">
     { students.map(student => (
-      <li key={student.id}>
-        {student.name}
+      <li key={student.id} className="StudentList-item-selected">
+        <span className="StudentList-item-text">{student.name}</span>
+        <span className="StudentList-item-sub-text">{student.newSid}</span>
       </li>
     ))}
   </ul>
