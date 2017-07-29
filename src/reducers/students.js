@@ -1,16 +1,16 @@
-const defaultState = [];
+const defaultState = [{
+  id: 1,
+  name: 'Student Test',
+  newSid: '111',
+  oldSid: '222',
+}];
 
 const students = (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_STUDENT':
       const newState = [
         ...state,
-        {
-          id: 2,
-          name: 'Student 2',
-          newSid: '333',
-          oldSid: '444',
-        },
+        action.student,
       ];
 
       return newState;
@@ -18,3 +18,5 @@ const students = (state = defaultState, action) => {
       return state;
   }
 }
+
+export default students;

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import StudentList from '../components/StudentList';
-import { studentAction } from '../actions'
+import StudentList from '../components/pages/student/StudentList';
+import action from '../actions'
 
 const mapStateToProps = state => {
   return {
-    students: state.todos,
+    students: state.students,
   };
 }
 
@@ -13,12 +13,12 @@ const mapDispatchToProps = dispatch => {
     onItemClick: () => {
       const newStudent =
       {
-        id: 1,
+        id: 2,
         name: 'Student Test add',
         newSid: '333',
         oldSid: '444',
       }
-      dispatch(studentAction.addStudent(newStudent))
+      dispatch(action.addStudent(newStudent))
     }
   }
 }

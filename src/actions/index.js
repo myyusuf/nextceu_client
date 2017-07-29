@@ -1,5 +1,7 @@
-import studentAction from './student';
+import { addStudent } from './students';
 
-export {
-  studentAction,
+const index = {
+  addStudent,
 }
+
+export default index;

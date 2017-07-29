@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import StudentList from './components/pages/student/StudentList';
+// import StudentList from './components/pages/student/StudentList';
+import StudentListContainer from './containers/StudentListContainer';
 
 const students = [
   {
@@ -17,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <StudentList students={students}></StudentList>
+        <StudentListContainer></StudentListContainer>
       </div>
     );
   }
