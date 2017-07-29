@@ -9,7 +9,7 @@ const StudentList = ({ students, onItemClick }) => (
       <li
         key={student.id}
         className={student.selected ? 'StudentList-item-selected' : ''}
-        onClick={() => onItemClick()}
+        onClick={() => onItemClick(student)}
       >
         <span className="StudentList-item-text">{student.name}</span>
         <span className="StudentList-item-sub-text">{student.newSid}</span>

@@ -4,3 +4,10 @@ export const addStudent = (newStudent) => {
     student: newStudent,
   };
 }
+
+export const selectStudent = (student) => {
+  return {
+    type: 'SELECT_STUDENT',
+    student,
+  };
+}

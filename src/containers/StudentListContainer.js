@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StudentList from '../components/pages/student/StudentList';
-import action from '../actions'
+import { selectStudent } from '../actions/students'
 
 const mapStateToProps = state => {
   return {
@@ -10,15 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onItemClick: () => {
-      const newStudent =
-      {
-        id: 2,
-        name: 'Student Test add',
-        newSid: '333',
-        oldSid: '444',
-      }
-      dispatch(action.addStudent(newStudent))
+    onItemClick: (student) => {
+      dispatch(selectStudent(student))
     }
   }
 }
