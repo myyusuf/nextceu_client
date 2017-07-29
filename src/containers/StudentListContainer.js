@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import StudentList from '../components/pages/student/StudentList';
-import { selectStudent } from '../actions/students'
+import { selectStudent, getStudents } from '../actions/students'
+
+import store from '../store';
 
 const mapStateToProps = state => {
   return {
@@ -20,6 +22,8 @@ const StudentListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(StudentList)
+
+store.dispatch(getStudents());
 
 export default StudentListContainer;
 

@@ -20,6 +20,8 @@ const students = (state = defaultState, action) => {
           ? {...student, selected: true}
           : student
       )
+    case 'LOAD_STUDENTS':
+      return action.students;
     default:
       return state;
   }
