@@ -22,23 +22,16 @@
   "homepage": "https://github.com/myyusuf/nextceu#readme",
   "dependencies": {
     "axios": "^0.16.2",
-    "jquery": "^3.2.1",
-    "jquery-browser": "^1.10.2-1",
     "moment": "^2.18.1",
     "morgan": "~1.8.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
-    "react-bootstrap-date-picker": "^5.0.1",
-    "react-color": "^2.12.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "react-scripts": "1.0.10",
-    "screenfull": "^3.2.2",
-    "webpack": "^2.6.1"
+    "react-scripts": "1.0.10"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

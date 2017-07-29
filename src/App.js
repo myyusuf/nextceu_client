@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import StudentList from './components/pages/student/StudentList';
+
+const students = [
+  {
+    id: 1,
+    name: 'Student Test 1',
+  }
+];
+
 
 class App extends Component {
   render() {
@@ -11,7 +20,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <StudentList students={students}></StudentList>
         </p>
       </div>
     );
