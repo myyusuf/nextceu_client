@@ -23,10 +23,8 @@ export const loadStudents = (students) => {
 
 export const getStudents = () => {
   return (dispatch) => {
-
     axios.get('http://localhost:3300/api/students')
     .then((response) => {
-      console.log(response.data);
       dispatch(loadStudents(response.data));
     });
 

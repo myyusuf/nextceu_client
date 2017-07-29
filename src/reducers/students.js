@@ -1,9 +1,4 @@
-const defaultState = [{
-  id: 1,
-  name: 'Student Test',
-  newSid: '111',
-  oldSid: '222',
-}];
+const defaultState = [];
 
 const students = (state = defaultState, action) => {
   switch (action.type) {
@@ -18,7 +13,7 @@ const students = (state = defaultState, action) => {
       return state.map(student =>
         (student.id === action.student.id)
           ? {...student, selected: true}
-          : student
+          : {...student, selected: false}
       )
     case 'LOAD_STUDENTS':
       return action.students;
