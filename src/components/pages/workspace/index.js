@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import './Workspace.css';
 import StudentListContainer from '../../../containers/StudentListContainer';
 import StudentDetailContainer from '../../../containers/StudentDetailContainer';
+import CoursePage from '../../../components/pages/student/course/CoursePage';
 
 const Search = Input.Search;
 
@@ -21,16 +22,16 @@ const Workspace = () => (
     <Content className="Workspace-content">
       <Row>
         <Col span={24}>
-        <Menu
-          mode="horizontal"
-        >
-          <Menu.Item key="level1">
-            Tingkat 1
-          </Menu.Item>
-          <Menu.Item key="level2">
-            Tingkat 2
-          </Menu.Item>
-        </Menu>
+          <Menu
+            mode="horizontal"
+          >
+            <Menu.Item key="level1">
+              Tingkat 1
+            </Menu.Item>
+            <Menu.Item key="level2">
+              Tingkat 2
+            </Menu.Item>
+          </Menu>
         </Col>
       </Row>
       <Row>
@@ -44,7 +45,7 @@ const Workspace = () => (
               />
             </Col>
             <Col span={4}>
-              <Button type="primary" shape="circle" icon="plus" style={{ marginTop: 20 }}/>
+              <Button type="primary" shape="circle" icon="plus" style={{ marginTop: 20 }} />
             </Col>
           </Row>
           <Row>
@@ -58,6 +59,7 @@ const Workspace = () => (
           <StudentDetailContainer />
         </Col>
         <Col span={7}>
+          <CoursePage />
         </Col>
       </Row>
     </Content>
