@@ -4,13 +4,23 @@ import Tag from 'antd/lib/tag';
 import Button from 'antd/lib/button';
 import Icon from 'antd/lib/icon';
 import Progress from 'antd/lib/progress';
+import { PieChart, Pie, Sector, Cell } from 'recharts';
 import './StudentDetail.css';
+
+const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
+                  {name: 'Group C', value: 300}, {name: 'Group D', value: 200}];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+const RADIAN = Math.PI / 180;
 
 const StudentDetail = ({ student }) => (
   <div className="StudentDetail-container">
     <div>
       <span className="StudentDetail-name">{ student.name }</span>
       <span style={{ marginLeft: 20 }}><Tag>Level 1</Tag></span>
+    </div>
+    <div style={{ fontWeight: 'bold', fontSize: 15 }}>
+      <span>{ student.newSid } { student.oldSid }</span>
     </div>
     <div className="StudentDetail-contact">
       <span>{ student.email }</span>
@@ -27,7 +37,21 @@ const StudentDetail = ({ student }) => (
       </Button>
     </div>
     <div>
-      <Progress type="circle" percent={75} strokeWidth={8} style={{ marginTop: 40, marginLeft: 20 }} />
+      <PieChart width={400} height={220} onMouseEnter={this.onPieEnter}>
+        <Pie
+          data={data}
+          cx={120}
+          cy={120}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#8884d8"
+          paddingAngle={0}
+        >
+        	{
+          	data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+          }
+        </Pie>
+      </PieChart>
     </div>
     <div style={{ marginTop: 30 }}>
       <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>OTHER RESOURCES</span>
