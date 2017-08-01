@@ -6,6 +6,8 @@ import Dropdown from 'antd/lib/dropdown';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 // import Progress from 'antd/lib/progress';
+import CourseListContainer from '../../../../containers/CourseListContainer';
+
 import './CoursePage.css';
 
 const CoursePage = () => {
@@ -33,6 +35,9 @@ const CoursePage = () => {
       </div>
       <div style={{ marginTop: 20 }}>
         <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>TAKEN DEPARTMENTS</span>
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <CourseListContainer />
       </div>
     </div>
   );

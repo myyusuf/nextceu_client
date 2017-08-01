@@ -7,7 +7,7 @@ const CourseList = ({ courses }) => (
     {
       courses.map((course) => {
         return (
-          <CourseListItem course={course} />
+          <CourseListItem course={course} key={course.id} />
         );
       })
     }
