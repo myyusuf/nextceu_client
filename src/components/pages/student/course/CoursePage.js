@@ -42,6 +42,13 @@ const CoursePage = () => {
       <div style={{ marginTop: 10 }}>
         <CourseListContainer />
       </div>
+
+      <div style={{ marginTop: 20 }}>
+        <span style={{ fontSize: 11, fontWeight: 'bold', color: 'silver' }}>LEVEL 2</span>
+      </div>
+      <div style={{ marginTop: 10 }}>
+        <CourseListContainer />
+      </div>
     </div>
   );
 };
