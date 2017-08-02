@@ -17,6 +17,8 @@ const students = (state = defaultState, action) => {
       )
     case 'LOAD_STUDENTS':
       return action.students;
+    case 'FETCH_STUDENTS_FULFILLED':
+      return action.students;
     default:
       return state;
   }

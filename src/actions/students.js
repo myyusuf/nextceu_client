@@ -22,11 +22,14 @@ export const loadStudents = (students) => {
 }
 
 export const getStudents = () => {
-  return (dispatch) => {
-    axios.get('http://localhost:3300/api/students')
-    .then((response) => {
-      dispatch(loadStudents(response.data));
-    });
-
+  // return (dispatch) => {
+  //   axios.get('http://localhost:3300/api/students')
+  //   .then((response) => {
+  //     dispatch(loadStudents(response.data));
+  //   });
+  //
+  // };
+  return {
+    type: 'FETCH_STUDENTS',
   };
 }
