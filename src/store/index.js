@@ -9,7 +9,7 @@ const { ajax } = Rx.Observable;
 const FETCH_STUDENTS = 'FETCH_STUDENTS';
 const FETCH_STUDENTS_FULFILLED = 'FETCH_STUDENTS_FULFILLED';
 
-const fetchStudentsFulfilled = payload => ({ type: FETCH_STUDENTS_FULFILLED, payload });
+const fetchStudentsFulfilled = payload => ({ type: FETCH_STUDENTS_FULFILLED, students: payload });
 
 const getStudentsEpic = action$ =>
   action$.ofType(FETCH_STUDENTS)
