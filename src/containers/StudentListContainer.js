@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
     onItemClick: (student) => {
       dispatch(selectStudent(student));
       dispatch(getStudent(student.id));
-      // dispatch(getCourses(student.id));
+      dispatch(getCourses(student.id));
     },
     getStudents: () => {
       dispatch(getStudents());

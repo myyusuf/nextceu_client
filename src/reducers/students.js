@@ -14,14 +14,12 @@ const students = (state = defaultState, action) => {
         (student.id === action.student.id)
           ? {...student, selected: true}
           : {...student, selected: false}
-      )
+      );
     case 'LOAD_STUDENTS':
-      return action.students;
-    case 'FETCH_STUDENTS_FULFILLED':
       return action.students;
     default:
       return state;
   }
-}
+};
 
 export default students;

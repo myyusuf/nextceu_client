@@ -1,31 +1,27 @@
-import axios from 'axios';
-
-export const addCourse = (newCourse) => {
-  return {
+export const addCourse = newCourse => (
+  {
     type: 'ADD_COURSE',
     course: newCourse,
-  };
-}
+  }
+);
 
-export const selectCourse = (course) => {
-  return {
+export const selectCourse = course => (
+  {
     type: 'SELECT_COURSE',
     course,
-  };
-}
+  }
+);
 
-export const loadCourses = (courses) => {
-  return {
+export const loadCourses = courses => (
+  {
     type: 'LOAD_COURSES',
     courses,
-  };
-}
+  }
+);
 
-export const getCourses = (studentId) => {
-  return (dispatch) => {
-    axios.get(`http://localhost:3300/api/students/${studentId}/courses`)
-    .then((response) => {
-      dispatch(loadCourses(response.data));
-    });
-  };
-};
+export const getCourses = studentId => (
+  {
+    type: 'FETCH_COURSES',
+    studentId,
+  }
+);
