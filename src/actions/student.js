@@ -8,11 +8,15 @@ export const loadStudent = (student) => {
 }
 
 export const getStudent = (id) => {
-  return (dispatch) => {
-    axios.get(`http://localhost:3300/api/students/${id}`)
-    .then((response) => {
-      dispatch(loadStudent(response.data));
-    });
-
+  // return (dispatch) => {
+  //   axios.get(`http://localhost:3300/api/students/${id}`)
+  //   .then((response) => {
+  //     dispatch(loadStudent(response.data));
+  //   });
+  //
+  // };
+  return {
+    type: 'FETCH_STUDENT',
+    id,
   };
-}
+};

@@ -1,7 +1,9 @@
 import { combineEpics } from 'redux-observable';
-import { getStudentsEpic } from './students';
+import { getStudentsEpic, getStudentEpic } from './students';
 
 const rootEpic = combineEpics(
-  getStudentsEpic);
+  getStudentsEpic,
+  getStudentEpic,
+);
 
 export default rootEpic;
