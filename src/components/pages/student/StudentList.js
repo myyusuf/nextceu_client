@@ -25,7 +25,7 @@ class StudentList extends Component {
       </ul>
     );
   }
-};
+}
 
 StudentList.propTypes = {
   students: PropTypes.arrayOf(
