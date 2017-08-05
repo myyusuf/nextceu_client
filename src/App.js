@@ -9,13 +9,14 @@ import 'antd/dist/antd.css';
 // import StudentList from './components/pages/student/StudentList';
 import StudentListContainer from './containers/StudentListContainer';
 import Workspace from './components/pages/workspace';
+import AddStudentForm from './components/pages/student/AddStudentForm';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <Workspace></Workspace>
+          <AddStudentForm></AddStudentForm>
         </Router>
       </div>
     );
