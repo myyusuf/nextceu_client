@@ -12,8 +12,8 @@ const students = (state = defaultState, action) => {
     case 'SELECT_STUDENT':
       return state.map(student =>
         (student.id === action.student.id)
-          ? {...student, selected: true}
-          : {...student, selected: false}
+          ? { ...student, selected: true }
+          : { ...student, selected: false },
       );
     case 'LOAD_STUDENTS':
       return action.students;

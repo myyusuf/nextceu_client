@@ -23,3 +23,7 @@
     height: 33px;
     border-radius: 20px;
 }
+
+.ant-form-item {
+  margin-bottom: 12px;
+}

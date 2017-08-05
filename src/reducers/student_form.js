@@ -1,11 +1,14 @@
 const defaultState = {
+  oldSid: {},
+  newSid: {},
+  name: {},
+  level: {},
   email: {},
-  password: {},
 };
 
 const studentForm = (state = defaultState, action) => {
   switch (action.type) {
-    case 'UPDATE_STUDENT_FORM':
+    case 'UPDATE_STUDENT_FORM': {
       const newState = { ...state };
       newState[action.payload.fieldName] = {
         value: action.payload.value,
@@ -13,6 +16,9 @@ const studentForm = (state = defaultState, action) => {
         errorMsg: action.payload.errorMsg,
       };
       return newState;
+    }
+    case 'RESET_STUDENT_FORM':
+      return defaultState;
     default:
       return state;
   }

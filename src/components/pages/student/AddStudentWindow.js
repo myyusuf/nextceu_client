@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
 import StudentFormContainer from '../../../containers/StudentFormContainer';
+import { resetStudentForm, createStudent } from '../../../actions/student_form';
 
 class AddStudentWindow extends Component {
   constructor(props) {
@@ -13,10 +15,12 @@ class AddStudentWindow extends Component {
   }
 
   handleOk = () => {
+    this.props.createStudent(this.props.studentForm);
     this.props.onSaveSucess();
   }
 
   handleCancel = () => {
+    this.props.resetStudentForm();
     this.props.onCancel();
   }
 
@@ -41,6 +45,31 @@ AddStudentWindow.propTypes = {
   visible: PropTypes.bool.isRequired,
   onSaveSucess: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  createStudent: PropTypes.func.isRequired,
+  resetStudentForm: PropTypes.func.isRequired,
+  studentForm: PropTypes.shape.isRequired,
 };
 
-export default AddStudentWindow;
+const mapStateToProps = state => (
+  {
+    studentForm: state.studentForm,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    resetStudentForm: () => {
+      dispatch(resetStudentForm());
+    },
+    createStudent: (studentForm) => {
+      dispatch(createStudent(studentForm));
+    },
+  }
+);
+
+const AddStudentWindowContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddStudentWindow);
+
+export default AddStudentWindowContainer;

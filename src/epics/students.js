@@ -5,9 +5,11 @@ const { ajax } = Rx.Observable;
 
 const FETCH_STUDENTS = 'FETCH_STUDENTS';
 const FETCH_STUDENT = 'FETCH_STUDENT';
+const CREATE_STUDENT = 'CREATE_STUDENT';
 
 const fetchStudentsFulfilled = payload => ({ type: 'LOAD_STUDENTS', students: payload });
 const fetchStudentFulfilled = payload => ({ type: 'LOAD_STUDENT', student: payload });
+const createStudentFulfilled = () => ({ type: 'FETCH_STUDENTS' });
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
@@ -23,4 +25,11 @@ export const getStudentEpic = action$ =>
     .mergeMap(action =>
       ajax.getJSON(`${STUDENTS_URL}/${action.id}`)
         .map(response => fetchStudentFulfilled(response)),
+    );
+
+export const createStudentEpic = action$ =>
+  action$.ofType(CREATE_STUDENT)
+    .mergeMap(action =>
+      ajax.post(`${STUDENTS_URL}`, action.payload)
+        .map(response => createStudentFulfilled(response)),
     );
