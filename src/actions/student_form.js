@@ -1,6 +1,6 @@
-export const updateStudentForm = value => (
+export const studentFormChanged = value => (
   {
-    type: 'UPDATE_STUDENT_FORM',
+    type: 'STUDENT_FORM_CHANGED',
     payload: value,
   }
 );

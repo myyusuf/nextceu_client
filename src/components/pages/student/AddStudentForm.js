@@ -4,28 +4,18 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
-import { validateLength, validateEmail } from '../../../utils/validation';
 
 const FormItem = Form.Item;
 
 class StudentForm extends Component {
 
-  handleInputChange = (name, value, validation, validationArgs) => {
-    let result = null;
-    if (validation) {
-      result = {
-        fieldName: name,
-        value,
-        ...validation(name, value, ...validationArgs),
-      };
-    } else {
-      result = {
-        fieldName: name,
-        value,
-      };
-    }
+  handleInputChange = (name, value) => {
+    const result = {
+      name,
+      value,
+    };
 
-    this.props.updateStudentForm(result);
+    this.props.studentFormChanged(result);
   }
 
   render() {
@@ -43,7 +33,7 @@ class StudentForm extends Component {
               <Input
                 value={oldSid.value}
                 onChange={(e) => {
-                  this.handleInputChange('oldSid', e.target.value, validateLength, [3]);
+                  this.handleInputChange('oldSid', e.target.value);
                 }}
                 placeholder="Old SID"
               />
@@ -59,7 +49,7 @@ class StudentForm extends Component {
               <Input
                 value={newSid.value}
                 onChange={(e) => {
-                  this.handleInputChange('newSid', e.target.value, validateLength, [3]);
+                  this.handleInputChange('newSid', e.target.value);
                 }}
                 placeholder="New SID"
               />
@@ -77,7 +67,7 @@ class StudentForm extends Component {
               <Input
                 value={name.value}
                 onChange={(e) => {
-                  this.handleInputChange('name', e.target.value, validateLength, [3]);
+                  this.handleInputChange('name', e.target.value);
                 }}
                 placeholder="Student name"
               />
@@ -100,7 +90,7 @@ class StudentForm extends Component {
               <Input
                 value={email.value}
                 onChange={(e) => {
-                  this.handleInputChange('email', e.target.value, validateEmail, []);
+                  this.handleInputChange('email', e.target.value);
                 }}
                 placeholder="Email"
               />
@@ -115,7 +105,7 @@ class StudentForm extends Component {
 }
 
 StudentForm.propTypes = {
-  updateStudentForm: PropTypes.func.isRequired,
+  studentFormChanged: PropTypes.func.isRequired,
   studentForm: PropTypes.shape({
     oldSid: PropTypes.string.isRequired,
     newSid: PropTypes.string.isRequired,

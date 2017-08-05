@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddStudentForm from '../components/pages/student/AddStudentForm';
-import { updateStudentForm } from '../actions/student_form';
+import { studentFormChanged } from '../actions/student_form';
 
 const mapStateToProps = state => (
   {
@@ -10,8 +10,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    updateStudentForm: (value) => {
-      dispatch(updateStudentForm(value));
+    studentFormChanged: (value) => {
+      dispatch(studentFormChanged(value));
     },
   }
 );
