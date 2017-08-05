@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <AddStudentForm></AddStudentForm>
+          <Workspace></Workspace>
         </Router>
       </div>
     );
