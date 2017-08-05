@@ -7,32 +7,27 @@ import { validateEmail, validatePassword } from '../../../utils/validation';
 const FormItem = Form.Item;
 
 class StudentForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   handleInputChange = (name, value, validation, validationArgs) => {
+    let result = null;
     if (validation) {
-      this.setState({
-        [name]: {
-          ...validation(name, value, ...validationArgs),
-          value,
-        },
-      }, this.props.onFormChange(this.state));
+      result = {
+        fieldName: name,
+        value,
+        ...validation(name, value, ...validationArgs),
+      };
     } else {
-      this.setState({
-        [name]: {
-          value,
-        },
-      }, this.props.onFormChange(this.state));
+      result = {
+        fieldName: name,
+        value,
+      };
     }
+
+    this.props.updateStudentForm(result);
   }
 
   render() {
-    const email = this.state.email || {};
-    const password = this.state.password || {};
+    const { email, password } = this.props.studentForm;
     return (
       <Form>
         <FormItem
@@ -42,6 +37,7 @@ class StudentForm extends Component {
           help={email.errorMsg}
         >
           <Input
+            value={email.value}
             onChange={(e) => {
               this.handleInputChange('email', e.target.value, validateEmail, []);
             }}
@@ -55,6 +51,7 @@ class StudentForm extends Component {
           help={password.errorMsg}
         >
           <Input
+            value={password.value}
             onChange={(e) => {
               this.handleInputChange('password', e.target.value, validatePassword, [5]);
             }}
@@ -67,7 +64,8 @@ class StudentForm extends Component {
 }
 
 StudentForm.propTypes = {
-  onFormChange: PropTypes.func.isRequired,
+  updateStudentForm: PropTypes.func.isRequired,
+  // studentForm: PropTypes.shape.isRequired,
 };
 
 export default StudentForm;

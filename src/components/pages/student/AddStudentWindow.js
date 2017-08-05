@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-import AddStudentForm from './AddStudentForm';
+import StudentFormContainer from '../../../containers/StudentFormContainer';
 
 class AddStudentWindow extends Component {
   constructor(props) {
@@ -10,12 +10,6 @@ class AddStudentWindow extends Component {
       confirmLoading: false,
       studentForm: {},
     };
-  }
-
-  onFormChange = (value) => {
-    this.setState({
-      studentForm: value,
-    });
   }
 
   handleOk = () => {
@@ -37,7 +31,7 @@ class AddStudentWindow extends Component {
         cancelText="Cancel"
         onCancel={this.handleCancel}
       >
-        <AddStudentForm onFormChange={value => this.onFormChange(value)} />
+        <StudentFormContainer />
       </Modal>
     );
   }
