@@ -14,6 +14,7 @@ const fetchStudentsFulfilled = payload => ({ type: 'LOAD_STUDENTS', students: pa
 const fetchStudentFulfilled = payload => ({ type: 'LOAD_STUDENT', student: payload });
 const createStudentFulfilled = () => ({ type: 'FETCH_STUDENTS' });
 const updateStudentForm = payload => ({ type: 'UPDATE_STUDENT_FORM', payload });
+const loadStudentForm = payload => ({ type: 'LOAD_STUDENT_FORM', payload });
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
@@ -34,8 +35,44 @@ export const getStudentEpic = action$ =>
 export const createStudentEpic = action$ =>
   action$.ofType(CREATE_STUDENT)
     .mergeMap((action) => {
-      const data = _.mapValues(action.payload, o => o.value);
-      return ajax.post(`${STUDENTS_URL}`, data).map(response => createStudentFulfilled(response));
+      const payload = action.payload;
+      const keys = _.keys(payload);
+      const objectsToLoad = [];
+      for (let i = 0; i < keys.length; i += 1) {
+        const key = keys[i];
+        const value = payload[key].value;
+        let result = null;
+        switch (key) {
+          case 'oldSid':
+          case 'newSid':
+          case 'name':
+            result = {
+              name: key,
+              value,
+              ...validateLength(key, value, 3),
+            };
+            break;
+          case 'email':
+            result = {
+              name: key,
+              value: payload[key].value,
+              ...validateEmail(key, value),
+            };
+            break;
+          default:
+            result = payload;
+            break;
+        }
+
+        objectsToLoad.push(result);
+      }
+
+      return Rx.Observable.create((observer) => {
+        console.log(objectsToLoad);
+        observer.next(loadStudentForm(objectsToLoad));
+      });
+      // const data = _.mapValues(action.payload, o => o.value);
+      // return ajax.post(`${STUDENTS_URL}`, data).map(response => createStudentFulfilled(response));
     },
   );
 

@@ -16,7 +16,7 @@ class AddStudentWindow extends Component {
 
   handleOk = () => {
     this.props.createStudent(this.props.studentForm);
-    this.props.onSaveSucess();
+    // this.props.onSaveSucess();
   }
 
   handleCancel = () => {

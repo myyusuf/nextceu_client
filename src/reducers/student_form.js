@@ -17,6 +17,18 @@ const studentForm = (state = defaultState, action) => {
       };
       return newState;
     }
+    case 'LOAD_STUDENT_FORM': {
+      const newState = { };
+      for (let i = 0; i < action.payload.length; i += 1) {
+        const payload = action.payload[i];
+        newState[payload.name] = {
+          value: payload.value,
+          validateStatus: payload.validateStatus,
+          errorMsg: payload.errorMsg,
+        };
+      }
+      return newState;
+    }
     case 'RESET_STUDENT_FORM':
       return defaultState;
     default:
