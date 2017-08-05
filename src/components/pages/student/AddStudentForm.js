@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
-import { validateLength } from '../../../utils/validation';
+import { validateEmail } from '../../../utils/validation';
 
 const FormItem = Form.Item;
 
@@ -9,7 +9,6 @@ class StudentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: {},
     }
   }
 
@@ -31,18 +30,18 @@ class StudentForm extends Component {
   }
 
   render(){
-    const code = this.state.code;
+    const email = this.state.email || {};
     return(
       <Form>
         <FormItem
-          label="Code"
+          label="Email"
           colon={false}
-          validateStatus={code.validateStatus}
-          help={code.errorMsg}
+          validateStatus={email.validateStatus}
+          help={email.errorMsg}
         >
           <Input onChange={(e) => {
-            this.handleInputChange('code', e.target.value, validateLength, [3])
-          }} placeholder="Username" />
+            this.handleInputChange('email', e.target.value, validateEmail, [])
+          }} placeholder="Email" />
         </FormItem>
       </Form>
     )
