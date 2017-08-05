@@ -23,8 +23,7 @@ const mapDispatchToProps = dispatch => {
 
 const CourseListContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
-)(CourseList)
+  mapDispatchToProps,
+)(CourseList);
 
 export default CourseListContainer;
-

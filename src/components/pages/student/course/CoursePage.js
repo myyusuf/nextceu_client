@@ -40,14 +40,14 @@ const CoursePage = () => {
         <span style={{ fontSize: 11, fontWeight: 'bold', color: 'silver' }}>LEVEL 1</span>
       </div>
       <div style={{ marginTop: 10 }}>
-        <CourseListContainer />
+        <CourseListContainer level={1} />
       </div>
 
       <div style={{ marginTop: 20 }}>
         <span style={{ fontSize: 11, fontWeight: 'bold', color: 'silver' }}>LEVEL 2</span>
       </div>
       <div style={{ marginTop: 10 }}>
-        <CourseListContainer />
+        <CourseListContainer level={2} />
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import Layout, { Header, Content } from 'antd/lib/layout';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
-import Icon from 'antd/lib/icon';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
 import { Link } from 'react-router-dom';
@@ -26,10 +25,10 @@ const Workspace = () => (
             mode="horizontal"
           >
             <Menu.Item key="level1">
-              Tingkat 1
+              LEVEL 1
             </Menu.Item>
             <Menu.Item key="level2">
-              Tingkat 2
+              LEVEL 2
             </Menu.Item>
           </Menu>
         </Col>

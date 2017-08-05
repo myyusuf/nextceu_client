@@ -4,7 +4,7 @@ import Tag from 'antd/lib/tag';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Badge from 'antd/lib/badge';
-import './CourseListItem.css'
+import './CourseListItem.css';
 
 const CourseListItem = ({ course }) => (
   <li className="CourseListItem" key={course.id}>
