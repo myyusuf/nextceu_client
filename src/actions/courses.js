@@ -19,9 +19,15 @@ export const loadCourses = courses => (
   }
 );
 
-export const getCourses = studentId => (
+export const fetchCourses = studentId => (
   {
     type: 'FETCH_COURSES',
     studentId,
+  }
+);
+
+export const cancelFetchCourses = () => (
+  {
+    type: 'CANCEL_FETCH_COURSES',
   }
 );

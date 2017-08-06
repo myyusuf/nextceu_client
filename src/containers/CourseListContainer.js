@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CourseList from '../components/pages/student/course/CourseList';
-import { selectCourse, getCourses } from '../actions/courses';
+import { selectCourse, fetchCourses } from '../actions/courses';
 // import { getCourse } from '../actions/course';
 
 const mapStateToProps = state => {
@@ -15,8 +15,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(selectCourse(course));
       // dispatch(getCourse(course.id));
     },
-    getCourses: () => {
-      dispatch(getCourses());
+    fetchCourses: () => {
+      dispatch(fetchCourses());
     },
   };
 };
