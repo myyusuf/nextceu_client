@@ -1,12 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import rootReducer from '../reducers';
-import rootEpic from '../epics';
-// import thunk from 'redux-thunk';
-const epicMiddleware = createEpicMiddleware(rootEpic);
+import { createLogicMiddleware } from 'redux-logic';
 
-// const store = createStore(rootReducer, compose(applyMiddleware(thunk),
-const store = createStore(rootReducer, compose(applyMiddleware(epicMiddleware),
+import rootReducer from '../reducers';
+import arrLogic from '../logics';
+
+const deps = { // optional injected dependencies for logic
+  // anything you need to have available in your logic
+  A_SECRET_KEY: 'dsfjsdkfjsdlfjls',
+};
+
+const logicMiddleware = createLogicMiddleware(arrLogic, deps);
+
+const store = createStore(rootReducer, compose(applyMiddleware(logicMiddleware),
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 export default store;

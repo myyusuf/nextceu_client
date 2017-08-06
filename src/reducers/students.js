@@ -15,7 +15,7 @@ const students = (state = defaultState, action) => {
           ? { ...student, selected: true }
           : { ...student, selected: false },
       );
-    case 'LOAD_STUDENTS':
+    case 'FETCH_STUDENTS_SUCCESS':
       return action.students;
     default:
       return state;
