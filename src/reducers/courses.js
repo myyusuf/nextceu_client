@@ -16,8 +16,8 @@ const courses = (state = defaultState, action) => {
         ? { ...course, selected: true }
         : { ...course, selected: false }
       ));
-    case 'LOAD_COURSES':
-      return action.courses;
+    case 'FETCH_COURSES_SUCCESS':
+      return action.payload;
     default:
       return state;
   }
