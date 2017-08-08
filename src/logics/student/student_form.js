@@ -69,11 +69,19 @@ const saveStudentFormLogic = createLogic({
       reject({ type: 'SHOW_USER_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
     }
   },
+  processOptions: {
+    dispatchMultiple: true,
+  },
   process({ getState, action }, dispatch, done) {
     const studentForm = _.mapValues({ ...getState().studentReducers.studentForm }, 'value');
     studentForm.level = 1;
+
+    dispatch({ type: 'SHOW_STUDENT_WINDOW_CONFIRM_LOADING' });
     axios.post(STUDENTS_URL, studentForm)
-      .then(students => dispatch({ type: 'SAVE_STUDENT_FORM_SUCCESS', payload: students }))
+      .then((students) => {
+        dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
+        dispatch({ type: 'SAVE_STUDENT_FORM_SUCCESS', payload: students });
+      })
       .catch((err) => {
         console.error(err);
         dispatch({ type: 'SAVE_STUDENT_FORM_FAILED', payload: err, error: true });
@@ -85,6 +93,9 @@ const saveStudentFormLogic = createLogic({
 const saveStudentFormSuccessLogic = createLogic({
   type: 'SAVE_STUDENT_FORM_SUCCESS',
   latest: true,
+  processOptions: {
+    dispatchMultiple: true,
+  },
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLOSE_ADD_STUDENT_WINDOW' });
     dispatch({ type: 'FETCH_STUDENTS' });

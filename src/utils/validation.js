@@ -7,7 +7,7 @@ export const validatePassword = (name, value, minimumLength) => {
     if (value.trim().length < minimumLength) {
       return {
         validateStatus: 'error',
-        errorMsg: `${_.capitalize(name)} minimum length is ${minimumLength} characters`,
+        errorMsg: `${_.startCase(name)} minimum length is ${minimumLength} characters`,
       };
     }
     if (value.search(/[a-z]/i) < 0) {
@@ -29,7 +29,7 @@ export const validatePassword = (name, value, minimumLength) => {
   }
   return {
     validateStatus: 'error',
-    errorMsg: `${_.capitalize(name)} is required`,
+    errorMsg: `${_.startCase(name)} is required`,
   };
 };
 
@@ -38,7 +38,7 @@ export const validateLength = (name, value, minimumLength) => {
     if (value.trim().length < minimumLength) {
       return {
         validateStatus: 'error',
-        errorMsg: `${_.capitalize(name)} minimum length is ${minimumLength} characters`,
+        errorMsg: `${_.startCase(name)} minimum length is ${minimumLength} characters`,
       };
     }
     return {
@@ -48,7 +48,7 @@ export const validateLength = (name, value, minimumLength) => {
   }
   return {
     validateStatus: 'error',
-    errorMsg: `${_.capitalize(name)} is required`,
+    errorMsg: `${_.startCase(name)} is required`,
   };
 };
 
@@ -67,6 +67,6 @@ export const validateEmail = (name, value) => {
   }
   return {
     validateStatus: 'error',
-    errorMsg: `${_.capitalize(name)} is required`,
+    errorMsg: `${_.startCase(name)} is required`,
   };
 };
