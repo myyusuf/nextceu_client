@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import StudentList from '../components/pages/student/StudentList';
-import { selectStudent, getStudents } from '../actions/students';
-import { fetchStudent, cancelFetchStudent } from '../actions/student';
-import { fetchCourses, cancelFetchCourses } from '../actions/courses';
+import StudentList from '../../components/pages/student/StudentList';
+import { selectStudent, getStudents } from '../../actions/student/students';
+import { fetchStudent, cancelFetchStudent } from '../../actions/student/student';
+import { fetchCourses, cancelFetchCourses } from '../../actions/student/courses';
 
 const mapStateToProps = state => (
   {
-    students: state.students,
+    students: state.studentReducers.students,
   }
 );
 
@@ -27,9 +27,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const StudentListContainer = connect(
+const StudentListWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(StudentList);
 
-export default StudentListContainer;
+export default StudentListWrapper;

@@ -1,7 +1,7 @@
 import { createLogic } from 'redux-logic';
 import axios from 'axios';
 
-import Constant from '../Constant';
+import Constant from '../../Constant';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 

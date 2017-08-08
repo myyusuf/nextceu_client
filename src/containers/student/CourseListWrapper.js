@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import CourseList from '../components/pages/student/course/CourseList';
-import { selectCourse, fetchCourses } from '../actions/courses';
+import CourseList from '../../components/pages/student/course/CourseList';
+import { selectCourse, fetchCourses } from '../../actions/student/courses';
 // import { getCourse } from '../actions/course';
 
 const mapStateToProps = state => {
   return {
-    courses: state.courses,
+    courses: state.studentReducers.courses,
   };
 }
 
@@ -21,9 +21,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const CourseListContainer = connect(
+const CourseListWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(CourseList);
 
-export default CourseListContainer;
+export default CourseListWrapper;

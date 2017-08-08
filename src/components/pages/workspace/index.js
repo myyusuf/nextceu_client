@@ -7,8 +7,8 @@ import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
 import { Link } from 'react-router-dom';
 import './Workspace.css';
-import StudentListContainer from '../../../containers/StudentListContainer';
-import StudentDetailContainer from '../../../containers/StudentDetailContainer';
+import StudentListWrapper from '../../../containers/student/StudentListWrapper';
+import StudentDetailWrapper from '../../../containers/student/StudentDetailWrapper';
 import CoursePage from '../../../components/pages/student/course/CoursePage';
 import AddStudentWindow from '../../../components/pages/student/AddStudentWindow';
 
@@ -84,13 +84,13 @@ class Workspace extends Component {
               </Row>
               <Row>
                 <Col span={24}>
-                  <StudentListContainer />
+                  <StudentListWrapper />
                 </Col>
               </Row>
 
             </Col>
             <Col span={10}>
-              <StudentDetailContainer />
+              <StudentDetailWrapper />
             </Col>
             <Col span={7}>
               <CoursePage />

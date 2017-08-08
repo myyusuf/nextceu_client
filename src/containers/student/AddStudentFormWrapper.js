@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import AddStudentForm from '../components/pages/student/AddStudentForm';
-import { studentFormChanged } from '../actions/student_form';
+import AddStudentForm from '../../components/pages/student/AddStudentForm';
+import { studentFormChanged } from '../../actions/student/student_form';
 
 const mapStateToProps = state => (
   {

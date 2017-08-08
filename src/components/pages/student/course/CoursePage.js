@@ -6,7 +6,7 @@ import Dropdown from 'antd/lib/dropdown';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 // import Progress from 'antd/lib/progress';
-import CourseListContainer from '../../../../containers/CourseListContainer';
+import CourseListContainer from '../../../../containers/student/CourseListWrapper';
 
 import './CoursePage.css';
 
