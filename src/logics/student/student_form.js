@@ -45,6 +45,30 @@ const studentFormChangedLogic = createLogic({
 const saveStudentFormLogic = createLogic({
   type: 'SAVE_STUDENT_FORM',
   latest: true,
+  validate({ getState, action }, allow, reject) {
+    let isFormValid = true;
+    const studentForm = { ...getState().studentReducers.studentForm };
+    const validationResult = {};
+    const keys = _.keys(studentForm);
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const value = studentForm[key].value;
+      validationResult[key] = {
+        value,
+        ...validate(key, value),
+      };
+
+      if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
+        isFormValid = false;
+      }
+    }
+
+    if (isFormValid) {
+      allow(action);
+    } else {
+      reject({ type: 'SHOW_USER_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
+    }
+  },
   process({ getState, action }, dispatch, done) {
     const studentForm = _.mapValues({ ...getState().studentReducers.studentForm }, 'value');
     studentForm.level = 1;
