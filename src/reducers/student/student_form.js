@@ -9,12 +9,7 @@ const defaultState = {
 const studentForm = (state = defaultState, action) => {
   switch (action.type) {
     case 'UPDATE_STUDENT_FORM': {
-      const newState = { ...state };
-      newState[action.payload.name] = {
-        value: action.payload.value,
-        validateStatus: action.payload.validateStatus,
-        errorMsg: action.payload.errorMsg,
-      };
+      const newState = { ...state, ...action.payload };
       return newState;
     }
     case 'LOAD_STUDENT_FORM': {

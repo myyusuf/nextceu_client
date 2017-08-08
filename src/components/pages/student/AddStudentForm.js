@@ -11,7 +11,7 @@ class StudentForm extends Component {
 
   handleInputChange = (name, value) => {
     const result = {
-      name,
+      key: name,
       value,
     };
 
