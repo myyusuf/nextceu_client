@@ -4,7 +4,7 @@ import { studentFormChanged } from '../../actions/student/student_form';
 
 const mapStateToProps = state => (
   {
-    studentForm: state.studentForm,
+    studentForm: state.studentReducers.studentForm,
   }
 );
 

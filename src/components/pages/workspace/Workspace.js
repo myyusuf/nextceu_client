@@ -10,7 +10,7 @@ import './Workspace.css';
 import StudentListWrapper from '../../../containers/student/StudentListWrapper';
 import StudentDetailWrapper from '../../../containers/student/StudentDetailWrapper';
 import CoursePage from '../../../components/pages/student/course/CoursePage';
-import AddStudentWindow from '../../../components/pages/student/AddStudentWindow';
+import AddStudentWindowWrapper from '../../../containers/student/AddStudentWindowWrapper';
 
 const Search = Input.Search;
 
@@ -78,7 +78,7 @@ class Workspace extends Component {
                     shape="circle"
                     icon="plus"
                     style={{ marginTop: 20 }}
-                    onClick={() => this.showAddStudentWindow()}
+                    onClick={() => this.props.openAddStudentWindow()}
                   />
                 </Col>
               </Row>
@@ -98,11 +98,7 @@ class Workspace extends Component {
           </Row>
         </Content>
 
-        <AddStudentWindow
-          visible={this.state.addStudentWindowVisible}
-          onSaveSucess={() => this.onAddStudentSuccess()}
-          onCancel={() => this.onAddStudentCancel()}
-        />
+        <AddStudentWindowWrapper />
       </Layout>
     );
   }

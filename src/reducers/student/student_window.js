@@ -4,10 +4,10 @@ const defaultState = {
 
 const studentWindow = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SHOW_STUDENT_WINDOW': {
+    case 'SHOW_ADD_STUDENT_WINDOW': {
       return { visible: true };
     }
-    case 'HIDE_STUDENT_WINDOW': {
+    case 'HIDE_ADD_STUDENT_WINDOW': {
       return { visible: false };
     }
     default:

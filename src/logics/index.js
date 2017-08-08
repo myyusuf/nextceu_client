@@ -1,4 +1,4 @@
-import studentLogics from './student/index';
+import studentLogics from './student/';
 
 export default [
   ...studentLogics,

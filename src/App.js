@@ -3,18 +3,18 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-
-import './App.css';
 import 'antd/dist/antd.css';
 
-import Workspace from './components/pages/workspace';
+import './App.css';
+
+import WorkspaceWrapper from './containers/workspace/WorkspaceWrapper';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <Workspace></Workspace>
+          <WorkspaceWrapper></WorkspaceWrapper>
         </Router>
       </div>
     );

@@ -4,6 +4,7 @@ import { closeAddStudentWindow } from '../../actions/student/student_window';
 
 const mapStateToProps = state => (
   {
+    visible: state.studentReducers.studentWindow.visible,
   }
 );
 
