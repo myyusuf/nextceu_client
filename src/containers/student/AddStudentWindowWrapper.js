@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import AddStudentWindow from '../../components/pages/student/AddStudentWindow';
+import { saveStudentForm } from '../../actions/student/student_form';
 import { closeAddStudentWindow } from '../../actions/student/student_window';
 
 const mapStateToProps = state => (
@@ -12,6 +13,9 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch(closeAddStudentWindow());
+    },
+    onOk: () => {
+      dispatch(saveStudentForm());
     },
   }
 );

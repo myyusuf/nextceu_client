@@ -4,3 +4,10 @@ export const studentFormChanged = payload => (
     payload,
   }
 );
+
+export const saveStudentForm = payload => (
+  {
+    type: 'SAVE_STUDENT_FORM',
+    payload,
+  }
+);
