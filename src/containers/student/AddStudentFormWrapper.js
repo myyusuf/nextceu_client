@@ -16,9 +16,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const AddStudentFormContainer = connect(
+const AddStudentFormWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(AddStudentForm);
 
-export default AddStudentFormContainer;
+export default AddStudentFormWrapper;

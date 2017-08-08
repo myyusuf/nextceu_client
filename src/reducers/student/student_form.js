@@ -29,7 +29,7 @@ const studentForm = (state = defaultState, action) => {
       }
       return newState;
     }
-    case 'RESET_STUDENT_FORM':
+    case 'CLEAR_ADD_STUDENT_FORM':
       return defaultState;
     default:
       return state;
