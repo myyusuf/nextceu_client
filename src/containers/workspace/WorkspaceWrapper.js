@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Workspace from '../../components/pages/workspace/Workspace';
+import Workspace from '../../pages/workspace/Workspace';
 import { openAddStudentWindow } from '../../actions/student/student_window';
 
 const mapStateToProps = state => (
