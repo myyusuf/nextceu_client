@@ -23,8 +23,8 @@ const fetchStudentsLogic = createLogic({
   cancelType: CANCEL_FETCH_STUDENTS, // cancel on this type
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const filter = action.payload.filter;
-    const paramameters = filter ? { params: { searchText: filter } } : {};
+    const filter = getState().studentReducers.studentFilter;
+    const paramameters = filter ? { params: { ...filter } } : {};
     axios.get(STUDENTS_URL, paramameters)
       .then(resp => resp.data)
       .then(students => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: students }))
@@ -87,8 +87,28 @@ const deleteStudentLogic = createLogic({
   },
 });
 
+const filterStudentsByLevelLogic = createLogic({
+  type: 'FILTER_STUDENTS_BY_LEVEL_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'FILTER_STUDENTS_BY_LEVEL', payload: action.payload });
+    dispatch({ type: 'FETCH_STUDENTS' });
+    done();
+  },
+});
+
+const filterStudentsBySearchTextLogic = createLogic({
+  type: 'FILTER_STUDENTS_BY_SEARCH_TEXT_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'FILTER_STUDENTS_BY_SEARCH_TEXT', payload: action.payload });
+    dispatch({ type: 'FETCH_STUDENTS' });
+    done();
+  },
+});
+
 export default [
   fetchStudentsLogic,
   fetchStudentLogic,
   deleteStudentLogic,
+  filterStudentsByLevelLogic,
+  filterStudentsBySearchTextLogic,
 ];

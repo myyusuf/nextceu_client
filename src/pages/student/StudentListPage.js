@@ -20,6 +20,7 @@ class StudentListPage extends Component {
               <Search
                 placeholder="Name or SID"
                 className="Workspace-student-search"
+                value={this.props.studentFilter.searchText}
                 onChange={e => this.props.filterStudents(e.target.value)}
                 onSearch={value => console.log(value)}
               />

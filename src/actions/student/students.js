@@ -34,3 +34,17 @@ export const deleteStudent = student => (
     student,
   }
 );
+
+export const filterStudentsByLevelText = level => (
+  {
+    type: 'FILTER_STUDENTS_BY_LEVEL_LOGIC',
+    payload: level,
+  }
+);
+
+export const filterStudentsBySearchText = searchText => (
+  {
+    type: 'FILTER_STUDENTS_BY_SEARCH_TEXT_LOGIC',
+    payload: searchText,
+  }
+);

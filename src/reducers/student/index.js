@@ -3,6 +3,7 @@ import students from './students';
 import student from './student';
 import studentForm from './student_form';
 import studentWindow from './student_window';
+import studentFilter from './student_filter';
 import courses from './courses';
 
 const studentReducer = combineReducers({
@@ -10,6 +11,7 @@ const studentReducer = combineReducers({
   student,
   studentForm,
   studentWindow,
+  studentFilter,
   courses,
 });
 

@@ -10,19 +10,28 @@ class StudentList extends Component {
   }
 
   render() {
+    if (this.props.students.length > 0) {
+      return (
+        <ul className="StudentList-container">
+          { this.props.students.map(student => (
+            <li
+              key={student.id}
+              className={student.selected ? 'StudentList-item-selected' : ''}
+              onClick={() => this.props.onItemClick(student)}
+            >
+              <span className="StudentList-item-text">{student.name}</span>
+              <span className="StudentList-item-sub-text">{student.oldSid} {student.newSid}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    }
     return (
-      <ul className="StudentList-container">
-        { this.props.students.map(student => (
-          <li
-            key={student.id}
-            className={student.selected ? 'StudentList-item-selected' : ''}
-            onClick={() => this.props.onItemClick(student)}
-          >
-            <span className="StudentList-item-text">{student.name}</span>
-            <span className="StudentList-item-sub-text">{student.oldSid} {student.newSid}</span>
-          </li>
-        ))}
-      </ul>
+      <div style={{ widht: '100%', padding: 10, backgroundColor: '#f7f7f7' }}>
+        <div style={{ fontWeight: 'bold', marginLeft: 'auto', marginRight: 'auto', width: 110, color: 'gray' }}>
+          No student found
+        </div>
+      </div>
     );
   }
 }

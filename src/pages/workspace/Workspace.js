@@ -14,27 +14,6 @@ class Workspace extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      addStudentWindowVisible: false,
-    };
-  }
-
-  onAddStudentSuccess = () => {
-    this.setState({
-      addStudentWindowVisible: false,
-    });
-  }
-
-  onAddStudentCancel = () => {
-    this.setState({
-      addStudentWindowVisible: false,
-    });
-  }
-
-  showAddStudentWindow = () => {
-    this.setState({
-      addStudentWindowVisible: true,
-    });
   }
 
   render() {
@@ -48,11 +27,13 @@ class Workspace extends Component {
             <Col span={24}>
               <Menu
                 mode="horizontal"
+                selectedKeys={[this.props.studentFilter.level]}
+                onClick={event => this.props.filterStudents(event.key)}
               >
-                <Menu.Item key="level1">
+                <Menu.Item key="1">
                   LEVEL 1
                 </Menu.Item>
-                <Menu.Item key="level2">
+                <Menu.Item key="2">
                   LEVEL 2
                 </Menu.Item>
               </Menu>
