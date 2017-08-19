@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import './Workspace.css';
 import StudentListPageWrapper from '../../containers/student/StudentListPageWrapper';
 import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
-import CoursePage from '../../components/student/course/CoursePage';
+import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
 import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
 
 class Workspace extends Component {
@@ -47,7 +47,7 @@ class Workspace extends Component {
               <StudentDetailWrapper />
             </Col>
             <Col span={7}>
-              <CoursePage />
+              <CoursePageWrapper />
             </Col>
           </Row>
         </Content>

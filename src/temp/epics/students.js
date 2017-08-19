@@ -12,7 +12,6 @@ const CREATE_STUDENT = 'CREATE_STUDENT';
 
 const fetchStudentsFulfilled = payload => ({ type: 'LOAD_STUDENTS', students: payload });
 const fetchStudentFulfilled = payload => ({ type: 'LOAD_STUDENT', student: payload });
-const createStudentFulfilled = () => ({ type: 'FETCH_STUDENTS' });
 const updateStudentForm = payload => ({ type: 'UPDATE_STUDENT_FORM', payload });
 const loadStudentForm = payload => ({ type: 'LOAD_STUDENT_FORM', payload });
 

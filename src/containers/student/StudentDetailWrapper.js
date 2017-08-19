@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StudentDetail from '../../components/student/StudentDetail';
-import { deleteStudent } from '../../actions/student/students';
+import { deleteStudent, editStudent } from '../../actions/student/students';
 
 const mapStateToProps = state => (
   {
@@ -10,6 +10,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    editStudent: student => dispatch(editStudent(student)),
     deleteStudent: student => dispatch(deleteStudent(student)),
   }
 );

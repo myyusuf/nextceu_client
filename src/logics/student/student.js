@@ -27,7 +27,10 @@ const fetchStudentsLogic = createLogic({
     const paramameters = filter ? { params: { ...filter } } : {};
     axios.get(STUDENTS_URL, paramameters)
       .then(resp => resp.data)
-      .then(students => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: students }))
+      .then((students) => {
+        dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: students });
+        dispatch({ type: 'CLEAR_STUDENT' });
+      })
       .catch((err) => {
         console.error(err);
         dispatch({ type: FETCH_STUDENTS_FAILED, payload: err, error: true });

@@ -52,14 +52,16 @@ const saveStudentFormLogic = createLogic({
     const keys = _.keys(studentForm);
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
-      const value = studentForm[key].value;
-      validationResult[key] = {
-        value,
-        ...validate(key, value),
-      };
+      if (key !== 'id') {
+        const value = studentForm[key].value;
+        validationResult[key] = {
+          value,
+          ...validate(key, value),
+        };
 
-      if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
-        isFormValid = false;
+        if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
+          isFormValid = false;
+        }
       }
     }
 
@@ -77,16 +79,32 @@ const saveStudentFormLogic = createLogic({
     studentForm.level = 1;
 
     dispatch({ type: 'SHOW_STUDENT_WINDOW_CONFIRM_LOADING' });
-    axios.post(STUDENTS_URL, studentForm)
-      .then((students) => {
-        dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
-        dispatch({ type: 'SAVE_STUDENT_FORM_SUCCESS', payload: students });
-      })
-      .catch((err) => {
-        console.error(err);
-        dispatch({ type: 'SAVE_STUDENT_FORM_FAILED', payload: err, error: true });
-      })
-      .then(() => done());
+
+    if (studentForm.id) {
+      axios.put(`${STUDENTS_URL}/${studentForm.id}`, studentForm)
+        .then((students) => {
+          dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'SAVE_STUDENT_FORM_SUCCESS', payload: students });
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'SAVE_STUDENT_FORM_FAILED', payload: err, error: true });
+        })
+        .then(() => done());
+    } else {
+      axios.post(STUDENTS_URL, studentForm)
+        .then((students) => {
+          dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'SAVE_STUDENT_FORM_SUCCESS', payload: students });
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch({ type: 'HIDE_STUDENT_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'SAVE_STUDENT_FORM_FAILED', payload: err, error: true });
+        })
+        .then(() => done());
+    }
   },
 });
 
@@ -100,9 +118,66 @@ const saveStudentFormSuccessLogic = createLogic({
     dispatch({ type: 'CLOSE_ADD_STUDENT_WINDOW' });
     dispatch({ type: 'FETCH_STUDENTS' });
     notification.success({
-      message: 'Add Student Success',
-      description: 'Success creating new student',
+      message: 'Save Student Success',
+      description: 'Success saving student',
     });
+    done();
+  },
+});
+
+const saveStudentFormFailedLogic = createLogic({
+  type: 'SAVE_STUDENT_FORM_FAILED',
+  latest: true,
+  processOptions: {
+    dispatchMultiple: true,
+  },
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'CLOSE_ADD_STUDENT_WINDOW' });
+    notification.error({
+      message: 'Add Student Error',
+      description: 'Error creating new student',
+    });
+    done();
+  },
+});
+
+const loadStudentFormLogic = createLogic({
+  type: 'LOAD_STUDENT_TO_FORM',
+  process({ getState, action }, dispatch, done) {
+    const student = action.payload;
+    const studentForm = {
+      id: {
+        value: student.id,
+      },
+      oldSid: {
+        value: student.oldSid,
+      },
+      newSid: {
+        value: student.newSid,
+      },
+      name: {
+        value: student.name,
+      },
+      level: {
+        value: student.level,
+      },
+      email: {
+        value: student.email,
+      },
+    };
+    const validationResult = {};
+    const keys = _.keys(studentForm);
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const value = studentForm[key].value;
+      validationResult[key] = {
+        value,
+        ...validate(key, value),
+      };
+    }
+
+    dispatch({ type: 'OPEN_ADD_STUDENT_WINDOW' });
+    dispatch({ type: 'LOAD_STUDENT', payload: validationResult });
     done();
   },
 });
@@ -111,4 +186,6 @@ export default [
   studentFormChangedLogic,
   saveStudentFormLogic,
   saveStudentFormSuccessLogic,
+  saveStudentFormFailedLogic,
+  loadStudentFormLogic,
 ];

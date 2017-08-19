@@ -35,6 +35,13 @@ export const deleteStudent = student => (
   }
 );
 
+export const editStudent = student => (
+  {
+    type: 'LOAD_STUDENT_TO_FORM',
+    payload: student,
+  }
+);
+
 export const filterStudentsByLevelText = level => (
   {
     type: 'FILTER_STUDENTS_BY_LEVEL_LOGIC',

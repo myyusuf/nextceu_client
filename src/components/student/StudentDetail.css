@@ -9,6 +9,10 @@
   font-size: 20px;
 }
 
+.StudentDetail-name:hover {
+  cursor: pointer;
+}
+
 .StudentDetail-contact {
   padding-top: 10px;
 }

@@ -1,4 +1,5 @@
 const defaultState = {
+  id: {},
   oldSid: {},
   newSid: {},
   name: {},
@@ -13,20 +14,11 @@ const studentForm = (state = defaultState, action) => {
       const newState = { ...state, ...action.payload };
       return newState;
     }
-    case 'LOAD_STUDENT_FORM': {
-      const newState = { };
-      for (let i = 0; i < action.payload.length; i += 1) {
-        const payload = action.payload[i];
-        newState[payload.name] = {
-          value: payload.value,
-          validateStatus: payload.validateStatus,
-          errorMsg: payload.errorMsg,
-        };
-      }
-      return newState;
+    case 'LOAD_STUDENT': {
+      return action.payload;
     }
     case 'CLEAR_ADD_STUDENT_FORM':
-      return defaultState;
+      return { ...defaultState };
     default:
       return state;
   }
