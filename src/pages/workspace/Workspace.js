@@ -3,16 +3,12 @@ import Layout, { Header, Content } from 'antd/lib/layout';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
 import { Link } from 'react-router-dom';
 import './Workspace.css';
-import StudentListWrapper from '../../containers/student/StudentListWrapper';
+import StudentListPageWrapper from '../../containers/student/StudentListPageWrapper';
 import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
 import CoursePage from '../../components/student/course/CoursePage';
 import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
-
-const Search = Input.Search;
 
 class Workspace extends Component {
 
@@ -64,30 +60,7 @@ class Workspace extends Component {
           </Row>
           <Row>
             <Col span={7}>
-              <Row>
-                <Col span={20} className="Workspace-student-search-container">
-                  <Search
-                    placeholder="Name or SID"
-                    className="Workspace-student-search"
-                    onSearch={value => console.log(value)}
-                  />
-                </Col>
-                <Col span={4}>
-                  <Button
-                    type="primary"
-                    shape="circle"
-                    icon="plus"
-                    style={{ marginTop: 20 }}
-                    onClick={() => this.props.openAddStudentWindow()}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col span={24}>
-                  <StudentListWrapper />
-                </Col>
-              </Row>
-
+              <StudentListPageWrapper />
             </Col>
             <Col span={10}>
               <StudentDetailWrapper />

@@ -23,7 +23,9 @@ const fetchStudentsLogic = createLogic({
   cancelType: CANCEL_FETCH_STUDENTS, // cancel on this type
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(STUDENTS_URL)
+    const filter = action.payload.filter;
+    const paramameters = filter ? { params: { searchText: filter } } : {};
+    axios.get(STUDENTS_URL, paramameters)
       .then(resp => resp.data)
       .then(students => dispatch({ type: FETCH_STUDENTS_SUCCESS, payload: students }))
       .catch((err) => {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Workspace from '../../pages/workspace/Workspace';
-import { openAddStudentWindow } from '../../actions/student/student_window';
+
 
 const mapStateToProps = state => (
   {
@@ -10,9 +10,6 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    openAddStudentWindow: () => {
-      dispatch(openAddStudentWindow());
-    },
   }
 );
 

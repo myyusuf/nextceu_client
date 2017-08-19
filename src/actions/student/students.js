@@ -19,9 +19,12 @@ export const loadStudents = students => (
   }
 );
 
-export const getStudents = () => (
+export const getStudents = filter => (
   {
     type: 'FETCH_STUDENTS',
+    payload: {
+      filter,
+    },
   }
 );
 
