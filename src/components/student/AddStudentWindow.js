@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-import AddStudentFormWrapper from '../../../containers/student/AddStudentFormWrapper';
+import AddStudentFormWrapper from '../../containers/student/AddStudentFormWrapper';
 
 const AddStudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
   <Modal

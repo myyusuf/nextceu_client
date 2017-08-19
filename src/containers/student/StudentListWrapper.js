@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StudentList from '../../components/pages/student/StudentList';
+import StudentList from '../../components/student/StudentList';
 import { selectStudent, getStudents } from '../../actions/student/students';
 import { fetchStudent, cancelFetchStudent } from '../../actions/student/student';
 import { fetchCourses, cancelFetchCourses } from '../../actions/student/courses';

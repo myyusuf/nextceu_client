@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StudentDetail from '../../components/pages/student/StudentDetail';
+import StudentDetail from '../../components/student/StudentDetail';
 import { deleteStudent } from '../../actions/student/students';
 
 const mapStateToProps = state => (

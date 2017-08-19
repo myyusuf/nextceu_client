@@ -7,10 +7,10 @@ import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
 import { Link } from 'react-router-dom';
 import './Workspace.css';
-import StudentListWrapper from '../../../containers/student/StudentListWrapper';
-import StudentDetailWrapper from '../../../containers/student/StudentDetailWrapper';
-import CoursePage from '../../../components/pages/student/course/CoursePage';
-import AddStudentWindowWrapper from '../../../containers/student/AddStudentWindowWrapper';
+import StudentListWrapper from '../../containers/student/StudentListWrapper';
+import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
+import CoursePage from '../../components/student/course/CoursePage';
+import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
 
 const Search = Input.Search;
 

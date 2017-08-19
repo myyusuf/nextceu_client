@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AddStudentWindow from '../../components/pages/student/AddStudentWindow';
+import AddStudentWindow from '../../components/student/AddStudentWindow';
 import { saveStudentForm } from '../../actions/student/student_form';
 import { closeAddStudentWindow } from '../../actions/student/student_window';
 
