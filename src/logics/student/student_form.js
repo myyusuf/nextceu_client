@@ -71,9 +71,6 @@ const saveStudentFormLogic = createLogic({
       reject({ type: 'SHOW_USER_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
     }
   },
-  processOptions: {
-    dispatchMultiple: true,
-  },
   process({ getState, action }, dispatch, done) {
     const studentForm = _.mapValues({ ...getState().studentReducers.studentForm }, 'value');
     studentForm.level = 1;
@@ -111,9 +108,6 @@ const saveStudentFormLogic = createLogic({
 const saveStudentFormSuccessLogic = createLogic({
   type: 'SAVE_STUDENT_FORM_SUCCESS',
   latest: true,
-  processOptions: {
-    dispatchMultiple: true,
-  },
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLOSE_ADD_STUDENT_WINDOW' });
     dispatch({ type: 'FETCH_STUDENTS' });
@@ -128,9 +122,6 @@ const saveStudentFormSuccessLogic = createLogic({
 const saveStudentFormFailedLogic = createLogic({
   type: 'SAVE_STUDENT_FORM_FAILED',
   latest: true,
-  processOptions: {
-    dispatchMultiple: true,
-  },
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLOSE_ADD_STUDENT_WINDOW' });
     notification.error({

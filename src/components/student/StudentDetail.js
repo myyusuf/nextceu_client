@@ -8,13 +8,37 @@ import Col from 'antd/lib/col';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import './StudentDetail.css';
 
-const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-                  {name: 'Group C', value: 300}, {name: 'Group D', value: 200}];
+// const data = [{name: 'Group A', value: 1}, {name: 'Group B', value: 1},
+//                   {name: 'Group C', value: 1}, {name: 'Group D', value: 1}];
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
 
 const RADIAN = Math.PI / 180;
 
-const StudentDetail = ({ student, deleteStudent, editStudent }) => {
+const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
+
+  const onGoingCount = courses.filter(course => course.status === 1).length;
+  const completedCount = courses.filter(course => course.status === 2).length;
+  const pendingCount = courses.filter(course => course.status === 0).length;
+  const problemCount = courses.filter(course => course.status === undefined).length;
+
+  const data = [
+    {
+      name: 'On Going',
+      value: onGoingCount,
+    },
+    {
+      name: 'Completed',
+      value: completedCount,
+    },
+    {
+      name: 'Problem',
+      value: problemCount,
+    },
+    {
+      name: 'Pending',
+      value: pendingCount,
+    },
+  ];
 
   if (student.id) {
     return (
@@ -28,7 +52,7 @@ const StudentDetail = ({ student, deleteStudent, editStudent }) => {
         <Row>
           <Col span={24}>
             <div style={{ fontWeight: 'bold', fontSize: 15 }}>
-              <span>{ student.newSid } { student.oldSid }</span>
+              <span>{ student.oldSid } { student.newSid }</span>
             </div>
           </Col>
         </Row>
@@ -68,17 +92,24 @@ const StudentDetail = ({ student, deleteStudent, editStudent }) => {
                 fill="#8884d8"
                 paddingAngle={0}
                 label={false}
+                dataKey="value"
               >
-              	{
-                	data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
+                {
+                  data.map((entry, index) => (
+                    <Cell
+                      key={COLORS[index % COLORS.length]}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))
                 }
               </Pie>
             </PieChart>
           </Col>
           <Col span={12}>
-            <div style={{ marginTop: 80 }}><Tag color="#5093E1">3</Tag> Completed </div>
-            <div style={{ marginTop: 5 }}><Tag color="#50C14E">2</Tag> Problems </div>
-            <div style={{ marginTop: 5 }}><Tag color="#F65177">1</Tag> Pendings </div>
+            <div style={{ marginTop: 80 }}><Tag color="#5093E1">3</Tag> On Going </div>
+            <div style={{ marginTop: 5 }}><Tag color="#50C14E">2</Tag> Completed </div>
+            <div style={{ marginTop: 5 }}><Tag color="#9DA5BE">2</Tag> Pending </div>
+            <div style={{ marginTop: 5 }}><Tag color="#F65177">1</Tag> Problem </div>
           </Col>
         </Row>
         <Row>
@@ -125,7 +156,14 @@ StudentDetail.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }).isRequired,
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
   deleteStudent: PropTypes.func.isRequired,
+  editStudent: PropTypes.func.isRequired,
 };
 
 export default StudentDetail;

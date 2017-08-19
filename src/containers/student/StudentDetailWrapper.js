@@ -5,6 +5,7 @@ import { deleteStudent, editStudent } from '../../actions/student/students';
 const mapStateToProps = state => (
   {
     student: state.studentReducers.student,
+    courses: state.studentReducers.courses,
   }
 );
 
