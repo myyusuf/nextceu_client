@@ -5,7 +5,6 @@ import Button from 'antd/lib/button';
 import Icon from 'antd/lib/icon';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import Progress from 'antd/lib/progress';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import './StudentDetail.css';
 
@@ -15,7 +14,7 @@ const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
 
 const RADIAN = Math.PI / 180;
 
-const StudentDetail = ({ student }) => (
+const StudentDetail = ({ student, deleteStudent }) => (
   <div className="StudentDetail-container">
     <Row>
       <Col span={24}>
@@ -103,7 +102,7 @@ const StudentDetail = ({ student }) => (
     </Row>
     <Row style={{ marginTop: 10 }}>
       <Col span={24}>
-        <Button type="danger">
+        <Button type="danger" onClick={() => deleteStudent(student)}>
           Delete Student
         </Button>
       </Col>
@@ -116,6 +115,7 @@ StudentDetail.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }).isRequired,
+  deleteStudent: PropTypes.func.isRequired,
 };
 
 export default StudentDetail;

@@ -24,3 +24,10 @@ export const getStudents = () => (
     type: 'FETCH_STUDENTS',
   }
 );
+
+export const deleteStudent = student => (
+  {
+    type: 'DELETE_STUDENT',
+    student,
+  }
+);

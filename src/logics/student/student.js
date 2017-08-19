@@ -1,7 +1,10 @@
 import { createLogic } from 'redux-logic';
 import axios from 'axios';
-
+import notification from 'antd/lib/notification';
+import Modal from 'antd/lib/modal';
 import Constant from '../../Constant';
+
+const confirm = Modal.confirm;
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
@@ -47,7 +50,43 @@ const fetchStudentLogic = createLogic({
   },
 });
 
+const deleteStudentLogic = createLogic({
+  type: 'DELETE_STUDENT',
+  process({ getState, action }, dispatch, done) {
+    const deleteStudent = () => {
+      axios.delete(`${STUDENTS_URL}/${action.student.id}`)
+        .then(resp => resp.data)
+        .then(() => {
+          notification.success({
+            message: 'Delete Student Success',
+            description: 'Success deleting student',
+          });
+          dispatch({ type: 'FETCH_STUDENTS' });
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch({ type: FETCH_STUDENT_FAILED, payload: err, error: true });
+        })
+        .then(() => done());
+    };
+
+    confirm({
+      title: `Do you Want to delete student: ${action.student.name}`,
+      content: 'This action cannot be undone',
+      onOk() {
+        deleteStudent();
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+      okText: 'OK',
+      cancelText: 'Cancel',
+    });
+  },
+});
+
 export default [
   fetchStudentsLogic,
   fetchStudentLogic,
+  deleteStudentLogic,
 ];
