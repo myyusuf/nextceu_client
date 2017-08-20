@@ -4,7 +4,7 @@ import student from './student';
 import studentForm from './student_form';
 import studentWindow from './student_window';
 import studentFilter from './student_filter';
-import courses from './courses';
+import courses from './course/courses';
 
 const studentReducer = combineReducers({
   students,

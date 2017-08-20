@@ -8,37 +8,53 @@ import Col from 'antd/lib/col';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 import './StudentDetail.css';
 
-// const data = [{name: 'Group A', value: 1}, {name: 'Group B', value: 1},
-//                   {name: 'Group C', value: 1}, {name: 'Group D', value: 1}];
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
 
-const RADIAN = Math.PI / 180;
-
 const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
-
+  let data = [];
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const pendingCount = courses.filter(course => course.status === 0).length;
-  const problemCount = courses.filter(course => course.status === undefined).length;
-
-  const data = [
-    {
-      name: 'On Going',
-      value: onGoingCount,
-    },
-    {
-      name: 'Completed',
-      value: completedCount,
-    },
-    {
-      name: 'Problem',
-      value: problemCount,
-    },
-    {
-      name: 'Pending',
-      value: pendingCount,
-    },
-  ];
+  const problemCount = courses.filter(course => course.status === 4).length;
+  if (courses.length > 0) {
+    data = [
+      {
+        name: 'On Going',
+        value: onGoingCount,
+      },
+      {
+        name: 'Completed',
+        value: completedCount,
+      },
+      {
+        name: 'Problem',
+        value: problemCount,
+      },
+      {
+        name: 'Pending',
+        value: pendingCount,
+      },
+    ];
+  } else {
+    data = [
+      {
+        name: 'On Going',
+        value: 0,
+      },
+      {
+        name: 'Completed',
+        value: 0,
+      },
+      {
+        name: 'Problem',
+        value: 0,
+      },
+      {
+        name: 'Pending',
+        value: 0,
+      },
+    ];
+  }
 
   if (student.id) {
     return (
@@ -79,7 +95,9 @@ const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
         <Row>
           <Col span={12}>
             <div style={{ position: 'relative', top: 92, left: 56, textAlign: 'center', width: 100 }}>
-              <span style={{ fontSize: 30, fontWeight: 'bold', color: 'gray' }}>7</span><br />
+              <span style={{ fontSize: 30, fontWeight: 'bold', color: 'gray' }}>
+                {courses.length}
+              </span><br />
               <span style={{ fontWeight: 'bold' }}>Courses</span>
             </div>
             <PieChart style={{ top: -20 }} width={200} height={170} onMouseEnter={this.onPieEnter}>
@@ -106,10 +124,10 @@ const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
             </PieChart>
           </Col>
           <Col span={12}>
-            <div style={{ marginTop: 80 }}><Tag color="#5093E1">3</Tag> On Going </div>
-            <div style={{ marginTop: 5 }}><Tag color="#50C14E">2</Tag> Completed </div>
-            <div style={{ marginTop: 5 }}><Tag color="#9DA5BE">2</Tag> Pending </div>
-            <div style={{ marginTop: 5 }}><Tag color="#F65177">1</Tag> Problem </div>
+            <div style={{ marginTop: 80 }}><Tag color="#5093E1">{onGoingCount}</Tag> On Going </div>
+            <div style={{ marginTop: 5 }}><Tag color="#50C14E">{completedCount}</Tag> Completed </div>
+            <div style={{ marginTop: 5 }}><Tag color="#9DA5BE">{pendingCount}</Tag> Pending </div>
+            <div style={{ marginTop: 5 }}><Tag color="#F65177">{problemCount}</Tag> Problem </div>
           </Col>
         </Row>
         <Row>

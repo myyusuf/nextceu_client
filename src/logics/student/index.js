@@ -1,7 +1,7 @@
 import studentLogics from './student';
 import studentFormLogics from './student_form';
 import studentWindowLogics from './student_window';
-import courseLogics from './course';
+import courseLogics from './course/course';
 
 export default [
   ...studentLogics,
