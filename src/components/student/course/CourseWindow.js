@@ -18,7 +18,7 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
 );
 
 CourseWindow.propTypes = {
-  title: PropTypes.bool.string.isRequired,
+  title: PropTypes.string.isRequired,
   visible: PropTypes.bool.isRequired,
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,

@@ -6,11 +6,11 @@ import Col from 'antd/lib/col';
 import Badge from 'antd/lib/badge';
 import './CourseListItem.css';
 
-const CourseListItem = ({ course }) => (
+const CourseListItem = ({ course, showDetails }) => (
   <li className="CourseListItem" key={course.id}>
     <Row>
       <Col span={4}>
-        <Tag className="CourseListItem-tag" color={course.Department.color}>
+        <Tag className="CourseListItem-tag" color={course.Department.color} onClick={() => showDetails(course)}>
           {course.Department.code}
         </Tag>
       </Col>
@@ -33,6 +33,7 @@ CourseListItem.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
+  showDetails: PropTypes.func.isRequired,
 };
 
 export default CourseListItem;

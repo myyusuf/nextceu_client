@@ -1,25 +1,24 @@
 import { connect } from 'react-redux';
 import CourseList from '../../components/student/course/CourseList';
-import { selectCourse, fetchCourses } from '../../actions/student/courses';
-// import { getCourse } from '../actions/course';
+import { fetchCourses } from '../../actions/student/courses';
+import { editCourse } from '../../actions/student/course/course';
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => (
+  {
     courses: state.studentReducers.courses,
-  };
-}
+  }
+);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onItemClick: (course) => {
-      dispatch(selectCourse(course));
-      // dispatch(getCourse(course.id));
-    },
+const mapDispatchToProps = dispatch => (
+  {
     fetchCourses: () => {
       dispatch(fetchCourses());
     },
-  };
-};
+    showDetails: (course) => {
+      dispatch(editCourse(course));
+    },
+  }
+);
 
 const CourseListWrapper = connect(
   mapStateToProps,

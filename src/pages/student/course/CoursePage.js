@@ -7,6 +7,7 @@ import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 // import Progress from 'antd/lib/progress';
 import CourseListContainer from '../../../containers/student/CourseListWrapper';
+import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
 
 import './CoursePage.css';
 
@@ -51,6 +52,8 @@ const CoursePage = ({ student }) => {
         <div style={{ marginTop: 10 }}>
           <CourseListContainer level={2} />
         </div>
+
+        <CourseWindowWrapper />
       </div>
     );
   }

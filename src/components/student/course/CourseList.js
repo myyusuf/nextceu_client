@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CourseListItem from './CourseListItem';
 
-const CourseList = ({ courses, level }) => (
+const CourseList = ({ courses, level, showDetails }) => (
   <ul>
     {
       courses
@@ -11,7 +11,7 @@ const CourseList = ({ courses, level }) => (
       )
       .map(course =>
         (
-          <CourseListItem course={course} key={course.id} />
+          <CourseListItem course={course} key={course.id} showDetails={showDetails} />
         ),
       )
     }
@@ -26,6 +26,7 @@ CourseList.propTypes = {
     }).isRequired,
   ).isRequired,
   level: PropTypes.number.isRequired,
+  showDetails: PropTypes.func.isRequired,
 };
 
 export default CourseList;

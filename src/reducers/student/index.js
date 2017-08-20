@@ -5,6 +5,8 @@ import studentForm from './student_form';
 import studentWindow from './student_window';
 import studentFilter from './student_filter';
 import courses from './course/courses';
+import courseForm from './course/course_form';
+import courseWindow from './course/course_window';
 
 const studentReducer = combineReducers({
   students,
@@ -13,6 +15,8 @@ const studentReducer = combineReducers({
   studentWindow,
   studentFilter,
   courses,
+  courseForm,
+  courseWindow,
 });
 
 export default studentReducer;
