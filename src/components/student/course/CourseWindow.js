@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
+import Tabs from 'antd/lib/tabs';
 import CourseFormWrapper from '../../../containers/student/course/CourseFormWrapper';
+
+const TabPane = Tabs.TabPane;
 
 const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
   <Modal
@@ -12,8 +15,17 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
     confirmLoading={confirmLoading}
     cancelText="Cancel"
     onCancel={onCancel}
+    width="700"
   >
-    <CourseFormWrapper />
+    <Tabs defaultActiveKey="1">
+      <TabPane tab="Info" key="1">
+        <CourseFormWrapper />
+      </TabPane>
+      <TabPane tab="Jadwal" key="2">Content of Tab Pane 2</TabPane>
+      <TabPane tab="Nilai" key="3">Content of Tab Pane 3</TabPane>
+      <TabPane tab="Seminar" key="4">Content of Tab Pane 4</TabPane>
+      <TabPane tab="Masalh" key="5">Content of Tab Pane 5</TabPane>
+    </Tabs>
   </Modal>
 );
 
