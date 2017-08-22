@@ -155,6 +155,8 @@ const loadCourseFormLogic = createLogic({
 
     dispatch({ type: 'OPEN_COURSE_WINDOW', payload: { title: `${course.title} - ${course.Department.name}` } });
     dispatch({ type: 'LOAD_COURSE', payload: validationResult });
+
+    dispatch({ type: 'LOAD_SCHEDULE_TO_FORM', payload: course });
     done();
   },
 });

@@ -4,6 +4,7 @@ import studentWindowLogics from './student_window';
 import courseLogics from './course/course';
 import courseFormLogics from './course/course_form';
 import courseWindowLogics from './course/course_window';
+import scheduleFormLogics from './course/schedule_form';
 
 export default [
   ...studentLogics,
@@ -12,4 +13,5 @@ export default [
   ...courseLogics,
   ...courseFormLogics,
   ...courseWindowLogics,
+  ...scheduleFormLogics,
 ];

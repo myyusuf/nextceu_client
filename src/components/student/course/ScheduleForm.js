@@ -24,7 +24,7 @@ class ScheduleForm extends Component {
   }
 
   render() {
-    const { planDate } = this.props.scheduleForm;
+    const { planDate, realStartDate, realEndDate } = this.props.scheduleForm;
     return (
       <Form>
         <Row>
@@ -40,7 +40,41 @@ class ScheduleForm extends Component {
                   <RangePicker
                     value={planDate.value}
                     onChange={(date, dateString) => {
-                      this.handleInputChange('title', date);
+                      this.handleInputChange('planDate', date);
+                    }}
+                  />
+
+                </FormItem>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                <FormItem
+                  label="Real Start Date"
+                  colon={false}
+                  validateStatus={realStartDate.validateStatus}
+                  help={realStartDate.errorMsg}
+                >
+                  <DatePicker
+                    value={realStartDate.value}
+                    onChange={(date, dateString) => {
+                      this.handleInputChange('realStartDate', date);
+                    }}
+                  />
+
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem
+                  label="Real End Date"
+                  colon={false}
+                  validateStatus={realEndDate.validateStatus}
+                  help={realEndDate.errorMsg}
+                >
+                  <DatePicker
+                    value={realEndDate.value}
+                    onChange={(date, dateString) => {
+                      this.handleInputChange('realEndDate', date);
                     }}
                   />
 
@@ -57,7 +91,8 @@ class ScheduleForm extends Component {
 ScheduleForm.propTypes = {
   scheduleFormChanged: PropTypes.func.isRequired,
   scheduleForm: PropTypes.shape({
-    planDate: PropTypes.instanceOf(Date),
+    planDate: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    realStartDate: PropTypes.instanceOf(Date),
   }).isRequired,
 };
 

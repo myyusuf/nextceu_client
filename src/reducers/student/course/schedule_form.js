@@ -1,6 +1,8 @@
 const defaultState = {
   id: {},
   planDate: {},
+  realStartDate: {},
+  realEndDate: {},
 };
 
 const scheduleForm = (state = defaultState, action) => {
