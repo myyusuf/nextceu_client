@@ -138,6 +138,9 @@ const loadCourseFormLogic = createLogic({
       title: {
         value: course.title,
       },
+      completion: {
+        value: course.completion,
+      },
     };
     const validationResult = {};
     const keys = _.keys(courseForm);
@@ -150,7 +153,7 @@ const loadCourseFormLogic = createLogic({
       };
     }
 
-    dispatch({ type: 'OPEN_COURSE_WINDOW' });
+    dispatch({ type: 'OPEN_COURSE_WINDOW', payload: { title: `${course.title} - ${course.Department.name}` } });
     dispatch({ type: 'LOAD_COURSE', payload: validationResult });
     done();
   },

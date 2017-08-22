@@ -1,6 +1,7 @@
 const defaultState = {
   id: {},
   title: {},
+  completion: { value: 0 },
 };
 
 const courseForm = (state = defaultState, action) => {

@@ -4,7 +4,7 @@ const openCourseWindow = createLogic({
   type: 'OPEN_COURSE_WINDOW',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_COURSE_FORM' });
-    dispatch({ type: 'SHOW_COURSE_WINDOW' });
+    dispatch({ type: 'SHOW_COURSE_WINDOW', payload: action.payload });
     done();
   },
 });

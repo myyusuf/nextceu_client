@@ -5,6 +5,7 @@ import { closeCourseWindow } from '../../../actions/student/course/course_window
 
 const mapStateToProps = state => (
   {
+    title: state.studentReducers.courseWindow.title,
     visible: state.studentReducers.courseWindow.visible,
     confirmLoading: state.studentReducers.courseWindow.confirmLoading,
   }
