@@ -128,6 +128,7 @@ const loadScheduleFormLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const schedule = action.payload;
     schedule.planDate = [moment(schedule.planStartDate), moment(schedule.planEndDate)];
+    schedule.planDate1 = [moment(schedule.planStartDate1), moment(schedule.planEndDate1)];
     const scheduleForm = {
       id: {
         value: schedule.id,
@@ -140,6 +141,15 @@ const loadScheduleFormLogic = createLogic({
       },
       realEndDate: {
         value: schedule.realEndDate,
+      },
+      planDate1: {
+        value: schedule.planDate1,
+      },
+      realStartDate1: {
+        value: schedule.realStartDate1,
+      },
+      realEndDate1: {
+        value: schedule.realEndDate1,
       },
     };
     const validationResult = {};

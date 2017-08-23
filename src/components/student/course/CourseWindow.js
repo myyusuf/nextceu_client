@@ -22,12 +22,12 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       <TabPane tab="Info" key="1">
         <CourseFormWrapper />
       </TabPane>
-      <TabPane tab="Jadwal" key="2">
+      <TabPane tab="Schedules" key="2">
         <ScheduleForm />
       </TabPane>
-      <TabPane tab="Nilai" key="3">Content of Tab Pane 3</TabPane>
-      <TabPane tab="Seminar" key="4">Content of Tab Pane 4</TabPane>
-      <TabPane tab="Masalah" key="5">Content of Tab Pane 5</TabPane>
+      <TabPane tab="Scores" key="3">Content of Tab Pane 3</TabPane>
+      <TabPane tab="Seminars" key="4">Content of Tab Pane 4</TabPane>
+      <TabPane tab="Problems" key="5">Content of Tab Pane 5</TabPane>
     </Tabs>
   </Modal>
 );
