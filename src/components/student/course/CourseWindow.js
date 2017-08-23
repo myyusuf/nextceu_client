@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
 import Tabs from 'antd/lib/tabs';
+import Button from 'antd/lib/button';
 import CourseFormWrapper from '../../../containers/student/course/CourseFormWrapper';
 import ScheduleForm from './ScheduleForm';
 
@@ -17,6 +18,13 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
     cancelText="Cancel"
     onCancel={onCancel}
     width="700"
+    footer={[
+      <Button key="delete" type="danger" size="large" onClick={onCancel}>Delete</Button>,
+      <Button key="back" size="large" onClick={onCancel}>Cancel</Button>,
+      <Button key="save" type="primary" size="large" loading={confirmLoading} onClick={onOk}>
+        Save
+      </Button>,
+    ]}
   >
     <Tabs defaultActiveKey="1">
       <TabPane tab="Info" key="1">
