@@ -5,6 +5,7 @@ import Tabs from 'antd/lib/tabs';
 import Button from 'antd/lib/button';
 import CourseFormWrapper from '../../../containers/student/course/CourseFormWrapper';
 import ScheduleForm from './ScheduleForm';
+import ScoreForm from './ScoreForm';
 
 const TabPane = Tabs.TabPane;
 
@@ -33,7 +34,9 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       <TabPane tab="Schedules" key="2">
         <ScheduleForm />
       </TabPane>
-      <TabPane tab="Scores" key="3">Content of Tab Pane 3</TabPane>
+      <TabPane tab="Scores" key="3">
+        <ScoreForm />
+      </TabPane>
       <TabPane tab="Seminars" key="4">Content of Tab Pane 4</TabPane>
       <TabPane tab="Problems" key="5">Content of Tab Pane 5</TabPane>
     </Tabs>
