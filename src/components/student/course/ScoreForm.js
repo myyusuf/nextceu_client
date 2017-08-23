@@ -18,13 +18,19 @@ class ScoreForm extends Component {
   }
 
   render() {
-    const { preTest } = this.props.scoreForm;
+    const {
+      preTest,
+      research,
+      weeklyDiscussion,
+      test,
+      postTest,
+    } = this.props.scoreForm;
     return (
       <Form>
         <Row>
           <Col span={24}>
             <Row>
-              <Col span={12}>
+              <Col span={6}>
                 <FormItem
                   label="Pre-Test"
                   colon={false}
@@ -41,6 +47,76 @@ class ScoreForm extends Component {
                   />
                 </FormItem>
               </Col>
+              <Col span={6}>
+                <FormItem
+                  label="Post-Test"
+                  colon={false}
+                  validateStatus={postTest.validateStatus}
+                  help={postTest.errorMsg}
+                >
+                  <InputNumber
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    onChange={(e) => {
+                      this.handleInputChange('postTest', e.target.value);
+                    }}
+                  />
+                </FormItem>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                <FormItem
+                  label="Research"
+                  colon={false}
+                  validateStatus={research.validateStatus}
+                  help={research.errorMsg}
+                >
+                  <InputNumber
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    onChange={(e) => {
+                      this.handleInputChange('research', e.target.value);
+                    }}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem
+                  label="Weekly Discussion"
+                  colon={false}
+                  validateStatus={weeklyDiscussion.validateStatus}
+                  help={weeklyDiscussion.errorMsg}
+                >
+                  <InputNumber
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    onChange={(e) => {
+                      this.handleInputChange('weeklyDiscussion', e.target.value);
+                    }}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem
+                  label="Test"
+                  colon={false}
+                  validateStatus={test.validateStatus}
+                  help={test.errorMsg}
+                >
+                  <InputNumber
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    onChange={(e) => {
+                      this.handleInputChange('test', e.target.value);
+                    }}
+                  />
+                </FormItem>
+              </Col>
             </Row>
           </Col>
         </Row>
@@ -53,6 +129,10 @@ ScoreForm.propTypes = {
   scoreFormChanged: PropTypes.func.isRequired,
   scoreForm: PropTypes.shape({
     preTest: PropTypes.number.isRequired,
+    research: PropTypes.number.isRequired,
+    weeklyDiscussion: PropTypes.number.isRequired,
+    test: PropTypes.number.isRequired,
+    postTest: PropTypes.number.isRequired,
   }).isRequired,
 };
 

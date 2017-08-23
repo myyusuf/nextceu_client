@@ -132,6 +132,18 @@ const loadCourseFormLogic = createLogic({
       preTest: {
         value: score.preTest,
       },
+      research: {
+        value: score.research,
+      },
+      weeklyDiscussion: {
+        value: score.weeklyDiscussion,
+      },
+      test: {
+        value: score.test,
+      },
+      postTest: {
+        value: score.postTest,
+      },
     };
     const validationResult = {};
     const keys = _.keys(scoreForm);

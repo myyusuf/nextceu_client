@@ -1,6 +1,10 @@
 const defaultState = {
   id: {},
   preTest: {},
+  research: {},
+  weeklyDiscussion: {},
+  test: {},
+  postTest: {},
 };
 
 const scoreForm = (state = defaultState, action) => {
