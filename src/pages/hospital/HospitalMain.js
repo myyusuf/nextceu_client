@@ -4,6 +4,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 import Select from 'antd/lib/select';
+import DatePicker from 'antd/lib/date-picker';
 
 import './HospitalMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
@@ -11,14 +12,22 @@ import HospitalList from '../../components/hospital/HospitalList';
 import HospitalDetailsPage from './HospitalDetailsPage';
 
 const Option = Select.Option;
+const RangePicker = DatePicker.RangePicker;
 
 class HospitalMain extends Component {
 
   render() {
     return (
       <div>
-        <Row>
-          <Col span={4} offset={10}>
+        <Row gutter={10}>
+          <Col span={4} offset={8}>
+            <RangePicker
+              onChange={(date, dateString) => {
+                this.handleInputChange('planDate', date);
+              }}
+            />
+          </Col>
+          <Col span={4}>
             <Select defaultValue="lucy" style={{ width: 120, marginBottom: 20 }}>
               <Option value="jack">Jack</Option>
               <Option value="lucy">Lucy</Option>

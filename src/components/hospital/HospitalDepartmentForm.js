@@ -7,15 +7,15 @@ import InputNumber from 'antd/lib/input-number';
 
 const FormItem = Form.Item;
 
-const HospitalDepartmentForm = ({ quota, hospitalDepartmentFormChanged }) => (
+const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentFormChanged }) => (
   <Form>
     <Row>
       <Col span={24}>
         <FormItem
           label="Quota"
           colon={false}
-          validateStatus={quota.validateStatus}
-          help={quota.errorMsg}
+          validateStatus={hospitalDepartmentForm.quota.validateStatus}
+          help={hospitalDepartmentForm.quota.errorMsg}
         >
           <InputNumber
             min={0}
@@ -36,7 +36,9 @@ const HospitalDepartmentForm = ({ quota, hospitalDepartmentFormChanged }) => (
 
 HospitalDepartmentForm.propTypes = {
   hospitalDepartmentFormChanged: PropTypes.func.isRequired,
-  quota: PropTypes.number.isRequired,
+  hospitalDepartmentForm: PropTypes.shape({
+    quota: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default HospitalDepartmentForm;
