@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
+import Select from 'antd/lib/select';
 
 import './HospitalMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
-import HospitalList from './HospitalList';
-import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
-import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
+import HospitalList from '../../components/hospital/HospitalList';
+import HospitalDetailsPage from './HospitalDetailsPage';
+
+const Option = Select.Option;
 
 class HospitalMain extends Component {
 
@@ -16,14 +18,24 @@ class HospitalMain extends Component {
     return (
       <div>
         <Row>
+          <Col span={4} offset={10}>
+            <Select defaultValue="lucy" style={{ width: 120, marginBottom: 20 }}>
+              <Option value="jack">Jack</Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="disabled" disabled>Disabled</Option>
+              <Option value="Yiminghe">yiminghe</Option>
+            </Select>
+          </Col>
+        </Row>
+
+        <Row>
           <Col span={17}>
             <HospitalList />
           </Col>
-          <Col span={7} style={{ backgroundColor: '#eDeff5' }}>
-            <CoursePageWrapper />
+          <Col span={7} style={{ backgroundColor: '#fff' }}>
+            <HospitalDetailsPage />
           </Col>
         </Row>
-        <AddStudentWindowWrapper />
       </div>
     );
   }
