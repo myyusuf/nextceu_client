@@ -16,6 +16,10 @@ class SeminarForm extends Component {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+    }, {
+      title: 'Date',
+      dataIndex: 'eventDate',
+      key: 'eventDate',
     }];
     const { seminars } = this.props.seminars;
     return (

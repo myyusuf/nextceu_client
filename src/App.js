@@ -7,14 +7,15 @@ import 'antd/dist/antd.css';
 
 import './App.css';
 
-import WorkspaceWrapper from './containers/workspace/WorkspaceWrapper';
+// import WorkspaceWrapper from './containers/workspace/WorkspaceWrapper';
+import Workspace from './pages/workspace/Workspace';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <WorkspaceWrapper></WorkspaceWrapper>
+          <Workspace></Workspace>
         </Router>
       </div>
     );

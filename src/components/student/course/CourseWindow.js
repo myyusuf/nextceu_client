@@ -41,7 +41,7 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       <TabPane tab="Seminars" key="4">
         <SeminarForm />
       </TabPane>
-      <TabPane tab="Problems" key="5">Content of Tab Pane 5</TabPane>
+      <TabPane tab="Problems" key="5"></TabPane>
     </Tabs>
   </Modal>
 );

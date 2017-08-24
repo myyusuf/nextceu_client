@@ -7,23 +7,6 @@
     background-color: #fff;
 }
 
-.Workspace-student-search-container {
-    text-align: center;
-}
-
-.Workspace-student-search {
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.Workspace-student-search input {
-    height: 33px;
-    border-radius: 20px;
-}
-
 .ant-form-item {
   margin-bottom: 12px;
 }

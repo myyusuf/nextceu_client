@@ -44,23 +44,7 @@ class ScoreForm extends Component {
                     onChange={(e) => {
                       this.handleInputChange('preTest', e.target.value);
                     }}
-                  />
-                </FormItem>
-              </Col>
-              <Col span={6}>
-                <FormItem
-                  label="Post-Test"
-                  colon={false}
-                  validateStatus={postTest.validateStatus}
-                  help={postTest.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('postTest', e.target.value);
-                    }}
+                    style={{ width: 250 }}
                   />
                 </FormItem>
               </Col>
@@ -80,9 +64,12 @@ class ScoreForm extends Component {
                     onChange={(e) => {
                       this.handleInputChange('research', e.target.value);
                     }}
+                    style={{ width: 250 }}
                   />
                 </FormItem>
               </Col>
+            </Row>
+            <Row>
               <Col span={6}>
                 <FormItem
                   label="Weekly Discussion"
@@ -97,9 +84,12 @@ class ScoreForm extends Component {
                     onChange={(e) => {
                       this.handleInputChange('weeklyDiscussion', e.target.value);
                     }}
+                    style={{ width: 250 }}
                   />
                 </FormItem>
               </Col>
+            </Row>
+            <Row>
               <Col span={6}>
                 <FormItem
                   label="Test"
@@ -114,6 +104,27 @@ class ScoreForm extends Component {
                     onChange={(e) => {
                       this.handleInputChange('test', e.target.value);
                     }}
+                    style={{ width: 250 }}
+                  />
+                </FormItem>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                <FormItem
+                  label="Post-Test"
+                  colon={false}
+                  validateStatus={postTest.validateStatus}
+                  help={postTest.errorMsg}
+                >
+                  <InputNumber
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    onChange={(e) => {
+                      this.handleInputChange('postTest', e.target.value);
+                    }}
+                    style={{ width: 250 }}
                   />
                 </FormItem>
               </Col>
