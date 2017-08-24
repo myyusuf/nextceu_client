@@ -9,20 +9,23 @@ import HospitalForm from './HospitalForm';
 const HospitalWindow = ({
   onOk,
   confirmLoading,
-  code,
-  name,
+  hospitalForm,
   hospitalFormChanged,
 }) => (
-  <div>
+  <div style={{ paddingLeft: 20, paddingRight: 20 }}>
     <Row>
       <Col>
-        <HospitalForm code={code} name={name} hospitalFormChanged={hospitalFormChanged} />
+        <HospitalForm
+          code={hospitalForm.code}
+          name={hospitalForm.name}
+          hospitalFormChanged={hospitalFormChanged}
+        />
       </Col>
     </Row>
     <Row>
       <Col>
         <Button type="primary" loading={confirmLoading} onClick={onOk}>
-          Loading
+          Save
         </Button>
       </Col>
     </Row>
@@ -32,8 +35,10 @@ const HospitalWindow = ({
 HospitalWindow.propTypes = {
   onOk: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
-  code: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  hospitalForm: PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   hospitalFormChanged: PropTypes.func.isRequired,
 };
 
@@ -41,6 +46,7 @@ const mapStateToProps = state => (
   {
     visible: state.hospitalReducers.hospitalWindow.visible,
     confirmLoading: state.hospitalReducers.hospitalWindow.confirmLoading,
+    hospitalForm: state.hospitalReducers.hospitalForm,
   }
 );
 
@@ -49,6 +55,12 @@ const mapDispatchToProps = dispatch => (
     onOk: () => {
       dispatch({
         type: 'SAVE_HOSPITAL_FORM',
+      });
+    },
+    hospitalFormChanged: (value) => {
+      dispatch({
+        type: 'HOSPITAL_FORM_CHANGED',
+        payload: value,
       });
     },
   }

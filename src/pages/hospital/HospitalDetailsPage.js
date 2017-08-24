@@ -1,14 +1,24 @@
 import React from 'react';
 import Tabs from 'antd/lib/tabs';
+import HospitalWindow from '../../components/hospital/HospitalWindow';
+import HospitalDepartmentList from '../../components/hospital/HospitalDepartmentList';
+import HospitalStudentList from '../../components/hospital/HospitalStudentList';
+import './HospitalDetailsPage.css';
 
 const TabPane = Tabs.TabPane;
 
 const HospitalDetailsPage = () => (
-  <div>
-    <Tabs defaultActiveKey="1" type="card" style={{ marginLeft: 10 }}>
-      <TabPane tab="Main" key="1">Content of Tab Pane 1</TabPane>
-      <TabPane tab="Departments" key="2">Content of Tab Pane 2</TabPane>
-      <TabPane tab="Students" key="3">Content of Tab Pane 3</TabPane>
+  <div className="HospitalDetailsPage-container ">
+    <Tabs defaultActiveKey="1" type="card" tabBarStyle={{ marginLeft: 5 }}>
+      <TabPane tab="Main" key="1">
+        <HospitalWindow />
+      </TabPane>
+      <TabPane tab="Departments" key="2">
+        <HospitalDepartmentList />
+      </TabPane>
+      <TabPane tab="Students" key="3">
+        <HospitalStudentList />
+      </TabPane>
     </Tabs>
   </div>
 );
