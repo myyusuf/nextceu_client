@@ -4,7 +4,6 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
 
 const FormItem = Form.Item;
 
@@ -50,11 +49,6 @@ const HospitalForm = ({ code, name, hospitalFormChanged }) => (
             placeholder="Name"
           />
         </FormItem>
-      </Col>
-    </Row>
-    <Row>
-      <Col span={24}>
-        <Button />
       </Col>
     </Row>
   </Form>
