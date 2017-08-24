@@ -6,8 +6,7 @@ import Menu from 'antd/lib/menu';
 
 import './HospitalMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
-import StudentListPageWrapper from '../../containers/student/StudentListPageWrapper';
-import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
+import HospitalList from './HospitalList';
 import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
 import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
 
@@ -17,13 +16,10 @@ class HospitalMain extends Component {
     return (
       <div>
         <Row>
-          <Col span={7}>
-            <StudentListPageWrapper />
+          <Col span={17}>
+            <HospitalList />
           </Col>
-          <Col span={10}>
-            <StudentDetailWrapper />
-          </Col>
-          <Col span={7}>
+          <Col span={7} style={{ backgroundColor: '#eDeff5' }}>
             <CoursePageWrapper />
           </Col>
         </Row>
