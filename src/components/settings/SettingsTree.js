@@ -37,8 +37,8 @@ const mapDispatchToProps = dispatch => (
   {
     selectSettings: key => (
       dispatch({
-        type: 'SELECT_SETTINGS_LOGIC',
-        payload: key,
+        type: 'SELECT_MENU_KEY',
+        payload: key[0],
       })
     ),
   }

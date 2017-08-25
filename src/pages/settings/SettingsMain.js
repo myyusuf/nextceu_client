@@ -7,29 +7,40 @@ import Col from 'antd/lib/col';
 import './SettingsMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
 import SettingsTree from '../../components/settings/SettingsTree';
-import ParticipantList from '../../components/seminar/ParticipantList';
+import UserList from '../../components/user/UserList';
 
-const SettingsMain = () => (
-  <div>
-    <Row>
-      <Col span={6}>
-        <SettingsTree />
-      </Col>
-      <Col span={18} style={{ backgroundColor: '#fff' }}>
-        <ParticipantList />
-      </Col>
-    </Row>
-  </div>
-);
-
-SettingsMain.propTypes = {
-  openAddWindow: PropTypes.func.isRequired,
+const SettingsMain = ({ selectedMenuKey }) => {
+  let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
+  switch (selectedMenuKey) {
+    case '2-1':
+      componentToRender = <UserList />;
+      break;
+    default:
+      break;
+  }
+  return (
+    <div>
+      <Row>
+        <Col span={6}>
+          <SettingsTree />
+        </Col>
+        <Col span={18} style={{ backgroundColor: '#fff' }}>
+          {componentToRender}
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
-// const mapStateToProps = state => (
-//   {
-//   }
-// );
+SettingsMain.propTypes = {
+  selectedMenuKey: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => (
+  {
+    selectedMenuKey: state.settingsReducers.settings.selectedMenuKey,
+  }
+);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -45,7 +56,7 @@ const mapDispatchToProps = dispatch => (
 );
 
 const SettingsMainWrapper = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(SettingsMain);
 
