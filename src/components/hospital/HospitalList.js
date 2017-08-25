@@ -4,6 +4,7 @@ import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 
 import HospitalListItem from './HospitalListItem';
+import HospitalModalWindow from './HospitalModalWindow';
 
 const HospitalList = () => (
   <div style={{ padding: 15, backgroundColor: '#eDeff5' }}>
@@ -45,6 +46,7 @@ const HospitalList = () => (
         <HospitalListItem name="Hello" />
       </Col>
     </Row>
+    <HospitalModalWindow />
   </div>
 );
 

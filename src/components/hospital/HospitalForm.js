@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
@@ -7,21 +8,21 @@ import Input from 'antd/lib/input';
 
 const FormItem = Form.Item;
 
-const HospitalForm = ({ code, name, hospitalFormChanged }) => (
+const HospitalForm = ({ hospitalForm, hospitalFormChanged }) => (
   <Form>
     <Row>
       <Col span={24}>
         <FormItem
           label="Code"
           colon={false}
-          validateStatus={code.validateStatus}
-          help={code.errorMsg}
+          validateStatus={hospitalForm.code.validateStatus}
+          help={hospitalForm.code.errorMsg}
         >
           <Input
-            value={code.value}
+            value={hospitalForm.code.value}
             onChange={(e) => {
               hospitalFormChanged({
-                name: 'code',
+                key: 'code',
                 value: e.target.value,
               });
             }}
@@ -35,14 +36,14 @@ const HospitalForm = ({ code, name, hospitalFormChanged }) => (
         <FormItem
           label="Name"
           colon={false}
-          validateStatus={name.validateStatus}
-          help={name.errorMsg}
+          validateStatus={hospitalForm.name.validateStatus}
+          help={hospitalForm.name.errorMsg}
         >
           <Input
-            value={name.value}
+            value={hospitalForm.name.value}
             onChange={(e) => {
               hospitalFormChanged({
-                name: 'name',
+                key: 'name',
                 value: e.target.value,
               });
             }}
@@ -56,8 +57,32 @@ const HospitalForm = ({ code, name, hospitalFormChanged }) => (
 
 HospitalForm.propTypes = {
   hospitalFormChanged: PropTypes.func.isRequired,
-  code: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  hospitalForm: PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default HospitalForm;
+const mapStateToProps = state => (
+  {
+    hospitalForm: state.hospitalReducers.hospitalForm,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    hospitalFormChanged: (payload) => {
+      dispatch({
+        type: 'HOSPITAL_FORM_CHANGED',
+        payload,
+      });
+    },
+  }
+);
+
+const HospitalFormWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HospitalForm);
+
+export default HospitalFormWrapper;

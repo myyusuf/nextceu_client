@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import Menu from 'antd/lib/menu';
 import Select from 'antd/lib/select';
 import DatePicker from 'antd/lib/date-picker';
+import Button from 'antd/lib/button';
 
 import './HospitalMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
@@ -14,59 +15,69 @@ import HospitalDetailsPage from './HospitalDetailsPage';
 const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 
-class HospitalMain extends Component {
+const HospitalMain = ({ openAddWindow }) => (
+  <div>
+    <Row gutter={10}>
+      <Col span={4} offset={7}>
+        <RangePicker
+          onChange={(date) => {
+            this.handleInputChange('planDate', date);
+          }}
+        />
+      </Col>
+      <Col span={4}>
+        <Select defaultValue="lucy" style={{ width: 200, marginBottom: 20 }}>
+          <Option value="jack">Jack</Option>
+          <Option value="lucy">Lucy</Option>
+          <Option value="disabled" disabled>Disabled</Option>
+          <Option value="Yiminghe">yiminghe</Option>
+        </Select>
+      </Col>
+      <Col span={2}>
+        <Button
+          type="primary"
+          shape="circle"
+          icon="plus"
+          onClick={() => openAddWindow()}
+        />
+      </Col>
+    </Row>
 
-  render() {
-    return (
-      <div>
-        <Row gutter={10}>
-          <Col span={4} offset={8}>
-            <RangePicker
-              onChange={(date, dateString) => {
-                this.handleInputChange('planDate', date);
-              }}
-            />
-          </Col>
-          <Col span={4}>
-            <Select defaultValue="lucy" style={{ width: 120, marginBottom: 20 }}>
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="disabled" disabled>Disabled</Option>
-              <Option value="Yiminghe">yiminghe</Option>
-            </Select>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={17}>
-            <HospitalList />
-          </Col>
-          <Col span={7} style={{ backgroundColor: '#fff' }}>
-            <HospitalDetailsPage />
-          </Col>
-        </Row>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => (
-  {
-    students: state.studentReducers.students,
-    studentFilter: state.studentReducers.studentFilter,
-  }
+    <Row>
+      <Col span={17}>
+        <HospitalList />
+      </Col>
+      <Col span={7} style={{ backgroundColor: '#fff' }}>
+        <HospitalDetailsPage />
+      </Col>
+    </Row>
+  </div>
 );
+
+HospitalMain.propTypes = {
+  openAddWindow: PropTypes.func.isRequired,
+};
+
+// const mapStateToProps = state => (
+//   {
+//   }
+// );
 
 const mapDispatchToProps = dispatch => (
   {
     filterStudents: level => (
       dispatch(filterStudentsByLevelText(level))
     ),
+    openAddWindow: () => (
+      dispatch({
+        type: 'ADD_HOSPITAL_LOGIC',
+      })
+    ),
   }
 );
 
 const HospitalMainWrapper = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(HospitalMain);
 

@@ -9,9 +9,6 @@ const HospitalModalWindow = ({
   onOk,
   onCancel,
   confirmLoading,
-  code,
-  name,
-  hospitalFormChanged,
 }) => (
   <Modal
     title="Add Hospital"
@@ -22,7 +19,7 @@ const HospitalModalWindow = ({
     cancelText="Cancel"
     onCancel={onCancel}
   >
-    <HospitalForm code={code} name={name} hospitalFormChanged={hospitalFormChanged} />
+    <HospitalForm />
   </Modal>
 );
 
@@ -31,9 +28,6 @@ HospitalModalWindow.propTypes = {
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
-  code: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  hospitalFormChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -47,12 +41,12 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CLOSE_HOSPITAL_MODAL_WINDOW',
+        type: 'CANCEL_ADD_HOSPITAL_LOGIC',
       });
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_HOSPITAL_FORM',
+        type: 'SAVE_HOSPITAL_LOGIC',
       });
     },
   }
