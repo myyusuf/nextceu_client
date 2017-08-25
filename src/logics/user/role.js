@@ -28,13 +28,16 @@ const fetchRolesLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const search = getState().userReducers.roleSearch;
     const paramameters = search ? { params: { ...search } } : {};
+    dispatch({ type: 'ROLE_LOADING_START' });
     axios.get(ROLES_URL, paramameters)
       .then(resp => resp.data)
       .then((roles) => {
+        dispatch({ type: 'ROLE_LOADING_FINISH' });
         dispatch({ type: 'FETCH_ROLES_SUCCESS', payload: roles });
       })
       .catch((err) => {
         console.error(err);
+        dispatch({ type: 'ROLE_LOADING_FINISH' });
         notification.error({
           message: 'Fetch roles error',
           description: 'Please check internet connection.',

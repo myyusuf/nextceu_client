@@ -27,6 +27,7 @@ class RoleList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
@@ -59,7 +60,7 @@ class RoleList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={roles} style={{ marginTop: 20 }} rowKey="id">
+            <Table dataSource={roles} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
               <Column
                 title="Code"
                 dataIndex="code"
@@ -119,6 +120,7 @@ const mapStateToProps = state => (
   {
     roles: state.userReducers.roles,
     searchText: state.userReducers.roleSearch.searchText,
+    loading: state.userReducers.roleSearch.loading,
   }
 );
 
