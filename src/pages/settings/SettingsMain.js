@@ -7,12 +7,16 @@ import Col from 'antd/lib/col';
 import './SettingsMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
 import SettingsTree from '../../components/settings/SettingsTree';
+import DepartmentList from '../../components/department/DepartmentList';
 import UserList from '../../components/user/UserList';
 import RoleList from '../../components/user/RoleList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
   switch (selectedMenuKey) {
+    case '1-1':
+      componentToRender = <DepartmentList />;
+      break;
     case '2-1':
       componentToRender = <UserList />;
       break;
