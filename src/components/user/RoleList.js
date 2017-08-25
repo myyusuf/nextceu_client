@@ -38,7 +38,7 @@ class RoleList extends Component {
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
-              placeholder="Code"
+              placeholder="Code or Name"
             />
           </Col>
           <Col span={16}>
