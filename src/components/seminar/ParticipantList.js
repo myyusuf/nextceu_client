@@ -7,27 +7,25 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 
-import SeminarWindow from './SeminarWindow';
-
 const columns = [
   {
-    title: 'Code',
-    dataIndex: 'code',
-    key: 'code',
+    title: 'Old SID',
+    dataIndex: 'oldSid',
+    key: 'oldSid',
+  },
+  {
+    title: 'New SID',
+    dataIndex: 'newSid',
+    key: 'newSid',
   },
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
   },
-  {
-    title: 'Date',
-    dataIndex: 'eventDate',
-    key: 'eventDate',
-  },
 ];
 
-const SeminarList = ({ seminars, openAddWindow, searchText, searchTextChanged }) => (
+const ParticipantList = ({ participants, openAddWindow, searchText, searchTextChanged }) => (
   <div style={{ paddingLeft: 10, paddingRight: 10 }}>
     <Row gutter={10}>
       <Col span={12}>
@@ -36,45 +34,43 @@ const SeminarList = ({ seminars, openAddWindow, searchText, searchTextChanged })
           onChange={(e) => {
             searchTextChanged(e.target.value);
           }}
-          placeholder="Code"
+          placeholder="SID or Name"
         />
       </Col>
       <Col span={12}>
         <Button
           type="primary"
           shape="circle"
-          icon="plus"
+          icon="upload"
           onClick={() => openAddWindow()}
         />
       </Col>
     </Row>
     <Row>
       <Col span={24}>
-        <Table columns={columns} dataSource={seminars} style={{ marginTop: 20 }} />
+        <Table columns={columns} dataSource={participants} style={{ marginTop: 20 }} />
       </Col>
     </Row>
-
-    <SeminarWindow />
   </div>
 );
 
-SeminarList.propTypes = {
+ParticipantList.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string,
   searchTextChanged: PropTypes.func.isRequired,
-  seminars: PropTypes.arrayOf(PropTypes.shape({
+  participants: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
 };
 
-SeminarList.defaultProps = {
+ParticipantList.defaultProps = {
   searchText: '',
 };
 
 const mapStateToProps = state => (
   {
-    seminars: state.seminarReducers.seminars,
+    participants: state.seminarReducers.participants,
   }
 );
 
@@ -94,9 +90,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const SeminarListWrapper = connect(
+const ParticipantListWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SeminarList);
+)(ParticipantList);
 
-export default SeminarListWrapper;
+export default ParticipantListWrapper;
