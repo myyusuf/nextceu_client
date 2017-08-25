@@ -26,9 +26,9 @@ const fetchRolesLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ROLES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    // const filter = getState().roleReducers.roleFilter;
-    // const paramameters = filter ? { params: { ...filter } } : {};
-    axios.get(ROLES_URL)
+    const search = getState().userReducers.roleSearch;
+    const paramameters = search ? { params: { ...search } } : {};
+    axios.get(ROLES_URL, paramameters)
       .then(resp => resp.data)
       .then((roles) => {
         dispatch({ type: 'FETCH_ROLES_SUCCESS', payload: roles });

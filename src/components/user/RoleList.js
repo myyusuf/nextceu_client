@@ -19,7 +19,15 @@ class RoleList extends Component {
   }
 
   render() {
-    const { roles, openAddWindow, searchText, searchTextChanged } = this.props;
+    const {
+      roles,
+      fetchRoles,
+      openAddWindow,
+      openEditWindow,
+      confirmDelete,
+      searchText,
+      searchTextChanged,
+    } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
@@ -33,12 +41,20 @@ class RoleList extends Component {
             />
           </Col>
           <Col span={16}>
-            <Button
-              type="primary"
-              shape="circle"
-              icon="plus"
-              onClick={() => openAddWindow()}
-            />
+            <span>
+              <Button
+                shape="circle"
+                icon="search"
+                onClick={() => fetchRoles()}
+                style={{ marginRight: 15 }}
+              />
+              <Button
+                type="primary"
+                shape="circle"
+                icon="plus"
+                onClick={() => openAddWindow()}
+              />
+            </span>
           </Col>
         </Row>
         <Row>
@@ -61,13 +77,13 @@ class RoleList extends Component {
                   <span>
                     <Button
                       icon="edit"
-                      onClick={() => this.props.openEditWindow(record)}
+                      onClick={() => openEditWindow(record)}
                       style={{ marginRight: 5 }}
                     />
                     <Button
                       type="danger"
                       icon="delete"
-                      onClick={() => this.props.confirmDelete(record)}
+                      onClick={() => confirmDelete(record)}
                     />
                   </span>
                 )}
@@ -87,7 +103,7 @@ RoleList.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
   openEditWindow: PropTypes.func.isRequired,
   confirmDelete: PropTypes.func.isRequired,
-  searchText: PropTypes.string,
+  searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   roles: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -95,13 +111,14 @@ RoleList.propTypes = {
   })).isRequired,
 };
 
-RoleList.defaultProps = {
-  searchText: '',
-};
+// RoleList.defaultProps = {
+//   searchText: '',
+// };
 
 const mapStateToProps = state => (
   {
     roles: state.userReducers.roles,
+    searchText: state.userReducers.roleSearch.searchText,
   }
 );
 
@@ -125,7 +142,7 @@ const mapDispatchToProps = dispatch => (
     ),
     searchTextChanged: value => (
       dispatch({
-        type: 'SEARCH_TEXT_CHANGED',
+        type: 'ROLE_SEARCH_TEXT_CHANGED',
         payload: value,
       })
     ),
