@@ -65,7 +65,7 @@ RoleForm.propTypes = {
 
 const mapStateToProps = state => (
   {
-    roleForm: state.roleReducers.roleForm,
+    roleForm: state.userReducers.roleForm,
   }
 );
 
@@ -73,7 +73,7 @@ const mapDispatchToProps = dispatch => (
   {
     roleFormChanged: (payload) => {
       dispatch({
-        type: 'ROLE_FORM_CHANGED',
+        type: 'ROLE_FORM_CHANGED_LOGIC',
         payload,
       });
     },

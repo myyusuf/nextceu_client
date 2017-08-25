@@ -41,7 +41,7 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_ADD_ROLE_LOGIC',
+        type: 'CANCEL_EDIT_ROLE_LOGIC',
       });
     },
     onOk: () => {
