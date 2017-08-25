@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import './Workspace.css';
 // import StudentMain from '../student/StudentMain';
 // import SeminarMain from '../seminar/SeminarMain';
-import HospitalMain from '../hospital/HospitalMain';
+// import HospitalMain from '../hospital/HospitalMain';
+import SeminarMain from '../seminar/SeminarMain';
 
 const Workspace = () =>
 (
@@ -13,7 +14,7 @@ const Workspace = () =>
       <Link to="/">CEU</Link> | Administration
     </Header>
     <Content className="Workspace-content">
-      <HospitalMain />
+      <SeminarMain />
     </Content>
   </Layout>
 );
