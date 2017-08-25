@@ -9,7 +9,7 @@ import Button from 'antd/lib/button';
 
 import './SeminarMain.css';
 import { filterStudentsByLevelText } from '../../actions/student/students';
-import HospitalList from '../../components/hospital/HospitalList';
+import SeminarList from '../../components/seminar/SeminarList';
 import SeminarDetailsPage from './SeminarDetailsPage';
 
 const Option = Select.Option;
@@ -17,35 +17,9 @@ const RangePicker = DatePicker.RangePicker;
 
 const SeminarMain = ({ openAddWindow }) => (
   <div>
-    <Row gutter={10}>
-      <Col span={4} offset={7}>
-        <RangePicker
-          onChange={(date) => {
-            this.handleInputChange('planDate', date);
-          }}
-        />
-      </Col>
-      <Col span={4}>
-        <Select defaultValue="lucy" style={{ width: 200, marginBottom: 20 }}>
-          <Option value="jack">Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="disabled" disabled>Disabled</Option>
-          <Option value="Yiminghe">yiminghe</Option>
-        </Select>
-      </Col>
-      <Col span={2}>
-        <Button
-          type="primary"
-          shape="circle"
-          icon="plus"
-          onClick={() => openAddWindow()}
-        />
-      </Col>
-    </Row>
-
     <Row>
       <Col span={10}>
-        <HospitalList />
+        <SeminarList />
       </Col>
       <Col span={14} style={{ backgroundColor: '#fff' }}>
         <SeminarDetailsPage />

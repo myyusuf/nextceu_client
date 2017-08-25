@@ -21,8 +21,8 @@ const columns = [
 ];
 
 const SeminarList = ({ seminars, openAddWindow, searchText, searchTextChanged }) => (
-  <div>
-    <Row>
+  <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+    <Row gutter={10}>
       <Col span={12}>
         <Input
           value={searchText}
@@ -43,7 +43,7 @@ const SeminarList = ({ seminars, openAddWindow, searchText, searchTextChanged })
     </Row>
     <Row>
       <Col span={24}>
-        <Table columns={columns} dataSource={seminars} />
+        <Table columns={columns} dataSource={seminars} style={{ marginTop: 20 }} />
       </Col>
     </Row>
   </div>
@@ -74,6 +74,12 @@ const mapDispatchToProps = dispatch => (
     openAddWindow: () => (
       dispatch({
         type: 'ADD_SEMINAR_LOGIC',
+      })
+    ),
+    searchTextChanged: value => (
+      dispatch({
+        type: 'SEARCH_TEXT_CHANGED',
+        payload: value,
       })
     ),
   }
