@@ -14,7 +14,7 @@ const hospitalForm = (state = defaultState, action) => {
     case 'LOAD_HOSPITAL': {
       return action.payload;
     }
-    case 'CLEAR_ADD_HOSPITAL_FORM':
+    case 'CLEAR_HOSPITAL_FORM':
       return { ...defaultState };
     default:
       return state;

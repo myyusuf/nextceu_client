@@ -14,7 +14,7 @@ const seminarForm = (state = defaultState, action) => {
     case 'LOAD_SEMINAR': {
       return action.payload;
     }
-    case 'CLEAR_ADD_SEMINAR_FORM':
+    case 'CLEAR_SEMINAR_FORM':
       return { ...defaultState };
     default:
       return state;
