@@ -30,7 +30,7 @@ const columns = [
 const RoleList = ({ roles, openAddWindow, searchText, searchTextChanged }) => (
   <div style={{ paddingLeft: 10, paddingRight: 10 }}>
     <Row gutter={10}>
-      <Col span={12}>
+      <Col span={8}>
         <Input
           value={searchText}
           onChange={(e) => {
@@ -39,7 +39,7 @@ const RoleList = ({ roles, openAddWindow, searchText, searchTextChanged }) => (
           placeholder="Code"
         />
       </Col>
-      <Col span={12}>
+      <Col span={16}>
         <Button
           type="primary"
           shape="circle"
@@ -74,7 +74,7 @@ RoleList.defaultProps = {
 
 const mapStateToProps = state => (
   {
-    roles: state.roleReducers.roles,
+    roles: state.userReducers.roles,
   }
 );
 
@@ -82,7 +82,7 @@ const mapDispatchToProps = dispatch => (
   {
     openAddWindow: () => (
       dispatch({
-        type: 'ADD_SEMINAR_LOGIC',
+        type: 'ADD_ROLE_LOGIC',
       })
     ),
     searchTextChanged: value => (

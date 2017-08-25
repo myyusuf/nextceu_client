@@ -25,7 +25,7 @@ const columns = [
 const UserList = ({ users, openAddWindow, searchText, searchTextChanged }) => (
   <div style={{ paddingLeft: 10, paddingRight: 10 }}>
     <Row gutter={10}>
-      <Col span={12}>
+      <Col span={8}>
         <Input
           value={searchText}
           onChange={(e) => {
@@ -34,7 +34,7 @@ const UserList = ({ users, openAddWindow, searchText, searchTextChanged }) => (
           placeholder="Username"
         />
       </Col>
-      <Col span={12}>
+      <Col span={16}>
         <Button
           type="primary"
           shape="circle"

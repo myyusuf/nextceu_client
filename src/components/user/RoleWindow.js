@@ -32,8 +32,8 @@ RoleWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.roleReducers.roleWindow.visible,
-    confirmLoading: state.roleReducers.roleWindow.confirmLoading,
+    visible: state.userReducers.roleWindow.visible,
+    confirmLoading: state.userReducers.roleWindow.confirmLoading,
   }
 );
 
