@@ -16,7 +16,6 @@ const RoleWindow = ({
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
     <RoleForm />

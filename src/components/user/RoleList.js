@@ -106,6 +106,7 @@ RoleList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   roles: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

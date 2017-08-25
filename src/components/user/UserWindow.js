@@ -16,7 +16,6 @@ const UserWindow = ({
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
     <UserForm />
@@ -41,7 +40,7 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_ADD_USER_LOGIC',
+        type: 'CANCEL_EDIT_USER_LOGIC',
       });
     },
     onOk: () => {

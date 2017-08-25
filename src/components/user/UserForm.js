@@ -73,7 +73,7 @@ const mapDispatchToProps = dispatch => (
   {
     userFormChanged: (payload) => {
       dispatch({
-        type: 'USER_FORM_CHANGED',
+        type: 'USER_FORM_CHANGED_LOGIC',
         payload,
       });
     },
