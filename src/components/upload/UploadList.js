@@ -59,7 +59,7 @@ UploadList.defaultProps = {
 
 const mapStateToProps = state => (
   {
-    uploads: state.seminarReducers.uploads,
+    uploads: state.uploadReducers.uploads,
   }
 );
 
