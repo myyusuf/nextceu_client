@@ -17,7 +17,7 @@ const studentForm = (state = defaultState, action) => {
     case 'LOAD_STUDENT': {
       return action.payload;
     }
-    case 'CLEAR_ADD_STUDENT_FORM':
+    case 'CLEAR_STUDENT_FORM':
       return { ...defaultState };
     default:
       return state;

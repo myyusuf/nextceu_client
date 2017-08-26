@@ -1,22 +1,21 @@
-const defaultState = [];
+const defaultState = {
+  rows: [],
+  count: 0,
+};
 
 const students = (state = defaultState, action) => {
   switch (action.type) {
-    case 'ADD_STUDENT':
-      const newState = [
-        ...state,
-        action.student,
-      ];
-
-      return newState;
-    case 'SELECT_STUDENT':
-      return state.map(student =>
-        (student.id === action.student.id)
-          ? { ...student, selected: true }
-          : { ...student, selected: false },
-      );
+    case 'SELECT_STUDENT': {
+      const newRows = state.rows.map((student) => {
+        if (student.id === action.student.id) {
+          return { ...student, selected: true };
+        }
+        return { ...student, selected: false };
+      });
+      return { ...state, rows: newRows };
+    }
     case 'FETCH_STUDENTS_SUCCESS':
-      return action.payload;
+      return { ...state, rows: action.payload.rows, count: action.payload.count };
     default:
       return state;
   }
