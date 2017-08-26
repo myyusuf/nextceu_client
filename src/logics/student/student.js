@@ -73,6 +73,24 @@ const fetchStudentLogic = createLogic({
   },
 });
 
+const editStudentLogic = createLogic({
+  type: 'EDIT_STUDENT_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'CLEAR_STUDENT_FORM' });
+    dispatch({ type: 'SHOW_STUDENT_WINDOW' });
+    done();
+  },
+});
+
+const cancelEditStudentLogic = createLogic({
+  type: 'CANCEL_EDIT_STUDENT_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'CLEAR_STUDENT_FORM' });
+    dispatch({ type: 'HIDE_STUDENT_WINDOW' });
+    done();
+  },
+});
+
 const saveStudentLogic = createLogic({
   type: 'SAVE_STUDENT_LOGIC',
   latest: true,
@@ -219,6 +237,8 @@ const filterStudentsByLevelLogic = createLogic({
 export default [
   fetchStudentsLogic,
   fetchStudentLogic,
+  editStudentLogic,
+  cancelEditStudentLogic,
   saveStudentLogic,
   deleteStudentLogic,
   filterStudentsByLevelLogic,

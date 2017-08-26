@@ -5,6 +5,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import StudentLevelSelect from './StudentLevelSelect';
 
 const FormItem = Form.Item;
 
@@ -73,7 +74,22 @@ const StudentForm = ({ studentForm, studentFormChanged }) => (
     </Row>
     <Row>
       <Col span={24}>
-
+        <FormItem
+          label="Level"
+          colon={false}
+          validateStatus={studentForm.level.validateStatus}
+          help={studentForm.level.errorMsg}
+        >
+          <StudentLevelSelect
+            value={studentForm.level.value}
+            onSelect={(value) => {
+              studentFormChanged({
+                key: 'level',
+                value,
+              });
+            }}
+          />
+        </FormItem>
       </Col>
     </Row>
     <Row>
@@ -121,7 +137,7 @@ const mapDispatchToProps = dispatch => (
   {
     studentFormChanged: (payload) => {
       dispatch({
-        type: 'USER_FORM_CHANGED_LOGIC',
+        type: 'STUDENT_FORM_CHANGED_LOGIC',
         payload,
       });
     },
