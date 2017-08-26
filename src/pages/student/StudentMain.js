@@ -4,8 +4,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 
-import './StudentMain.css';
-import StudentListPageWrapper from '../../containers/student/StudentListPageWrapper';
+import StudentListPage from './StudentListPage';
 import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
 import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
 import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
@@ -30,7 +29,7 @@ const StudentMain = () => (
     </Row>
     <Row>
       <Col span={7}>
-        <StudentListPageWrapper />
+        <StudentListPage />
       </Col>
       <Col span={10}>
         <StudentDetailWrapper />

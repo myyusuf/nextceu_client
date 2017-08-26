@@ -1,8 +1,8 @@
-.Workspace-student-search-container {
+.student-search-container {
     text-align: center;
 }
 
-.Workspace-student-search {
+.student-search {
     width: 85%;
     margin-left: auto;
     margin-right: auto;
@@ -10,7 +10,7 @@
     margin-bottom: 20px;
 }
 
-.Workspace-student-search input {
+.student-search input {
     height: 33px;
     border-radius: 20px;
 }
