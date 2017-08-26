@@ -6,7 +6,7 @@ import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 
 import StudentListPage from './StudentListPage';
-import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
+import StudentDetail from '../../components/student/StudentDetail';
 import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
 import StudentWindow from '../../components/student/StudentWindow';
 
@@ -33,7 +33,7 @@ const StudentMain = ({ level, levelChanged }) => (
         <StudentListPage />
       </Col>
       <Col span={10}>
-        <StudentDetailWrapper />
+        <StudentDetail />
       </Col>
       <Col span={7}>
         <CoursePageWrapper />

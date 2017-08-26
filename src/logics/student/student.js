@@ -59,7 +59,7 @@ const fetchStudentLogic = createLogic({
   cancelType: 'CANCEL_FETCH_STUDENT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(`${STUDENTS_URL}/${action.id}`)
+    axios.get(`${STUDENTS_URL}/${action.payload.id}`)
       .then(resp => resp.data)
       .then(student => dispatch({ type: 'FETCH_STUDENT_SUCCESS', payload: student }))
       .catch((err) => {
@@ -225,6 +225,15 @@ const deleteStudentLogic = createLogic({
   },
 });
 
+const selectStudentLogic = createLogic({
+  type: 'SELECT_STUDENT_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'SELECT_STUDENT', payload: action.payload });
+    dispatch({ type: 'FETCH_STUDENT_LOGIC', payload: action.payload });
+    done();
+  },
+});
+
 const filterStudentsByLevelLogic = createLogic({
   type: 'STUDENT_LEVEL_CHANGED_LOGIC',
   process({ getState, action }, dispatch, done) {
@@ -241,5 +250,6 @@ export default [
   cancelEditStudentLogic,
   saveStudentLogic,
   deleteStudentLogic,
+  selectStudentLogic,
   filterStudentsByLevelLogic,
 ];

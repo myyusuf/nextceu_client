@@ -1,60 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Tag from 'antd/lib/tag';
 import Button from 'antd/lib/button';
 import Icon from 'antd/lib/icon';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import { PieChart, Pie, Sector, Cell } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 import './StudentDetail.css';
 
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
 
 const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
-  let data = [];
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const pendingCount = courses.filter(course => course.status === 0).length;
   const problemCount = courses.filter(course => course.status === 4).length;
-  if (courses.length > 0) {
-    data = [
-      {
-        name: 'On Going',
-        value: onGoingCount,
-      },
-      {
-        name: 'Completed',
-        value: completedCount,
-      },
-      {
-        name: 'Problem',
-        value: problemCount,
-      },
-      {
-        name: 'Pending',
-        value: pendingCount,
-      },
-    ];
-  } else {
-    data = [
-      {
-        name: 'On Going',
-        value: 0,
-      },
-      {
-        name: 'Completed',
-        value: 0,
-      },
-      {
-        name: 'Problem',
-        value: 0,
-      },
-      {
-        name: 'Pending',
-        value: 0,
-      },
-    ];
-  }
+  const data = [
+    {
+      name: 'On Going',
+      value: onGoingCount,
+    },
+    {
+      name: 'Completed',
+      value: completedCount,
+    },
+    {
+      name: 'Problem',
+      value: problemCount,
+    },
+    {
+      name: 'Pending',
+      value: pendingCount,
+    },
+  ];
 
   if (student.id) {
     return (
@@ -184,4 +163,29 @@ StudentDetail.propTypes = {
   editStudent: PropTypes.func.isRequired,
 };
 
-export default StudentDetail;
+const mapStateToProps = state => (
+  {
+    student: state.studentReducers.student,
+    courses: state.studentReducers.courses,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    editStudent: student => dispatch({
+      type: 'LOAD_STUDENT_TO_FORM_LOGIC',
+      payload: student,
+    }),
+    deleteStudent: student => dispatch({
+      type: 'DELETE_STUDENT_LOGIC',
+      payload: student,
+    }),
+  }
+);
+
+const StudentDetailWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StudentDetail);
+
+export default StudentDetailWrapper;

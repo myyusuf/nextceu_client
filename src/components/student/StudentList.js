@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => (
   {
     onItemClick: (student) => {
       dispatch({
-        type: 'SELECT_STUDENT',
+        type: 'SELECT_STUDENT_LOGIC',
         payload: student,
       });
       // dispatch(cancelFetchStudent());
