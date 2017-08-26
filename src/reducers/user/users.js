@@ -1,9 +1,12 @@
-const defaultState = [];
+const defaultState = {
+  rows: [],
+  count: 0,
+};
 
 const users = (state = defaultState, action) => {
   switch (action.type) {
     case 'FETCH_USERS_SUCCESS':
-      return action.payload;
+      return { ...state, rows: action.payload.rows, count: action.payload.count };
     default:
       return state;
   }

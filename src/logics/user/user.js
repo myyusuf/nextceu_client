@@ -31,9 +31,9 @@ const fetchUsersLogic = createLogic({
     dispatch({ type: 'USER_LOADING_START' });
     axios.get(USERS_URL, paramameters)
       .then(resp => resp.data)
-      .then((users) => {
+      .then((data) => {
         dispatch({ type: 'USER_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_USERS_SUCCESS', payload: users });
+        dispatch({ type: 'FETCH_USERS_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);
@@ -165,10 +165,20 @@ const deleteUserLogic = createLogic({
   },
 });
 
+const userPageChangedLogic = createLogic({
+  type: 'USER_PAGE_CHANGED_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'USER_CURRENT_PAGE_CHANGED', payload: action.payload });
+    dispatch({ type: 'FETCH_USERS_LOGIC' });
+    done();
+  },
+});
+
 export default [
   fetchUsersLogic,
   editUserLogic,
   cancelAddUserLogic,
   saveUserLogic,
   deleteUserLogic,
+  userPageChangedLogic,
 ];

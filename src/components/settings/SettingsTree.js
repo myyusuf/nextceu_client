@@ -35,12 +35,14 @@ SettingsTree.propTypes = {
 
 const mapDispatchToProps = dispatch => (
   {
-    selectSettings: key => (
-      dispatch({
-        type: 'SELECT_MENU_KEY',
-        payload: key[0],
-      })
-    ),
+    selectSettings: (key) => {
+      if (key && key[0]) {
+        dispatch({
+          type: 'SELECT_MENU_KEY',
+          payload: key[0],
+        });
+      }
+    },
   }
 );
 

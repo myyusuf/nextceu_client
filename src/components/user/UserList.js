@@ -21,12 +21,16 @@ class UserList extends Component {
   render() {
     const {
       users,
+      count,
+      pageSize,
+      currentPage,
       fetchUsers,
       openAddWindow,
       openEditWindow,
       confirmDelete,
       searchText,
       searchTextChanged,
+      pageChanged,
       loading,
     } = this.props;
     return (
@@ -60,7 +64,18 @@ class UserList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={users} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+            <Table
+              dataSource={users}
+              style={{ marginTop: 20 }}
+              rowKey="id"
+              loading={loading}
+              pagination={{
+                total: count,
+                current: currentPage,
+                pageSize,
+              }}
+              onChange={pagination => pageChanged(pagination.current)}
+            >
               <Column
                 title="Username"
                 dataIndex="username"
@@ -106,17 +121,24 @@ UserList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   users: PropTypes.arrayOf(PropTypes.shape({
     username: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  count: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    users: state.userReducers.users,
+    users: state.userReducers.users.rows,
+    count: state.userReducers.users.count,
     searchText: state.userReducers.userSearch.searchText,
+    pageSize: state.userReducers.userSearch.pageSize,
+    currentPage: state.userReducers.userSearch.currentPage,
     loading: state.userReducers.userSearch.loading,
   }
 );
@@ -143,6 +165,12 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'USER_SEARCH_TEXT_CHANGED',
         payload: value,
+      })
+    ),
+    pageChanged: currentPage => (
+      dispatch({
+        type: 'USER_PAGE_CHANGED_LOGIC',
+        payload: currentPage,
       })
     ),
     confirmDelete: record => (
