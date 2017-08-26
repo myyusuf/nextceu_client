@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateLength } from '../../utils/validation';
+import { validateExist, validateLength } from '../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -8,6 +8,9 @@ const validate = (key, value) => {
     case 'username':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'role':
+      result = validateExist(key, value);
       break;
     default:
       break;

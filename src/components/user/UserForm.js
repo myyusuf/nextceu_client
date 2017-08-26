@@ -29,6 +29,7 @@ const UserForm = ({ userForm, userFormChanged }) => (
               });
             }}
             placeholder="Username"
+            maxLength={30}
           />
         </FormItem>
       </Col>
@@ -50,6 +51,7 @@ const UserForm = ({ userForm, userFormChanged }) => (
               });
             }}
             placeholder="Name"
+            maxLength={50}
           />
         </FormItem>
       </Col>

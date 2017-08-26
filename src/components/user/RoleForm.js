@@ -27,6 +27,7 @@ const RoleForm = ({ roleForm, roleFormChanged }) => (
               });
             }}
             placeholder="Code"
+            maxLength={20}
           />
         </FormItem>
       </Col>
@@ -48,6 +49,7 @@ const RoleForm = ({ roleForm, roleFormChanged }) => (
               });
             }}
             placeholder="Name"
+            maxLength={30}
           />
         </FormItem>
       </Col>
