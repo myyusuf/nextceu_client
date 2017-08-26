@@ -59,10 +59,18 @@ const UserForm = ({ userForm, userFormChanged }) => (
         <FormItem
           label="Role"
           colon={false}
-          validateStatus={userForm.name.validateStatus}
-          help={userForm.name.errorMsg}
+          validateStatus={userForm.role.validateStatus}
+          help={userForm.role.errorMsg}
         >
-          <RoleSelect />
+          <RoleSelect
+            value={userForm.role.value}
+            onSelect={(value) => {
+              userFormChanged({
+                key: 'role',
+                value,
+              });
+            }}
+          />
         </FormItem>
       </Col>
     </Row>

@@ -5,8 +5,13 @@ import Select from 'antd/lib/select';
 
 const Option = Select.Option;
 
-const RoleSelect = ({ roles, onSelect }) => (
-  <Select defaultValue="1" style={{ width: 120 }} onSelect={onSelect}>
+const RoleSelect = ({ roles, value, onSelect }) => (
+  <Select
+    placeholder="Select Role"
+    style={{ width: 120 }}
+    onSelect={onSelect}
+    value={value}
+  >
     {roles.map(role => (
       <Option value={role.id}>{role.name}</Option>
     ))}
@@ -20,6 +25,7 @@ RoleSelect.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  value: PropTypes.number.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 

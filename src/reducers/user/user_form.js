@@ -2,6 +2,7 @@ const defaultState = {
   id: {},
   username: {},
   name: {},
+  role: {},
 };
 
 const userForm = (state = defaultState, action) => {

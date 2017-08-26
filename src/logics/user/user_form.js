@@ -35,6 +35,7 @@ const loadUserFormLogic = createLogic({
   type: 'LOAD_USER_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const user = action.payload;
+    const roleId = user.Role ? user.Role.id : undefined;
     const userForm = {
       id: {
         value: user.id,
@@ -44,6 +45,9 @@ const loadUserFormLogic = createLogic({
       },
       name: {
         value: user.name,
+      },
+      role: {
+        value: roleId,
       },
     };
     const validationResult = {};
