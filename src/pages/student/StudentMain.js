@@ -44,7 +44,7 @@ const StudentMain = ({ level, levelChanged }) => (
 );
 
 StudentMain.propTypes = {
-  level: PropTypes.number.isRequired,
+  level: PropTypes.string.isRequired,
   levelChanged: PropTypes.func.isRequired,
 };
 

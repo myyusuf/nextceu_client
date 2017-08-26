@@ -1,5 +1,5 @@
 const defaultState = {
-  level: 1,
+  level: '1',
   searchText: '',
   pageSize: 10,
   currentPage: 1,
