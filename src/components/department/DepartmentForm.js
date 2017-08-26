@@ -94,6 +94,72 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
                 value,
               });
             }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={8}>
+        <FormItem
+          label="Hospital Duration 1"
+          colon={false}
+          validateStatus={departmentForm.duration1.validateStatus}
+          help={departmentForm.duration1.errorMsg}
+        >
+          <InputNumber
+            min={0}
+            max={10}
+            value={departmentForm.duration1.value}
+            onChange={(value) => {
+              departmentFormChanged({
+                key: 'duration1',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+      <Col span={8}>
+        <FormItem
+          label="Hospital Duration 2"
+          colon={false}
+          validateStatus={departmentForm.duration2.validateStatus}
+          help={departmentForm.duration2.errorMsg}
+        >
+          <InputNumber
+            min={0}
+            max={10}
+            value={departmentForm.duration2.value}
+            onChange={(value) => {
+              departmentFormChanged({
+                key: 'duration2',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+      <Col span={8}>
+        <FormItem
+          label="Clinic Duration"
+          colon={false}
+          validateStatus={departmentForm.duration3.validateStatus}
+          help={departmentForm.duration3.errorMsg}
+        >
+          <InputNumber
+            min={0}
+            max={10}
+            value={departmentForm.duration3.value}
+            onChange={(value) => {
+              departmentFormChanged({
+                key: 'duration3',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
           />
         </FormItem>
       </Col>

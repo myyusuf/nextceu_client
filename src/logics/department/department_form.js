@@ -58,6 +58,15 @@ const loadDepartmentFormLogic = createLogic({
       duration: {
         value: department.duration,
       },
+      duration1: {
+        value: department.duration1,
+      },
+      duration2: {
+        value: department.duration2,
+      },
+      duration3: {
+        value: department.duration3,
+      },
       color: {
         value: department.color,
       },

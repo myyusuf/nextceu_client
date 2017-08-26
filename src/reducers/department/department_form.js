@@ -4,6 +4,9 @@ const defaultState = {
   name: {},
   level: {},
   duration: {},
+  duration1: {},
+  duration2: {},
+  duration3: {},
   color: {},
 };
 
