@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateLength } from '../../utils/validation';
+import { validateExist, validateLength } from '../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -8,6 +8,10 @@ const validate = (key, value) => {
     case 'code':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'level':
+    case 'duration':
+      result = validateExist(key, value);
       break;
     default:
       break;
@@ -44,6 +48,12 @@ const loadDepartmentFormLogic = createLogic({
       },
       name: {
         value: department.name,
+      },
+      level: {
+        value: department.level,
+      },
+      duration: {
+        value: department.duration,
       },
     };
     const validationResult = {};

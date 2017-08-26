@@ -2,6 +2,8 @@ const defaultState = {
   id: {},
   code: {},
   name: {},
+  level: {},
+  duration: {},
 };
 
 const departmentForm = (state = defaultState, action) => {
