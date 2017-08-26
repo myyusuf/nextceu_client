@@ -6,6 +6,8 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 
+import RoleSelect from './RoleSelect';
+
 const FormItem = Form.Item;
 
 const UserForm = ({ userForm, userFormChanged }) => (
@@ -49,6 +51,18 @@ const UserForm = ({ userForm, userFormChanged }) => (
             }}
             placeholder="Name"
           />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Role"
+          colon={false}
+          validateStatus={userForm.name.validateStatus}
+          help={userForm.name.errorMsg}
+        >
+          <RoleSelect />
         </FormItem>
       </Col>
     </Row>

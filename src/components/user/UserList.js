@@ -145,11 +145,15 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchUsers: () => (
+    fetchUsers: () => {
       dispatch({
         type: 'FETCH_USERS_LOGIC',
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_ROLES_LOGIC',
+      });
+    },
     openAddWindow: () => (
       dispatch({
         type: 'EDIT_USER_LOGIC',

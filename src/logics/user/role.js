@@ -47,6 +47,27 @@ const fetchRolesLogic = createLogic({
   },
 });
 
+const fetchAllRolesLogic = createLogic({
+  type: 'FETCH_ALL_ROLES_LOGIC',
+  cancelType: 'CANCEL_FETCH_ALL_ROLES_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    axios.get(ROLES_URL)
+      .then(resp => resp.data)
+      .then((roles) => {
+        dispatch({ type: 'FETCH_ROLES_SUCCESS', payload: roles });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch roles error',
+          description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 const editRoleLogic = createLogic({
   type: 'EDIT_ROLE_LOGIC',
   process({ getState, action }, dispatch, done) {
@@ -171,4 +192,5 @@ export default [
   cancelAddRoleLogic,
   saveRoleLogic,
   deleteRoleLogic,
+  fetchAllRolesLogic,
 ];
