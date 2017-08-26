@@ -18,6 +18,9 @@ const validate = (key, value) => {
     case 'duration':
       result = validateExist(key, value);
       break;
+    case 'color':
+      result = validateLength(key, value, 7);
+      break;
     default:
       break;
   }

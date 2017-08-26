@@ -72,6 +72,25 @@ class DepartmentList extends Component {
                 key="name"
               />
               <Column
+                title="Duration"
+                dataIndex="duration"
+                key="duration"
+              />
+              <Column
+                title="Color"
+                dataIndex="color"
+                key="color"
+                render={(text, record) => (
+                  <div
+                    style={{
+                      width: 35,
+                      height: 35,
+                      borderRadius: '50%',
+                      backgroundColor: record.color }}
+                  />
+                )}
+              />
+              <Column
                 title="Action"
                 key="action"
                 render={(text, record) => (

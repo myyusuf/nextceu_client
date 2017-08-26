@@ -4,6 +4,7 @@ const defaultState = {
   name: {},
   level: {},
   duration: {},
+  color: {},
 };
 
 const departmentForm = (state = defaultState, action) => {

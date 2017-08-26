@@ -29,6 +29,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
               });
             }}
             placeholder="Code"
+            maxLength={5}
           />
         </FormItem>
       </Col>
@@ -50,6 +51,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
               });
             }}
             placeholder="Name"
+            maxLength={30}
           />
         </FormItem>
       </Col>
@@ -92,6 +94,28 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
                 value,
               });
             }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={8}>
+        <FormItem
+          label="Color"
+          colon={false}
+          validateStatus={departmentForm.color.validateStatus}
+          help={departmentForm.color.errorMsg}
+        >
+          <Input
+            value={departmentForm.color.value}
+            onChange={(e) => {
+              departmentFormChanged({
+                key: 'color',
+                value: e.target.value,
+              });
+            }}
+            placeholder="Color"
+            maxLength={7}
           />
         </FormItem>
       </Col>
