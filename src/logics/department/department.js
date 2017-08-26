@@ -75,7 +75,7 @@ const fetchAllDepartmentLogic = createLogic({
   },
 });
 
-const editRoleLogic = createLogic({
+const editDepartmentLogic = createLogic({
   type: 'EDIT_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_DEPARTMENT_FORM' });
@@ -84,7 +84,7 @@ const editRoleLogic = createLogic({
   },
 });
 
-const cancelAddRoleLogic = createLogic({
+const cancelAddDepartmentLogic = createLogic({
   type: 'CANCEL_EDIT_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_DEPARTMENT_FORM' });
@@ -93,7 +93,7 @@ const cancelAddRoleLogic = createLogic({
   },
 });
 
-const saveRoleLogic = createLogic({
+const saveDepartmentLogic = createLogic({
   type: 'SAVE_DEPARTMENT_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
@@ -141,7 +141,7 @@ const saveRoleLogic = createLogic({
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Role code must be unique';
+              errorMessage = 'Ex. Department code must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -172,7 +172,7 @@ const saveRoleLogic = createLogic({
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Role code must be unique';
+              errorMessage = 'Ex. Department code must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -192,7 +192,7 @@ const saveRoleLogic = createLogic({
   },
 });
 
-const deleteRoleLogic = createLogic({
+const deleteDepartmentLogic = createLogic({
   type: 'DELETE_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     axios.delete(`${DEPARTMENTS_URL}/${action.payload.id}`)
@@ -217,9 +217,9 @@ const deleteRoleLogic = createLogic({
 
 export default [
   fetchDepartmentLogic,
-  editRoleLogic,
-  cancelAddRoleLogic,
-  saveRoleLogic,
-  deleteRoleLogic,
+  editDepartmentLogic,
+  cancelAddDepartmentLogic,
+  saveDepartmentLogic,
+  deleteDepartmentLogic,
   fetchAllDepartmentLogic,
 ];
