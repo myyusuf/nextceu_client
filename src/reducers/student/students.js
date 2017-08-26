@@ -7,7 +7,7 @@ const students = (state = defaultState, action) => {
   switch (action.type) {
     case 'SELECT_STUDENT': {
       const newRows = state.rows.map((student) => {
-        if (student.id === action.student.id) {
+        if (student.id === action.payload.id) {
           return { ...student, selected: true };
         }
         return { ...student, selected: false };

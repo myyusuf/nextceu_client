@@ -1,27 +1,54 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-import AddStudentFormWrapper from '../../containers/student/AddStudentFormWrapper';
+import StudentForm from './StudentForm';
 
-const AddStudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
+const StudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
   <Modal
     title="Add Student"
     visible={visible}
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
-    <AddStudentFormWrapper />
+    <StudentForm />
   </Modal>
 );
 
-AddStudentWindow.propTypes = {
+StudentWindow.propTypes = {
   visible: PropTypes.bool.isRequired,
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
 };
 
-export default AddStudentWindow;
+const mapStateToProps = state => (
+  {
+    visible: state.studentReducers.studentWindow.visible,
+    confirmLoading: state.studentReducers.studentWindow.confirmLoading,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    onCancel: () => {
+      dispatch({
+        type: 'CANCEL_EDIT_STUDENT_LOGIC',
+      });
+    },
+    onOk: () => {
+      dispatch({
+        type: 'SAVE_STUDENT_LOGIC',
+      });
+    },
+  }
+);
+
+const StudentWindowWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StudentWindow);
+
+export default StudentWindowWrapper;

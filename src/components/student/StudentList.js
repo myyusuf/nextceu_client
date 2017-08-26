@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import Button from 'antd/lib/button';
 import './StudentList.css';
 
 class StudentList extends Component {
@@ -47,4 +47,36 @@ StudentList.propTypes = {
   onItemClick: PropTypes.func.isRequired,
 };
 
-export default StudentList;
+const mapStateToProps = state => (
+  {
+    students: state.studentReducers.students,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    onItemClick: (student) => {
+      dispatch({
+        type: 'SELECT_STUDENT',
+        payload: student,
+      });
+      // dispatch(cancelFetchStudent());
+      // dispatch(fetchStudent(student.id));
+      //
+      // dispatch(cancelFetchCourses());
+      // dispatch(fetchCourses(student.id));
+    },
+    fetchStudents: () => {
+      dispatch({
+        type: 'FETCH_STUDENTS_LOGIC',
+      });
+    },
+  }
+);
+
+const StudentListWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StudentList);
+
+export default StudentListWrapper;

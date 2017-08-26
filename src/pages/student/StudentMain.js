@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
@@ -7,16 +8,16 @@ import Menu from 'antd/lib/menu';
 import StudentListPage from './StudentListPage';
 import StudentDetailWrapper from '../../containers/student/StudentDetailWrapper';
 import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
-import AddStudentWindowWrapper from '../../containers/student/AddStudentWindowWrapper';
+import StudentWindow from '../../components/student/StudentWindow';
 
-const StudentMain = () => (
+const StudentMain = ({ level, levelChanged }) => (
   <div>
     <Row>
       <Col span={24}>
         <Menu
           mode="horizontal"
-          selectedKeys={[this.props.studentSearch.level]}
-          onClick={event => this.props.levelChanged(event.key)}
+          selectedKeys={[level]}
+          onClick={event => levelChanged(event.key)}
         >
           <Menu.Item key="1">
             LEVEL 1
@@ -38,14 +39,19 @@ const StudentMain = () => (
         <CoursePageWrapper />
       </Col>
     </Row>
-    <AddStudentWindowWrapper />
+    <StudentWindow />
   </div>
 );
+
+StudentMain.propTypes = {
+  level: PropTypes.number.isRequired,
+  levelChanged: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => (
   {
     students: state.studentReducers.students,
-    studentSearch: state.studentReducers.studentSearch,
+    level: state.studentReducers.studentSearch.level,
   }
 );
 

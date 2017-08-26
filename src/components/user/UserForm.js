@@ -104,8 +104,8 @@ const UserForm = ({ userForm, userFormChanged }) => (
 UserForm.propTypes = {
   userFormChanged: PropTypes.func.isRequired,
   userForm: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    username: PropTypes.shape.isRequired,
+    name: PropTypes.shape.isRequired,
   }).isRequired,
 };
 
