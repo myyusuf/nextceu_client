@@ -60,8 +60,8 @@ const RoleForm = ({ roleForm, roleFormChanged }) => (
 RoleForm.propTypes = {
   roleFormChanged: PropTypes.func.isRequired,
   roleForm: PropTypes.shape({
-    code: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    code: PropTypes.shape.isRequired,
+    name: PropTypes.shape.isRequired,
   }).isRequired,
 };
 

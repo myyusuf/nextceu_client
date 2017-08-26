@@ -113,11 +113,22 @@ const saveUserLogic = createLogic({
           });
         })
         .catch((err) => {
-          console.error(err);
+          let errorMessage = '';
+          if (err.response) {
+            if (err.response.status === 500) {
+              errorMessage = 'Ex. Username must be unique';
+            } else {
+              errorMessage = `Status: ${err.response.status}`;
+            }
+          } else if (err.request) {
+            errorMessage = 'Connection error.';
+          } else {
+            errorMessage = err.message;
+          }
           dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
           notification.error({
             message: 'Update user error',
-            description: 'Please check internet connection.',
+            description: errorMessage,
           });
         })
         .then(() => done());
@@ -133,11 +144,22 @@ const saveUserLogic = createLogic({
           });
         })
         .catch((err) => {
-          console.error(err);
+          let errorMessage = '';
+          if (err.response) {
+            if (err.response.status === 500) {
+              errorMessage = 'Ex. Username must be unique';
+            } else {
+              errorMessage = `Status: ${err.response.status}`;
+            }
+          } else if (err.request) {
+            errorMessage = 'Connection error.';
+          } else {
+            errorMessage = err.message;
+          }
           dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
           notification.error({
             message: 'Create user error',
-            description: 'Please check internet connection.',
+            description: errorMessage,
           });
         })
         .then(() => done());

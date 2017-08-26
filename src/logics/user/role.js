@@ -131,11 +131,22 @@ const saveRoleLogic = createLogic({
           });
         })
         .catch((err) => {
-          console.err('-------->', err);
+          let errorMessage = '';
+          if (err.response) {
+            if (err.response.status === 500) {
+              errorMessage = 'Ex. Role code must be unique';
+            } else {
+              errorMessage = `Status: ${err.response.status}`;
+            }
+          } else if (err.request) {
+            errorMessage = 'Connection error.';
+          } else {
+            errorMessage = err.message;
+          }
           dispatch({ type: 'HIDE_ROLE_WINDOW_CONFIRM_LOADING' });
           notification.error({
             message: 'Update role error',
-            description: 'Please check internet connection.',
+            description: errorMessage,
           });
         })
         .then(() => done());
