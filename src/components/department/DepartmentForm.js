@@ -58,8 +58,8 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
 DepartmentForm.propTypes = {
   departmentFormChanged: PropTypes.func.isRequired,
   departmentForm: PropTypes.shape({
-    code: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    code: PropTypes.shape.isRequired,
+    name: PropTypes.shape.isRequired,
   }).isRequired,
 };
 
@@ -73,7 +73,7 @@ const mapDispatchToProps = dispatch => (
   {
     departmentFormChanged: (payload) => {
       dispatch({
-        type: 'DEPARTMENT_FORM_CHANGED',
+        type: 'DEPARTMENT_FORM_CHANGED_LOGIC',
         payload,
       });
     },

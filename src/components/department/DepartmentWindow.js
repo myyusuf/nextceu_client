@@ -16,7 +16,6 @@ const DepartmentWindow = ({
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
     <DepartmentForm />
@@ -41,12 +40,12 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_ADD_ROLE_LOGIC',
+        type: 'CANCEL_EDIT_DEPARTMENT_LOGIC',
       });
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_ROLE_LOGIC',
+        type: 'SAVE_DEPARTMENT_LOGIC',
       });
     },
   }
