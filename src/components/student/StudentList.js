@@ -5,8 +5,8 @@ import './StudentList.css';
 
 class StudentList extends Component {
 
-  componentDidMount() {
-    this.props.getStudents();
+  componentWillMount() {
+    this.props.fetchStudents();
   }
 
   render() {
@@ -43,7 +43,7 @@ StudentList.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  getStudents: PropTypes.func.isRequired,
+  fetchStudents: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
 };
 
