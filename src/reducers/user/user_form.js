@@ -3,6 +3,7 @@ const defaultState = {
   username: {},
   name: {},
   role: {},
+  email: {},
 };
 
 const userForm = (state = defaultState, action) => {

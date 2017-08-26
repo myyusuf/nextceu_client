@@ -76,6 +76,28 @@ const UserForm = ({ userForm, userFormChanged }) => (
         </FormItem>
       </Col>
     </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Email"
+          colon={false}
+          validateStatus={userForm.email.validateStatus}
+          help={userForm.email.errorMsg}
+        >
+          <Input
+            value={userForm.email.value}
+            onChange={(e) => {
+              userFormChanged({
+                key: 'email',
+                value: e.target.value,
+              });
+            }}
+            placeholder="Email"
+            maxLength={70}
+          />
+        </FormItem>
+      </Col>
+    </Row>
   </Form>
 );
 

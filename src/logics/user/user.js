@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validateExist, validateLength } from '../../utils/validation';
+import { validateExist, validateLength, validateEmail } from '../../utils/validation';
 
 const USERS_URL = `${Constant.serverUrl}/api/users`;
 
@@ -16,6 +16,9 @@ const validate = (key, value) => {
       break;
     case 'role':
       result = validateExist(key, value);
+      break;
+    case 'email':
+      result = validateEmail(key, value);
       break;
     default:
       break;

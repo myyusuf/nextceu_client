@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateExist, validateLength } from '../../utils/validation';
+import { validateExist, validateLength, validateEmail } from '../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -11,6 +11,9 @@ const validate = (key, value) => {
       break;
     case 'role':
       result = validateExist(key, value);
+      break;
+    case 'email':
+      result = validateEmail(key, value);
       break;
     default:
       break;
@@ -51,6 +54,9 @@ const loadUserFormLogic = createLogic({
       },
       role: {
         value: roleId,
+      },
+      email: {
+        value: user.email,
       },
     };
     const validationResult = {};
