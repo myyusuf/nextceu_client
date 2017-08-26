@@ -12,8 +12,8 @@ const FormItem = Form.Item;
 
 const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
   <Form>
-    <Row>
-      <Col span={24}>
+    <Row gutter={10}>
+      <Col span={12}>
         <FormItem
           label="Code"
           colon={false}
@@ -33,9 +33,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
           />
         </FormItem>
       </Col>
-    </Row>
-    <Row>
-      <Col span={24}>
+      <Col span={12}>
         <FormItem
           label="Name"
           colon={false}
