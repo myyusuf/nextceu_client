@@ -19,6 +19,8 @@ import addCourseByLevelWindow from './course/add_course_by_level_window';
 import addCourseByDepartmentForm from './course/add_course_by_department_form';
 import addCourseByDepartmentWindow from './course/add_course_by_department_window';
 
+import courseChartWindow from './course/course_chart_window';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -35,6 +37,7 @@ const studentReducer = combineReducers({
   addCourseByLevelWindow,
   addCourseByDepartmentForm,
   addCourseByDepartmentWindow,
+  courseChartWindow,
 });
 
 export default studentReducer;

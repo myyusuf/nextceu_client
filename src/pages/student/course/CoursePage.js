@@ -8,6 +8,7 @@ import Icon from 'antd/lib/icon';
 import CourseList from '../../../components/student/course/CourseList';
 import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
 
+import CourseChartWindow from '../../../components/student/course/CourseChartWindow';
 import AddCourseByLevelWindow from '../../../components/student/course/AddCourseByLevelWindow';
 import AddCourseByDepartmentWindow from '../../../components/student/course/AddCourseByDepartmentWindow';
 
@@ -15,6 +16,7 @@ import './CoursePage.css';
 
 const CoursePage = ({
   student,
+  openCourseChartWindow,
   openAddCourseByLevelWindow,
   openAddCourseByDepartmentWindow,
 }) => {
@@ -40,7 +42,7 @@ const CoursePage = ({
           <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>ACTION</span>
         </div>
         <div style={{ marginTop: 10 }}>
-          <Button type="default">
+          <Button type="default" onClick={() => openCourseChartWindow()}>
             Chart
             <Icon type="layout" style={{ fontSize: 14 }} />
           </Button>
@@ -70,6 +72,7 @@ const CoursePage = ({
         <CourseWindowWrapper />
         <AddCourseByLevelWindow />
         <AddCourseByDepartmentWindow />
+        <CourseChartWindow />
       </div>
     );
   }
@@ -84,6 +87,7 @@ CoursePage.propTypes = {
   student: PropTypes.shape.isRequired,
   openAddCourseByLevelWindow: PropTypes.func.isRequired,
   openAddCourseByDepartmentWindow: PropTypes.func.isRequired,
+  openCourseChartWindow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -102,6 +106,11 @@ const mapDispatchToProps = dispatch => (
     openAddCourseByDepartmentWindow: () => (
       dispatch({
         type: 'EDIT_ADD_COURSE_BY_DEPARTMENT_LOGIC',
+      })
+    ),
+    openCourseChartWindow: () => (
+      dispatch({
+        type: 'SHOW_COURSE_CHART_WINDOW',
       })
     ),
   }

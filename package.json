@@ -23,6 +23,7 @@
   "dependencies": {
     "antd": "^2.12.2",
     "axios": "^0.16.2",
+    "dhtmlx-gantt": "^4.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
