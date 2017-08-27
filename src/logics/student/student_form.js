@@ -13,6 +13,9 @@ const validate = (key, value) => {
     case 'email':
       result = validateEmail(key, value);
       break;
+    case 'gender':
+      result = validateExist(key, value);
+      break;
     case 'level':
       result = validateExist(key, value);
       break;
@@ -57,11 +60,17 @@ const loadStudentFormLogic = createLogic({
       name: {
         value: student.name,
       },
+      gender: {
+        value: student.gender,
+      },
       level: {
-        value: student.level,
+        value: String(student.level),
       },
       email: {
         value: student.email,
+      },
+      birthDate: {
+        value: student.birthDate,
       },
     };
     const validationResult = {};

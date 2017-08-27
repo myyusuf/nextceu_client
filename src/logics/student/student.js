@@ -18,6 +18,9 @@ const validate = (key, value) => {
     case 'email':
       result = validateEmail(key, value);
       break;
+    case 'gender':
+      result = validateExist(key, value);
+      break;
     case 'level':
       result = validateExist(key, value);
       break;
@@ -193,14 +196,14 @@ const saveStudentLogic = createLogic({
 const deleteStudentLogic = createLogic({
   type: 'DELETE_STUDENT_LOGIC',
   process({ getState, action }, dispatch, done) {
-    axios.delete(`${STUDENTS_URL}/${action.student.id}`)
+    axios.delete(`${STUDENTS_URL}/${action.payload.id}`)
       .then(resp => resp.data)
       .then(() => {
         notification.success({
           message: 'Delete Student Success',
           description: 'Success deleting student',
         });
-        dispatch({ type: 'FETCH_STUDENTS' });
+        dispatch({ type: 'FETCH_STUDENTS_LOGIC' });
       })
       .catch((err) => {
         console.error(err);
@@ -238,7 +241,7 @@ const filterStudentsByLevelLogic = createLogic({
   type: 'STUDENT_LEVEL_CHANGED_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'STUDENT_LEVEL_CHANGED', payload: action.payload });
-    dispatch({ type: 'FETCH_STUDENTS' });
+    dispatch({ type: 'FETCH_STUDENTS_LOGIC' });
     done();
   },
 });

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
 import StudentForm from './StudentForm';
+import './StudentWindow.css';
 
 const StudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
   <Modal
@@ -12,6 +13,7 @@ const StudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    wrapClassName="vertical-center-modal"
   >
     <StudentForm />
   </Modal>

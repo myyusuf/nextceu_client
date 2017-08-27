@@ -7,11 +7,13 @@ import Icon from 'antd/lib/icon';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import { PieChart, Pie, Cell } from 'recharts';
+import Modal from 'antd/lib/modal';
 import './StudentDetail.css';
 
+const confirm = Modal.confirm;
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
 
-const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
+const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const pendingCount = courses.filter(course => course.status === 0).length;
@@ -133,7 +135,7 @@ const StudentDetail = ({ student, deleteStudent, editStudent, courses }) => {
         </Row>
         <Row style={{ marginTop: 10 }}>
           <Col span={24}>
-            <Button type="danger" onClick={() => deleteStudent(student)}>
+            <Button type="danger" onClick={() => confirmDelete(student)}>
               Delete Student
             </Button>
           </Col>
@@ -159,7 +161,7 @@ StudentDetail.propTypes = {
       title: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  deleteStudent: PropTypes.func.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
 };
 
@@ -176,10 +178,21 @@ const mapDispatchToProps = dispatch => (
       type: 'LOAD_STUDENT_TO_FORM_LOGIC',
       payload: student,
     }),
-    deleteStudent: student => dispatch({
-      type: 'DELETE_STUDENT_LOGIC',
-      payload: student,
-    }),
+    confirmDelete: student => (
+      confirm({
+        title: `Do you Want to delete student: ${student.name}`,
+        content: 'This action cannot be undone',
+        onOk() {
+          dispatch({
+            type: 'DELETE_STUDENT_LOGIC',
+            payload: student,
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      })
+    ),
   }
 );
 

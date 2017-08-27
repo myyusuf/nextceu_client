@@ -3,8 +3,10 @@ const defaultState = {
   oldSid: {},
   newSid: {},
   name: {},
+  gender: {},
   level: {},
   email: {},
+  birthDate: {},
 };
 
 const studentForm = (state = defaultState, action) => {

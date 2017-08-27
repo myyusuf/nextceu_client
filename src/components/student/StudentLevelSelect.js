@@ -11,10 +11,10 @@ const StudentLevelSelect = ({ value, onSelect }) => (
     onSelect={onSelect}
     value={value}
   >
-    <Option value={1}>Level 1</Option>
-    <Option value={2}>Level 2</Option>
-    <Option value={3}>UKMPPD Test</Option>
-    <Option value={4}>Graduate</Option>
+    <Option value="1">Level 1</Option>
+    <Option value="2">Level 2</Option>
+    <Option value="3">UKMPPD Test</Option>
+    <Option value="4">Graduate</Option>
   </Select>
 );
 
