@@ -6,25 +6,26 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
-import DepartmentLevelSelect from '../../department/DepartmentLevelSelect';
+import DepartmentSelect from '../../department/DepartmentSelect';
 
 const FormItem = Form.Item;
 
-const AddCourseByDepartmentForm = ({ addCourseByDepartmentForm, addCourseByDepartmentFormChanged }) => (
+const AddCourseByDepartmentForm =
+({ addCourseByDepartmentForm, addCourseByDepartmentFormChanged }) => (
   <Form>
-    <Row>
+    <Row gutter={10}>
       <Col span={8}>
         <FormItem
           label="Department"
           colon={false}
-          validateStatus={addCourseByDepartmentForm.level.validateStatus}
-          help={addCourseByDepartmentForm.level.errorMsg}
+          validateStatus={addCourseByDepartmentForm.department.validateStatus}
+          help={addCourseByDepartmentForm.department.errorMsg}
         >
-          <DepartmentLevelSelect
-            value={addCourseByDepartmentForm.level.value}
+          <DepartmentSelect
+            value={addCourseByDepartmentForm.department.value}
             onSelect={(value) => {
               addCourseByDepartmentFormChanged({
-                key: 'level',
+                key: 'department',
                 value,
               });
             }}
@@ -41,27 +42,31 @@ const AddCourseByDepartmentForm = ({ addCourseByDepartmentForm, addCourseByDepar
           <DatePicker
             value={addCourseByDepartmentForm.startDate.value}
             onChange={(date) => {
-              this.handleInputChange('startDate', date);
+              addCourseByDepartmentFormChanged({
+                key: 'startDate',
+                value: date,
+              });
             }}
+            style={{ width: '100%' }}
           />
         </FormItem>
       </Col>
       <Col span={8}>
         <FormItem
-          label="Suffix"
+          label="Title"
           colon={false}
-          validateStatus={addCourseByDepartmentForm.suffix.validateStatus}
-          help={addCourseByDepartmentForm.suffix.errorMsg}
+          validateStatus={addCourseByDepartmentForm.title.validateStatus}
+          help={addCourseByDepartmentForm.title.errorMsg}
         >
           <Input
-            value={addCourseByDepartmentForm.suffix.value}
+            value={addCourseByDepartmentForm.title.value}
             onChange={(e) => {
               addCourseByDepartmentFormChanged({
-                key: 'suffix',
+                key: 'title',
                 value: e.target.value,
               });
             }}
-            placeholder="Suffix"
+            placeholder="Title"
             maxLength={7}
           />
         </FormItem>
@@ -75,13 +80,13 @@ AddCourseByDepartmentForm.propTypes = {
   addCourseByDepartmentForm: PropTypes.shape({
     level: PropTypes.shape.isRequired,
     startDate: PropTypes.shape.isRequired,
-    suffix: PropTypes.shape.isRequired,
+    title: PropTypes.shape.isRequired,
   }).isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    addCourseByDepartmentForm: state.addCourseByDepartmentReducers.addCourseByDepartmentForm,
+    addCourseByDepartmentForm: state.studentReducers.addCourseByDepartmentForm,
   }
 );
 

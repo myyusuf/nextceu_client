@@ -9,18 +9,22 @@ import CourseList from '../../../components/student/course/CourseList';
 import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
 
 import AddCourseByLevelWindow from '../../../components/student/course/AddCourseByLevelWindow';
+import AddCourseByDepartmentWindow from '../../../components/student/course/AddCourseByDepartmentWindow';
 
 import './CoursePage.css';
 
 const CoursePage = ({
   student,
   openAddCourseByLevelWindow,
+  openAddCourseByDepartmentWindow,
 }) => {
   const menu = (
     <Menu
       onClick={({ key }) => {
         if (key === '1') {
           openAddCourseByLevelWindow();
+        } else if (key === '2') {
+          openAddCourseByDepartmentWindow();
         }
       }}
     >
@@ -65,6 +69,7 @@ const CoursePage = ({
 
         <CourseWindowWrapper />
         <AddCourseByLevelWindow />
+        <AddCourseByDepartmentWindow />
       </div>
     );
   }
@@ -78,6 +83,7 @@ const CoursePage = ({
 CoursePage.propTypes = {
   student: PropTypes.shape.isRequired,
   openAddCourseByLevelWindow: PropTypes.func.isRequired,
+  openAddCourseByDepartmentWindow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -91,6 +97,11 @@ const mapDispatchToProps = dispatch => (
     openAddCourseByLevelWindow: () => (
       dispatch({
         type: 'EDIT_ADD_COURSE_BY_LEVEL_LOGIC',
+      })
+    ),
+    openAddCourseByDepartmentWindow: () => (
+      dispatch({
+        type: 'EDIT_ADD_COURSE_BY_DEPARTMENT_LOGIC',
       })
     ),
   }

@@ -5,7 +5,7 @@ import CourseListItem from './CourseListItem';
 
 const CourseList = ({ courses, level, showDetails }) => {
   let componentToRender = <div style={{ marginLeft: 10, color: 'gray', fontWeight: 'bold', fontSize: 11 }}>No Item</div>;
-  if (courses.length > 0) {
+  if (courses.filter(course => course.Department.level === level).length > 0) {
     componentToRender = (
       <ul>
         {

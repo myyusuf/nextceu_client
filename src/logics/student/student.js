@@ -250,6 +250,10 @@ const selectStudentLogic = createLogic({
       type: 'FETCH_COURSES_LOGIC',
       payload: action.payload,
     });
+
+    dispatch({
+      type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+    });
     done();
   },
 });

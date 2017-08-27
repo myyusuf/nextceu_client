@@ -9,6 +9,9 @@ import scoreFormLogics from './course/score_form';
 import addCourseByLevelFormLogics from './course/add_course_by_level_form';
 import addCourseByLevelLogics from './course/add_course_by_level';
 
+import addCourseByDepartmentFormLogics from './course/add_course_by_department_form';
+import addCourseByDepartmentLogics from './course/add_course_by_department';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -19,4 +22,6 @@ export default [
   ...scoreFormLogics,
   ...addCourseByLevelFormLogics,
   ...addCourseByLevelLogics,
+  ...addCourseByDepartmentFormLogics,
+  ...addCourseByDepartmentLogics,
 ];
