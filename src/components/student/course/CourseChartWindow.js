@@ -69,7 +69,7 @@ const CourseChartWindow = ({ visible, onCancel, courses, level }) => {
   };
   return (
     <Modal
-      title="Add Student"
+      title="Taken Departments Chart"
       visible={visible}
       onCancel={onCancel}
       wrapClassName="vertical-center-modal"
