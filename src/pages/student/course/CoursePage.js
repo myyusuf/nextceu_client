@@ -1,12 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import Tag from 'antd/lib/tag';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Button from 'antd/lib/button';
 import Dropdown from 'antd/lib/dropdown';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
-// import Progress from 'antd/lib/progress';
-import CourseListContainer from '../../../containers/student/CourseListWrapper';
+import CourseList from '../../../components/student/course/CourseList';
 import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
 
 import './CoursePage.css';
@@ -43,14 +42,14 @@ const CoursePage = ({ student }) => {
           <span style={{ fontSize: 11, fontWeight: 'bold', color: 'silver' }}>LEVEL 1</span>
         </div>
         <div style={{ marginTop: 10 }}>
-          <CourseListContainer level={1} />
+          <CourseList level={1} />
         </div>
 
         <div style={{ marginTop: 20 }}>
           <span style={{ fontSize: 11, fontWeight: 'bold', color: 'silver' }}>LEVEL 2</span>
         </div>
         <div style={{ marginTop: 10 }}>
-          <CourseListContainer level={2} />
+          <CourseList level={2} />
         </div>
 
         <CourseWindowWrapper />
@@ -64,4 +63,24 @@ const CoursePage = ({ student }) => {
   );
 };
 
-export default CoursePage;
+CoursePage.propTypes = {
+  student: PropTypes.shape.isRequired,
+};
+
+const mapStateToProps = state => (
+  {
+    student: state.studentReducers.student,
+  }
+);
+
+// const mapDispatchToProps = dispatch => (
+//   {
+//   }
+// );
+
+const CoursePageWrapper = connect(
+  mapStateToProps,
+  null,
+)(CoursePage);
+
+export default CoursePageWrapper;

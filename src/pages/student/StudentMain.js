@@ -7,7 +7,7 @@ import Menu from 'antd/lib/menu';
 
 import StudentListPage from './StudentListPage';
 import StudentDetail from '../../components/student/StudentDetail';
-import CoursePageWrapper from '../../containers/student/CoursePageWrapper';
+import CoursePage from '../../pages/student/course/CoursePage';
 import StudentWindow from '../../components/student/StudentWindow';
 
 const StudentMain = ({ level, levelChanged }) => (
@@ -25,6 +25,12 @@ const StudentMain = ({ level, levelChanged }) => (
           <Menu.Item key="2">
             LEVEL 2
           </Menu.Item>
+          <Menu.Item key="3">
+            UKMPPD Test
+          </Menu.Item>
+          <Menu.Item key="4">
+            Graduate
+          </Menu.Item>
         </Menu>
       </Col>
     </Row>
@@ -36,7 +42,7 @@ const StudentMain = ({ level, levelChanged }) => (
         <StudentDetail />
       </Col>
       <Col span={7}>
-        <CoursePageWrapper />
+        <CoursePage />
       </Col>
     </Row>
     <StudentWindow />

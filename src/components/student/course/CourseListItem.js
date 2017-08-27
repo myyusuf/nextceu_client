@@ -24,7 +24,6 @@ const CourseListItem = ({ course, showDetails }) => (
         <Badge className="CourseListItem-status" status="processing" text="On Going" />
       </Col>
     </Row>
-
   </li>
 );
 

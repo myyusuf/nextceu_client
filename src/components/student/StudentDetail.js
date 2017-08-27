@@ -38,12 +38,27 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
   ];
 
   if (student.id) {
+    let studentLevel = '';
+    switch (student.level) {
+      case 1:
+      case 2:
+        studentLevel = `Level ${student.level}`;
+        break;
+      case 3:
+        studentLevel = 'MPPD Test';
+        break;
+      case 4:
+        studentLevel = 'Graduate';
+        break;
+      default:
+        studentLevel = '';
+    }
     return (
       <div className="StudentDetail-container">
         <Row>
           <Col span={24}>
             <span className="StudentDetail-name" onClick={() => editStudent(student)}>{ student.name }</span>
-            <span style={{ marginLeft: 20 }}><Tag>Level 1</Tag></span>
+            <span style={{ marginLeft: 20 }}><Tag>{studentLevel}</Tag></span>
           </Col>
         </Row>
         <Row>
@@ -57,7 +72,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
           <Col span={24}>
             <div className="StudentDetail-contact">
               <span>{ student.email }</span>
-              <span>{ student.phone }</span>
+              <span>{ student.mobilePhone }</span>
             </div>
           </Col>
         </Row>
