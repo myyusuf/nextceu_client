@@ -63,8 +63,10 @@ const parseChartData = (courses) => {
   return result;
 };
 
-const CourseChartWindow = ({ visible, onCancel, courses }) => {
-  const courseCharData = { data: parseChartData(courses) };
+const CourseChartWindow = ({ visible, onCancel, courses, level }) => {
+  const courseCharData = {
+    data: parseChartData(courses.filter(course => course.Department.level === parseInt(level, 10))),
+  };
   return (
     <Modal
       title="Add Student"
@@ -74,7 +76,7 @@ const CourseChartWindow = ({ visible, onCancel, courses }) => {
       footer={[
         <Button size="large" onClick={onCancel}>Close</Button>,
       ]}
-      width="90%"
+      width="95%"
     >
       <div style={{ height: '500' }}>
         <Gantt tasks={courseCharData} />
@@ -87,11 +89,13 @@ CourseChartWindow.propTypes = {
   visible: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   courses: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  level: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     visible: state.studentReducers.courseChartWindow.visible,
+    level: state.studentReducers.courseChartWindow.level,
     courses: state.studentReducers.courses,
   }
 );

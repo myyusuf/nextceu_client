@@ -35,6 +35,17 @@ const CoursePage = ({
     </Menu>
   );
 
+  const chartMenu = (
+    <Menu
+      onClick={({ key }) => {
+        openCourseChartWindow(key);
+      }}
+    >
+      <Menu.Item key="1">Level 1</Menu.Item>
+      <Menu.Item key="2">Level 2</Menu.Item>
+    </Menu>
+  );
+
   if (student.id) {
     return (
       <div className="CoursePage-container">
@@ -42,10 +53,12 @@ const CoursePage = ({
           <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>ACTION</span>
         </div>
         <div style={{ marginTop: 10 }}>
-          <Button type="default" onClick={() => openCourseChartWindow()}>
-            Chart
-            <Icon type="layout" style={{ fontSize: 14 }} />
-          </Button>
+          <Dropdown overlay={chartMenu}>
+            <Button type="default">
+              Chart
+              <Icon type="layout" style={{ fontSize: 14 }} />
+            </Button>
+          </Dropdown>
           <Dropdown overlay={menu}>
             <Button type="primary" style={{ marginLeft: 10 }}>
               Add <Icon type="down" />
@@ -108,9 +121,10 @@ const mapDispatchToProps = dispatch => (
         type: 'EDIT_ADD_COURSE_BY_DEPARTMENT_LOGIC',
       })
     ),
-    openCourseChartWindow: () => (
+    openCourseChartWindow: chartLevel => (
       dispatch({
         type: 'SHOW_COURSE_CHART_WINDOW',
+        payload: chartLevel,
       })
     ),
   }
