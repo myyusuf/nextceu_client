@@ -7,9 +7,9 @@ const Option = Select.Option;
 const DepartmentLevelSelect = ({ value, onSelect }) => (
   <Select
     placeholder="Select Level"
-    style={{ width: 120 }}
     onSelect={onSelect}
     value={value}
+    size="large"
   >
     <Option value={1}>Level 1</Option>
     <Option value={2}>Level 2</Option>

@@ -8,11 +8,22 @@ import Icon from 'antd/lib/icon';
 import CourseList from '../../../components/student/course/CourseList';
 import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
 
+import AddCourseByLevelWindow from '../../../components/student/course/AddCourseByLevelWindow';
+
 import './CoursePage.css';
 
-const CoursePage = ({ student }) => {
+const CoursePage = ({
+  student,
+  openAddCourseByLevelWindow,
+}) => {
   const menu = (
-    <Menu>
+    <Menu
+      onClick={({ key }) => {
+        if (key === '1') {
+          openAddCourseByLevelWindow();
+        }
+      }}
+    >
       <Menu.Item key="1">By Level</Menu.Item>
       <Menu.Item key="2">By Department</Menu.Item>
     </Menu>
@@ -53,6 +64,7 @@ const CoursePage = ({ student }) => {
         </div>
 
         <CourseWindowWrapper />
+        <AddCourseByLevelWindow />
       </div>
     );
   }
@@ -65,6 +77,7 @@ const CoursePage = ({ student }) => {
 
 CoursePage.propTypes = {
   student: PropTypes.shape.isRequired,
+  openAddCourseByLevelWindow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -73,14 +86,19 @@ const mapStateToProps = state => (
   }
 );
 
-// const mapDispatchToProps = dispatch => (
-//   {
-//   }
-// );
+const mapDispatchToProps = dispatch => (
+  {
+    openAddCourseByLevelWindow: () => (
+      dispatch({
+        type: 'EDIT_ADD_COURSE_BY_LEVEL_LOGIC',
+      })
+    ),
+  }
+);
 
 const CoursePageWrapper = connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(CoursePage);
 
 export default CoursePageWrapper;

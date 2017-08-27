@@ -31,8 +31,8 @@ AddCourseByLevelWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.studentrReducers.addCourseByLevelWindow.visible,
-    confirmLoading: state.studentrReducers.addCourseByLevelWindow.confirmLoading,
+    visible: state.studentReducers.addCourseByLevelWindow.visible,
+    confirmLoading: state.studentReducers.addCourseByLevelWindow.confirmLoading,
   }
 );
 

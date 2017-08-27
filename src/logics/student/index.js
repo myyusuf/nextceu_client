@@ -6,6 +6,9 @@ import courseWindowLogics from './course/course_window';
 import scheduleFormLogics from './course/schedule_form';
 import scoreFormLogics from './course/score_form';
 
+import addCourseByLevelFormLogics from './course/add_course_by_level_form';
+import addCourseByLevelLogics from './course/add_course_by_level';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -14,4 +17,6 @@ export default [
   ...courseWindowLogics,
   ...scheduleFormLogics,
   ...scoreFormLogics,
+  ...addCourseByLevelFormLogics,
+  ...addCourseByLevelLogics,
 ];

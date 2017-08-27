@@ -12,7 +12,7 @@ const FormItem = Form.Item;
 
 const AddCourseByLevelForm = ({ addCourseByLevelForm, addCourseByLevelFormChanged }) => (
   <Form>
-    <Row>
+    <Row gutter={10}>
       <Col span={8}>
         <FormItem
           label="Level"
@@ -43,6 +43,7 @@ const AddCourseByLevelForm = ({ addCourseByLevelForm, addCourseByLevelFormChange
             onChange={(date) => {
               this.handleInputChange('startDate', date);
             }}
+            style={{ width: '100%' }}
           />
         </FormItem>
       </Col>

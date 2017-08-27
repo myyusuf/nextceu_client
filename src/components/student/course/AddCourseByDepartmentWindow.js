@@ -31,8 +31,8 @@ AddCourseByDepartmentWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.studentrReducers.addCourseByDepartmentWindow.visible,
-    confirmLoading: state.studentrReducers.addCourseByDepartmentWindow.confirmLoading,
+    visible: state.studentReducers.addCourseByDepartmentWindow.visible,
+    confirmLoading: state.studentReducers.addCourseByDepartmentWindow.confirmLoading,
   }
 );
 
