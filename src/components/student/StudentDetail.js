@@ -17,7 +17,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const pendingCount = courses.filter(course => course.status === 0).length;
-  const problemCount = courses.filter(course => course.status === 4).length;
+  const problemCount = courses.filter(course => course.status === 3).length;
   const data = [
     {
       name: 'On Going',
@@ -120,9 +120,9 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
             </PieChart>
           </Col>
           <Col span={12}>
-            <div style={{ marginTop: 80 }}><Tag color="#5093E1">{onGoingCount}</Tag> On Going </div>
+            <div style={{ marginTop: 80 }}><Tag color="#9DA5BE">{pendingCount}</Tag> Pending </div>
+            <div style={{ marginTop: 5 }}><Tag color="#5093E1">{onGoingCount}</Tag> On Going </div>
             <div style={{ marginTop: 5 }}><Tag color="#50C14E">{completedCount}</Tag> Completed </div>
-            <div style={{ marginTop: 5 }}><Tag color="#9DA5BE">{pendingCount}</Tag> Pending </div>
             <div style={{ marginTop: 5 }}><Tag color="#F65177">{problemCount}</Tag> Problem </div>
           </Col>
         </Row>

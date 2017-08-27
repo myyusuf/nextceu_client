@@ -233,7 +233,23 @@ const selectStudentLogic = createLogic({
   type: 'SELECT_STUDENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'SELECT_STUDENT', payload: action.payload });
-    dispatch({ type: 'FETCH_STUDENT_LOGIC', payload: action.payload });
+    // dispatch({ type: 'FETCH_STUDENT_LOGIC', payload: action.payload });
+    dispatch({
+      type: 'CANCEL_FETCH_STUDENT_LOGIC',
+    });
+    dispatch({
+      type: 'FETCH_STUDENT_LOGIC',
+      payload: action.payload,
+    });
+
+    dispatch({
+      type: 'CANCEL_FETCH_COURSES_LOGIC',
+      payload: action.payload,
+    });
+    dispatch({
+      type: 'FETCH_COURSES_LOGIC',
+      payload: action.payload,
+    });
     done();
   },
 });

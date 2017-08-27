@@ -71,11 +71,6 @@ const mapDispatchToProps = dispatch => (
         type: 'SELECT_STUDENT_LOGIC',
         payload: student,
       });
-      // dispatch(cancelFetchStudent());
-      // dispatch(fetchStudent(student.id));
-      //
-      // dispatch(cancelFetchCourses());
-      // dispatch(fetchCourses(student.id));
     },
     fetchStudents: () => {
       dispatch({

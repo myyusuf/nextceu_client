@@ -72,6 +72,7 @@ const saveAddCourseByLevelLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const addCourseByLevelForm = _.mapValues({ ...getState().studentReducers.addCourseByLevelForm }, 'value');
+    addCourseByLevelForm.formType = 'LEVEL';
     dispatch({ type: 'SHOW_ADD_COURSE_BY_LEVEL_WINDOW_CONFIRM_LOADING' });
 
     axios.post(`${STUDENTS_URL}/${getState().studentReducers.student.id}/courses`, addCourseByLevelForm)

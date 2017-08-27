@@ -44,11 +44,6 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCourses: () => {
-      dispatch({
-        type: 'FETCH_COURSES_LOGIC',
-      });
-    },
     showDetails: course => (
       dispatch({
         type: 'LOAD_COURSE_TO_FORM_LOGIC',

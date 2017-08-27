@@ -41,7 +41,10 @@ const AddCourseByLevelForm = ({ addCourseByLevelForm, addCourseByLevelFormChange
           <DatePicker
             value={addCourseByLevelForm.startDate.value}
             onChange={(date) => {
-              this.handleInputChange('startDate', date);
+              addCourseByLevelFormChanged({
+                key: 'startDate',
+                value: date,
+              });
             }}
             style={{ width: '100%' }}
           />

@@ -55,7 +55,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
       </Col>
     </Row>
     <Row>
-      <Col span={24}>
+      <Col span={12}>
         <FormItem
           label="Level"
           colon={false}

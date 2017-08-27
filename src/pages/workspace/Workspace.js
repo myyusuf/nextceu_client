@@ -3,7 +3,6 @@ import Layout, { Header, Content } from 'antd/lib/layout';
 import { Link } from 'react-router-dom';
 import './Workspace.css';
 import StudentMain from '../student/StudentMain';
-// import SeminarMain from '../seminar/SeminarMain';
 // import HospitalMain from '../hospital/HospitalMain';
 // import SeminarMain from '../seminar/SeminarMain';
 // import UploadList from '../../components/upload/UploadList';
@@ -17,6 +16,7 @@ const Workspace = () =>
     </Header>
     <Content className="Workspace-content">
       <StudentMain />
+      {/*<SettingsMain />*/}
     </Content>
   </Layout>
 );

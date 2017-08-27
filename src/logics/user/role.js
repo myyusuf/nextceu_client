@@ -61,7 +61,7 @@ const fetchAllRolesLogic = createLogic({
         console.error(err);
         notification.error({
           message: 'Fetch roles error',
-          description: 'Please check internet connection.',
+          description: 'Connection error.',
         });
       })
       .then(() => done());
