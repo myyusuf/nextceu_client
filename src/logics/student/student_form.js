@@ -1,5 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
+import moment from 'moment';
 import { validateLength, validateEmail, validateExist } from '../../utils/validation';
 
 const validate = (key, value) => {
@@ -70,7 +71,28 @@ const loadStudentFormLogic = createLogic({
         value: student.email,
       },
       birthDate: {
-        value: student.birthDate,
+        value: moment(student.birthDate),
+      },
+      address: {
+        value: student.address,
+      },
+      phone: {
+        value: student.phone,
+      },
+      mobilePhone: {
+        value: student.mobilePhone,
+      },
+      enrollYear: {
+        value: student.enrollYear,
+      },
+      graduateYear: {
+        value: student.graduateYear,
+      },
+      certificateNumber: {
+        value: student.certificateNumber,
+      },
+      ipk: {
+        value: student.ipk,
       },
     };
     const validationResult = {};

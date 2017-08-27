@@ -7,6 +7,13 @@ const defaultState = {
   level: {},
   email: {},
   birthDate: {},
+  address: {},
+  phone: {},
+  mobilePhone: {},
+  enrollYear: {},
+  graduateYear: {},
+  certificateNumber: {},
+  ipk: {},
 };
 
 const studentForm = (state = defaultState, action) => {

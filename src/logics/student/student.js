@@ -44,6 +44,7 @@ const fetchStudentsLogic = createLogic({
       .then((students) => {
         dispatch({ type: 'STUDENT_LOADING_FINISH' });
         dispatch({ type: 'FETCH_STUDENTS_SUCCESS', payload: students });
+        dispatch({ type: 'CLEAR_STUDENT' });
       })
       .catch((err) => {
         console.error(err);

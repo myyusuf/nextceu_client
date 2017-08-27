@@ -5,6 +5,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import InputNumber from 'antd/lib/input-number';
 import Radio from 'antd/lib/radio';
 import Tabs from 'antd/lib/tabs';
 import DatePicker from 'antd/lib/date-picker';
@@ -13,7 +14,6 @@ import StudentLevelSelect from './StudentLevelSelect';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
-
 
 const StudentForm = ({ studentForm, studentFormChanged }) => (
   <Form style={{ marginTop: -5 }}>
@@ -168,8 +168,155 @@ const StudentForm = ({ studentForm, studentFormChanged }) => (
           </Col>
         </Row>
       </TabPane>
-      <TabPane tab="Contact" key="3">Content of Tab Pane 3</TabPane>
-      <TabPane tab="Education" key="4">Content of Tab Pane 3</TabPane>
+      <TabPane tab="Contact" key="3">
+        <Row>
+          <Col span={24}>
+            <FormItem
+              label="Address"
+              colon={false}
+              validateStatus={studentForm.address.validateStatus}
+              help={studentForm.address.errorMsg}
+            >
+              <Input
+                value={studentForm.address.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'address',
+                    value: e.target.value,
+                  });
+                }}
+                placeholder="Address"
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row gutter={15}>
+          <Col span={12}>
+            <FormItem
+              label="Landline"
+              colon={false}
+              validateStatus={studentForm.phone.validateStatus}
+              help={studentForm.phone.errorMsg}
+            >
+              <Input
+                value={studentForm.phone.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'phone',
+                    value: e.target.value,
+                  });
+                }}
+                placeholder="Landline"
+              />
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem
+              label="Mobile"
+              colon={false}
+              validateStatus={studentForm.mobilePhone.validateStatus}
+              help={studentForm.mobilePhone.errorMsg}
+            >
+              <Input
+                value={studentForm.mobilePhone.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'mobilePhone',
+                    value: e.target.value,
+                  });
+                }}
+                placeholder="Mobile"
+              />
+            </FormItem>
+          </Col>
+        </Row>
+      </TabPane>
+      <TabPane tab="Education" key="4">
+        <Row gutter={15}>
+          <Col span={12}>
+            <FormItem
+              label="Enroll Year"
+              colon={false}
+              validateStatus={studentForm.enrollYear.validateStatus}
+              help={studentForm.enrollYear.errorMsg}
+            >
+              <InputNumber
+                min={2000}
+                max={2099}
+                value={studentForm.enrollYear.value}
+                onChange={(value) => {
+                  studentFormChanged({
+                    key: 'enrollYear',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem
+              label="Graduate Year"
+              colon={false}
+              validateStatus={studentForm.graduateYear.validateStatus}
+              help={studentForm.graduateYear.errorMsg}
+            >
+              <InputNumber
+                min={2000}
+                max={2099}
+                value={studentForm.graduateYear.value}
+                onChange={(value) => {
+                  studentFormChanged({
+                    key: 'graduateYear',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row gutter={15}>
+          <Col span={12}>
+            <FormItem
+              label="Certificate Number"
+              colon={false}
+              validateStatus={studentForm.certificateNumber.validateStatus}
+              help={studentForm.certificateNumber.errorMsg}
+            >
+              <Input
+                value={studentForm.certificateNumber.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'certificateNumber',
+                    value: e.target.value,
+                  });
+                }}
+                placeholder="Certificate Number"
+              />
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem
+              label="IPK"
+              colon={false}
+              validateStatus={studentForm.ipk.validateStatus}
+              help={studentForm.ipk.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={4}
+                step={0.1}
+                value={studentForm.ipk.value}
+                onChange={(value) => {
+                  studentFormChanged({
+                    key: 'ipk',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+      </TabPane>
     </Tabs>
   </Form>
 );
