@@ -1,6 +1,7 @@
 const defaultState = {
   visible: false,
   level: 1,
+  weekly: true,
 };
 
 const courseChartWindow = (state = defaultState, action) => {
@@ -10,6 +11,9 @@ const courseChartWindow = (state = defaultState, action) => {
     }
     case 'HIDE_COURSE_CHART_WINDOW': {
       return { ...state, visible: false };
+    }
+    case 'CHANGE_WEEKLY_CHART_WINDOW': {
+      return { ...state, weekly: action.payload };
     }
     default:
       return state;

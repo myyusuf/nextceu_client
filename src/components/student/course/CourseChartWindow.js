@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
 import Button from 'antd/lib/button';
+import Switch from 'antd/lib/switch';
 import moment from 'moment';
 import Gantt from '../../chart/Gantt';
 
@@ -63,7 +64,7 @@ const parseChartData = (courses) => {
   return result;
 };
 
-const CourseChartWindow = ({ visible, onCancel, courses, level }) => {
+const CourseChartWindow = ({ visible, onCancel, courses, level, weekly, changeWeekly }) => {
   const courseCharData = {
     data: parseChartData(courses.filter(course => course.Department.level === parseInt(level, 10))),
   };
@@ -74,12 +75,18 @@ const CourseChartWindow = ({ visible, onCancel, courses, level }) => {
       onCancel={onCancel}
       wrapClassName="vertical-center-modal"
       footer={[
+        <span style={{ marginRight: 10 }}>Weekly</span>,
+        <Switch
+          checked={weekly}
+          style={{ marginRight: 10 }}
+          onChange={checked => changeWeekly(checked)}
+        />,
         <Button size="large" onClick={onCancel}>Close</Button>,
       ]}
       width="95%"
     >
       <div style={{ height: '500' }}>
-        <Gantt tasks={courseCharData} />
+        <Gantt tasks={courseCharData} weekly={weekly} />
       </div>
     </Modal>
   );
@@ -90,12 +97,15 @@ CourseChartWindow.propTypes = {
   onCancel: PropTypes.func.isRequired,
   courses: PropTypes.arrayOf(PropTypes.shape).isRequired,
   level: PropTypes.string.isRequired,
+  weekly: PropTypes.bool.isRequired,
+  changeWeekly: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     visible: state.studentReducers.courseChartWindow.visible,
     level: state.studentReducers.courseChartWindow.level,
+    weekly: state.studentReducers.courseChartWindow.weekly,
     courses: state.studentReducers.courses,
   }
 );
@@ -105,6 +115,12 @@ const mapDispatchToProps = dispatch => (
     onCancel: () => {
       dispatch({
         type: 'HIDE_COURSE_CHART_WINDOW',
+      });
+    },
+    changeWeekly: (value) => {
+      dispatch({
+        type: 'CHANGE_WEEKLY_CHART_WINDOW',
+        payload: value,
       });
     },
   }
