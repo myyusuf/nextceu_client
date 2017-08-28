@@ -69,7 +69,9 @@ const saveCourseLogic = createLogic({
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const courseForm = { ...getState().studentReducers.courseForm };
+    const courseForm = {
+      ...getState().studentReducers.courseForm,
+    };
     const validationResult = {};
     const keys = _.keys(courseForm);
     for (let i = 0; i < keys.length; i += 1) {
@@ -94,7 +96,10 @@ const saveCourseLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const courseForm = _.mapValues({ ...getState().studentReducers.courseForm }, 'value');
+    const courseForm = _.mapValues({
+      ...getState().studentReducers.courseForm,
+      ...getState().studentReducers.scoreForm,
+    }, 'value');
     dispatch({ type: 'SHOW_COURSE_WINDOW_CONFIRM_LOADING' });
 
     const student = getState().studentReducers.student;
@@ -137,7 +142,7 @@ const editCourseLogic = createLogic({
   type: 'EDIT_COURSE_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_COURSE_FORM' });
-    dispatch({ type: 'CLEAR_SCHEDULE_FORM' });
+    dispatch({ type: 'CLEAR_SCORE_FORM' });
     dispatch({ type: 'SHOW_COURSE_WINDOW', payload: action.payload });
     done();
   },
@@ -147,7 +152,7 @@ const cancelAddCourseLogic = createLogic({
   type: 'CANCEL_EDIT_COURSE_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_COURSE_FORM' });
-    dispatch({ type: 'CLEAR_SCHEDULE_FORM' });
+    dispatch({ type: 'CLEAR_SCORE_FORM' });
     dispatch({ type: 'HIDE_COURSE_WINDOW' });
     done();
   },

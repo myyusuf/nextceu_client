@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'antd/lib/form';
@@ -8,133 +8,134 @@ import InputNumber from 'antd/lib/input-number';
 
 const FormItem = Form.Item;
 
-class ScoreForm extends Component {
-
-  handleInputChange = (name, value) => {
-    this.props.scoreFormChanged({
-      key: name,
-      value,
-    });
-  }
-
-  render() {
-    const {
-      preTest,
-      research,
-      weeklyDiscussion,
-      test,
-      postTest,
-    } = this.props.scoreForm;
-    return (
-      <Form>
+const ScoreForm = ({ scoreForm, scoreFormChanged }) => (
+  <Form>
+    <Row>
+      <Col span={24}>
         <Row>
-          <Col span={24}>
-            <Row>
-              <Col span={6}>
-                <FormItem
-                  label="Pre-Test"
-                  colon={false}
-                  validateStatus={preTest.validateStatus}
-                  help={preTest.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('preTest', e.target.value);
-                    }}
-                    style={{ width: 250 }}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                <FormItem
-                  label="Research"
-                  colon={false}
-                  validateStatus={research.validateStatus}
-                  help={research.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('research', e.target.value);
-                    }}
-                    style={{ width: 250 }}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                <FormItem
-                  label="Weekly Discussion"
-                  colon={false}
-                  validateStatus={weeklyDiscussion.validateStatus}
-                  help={weeklyDiscussion.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('weeklyDiscussion', e.target.value);
-                    }}
-                    style={{ width: 250 }}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                <FormItem
-                  label="Test"
-                  colon={false}
-                  validateStatus={test.validateStatus}
-                  help={test.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('test', e.target.value);
-                    }}
-                    style={{ width: 250 }}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                <FormItem
-                  label="Post-Test"
-                  colon={false}
-                  validateStatus={postTest.validateStatus}
-                  help={postTest.errorMsg}
-                >
-                  <InputNumber
-                    min={0}
-                    max={10}
-                    step={0.1}
-                    onChange={(e) => {
-                      this.handleInputChange('postTest', e.target.value);
-                    }}
-                    style={{ width: 250 }}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
+          <Col span={6}>
+            <FormItem
+              label="Pre-Test"
+              colon={false}
+              validateStatus={scoreForm.preTest.validateStatus}
+              help={scoreForm.preTest.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={scoreForm.preTest.value}
+                onChange={(value) => {
+                  scoreFormChanged({
+                    key: 'preTest',
+                    value,
+                  });
+                }}
+                style={{ width: 250 }}
+              />
+            </FormItem>
           </Col>
         </Row>
-      </Form>
-    );
-  }
-}
+        <Row>
+          <Col span={6}>
+            <FormItem
+              label="Research"
+              colon={false}
+              validateStatus={scoreForm.research.validateStatus}
+              help={scoreForm.research.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={scoreForm.research.value}
+                onChange={(value) => {
+                  scoreFormChanged({
+                    key: 'research',
+                    value,
+                  });
+                }}
+                style={{ width: 250 }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            <FormItem
+              label="Weekly Discussion"
+              colon={false}
+              validateStatus={scoreForm.weeklyDiscussion.validateStatus}
+              help={scoreForm.weeklyDiscussion.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={scoreForm.weeklyDiscussion.value}
+                onChange={(value) => {
+                  scoreFormChanged({
+                    key: 'weeklyDiscussion',
+                    value,
+                  });
+                }}
+                style={{ width: 250 }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            <FormItem
+              label="Test"
+              colon={false}
+              validateStatus={scoreForm.test.validateStatus}
+              help={scoreForm.test.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={scoreForm.test.value}
+                onChange={(value) => {
+                  scoreFormChanged({
+                    key: 'test',
+                    value,
+                  });
+                }}
+                style={{ width: 250 }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            <FormItem
+              label="Post-Test"
+              colon={false}
+              validateStatus={scoreForm.postTest.validateStatus}
+              help={scoreForm.postTest.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={scoreForm.postTest.value}
+                onChange={(value) => {
+                  scoreFormChanged({
+                    key: 'postTest',
+                    value,
+                  });
+                }}
+                style={{ width: 250 }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
+  </Form>
+);
 
 ScoreForm.propTypes = {
   scoreFormChanged: PropTypes.func.isRequired,
@@ -155,10 +156,10 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    scoreFormChanged: (score) => {
+    scoreFormChanged: (payload) => {
       dispatch({
-        type: 'SCORE_FORM_CHANGED',
-        payload: score,
+        type: 'SCORE_FORM_CHANGED_LOGIC',
+        payload,
       });
     },
   }

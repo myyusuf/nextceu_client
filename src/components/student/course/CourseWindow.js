@@ -37,10 +37,10 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       <TabPane tab="Schedules" key="2">
         <ScheduleForm />
       </TabPane>
-      {/*<TabPane tab="Scores" key="3">
+      <TabPane tab="Scores" key="3">
         <ScoreForm />
       </TabPane>
-      <TabPane tab="Seminars" key="4">
+      {/*<TabPane tab="Seminars" key="4">
         <SeminarForm />
       </TabPane>
       <TabPane tab="Problems" key="5"></TabPane>*/}

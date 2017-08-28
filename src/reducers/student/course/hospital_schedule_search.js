@@ -1,6 +1,8 @@
+import moment from 'moment';
+
 const defaultState = {
   department: null,
-  dateRange: [new Date(), new Date()],
+  dateRange: [moment(), moment()],
   loading: false,
 };
 

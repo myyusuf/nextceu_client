@@ -15,6 +15,7 @@ const HospitalScheduleWindow = ({
     okText="Save"
     onOk={onOk}
     onCancel={onCancel}
+    width={600}
   >
     <HospitalScheduleForm />
   </Modal>

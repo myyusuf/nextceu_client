@@ -2,7 +2,6 @@ import studentLogics from './student';
 import studentFormLogics from './student_form';
 import courseLogics from './course/course';
 import courseFormLogics from './course/course_form';
-import scheduleFormLogics from './course/schedule_form';
 import scoreFormLogics from './course/score_form';
 
 import addCourseByLevelFormLogics from './course/add_course_by_level_form';
@@ -18,7 +17,6 @@ export default [
   ...studentFormLogics,
   ...courseLogics,
   ...courseFormLogics,
-  ...scheduleFormLogics,
   ...scoreFormLogics,
   ...addCourseByLevelFormLogics,
   ...addCourseByLevelLogics,

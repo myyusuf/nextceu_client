@@ -1,5 +1,4 @@
 const defaultState = {
-  id: {},
   preTest: {},
   research: {},
   weeklyDiscussion: {},

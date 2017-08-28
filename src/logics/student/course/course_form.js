@@ -126,6 +126,8 @@ const loadCourseToFormLogic = createLogic({
     dispatch({ type: 'LOAD_COURSE', payload: validationResult });
 
     dispatch({ type: 'HOSPITAL_SCHEDULE_DEPARTMENT_CHANGED', payload: course.Department.id });
+
+    dispatch({ type: 'LOAD_SCORE_TO_FORM_LOGIC', payload: course.Score });
     done();
   },
 });

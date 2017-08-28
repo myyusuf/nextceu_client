@@ -26,16 +26,16 @@ class HospitalScheduleForm extends Component {
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={8}>
+          <Col span={12}>
             <RangePicker
-              value={dateRange.value}
+              value={dateRange}
               onChange={(date) => {
                 dateRangeChanged(date);
               }}
               style={{ width: '100%' }}
             />
           </Col>
-          <Col span={16}>
+          <Col span={12}>
             <span>
               <Button
                 shape="circle"
