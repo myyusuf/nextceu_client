@@ -71,7 +71,7 @@ const loadStudentFormLogic = createLogic({
         value: student.email,
       },
       birthDate: {
-        value: moment(student.birthDate),
+        value: student.birthDate ? moment(student.birthDate) : null,
       },
       address: {
         value: student.address,

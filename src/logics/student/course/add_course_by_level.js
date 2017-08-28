@@ -79,7 +79,10 @@ const saveAddCourseByLevelLogic = createLogic({
       .then(() => {
         dispatch({ type: 'HIDE_ADD_COURSE_BY_LEVEL_WINDOW_CONFIRM_LOADING' });
         dispatch({ type: 'CANCEL_EDIT_ADD_COURSE_BY_LEVEL_LOGIC' });
-        dispatch({ type: 'FETCH_ADD_COURSE_BY_LEVELS_LOGIC' });
+        dispatch({
+          type: 'FETCH_COURSES_LOGIC',
+          payload: getState().studentReducers.student,
+        });
         notification.success({
           message: 'Create courses success',
           description: 'Success saving courses',
