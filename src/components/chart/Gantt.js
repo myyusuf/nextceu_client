@@ -35,6 +35,7 @@ export default class Gantt extends Component {
     }
 
     gantt.init(this.ganttContainer);
+    gantt.clearAll();
     gantt.parse(this.props.tasks);
   }
 
@@ -56,6 +57,7 @@ export default class Gantt extends Component {
           {unit:"day", step:1, date:"%D" }
         ];
       }
+      gantt.clearAll();
       gantt.clearAll();
       gantt.parse(nextProps.tasks);
     } catch (err) {
