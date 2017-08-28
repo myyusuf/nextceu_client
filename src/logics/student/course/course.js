@@ -61,8 +61,8 @@ const fetchCourseLogic = createLogic({
   },
 });
 
-const saveCourseFormLogic = createLogic({
-  type: 'SAVE_COURSE_FORM_LOGIC',
+const saveCourseLogic = createLogic({
+  type: 'SAVE_COURSE_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
@@ -91,14 +91,16 @@ const saveCourseFormLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const courseForm = _.mapValues({ ...getState().courseReducers.courseForm }, 'value');
+    const courseForm = _.mapValues({ ...getState().studentReducers.courseForm }, 'value');
     dispatch({ type: 'SHOW_COURSE_WINDOW_CONFIRM_LOADING' });
+
+    const student = getState().studentReducers.student;
 
     axios.put(`${COURSES_URL}/${courseForm.id}`, courseForm)
       .then(() => {
         dispatch({ type: 'HIDE_COURSE_WINDOW_CONFIRM_LOADING' });
         dispatch({ type: 'CANCEL_EDIT_COURSE_LOGIC' });
-        dispatch({ type: 'FETCH_COURSES_LOGIC' });
+        dispatch({ type: 'FETCH_COURSES_LOGIC', payload: student });
         notification.success({
           message: 'Update course success',
           description: 'Success saving course',
@@ -151,7 +153,7 @@ const cancelAddCourseLogic = createLogic({
 export default [
   fetchCoursesLogic,
   fetchCourseLogic,
-  saveCourseFormLogic,
+  saveCourseLogic,
   editCourseLogic,
   cancelAddCourseLogic,
 ];
