@@ -11,8 +11,17 @@ import SeminarForm from './SeminarForm';
 import HospitalScheduleWindow from './HospitalScheduleWindow';
 
 const TabPane = Tabs.TabPane;
+const confirm = Modal.confirm;
 
-const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
+const CourseWindow = ({
+  title,
+  visible,
+  onOk,
+  onCancel,
+  confirmLoading,
+  confirmDelete,
+  courseId,
+}) => (
   <Modal
     title={title}
     visible={visible}
@@ -23,7 +32,7 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
     onCancel={onCancel}
     width="700"
     footer={[
-      <Button key="delete" type="danger" size="large" onClick={onCancel}>Delete</Button>,
+      <Button key="delete" type="danger" size="large" onClick={() => confirmDelete(title, courseId)}>Delete</Button>,
       <Button key="back" size="large" onClick={onCancel}>Cancel</Button>,
       <Button key="save" type="primary" size="large" loading={confirmLoading} onClick={onOk}>
         Save
@@ -56,11 +65,14 @@ CourseWindow.propTypes = {
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
+  courseId: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     title: state.studentReducers.courseWindow.title,
+    courseId: state.studentReducers.courseForm.id.value,
     visible: state.studentReducers.courseWindow.visible,
     confirmLoading: state.studentReducers.courseWindow.confirmLoading,
   }
@@ -78,6 +90,21 @@ const mapDispatchToProps = dispatch => (
         type: 'SAVE_COURSE_LOGIC',
       });
     },
+    confirmDelete: (title, courseId) => (
+      confirm({
+        title: `Do you Want to delete course: ${title}`,
+        content: 'This action cannot be undone',
+        onOk() {
+          dispatch({
+            type: 'DELETE_COURSE_LOGIC',
+            payload: { id: courseId },
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      })
+    ),
   }
 );
 

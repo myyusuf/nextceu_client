@@ -64,7 +64,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
         <Row>
           <Col span={24}>
             <div style={{ fontWeight: 'bold', fontSize: 15 }}>
-              <span>{ student.oldSid } { student.newSid }</span>
+              <span>{ student.oldSid } - { student.newSid }</span>
             </div>
           </Col>
         </Row>

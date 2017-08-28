@@ -158,10 +158,42 @@ const cancelAddCourseLogic = createLogic({
   },
 });
 
+const deleteCourseLogic = createLogic({
+  type: 'DELETE_COURSE_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    axios.delete(`${COURSES_URL}/${action.payload.id}`)
+      .then(resp => resp.data)
+      .then(() => {
+        notification.success({
+          message: 'Delete course success',
+          description: 'Success deleting role',
+        });
+
+        dispatch({
+          type: 'CANCEL_EDIT_COURSE_LOGIC',
+        });
+
+        dispatch({
+          type: 'FETCH_COURSES_LOGIC',
+          payload: getState().studentReducers.student,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Delete course error',
+          description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 export default [
   fetchCoursesLogic,
   fetchCourseLogic,
   saveCourseLogic,
   editCourseLogic,
   cancelAddCourseLogic,
+  deleteCourseLogic,
 ];

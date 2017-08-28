@@ -22,7 +22,7 @@ class StudentList extends Component {
                 onClick={() => this.props.onItemClick(student)}
               >
                 <span className="StudentList-item-text">{student.name}</span>
-                <span className="StudentList-item-sub-text">{student.oldSid} {student.newSid}</span>
+                <span className="StudentList-item-sub-text">{student.oldSid} - {student.newSid}</span>
               </li>
             ))}
           </ul>
