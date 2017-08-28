@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
-import { validateLength } from '../../../utils/validation';
+import { validateLength, validateArrayNotEmpty } from '../../../utils/validation';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
@@ -13,6 +13,9 @@ const validate = (key, value) => {
   switch (key) {
     case 'title':
       result = validateLength(key, value, 3);
+      break;
+    case 'planDate':
+      result = validateArrayNotEmpty(key, value);
       break;
     default:
       break;

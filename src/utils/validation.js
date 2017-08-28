@@ -46,6 +46,19 @@ export const validateExist = (name, value) => {
   };
 };
 
+export const validateArrayNotEmpty = (name, value) => {
+  if (value !== undefined && value !== null && value.length > 0) {
+    return {
+      validateStatus: 'success',
+      errorMsg: null,
+    };
+  }
+  return {
+    validateStatus: 'error',
+    errorMsg: `${_.startCase(name)} is required`,
+  };
+};
+
 export const validateLength = (name, value, minimumLength) => {
   if (value && value.trim().length > 0) {
     if (value.trim().length < minimumLength) {

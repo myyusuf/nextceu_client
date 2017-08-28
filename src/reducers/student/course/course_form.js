@@ -2,6 +2,21 @@ const defaultState = {
   id: {},
   title: {},
   completion: { value: 0 },
+
+  planDate: {},
+  realStartDate: {},
+  realEndDate: {},
+  planDate1: {},
+  realStartDate1: {},
+  realEndDate1: {},
+  planDate2: {},
+  realStartDate2: {},
+  realEndDate2: {},
+  planDate3: {},
+  realStartDate3: {},
+  realEndDate3: {},
+  hospital1: {},
+  clinic: {},
 };
 
 const courseForm = (state = defaultState, action) => {
