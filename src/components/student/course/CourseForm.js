@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
@@ -10,71 +11,64 @@ const Option = Select.Option;
 
 const FormItem = Form.Item;
 
-class CourseForm extends Component {
-
-  handleInputChange = (name, value) => {
-    this.props.courseFormChanged({
-      key: name,
-      value,
-    });
-  }
-
-  render() {
-    const { title, completion } = this.props.courseForm;
-    return (
-      <Form>
+const CourseForm = ({ courseForm, courseFormChanged }) => (
+  <Form>
+    <Row>
+      <Col span={24}>
         <Row>
-          <Col span={24}>
-            <Row>
-              <Col span={12}>
-                <FormItem
-                  label="Title"
-                  colon={false}
-                  validateStatus={title.validateStatus}
-                  help={title.errorMsg}
-                >
-                  <Input
-                    value={title.value}
-                    onChange={(e) => {
-                      this.handleInputChange('title', e.target.value);
-                    }}
-                    placeholder="Title"
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={12}>
-                <FormItem
-                  label="Completion"
-                  colon={false}
-                  validateStatus={completion.validateStatus}
-                  help={completion.errorMsg}
-                >
-                  <Select
-                    defaultValue="0"
-                    value={completion.value}
-                    style={{ width: 120 }}
-                    onChange={(value, label) => {
-                      this.handleInputChange('completion', value);
-                    }}
-                  >
-                    <Option value={0}>0 %</Option>
-                    <Option value={25}>25 %</Option>
-                    <Option value={50}>50 %</Option>
-                    <Option value={75}>75 %</Option>
-                    <Option value={100}>100 %</Option>
-                  </Select>
-                </FormItem>
-              </Col>
-            </Row>
+          <Col span={12}>
+            <FormItem
+              label="Title"
+              colon={false}
+              validateStatus={courseForm.title.validateStatus}
+              help={courseForm.title.errorMsg}
+            >
+              <Input
+                value={courseForm.title.value}
+                onChange={(e) => {
+                  courseFormChanged({
+                    key: 'title',
+                    value: e.target.value,
+                  });
+                }}
+                placeholder="Title"
+              />
+            </FormItem>
           </Col>
         </Row>
-      </Form>
-    );
-  }
-}
+
+        <Row>
+          <Col span={12}>
+            <FormItem
+              label="Completion"
+              colon={false}
+              validateStatus={courseForm.completion.validateStatus}
+              help={courseForm.completion.errorMsg}
+            >
+              <Select
+                defaultValue="0"
+                value={courseForm.completion.value}
+                style={{ width: 120 }}
+                onChange={(value) => {
+                  courseFormChanged({
+                    key: 'completion',
+                    value,
+                  });
+                }}
+              >
+                <Option value={0}>0 %</Option>
+                <Option value={25}>25 %</Option>
+                <Option value={50}>50 %</Option>
+                <Option value={75}>75 %</Option>
+                <Option value={100}>100 %</Option>
+              </Select>
+            </FormItem>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
+  </Form>
+);
 
 CourseForm.propTypes = {
   courseFormChanged: PropTypes.func.isRequired,
@@ -84,4 +78,26 @@ CourseForm.propTypes = {
   }).isRequired,
 };
 
-export default CourseForm;
+const mapStateToProps = state => (
+  {
+    courseForm: state.studentReducers.courseForm,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    courseFormChanged: (payload) => {
+      dispatch(dispatch({
+        type: 'COURSE_FORM_CHANGED_LOGIC',
+        payload,
+      }));
+    },
+  }
+);
+
+const CourseFormWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CourseForm);
+
+export default CourseFormWrapper;
