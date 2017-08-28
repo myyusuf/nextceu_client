@@ -8,6 +8,7 @@ import CourseForm from './CourseForm';
 import ScheduleForm from './ScheduleForm';
 import ScoreForm from './ScoreForm';
 import SeminarForm from './SeminarForm';
+import HospitalScheduleWindow from './HospitalScheduleWindow';
 
 const TabPane = Tabs.TabPane;
 
@@ -44,6 +45,8 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       </TabPane>
       <TabPane tab="Problems" key="5"></TabPane>*/}
     </Tabs>
+
+    <HospitalScheduleWindow />
   </Modal>
 );
 

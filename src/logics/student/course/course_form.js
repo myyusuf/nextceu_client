@@ -125,7 +125,7 @@ const loadCourseToFormLogic = createLogic({
     dispatch({ type: 'EDIT_COURSE_LOGIC', payload: { title: `${course.title} - ${course.Department.name}` } });
     dispatch({ type: 'LOAD_COURSE', payload: validationResult });
 
-    // dispatch({ type: 'LOAD_SCHEDULE_TO_FORM', payload: course });
+    dispatch({ type: 'HOSPITAL_SCHEDULE_DEPARTMENT_CHANGED', payload: course.Department.id });
     done();
   },
 });

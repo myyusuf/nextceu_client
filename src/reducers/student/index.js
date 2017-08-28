@@ -21,6 +21,10 @@ import addCourseByDepartmentWindow from './course/add_course_by_department_windo
 
 import courseChartWindow from './course/course_chart_window';
 
+import hospitalSchedules from './course/hospital_schedules';
+import hospitalScheduleSearch from './course/hospital_schedule_search';
+import hospitalScheduleWindow from './course/hospital_schedule_window';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -38,6 +42,9 @@ const studentReducer = combineReducers({
   addCourseByDepartmentForm,
   addCourseByDepartmentWindow,
   courseChartWindow,
+  hospitalSchedules,
+  hospitalScheduleSearch,
+  hospitalScheduleWindow,
 });
 
 export default studentReducer;

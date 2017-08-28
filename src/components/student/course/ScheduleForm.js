@@ -16,7 +16,7 @@ const InputGroup = Input.Group;
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 
-const ScheduleForm = ({ scheduleForm, scheduleFormChanged }) => {
+const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleWindow }) => {
   const {
     planDate,
     realStartDate,
@@ -187,7 +187,11 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged }) => {
                         />
                       </Col>
                       <Col span={8}>
-                        <Button icon="select" style={{ height: 32 }}></Button>
+                        <Button
+                          icon="select"
+                          style={{ height: 32 }}
+                          onClick={() => showHospitalScheduleWindow()}
+                        />
                       </Col>
                     </InputGroup>
 
@@ -359,6 +363,7 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged }) => {
 
 ScheduleForm.propTypes = {
   scheduleFormChanged: PropTypes.func.isRequired,
+  showHospitalScheduleWindow: PropTypes.func.isRequired,
   scheduleForm: PropTypes.shape({
     planDate: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     realStartDate: PropTypes.instanceOf(Date),
@@ -389,6 +394,11 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'COURSE_FORM_CHANGED_LOGIC',
         payload: schedule,
+      });
+    },
+    showHospitalScheduleWindow: () => {
+      dispatch({
+        type: 'SHOW_HOSPITAL_SCHEDULE_WINDOW',
       });
     },
   }

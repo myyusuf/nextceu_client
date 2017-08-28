@@ -11,6 +11,8 @@ import addCourseByLevelLogics from './course/add_course_by_level';
 import addCourseByDepartmentFormLogics from './course/add_course_by_department_form';
 import addCourseByDepartmentLogics from './course/add_course_by_department';
 
+import hospitalScheduleLogics from './course/hospital_schedule';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -22,4 +24,5 @@ export default [
   ...addCourseByLevelLogics,
   ...addCourseByDepartmentFormLogics,
   ...addCourseByDepartmentLogics,
+  ...hospitalScheduleLogics,
 ];
