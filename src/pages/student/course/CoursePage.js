@@ -6,7 +6,7 @@ import Dropdown from 'antd/lib/dropdown';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 import CourseList from '../../../components/student/course/CourseList';
-import CourseWindowWrapper from '../../../containers/student/course/CourseWindowWrapper';
+import CourseWindow from '../../../components/student/course/CourseWindow';
 
 import CourseChartWindow from '../../../components/student/course/CourseChartWindow';
 import AddCourseByLevelWindow from '../../../components/student/course/AddCourseByLevelWindow';
@@ -82,7 +82,7 @@ const CoursePage = ({
           <CourseList level={2} />
         </div>
 
-        <CourseWindowWrapper />
+        <CourseWindow />
         <AddCourseByLevelWindow />
         <AddCourseByDepartmentWindow />
         <CourseChartWindow />

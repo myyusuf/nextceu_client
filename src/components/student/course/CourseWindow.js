@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
 import Tabs from 'antd/lib/tabs';
 import Button from 'antd/lib/button';
-import CourseFormWrapper from '../../../containers/student/course/CourseFormWrapper';
+import CourseForm from './CourseForm';
 import ScheduleForm from './ScheduleForm';
 import ScoreForm from './ScoreForm';
 import SeminarForm from './SeminarForm';
@@ -28,11 +29,11 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       </Button>,
     ]}
   >
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="1" style={{ marginTop: -10 }}>
       <TabPane tab="Info" key="1">
-        <CourseFormWrapper />
+        <CourseForm />
       </TabPane>
-      <TabPane tab="Schedules" key="2">
+      {/*<TabPane tab="Schedules" key="2">
         <ScheduleForm />
       </TabPane>
       <TabPane tab="Scores" key="3">
@@ -41,7 +42,7 @@ const CourseWindow = ({ title, visible, onOk, onCancel, confirmLoading }) => (
       <TabPane tab="Seminars" key="4">
         <SeminarForm />
       </TabPane>
-      <TabPane tab="Problems" key="5"></TabPane>
+      <TabPane tab="Problems" key="5"></TabPane>*/}
     </Tabs>
   </Modal>
 );
@@ -54,4 +55,32 @@ CourseWindow.propTypes = {
   confirmLoading: PropTypes.bool.isRequired,
 };
 
-export default CourseWindow;
+const mapStateToProps = state => (
+  {
+    title: state.studentReducers.courseWindow.title,
+    visible: state.studentReducers.courseWindow.visible,
+    confirmLoading: state.studentReducers.courseWindow.confirmLoading,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    onCancel: () => {
+      dispatch({
+        type: 'CANCEL_EDIT_COURSE_LOGIC',
+      });
+    },
+    onOk: () => {
+      dispatch({
+        type: 'SAVE_COURSE_LOGIC',
+      });
+    },
+  }
+);
+
+const CourseWindowWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CourseWindow);
+
+export default CourseWindowWrapper;
