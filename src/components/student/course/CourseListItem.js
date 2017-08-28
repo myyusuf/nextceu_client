@@ -39,18 +39,19 @@ const CourseListItem = ({ course, showDetails }) => {
             {course.Department.code}
           </Tag>
         </Col>
-        <Col span={12}>
+        <Col span={11}>
           <div className="CourseListItem-title">{course.title}</div>
         </Col>
         <Col span={2}>
           <Badge
             className="CourseListItem-badge"
+            overflowCount={100}
             showZero
             count={course.completion}
             style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
           />
         </Col>
-        <Col span={6}>
+        <Col span={7}>
           <Badge className="CourseListItem-status" status={status} text={text} />
         </Col>
       </Row>

@@ -67,7 +67,7 @@ const AddCourseByDepartmentForm =
               });
             }}
             placeholder="Title"
-            maxLength={7}
+            maxLength={30}
           />
         </FormItem>
       </Col>
