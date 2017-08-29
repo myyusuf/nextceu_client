@@ -31,6 +31,22 @@ const hospitalFormChangedLogic = createLogic({
   },
 });
 
+const hospitalModalFormChangedLogic = createLogic({
+  type: 'HOSPITAL_MODAL_FORM_CHANGED_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const payload = action.payload;
+    const result = {
+      [payload.key]: {
+        value: payload.value,
+        ...validate(payload.key, payload.value),
+      },
+    };
+    dispatch({ type: 'UPDATE_HOSPITAL_MODAL_FORM', payload: result });
+    done();
+  },
+});
+
 const loadHospitalFormLogic = createLogic({
   type: 'LOAD_HOSPITAL_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
@@ -57,7 +73,7 @@ const loadHospitalFormLogic = createLogic({
       };
     }
 
-    dispatch({ type: 'EDIT_HOSPITAL_LOGIC' });
+    dispatch({ type: 'CLEAR_HOSPITAL_FORM' });
     dispatch({ type: 'LOAD_HOSPITAL', payload: validationResult });
     done();
   },
@@ -65,5 +81,6 @@ const loadHospitalFormLogic = createLogic({
 
 export default [
   hospitalFormChangedLogic,
+  hospitalModalFormChangedLogic,
   loadHospitalFormLogic,
 ];

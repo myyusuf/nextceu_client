@@ -57,16 +57,11 @@ HospitalMain.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = state => (
-//   {
-//   }
-// );
-
 const mapDispatchToProps = dispatch => (
   {
     openAddWindow: () => (
       dispatch({
-        type: 'ADD_HOSPITAL_LOGIC',
+        type: 'EDIT_HOSPITAL_LOGIC',
       })
     ),
   }

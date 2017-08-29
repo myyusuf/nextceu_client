@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
@@ -62,27 +61,4 @@ HospitalForm.propTypes = {
     name: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-const mapStateToProps = state => (
-  {
-    hospitalForm: state.hospitalReducers.hospitalForm,
-  }
-);
-
-const mapDispatchToProps = dispatch => (
-  {
-    hospitalFormChanged: (payload) => {
-      dispatch({
-        type: 'HOSPITAL_FORM_CHANGED',
-        payload,
-      });
-    },
-  }
-);
-
-const HospitalFormWrapper = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HospitalForm);
-
-export default HospitalFormWrapper;
+export default HospitalForm;

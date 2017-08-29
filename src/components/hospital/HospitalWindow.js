@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-import HospitalForm from './HospitalForm';
+import HospitalModalFormWrapper from '../../containers/hospital/HospitalModalFormWrapper';
 
 const HospitalWindow = ({
   visible,
@@ -18,7 +18,7 @@ const HospitalWindow = ({
     confirmLoading={confirmLoading}
     onCancel={onCancel}
   >
-    <HospitalForm />
+    <HospitalModalFormWrapper />
   </Modal>
 );
 
@@ -45,7 +45,7 @@ const mapDispatchToProps = dispatch => (
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_HOSPITAL_LOGIC',
+        type: 'SAVE_HOSPITAL_MODAL_LOGIC',
       });
     },
   }
