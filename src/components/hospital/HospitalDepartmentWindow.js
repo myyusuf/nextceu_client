@@ -9,22 +9,16 @@ const HospitalDepartmentWindow = ({
   onOk,
   onCancel,
   confirmLoading,
-  hospitalDepartmentForm,
-  hospitalDepartmentFormChanged,
 }) => (
   <Modal
-    title="Add Hospital Department"
+    title="Add Department"
     visible={visible}
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
-    <HospitalDepartmentForm
-      hospitalDepartmentForm={hospitalDepartmentForm}
-      hospitalDepartmentFormChanged={hospitalDepartmentFormChanged}
-    />
+    <HospitalDepartmentForm />
   </Modal>
 );
 
@@ -33,16 +27,12 @@ HospitalDepartmentWindow.propTypes = {
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
-  hospitalDepartmentForm: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  hospitalDepartmentFormChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    visible: state.hospitalReducers.hospitalDepartmentlWindow.visible,
-    confirmLoading: state.hospitalReducers.hospitalDepartmentlWindow.confirmLoading,
+    visible: state.hospitalReducers.hospitalDepartmentWindow.visible,
+    confirmLoading: state.hospitalReducers.hospitalDepartmentWindow.confirmLoading,
   }
 );
 
@@ -50,12 +40,12 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CLOSE_HOSPITAL_DEPARTMENT_WINDOW',
+        type: 'CANCEL_EDIT_HOSPITAL_DEPARTMENT_LOGIC',
       });
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_HOSPITAL_DEPARTMENT_FORM',
+        type: 'SAVE_HOSPITAL_DEPARTMENT_LOGIC',
       });
     },
   }

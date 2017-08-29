@@ -1,4 +1,6 @@
 .HospitalDetailsPage-container {
+  border-top: 1px solid #e9e9e9;
   border-left: 1px solid #e9e9e9;
+  padding-top: 10px;
   height: 600px;
 }

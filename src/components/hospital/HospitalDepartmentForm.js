@@ -1,14 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import InputNumber from 'antd/lib/input-number';
+import DepartmentSelect from '../../components/department/DepartmentSelect';
 
 const FormItem = Form.Item;
 
 const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentFormChanged }) => (
   <Form>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Department"
+          colon={false}
+          validateStatus={hospitalDepartmentForm.department.validateStatus}
+          help={hospitalDepartmentForm.department.errorMsg}
+        >
+          <DepartmentSelect
+            value={hospitalDepartmentForm.department}
+            onSelect={(value) => {
+              hospitalDepartmentFormChanged({
+                name: 'department',
+                value,
+              });
+            }}
+            style={{ width: 200, marginBottom: 20 }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
     <Row>
       <Col span={24}>
         <FormItem
@@ -37,8 +60,31 @@ const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentForm
 HospitalDepartmentForm.propTypes = {
   hospitalDepartmentFormChanged: PropTypes.func.isRequired,
   hospitalDepartmentForm: PropTypes.shape({
+    department: PropTypes.shape.isRequired,
     quota: PropTypes.number.isRequired,
   }).isRequired,
 };
 
-export default HospitalDepartmentForm;
+const mapStateToProps = state => (
+  {
+    hospitalDepartmentForm: state.hospitalReducers.hospitalDepartmentForm,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    hospitalDepartmentFormChanged: (payload) => {
+      dispatch({
+        type: 'HOSPITAL_DEPARTMENT_FORM_CHANGED_LOGIC',
+        payload,
+      });
+    },
+  }
+);
+
+const HospitalDepartmentFormWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HospitalDepartmentForm);
+
+export default HospitalDepartmentFormWrapper;
