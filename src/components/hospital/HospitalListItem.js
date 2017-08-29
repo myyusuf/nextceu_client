@@ -6,7 +6,7 @@ import Col from 'antd/lib/col';
 import Badge from 'antd/lib/badge';
 
 const HospitalListItem = ({ name }) => (
-  <Card style={{ marginTop: 10, marginBottom: 10 }}>
+  <Card style={{ marginTop: 10, marginBottom: 10, borderRadius: 5 }}>
     <Row gutter={20}>
       <Col span={4}>
         <Badge

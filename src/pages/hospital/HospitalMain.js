@@ -14,10 +14,10 @@ import HospitalDetailsPage from './HospitalDetailsPage';
 const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 
-const HospitalMain = ({ openAddWindow }) => (
+const HospitalMain = ({ openAddWindow, fetchHospitals }) => (
   <div>
     <Row gutter={10}>
-      <Col span={4} offset={7}>
+      <Col span={4} offset={5}>
         <RangePicker
           onChange={(date) => {
             this.handleInputChange('planDate', date);
@@ -34,10 +34,17 @@ const HospitalMain = ({ openAddWindow }) => (
       </Col>
       <Col span={2}>
         <Button
+          shape="circle"
+          icon="search"
+          onClick={() => fetchHospitals()}
+        />
+
+        <Button
           type="primary"
           shape="circle"
           icon="plus"
           onClick={() => openAddWindow()}
+          style={{ marginLeft: 10 }}
         />
       </Col>
     </Row>
@@ -55,6 +62,7 @@ const HospitalMain = ({ openAddWindow }) => (
 
 HospitalMain.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
+  fetchHospitals: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => (
@@ -62,6 +70,11 @@ const mapDispatchToProps = dispatch => (
     openAddWindow: () => (
       dispatch({
         type: 'EDIT_HOSPITAL_LOGIC',
+      })
+    ),
+    fetchHospitals: () => (
+      dispatch({
+        type: 'FETCH_HOSPITALS_LOGIC',
       })
     ),
   }

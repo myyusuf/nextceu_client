@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateLength } from '../../utils/validation';
+import { validateLength, validateExist } from '../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -8,6 +8,9 @@ const validate = (key, value) => {
     case 'code':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'hospitalType':
+      result = validateExist(key, value);
       break;
     default:
       break;
@@ -60,6 +63,9 @@ const loadHospitalFormLogic = createLogic({
       },
       name: {
         value: hospital.name,
+      },
+      hospitalType: {
+        value: hospital.hospitalType,
       },
     };
     const validationResult = {};

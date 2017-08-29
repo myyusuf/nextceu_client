@@ -4,6 +4,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import HospitalTypeSelect from './HospitalTypeSelect';
 
 const FormItem = Form.Item;
 
@@ -47,6 +48,26 @@ const HospitalForm = ({ hospitalForm, hospitalFormChanged }) => (
               });
             }}
             placeholder="Name"
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Type"
+          colon={false}
+          validateStatus={hospitalForm.hospitalType.validateStatus}
+          help={hospitalForm.hospitalType.errorMsg}
+        >
+          <HospitalTypeSelect
+            value={hospitalForm.hospitalType.value}
+            onSelect={(value) => {
+              hospitalFormChanged({
+                key: 'hospitalType',
+                value,
+              });
+            }}
           />
         </FormItem>
       </Col>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validateLength } from '../../utils/validation';
+import { validateLength, validateExist } from '../../utils/validation';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
 
@@ -13,6 +13,9 @@ const validate = (key, value) => {
     case 'code':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'hospitalType':
+      result = validateExist(key, value);
       break;
     default:
       break;
@@ -95,7 +98,7 @@ const saveHospitalModalLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const hospitalForm = _.mapValues({ ...getState().hospitalReducers.hospitalForm }, 'value');
+    const hospitalForm = _.mapValues({ ...getState().hospitalReducers.hospitalModalForm }, 'value');
     dispatch({ type: 'SHOW_HOSPITAL_WINDOW_CONFIRM_LOADING' });
 
     axios.post(HOSPITALS_URL, hospitalForm)

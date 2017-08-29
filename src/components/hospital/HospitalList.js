@@ -19,13 +19,14 @@ class HospitalList extends Component {
   }
 
   render() {
-    const { hospitals, hospitalTypeChanged, loading } = this.props;
+    const { hospitals, hospitalType, hospitalTypeChanged, loading } = this.props;
     return (
       <div style={{ padding: 15, backgroundColor: '#eDeff5' }}>
         <Row>
           <Col span={24}>
             <Menu
               mode="horizontal"
+              selectedKeys={[hospitalType]}
               onClick={(e) => {
                 hospitalTypeChanged(e.key);
               }}
@@ -58,6 +59,7 @@ class HospitalList extends Component {
 
 HospitalList.propTypes = {
   fetchHospitals: PropTypes.func.isRequired,
+  hospitalType: PropTypes.string.isRequired,
   hospitalTypeChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   hospitals: PropTypes.arrayOf(PropTypes.shape({
@@ -69,7 +71,7 @@ HospitalList.propTypes = {
 const mapStateToProps = state => (
   {
     hospitals: state.hospitalReducers.hospitals,
-    searchText: state.hospitalReducers.hospitalSearch.searchText,
+    hospitalType: state.hospitalReducers.hospitalSearch.hospitalType,
     loading: state.hospitalReducers.hospitalSearch.loading,
   }
 );

@@ -2,6 +2,7 @@ const defaultState = {
   id: {},
   code: {},
   name: {},
+  hospitalType: {},
 };
 
 const hospitalForm = (state = defaultState, action) => {
