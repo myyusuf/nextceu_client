@@ -65,7 +65,7 @@ const loadHospitalFormLogic = createLogic({
         value: hospital.name,
       },
       hospitalType: {
-        value: hospital.hospitalType,
+        value: String(hospital.hospitalType),
       },
     };
     const validationResult = {};

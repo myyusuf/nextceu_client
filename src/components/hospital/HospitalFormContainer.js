@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Button from 'antd/lib/button';
-import HospitalModalFormWrapper from '../../containers/hospital/HospitalModalFormWrapper';
+import HospitalFormWrapper from '../../containers/hospital/HospitalFormWrapper';
 
 const HospitalFormContainer = ({
   onOk,
@@ -13,7 +13,7 @@ const HospitalFormContainer = ({
   <div style={{ paddingLeft: 20, paddingRight: 20 }}>
     <Row>
       <Col>
-        <HospitalModalFormWrapper />
+        <HospitalFormWrapper />
       </Col>
     </Row>
     <Row>

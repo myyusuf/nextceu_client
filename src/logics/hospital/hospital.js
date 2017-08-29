@@ -37,6 +37,8 @@ const fetchHospitalsLogic = createLogic({
       .then((hospitals) => {
         dispatch({ type: 'HOSPITAL_LOADING_FINISH' });
         dispatch({ type: 'FETCH_HOSPITALS_SUCCESS', payload: hospitals });
+
+        dispatch({ type: 'CLEAR_HOSPITAL_FORM' });
       })
       .catch((err) => {
         console.error(err);
@@ -226,6 +228,8 @@ const selectHospitalLogic = createLogic({
   type: 'SELECT_HOSPITAL_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'SELECT_HOSPITAL', payload: action.payload });
+
+    dispatch({ type: 'LOAD_HOSPITAL_TO_FORM_LOGIC', payload: action.payload });
 
     done();
   },

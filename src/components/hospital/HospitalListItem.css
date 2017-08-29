@@ -1,12 +1,12 @@
 .HospitalList-item {
   margin-top: 10;
   margin-bottom: 10;
-  border-radius: 5;
+  border-radius: 8;
 }
 
 .HospitalList-item-selected {
   margin-top: 10;
   margin-bottom: 10;
-  border-radius: 5;
-  background-color: #D6DBDF;
+  border-radius: 8;
+  background-color: hsl(208, 61%, 86%);
 }
