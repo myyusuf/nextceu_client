@@ -9,28 +9,38 @@ import Button from 'antd/lib/button';
 
 import './HospitalMain.css';
 import HospitalList from '../../components/hospital/HospitalList';
+import DepartmentSelect from '../../components/department/DepartmentSelect';
 import HospitalDetailsPage from './HospitalDetailsPage';
 
 const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 
-const HospitalMain = ({ openAddWindow, fetchHospitals }) => (
+const HospitalMain = ({
+  openAddWindow,
+  fetchHospitals,
+  hospitalDepartment,
+  hospitalDepartmentChanged,
+  hospitalDateRangeChanged,
+  hospitalDateRange,
+}) => (
   <div>
     <Row gutter={10}>
       <Col span={4} offset={5}>
         <RangePicker
+          value={hospitalDateRange}
           onChange={(date) => {
-            this.handleInputChange('planDate', date);
+            hospitalDateRangeChanged(date);
           }}
         />
       </Col>
       <Col span={4}>
-        <Select defaultValue="lucy" style={{ width: 200, marginBottom: 20 }}>
-          <Option value="jack">Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="disabled" disabled>Disabled</Option>
-          <Option value="Yiminghe">yiminghe</Option>
-        </Select>
+        <DepartmentSelect
+          value={hospitalDepartment}
+          onSelect={(value) => {
+            hospitalDepartmentChanged(value);
+          }}
+          style={{ width: 200, marginBottom: 20 }}
+        />
       </Col>
       <Col span={2}>
         <Button
@@ -63,7 +73,18 @@ const HospitalMain = ({ openAddWindow, fetchHospitals }) => (
 HospitalMain.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
   fetchHospitals: PropTypes.func.isRequired,
+  hospitalDepartment: PropTypes.shape.isRequired,
+  hospitalDepartmentChanged: PropTypes.func.isRequired,
+  hospitalDateRangeChanged: PropTypes.func.isRequired,
+  hospitalDateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
+
+const mapStateToProps = state => (
+  {
+    hospitalDepartment: state.hospitalReducers.hospitalSearch.hospitalDepartment,
+    hospitalDateRange: state.hospitalReducers.hospitalSearch.hospitalDateRange,
+  }
+);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -77,11 +98,23 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_HOSPITALS_LOGIC',
       })
     ),
+    hospitalDepartmentChanged: value => (
+      dispatch({
+        type: 'HOSPITAL_SEARCH_DEPARTMENT_CHANGED',
+        payload: value,
+      })
+    ),
+    hospitalDateRangeChanged: value => (
+      dispatch({
+        type: 'HOSPITAL_SEARCH_DATE_RANGE_CHANGED',
+        payload: value,
+      })
+    ),
   }
 );
 
 const HospitalMainWrapper = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(HospitalMain);
 

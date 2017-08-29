@@ -222,6 +222,15 @@ const deleteHospitalLogic = createLogic({
   },
 });
 
+const selectHospitalLogic = createLogic({
+  type: 'SELECT_HOSPITAL_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    dispatch({ type: 'SELECT_HOSPITAL', payload: action.payload });
+
+    done();
+  },
+});
+
 export default [
   fetchHospitalsLogic,
   editHospitalLogic,
@@ -229,4 +238,5 @@ export default [
   saveHospitalModalLogic,
   saveHospitalLogic,
   deleteHospitalLogic,
+  selectHospitalLogic,
 ];

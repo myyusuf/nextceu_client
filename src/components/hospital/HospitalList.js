@@ -16,10 +16,11 @@ class HospitalList extends Component {
 
   componentWillMount() {
     this.props.fetchHospitals();
+    this.props.fetchHospitalDepartments();
   }
 
   render() {
-    const { hospitals, hospitalType, hospitalTypeChanged, loading } = this.props;
+    const { hospitals, hospitalType, hospitalTypeChanged, loading, selectHospital } = this.props;
     return (
       <div style={{ padding: 15, backgroundColor: '#eDeff5' }}>
         <Row>
@@ -41,12 +42,13 @@ class HospitalList extends Component {
             </Menu>
           </Col>
         </Row>
-        <Row gutter={20}>
-          {hospitals.map(hospital => (
-            <Col span={8}>
-              <HospitalListItem name={hospital.name} />
-            </Col>
-          ))}
+        <Row gutter={15} style={{ marginTop: 10 }}>
+          {hospitals.filter(hospital => String(hospital.hospitalType) === hospitalType)
+            .map(hospital => (
+              <Col span={8}>
+                <HospitalListItem hospital={hospital} selectHospital={selectHospital} />
+              </Col>
+            ))}
           <div style={{ width: 20, marginLeft: 'auto', marginRight: 'auto' }}>
             <Spin spinning={loading} />
           </div>
@@ -59,8 +61,10 @@ class HospitalList extends Component {
 
 HospitalList.propTypes = {
   fetchHospitals: PropTypes.func.isRequired,
+  fetchHospitalDepartments: PropTypes.func.isRequired,
   hospitalType: PropTypes.string.isRequired,
   hospitalTypeChanged: PropTypes.func.isRequired,
+  selectHospital: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   hospitals: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -83,6 +87,11 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_HOSPITALS_LOGIC',
       })
     ),
+    fetchHospitalDepartments: () => (
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      })
+    ),
     openAddWindow: () => (
       dispatch({
         type: 'EDIT_HOSPITAL_LOGIC',
@@ -98,6 +107,12 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'HOSPITAL_SEARCH_TYPE_CHANGED',
         payload: value,
+      })
+    ),
+    selectHospital: hospital => (
+      dispatch({
+        type: 'SELECT_HOSPITAL_LOGIC',
+        payload: hospital,
       })
     ),
     confirmDelete: record => (

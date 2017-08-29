@@ -5,7 +5,6 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 
 import './SettingsMain.css';
-import { filterStudentsByLevelText } from '../../actions/student/students';
 import SettingsTree from '../../components/settings/SettingsTree';
 import DepartmentList from '../../components/department/DepartmentList';
 import UserList from '../../components/user/UserList';
@@ -52,9 +51,6 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    filterStudents: level => (
-      dispatch(filterStudentsByLevelText(level))
-    ),
     openAddWindow: () => (
       dispatch({
         type: 'ADD_HOSPITAL_LOGIC',

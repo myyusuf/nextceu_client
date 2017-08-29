@@ -4,26 +4,38 @@ import Card from 'antd/lib/card';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Badge from 'antd/lib/badge';
+import './HospitalListItem.css';
 
-const HospitalListItem = ({ name }) => (
-  <Card style={{ marginTop: 10, marginBottom: 10, borderRadius: 5 }}>
-    <Row gutter={20}>
-      <Col span={4}>
+const HospitalListItem = ({ hospital, selectHospital }) => (
+  <Card
+    onClick={() => selectHospital(hospital)}
+    className={hospital.selected ? 'HospitalList-item-selected' : 'HospitalList-item'}
+  >
+    <Row gutter={10}>
+      <Col span={3}>
         <Badge
-          count={250}
+          count={10}
+          overflowCount={1000}
+          style={{ backgroundColor: '#87d068' }}
+        />
+      </Col>
+      <Col span={3}>
+        <Badge
+          count={50}
           overflowCount={1000}
           style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
         />
       </Col>
-      <Col span={20}>
-        <span style={{ fontSize: 13 }}>{name}</span>
+      <Col span={18}>
+        <div style={{ marginLeft: 5, fontSize: 13 }}>{hospital.name}</div>
       </Col>
     </Row>
   </Card>
 );
 
 HospitalListItem.propTypes = {
-  name: PropTypes.string.isRequired,
+  hospital: PropTypes.shape.isRequired,
+  selectHospital: PropTypes.func.isRequired,
 };
 
 export default HospitalListItem;

@@ -5,15 +5,16 @@ import Select from 'antd/lib/select';
 
 const Option = Select.Option;
 
-const DepartmentSelect = ({ departments, value, onSelect }) => (
+const DepartmentSelect = ({ departments, value, onSelect, style }) => (
   <Select
     placeholder="Select Department"
-    size="large"
     onSelect={onSelect}
     value={value}
+    style={style}
+    defaultActiveFirstOption
   >
     {departments.map(department => (
-      <Option value={department.id}>{department.name}</Option>
+      <Option key={department.id} value={department.id}>{department.name}</Option>
     ))}
   </Select>
 );
@@ -27,6 +28,7 @@ DepartmentSelect.propTypes = {
   ).isRequired,
   value: PropTypes.number.isRequired,
   onSelect: PropTypes.func.isRequired,
+  style: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => (
