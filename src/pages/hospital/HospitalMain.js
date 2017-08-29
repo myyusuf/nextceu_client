@@ -8,7 +8,6 @@ import DatePicker from 'antd/lib/date-picker';
 import Button from 'antd/lib/button';
 
 import './HospitalMain.css';
-import { filterStudentsByLevelText } from '../../actions/student/students';
 import HospitalList from '../../components/hospital/HospitalList';
 import HospitalDetailsPage from './HospitalDetailsPage';
 
@@ -65,9 +64,6 @@ HospitalMain.propTypes = {
 
 const mapDispatchToProps = dispatch => (
   {
-    filterStudents: level => (
-      dispatch(filterStudentsByLevelText(level))
-    ),
     openAddWindow: () => (
       dispatch({
         type: 'ADD_HOSPITAL_LOGIC',
