@@ -1,12 +1,20 @@
 .HospitalList-item {
-  margin-top: 10;
-  margin-bottom: 10;
-  border-radius: 8;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.HospitalList-item:hover {
+  cursor: pointer;
 }
 
 .HospitalList-item-selected {
-  margin-top: 10;
-  margin-bottom: 10;
-  border-radius: 8;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
   background-color: hsl(208, 61%, 86%);
+}
+
+.HospitalList-item-selected:hover {
+  cursor: pointer;
 }
