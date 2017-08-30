@@ -104,7 +104,7 @@ const mapDispatchToProps = dispatch => (
     ),
     confirmDelete: record => (
       confirm({
-        title: `Do you Want to delete department : ${record.name}`,
+        title: `Do you Want to delete department : ${record.Department.name}`,
         content: 'This action cannot be undone',
         onOk() {
           dispatch({

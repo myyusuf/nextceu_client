@@ -107,15 +107,15 @@ const saveHospitalDepartmentLogic = createLogic({
           dispatch({ type: 'CANCEL_EDIT_HOSPITAL_DEPARTMENT_LOGIC' });
           dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
           notification.success({
-            message: 'Update hospitalDepartment success',
-            description: 'Success saving hospitalDepartment',
+            message: 'Update department success',
+            description: 'Success saving department',
           });
         })
         .catch((err) => {
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. HospitalDepartment code must be unique';
+              errorMessage = 'Ex. department must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -146,7 +146,7 @@ const saveHospitalDepartmentLogic = createLogic({
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. department code must be unique';
+              errorMessage = 'Ex. department must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }

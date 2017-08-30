@@ -12,7 +12,7 @@ const FormItem = Form.Item;
 const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentFormChanged }) => (
   <Form>
     <Row>
-      <Col span={24}>
+      <Col span={12}>
         <FormItem
           label="Department"
           colon={false}
@@ -27,7 +27,6 @@ const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentForm
                 value,
               });
             }}
-            style={{ width: 200, marginBottom: 20 }}
           />
         </FormItem>
       </Col>
@@ -42,7 +41,7 @@ const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentForm
         >
           <InputNumber
             min={0}
-            max={10}
+            max={300}
             value={hospitalDepartmentForm.quota.value}
             onChange={(value) => {
               hospitalDepartmentFormChanged({
