@@ -22,7 +22,17 @@ class HospitalScheduleForm extends Component {
       dateRange,
       dateRangeChanged,
       loading,
+      selectedRowKeys,
+      rowKeysChanged,
     } = this.props;
+
+    const rowSelection = {
+      type: 'radio',
+      selectedRowKeys,
+      onChange: (rowKeys) => {
+        rowKeysChanged(rowKeys);
+      },
+    };
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
@@ -48,7 +58,14 @@ class HospitalScheduleForm extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={hospitalSchedules} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+            <Table
+              dataSource={hospitalSchedules}
+              style={{ marginTop: 20 }}
+              rowKey="id"
+              loading={loading}
+              size="small"
+              rowSelection={rowSelection}
+            >
               <Column
                 title="Code"
                 dataIndex="code"
@@ -58,6 +75,24 @@ class HospitalScheduleForm extends Component {
                 title="Name"
                 dataIndex="name"
                 key="name"
+              />
+              <Column
+                title="Quota"
+                dataIndex="departmentQuota"
+                key="departmentQuota"
+              />
+              <Column
+                title="Students"
+                dataIndex="studentsInDepartmentCount"
+                key="studentsInDepartmentCount"
+              />
+              <Column
+                title="History"
+                dataIndex="studentHistoryCount"
+                key="studentHistoryCount"
+                render={text => (<span style={{ width: '100%', textAlign: 'center ' }}>
+                  {text}
+                </span>)}
               />
             </Table>
           </Col>
@@ -73,6 +108,8 @@ HospitalScheduleForm.propTypes = {
   loading: PropTypes.bool.isRequired,
   hospitalSchedules: PropTypes.arrayOf(PropTypes.shape).isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  rowKeysChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -80,6 +117,7 @@ const mapStateToProps = state => (
     hospitalSchedules: state.studentReducers.hospitalSchedules,
     dateRange: state.studentReducers.hospitalScheduleSearch.dateRange,
     loading: state.studentReducers.hospitalScheduleSearch.loading,
+    selectedRowKeys: state.hospitalReducers.hospitalDepartmentSelection.rowKeys,
   }
 );
 
@@ -94,6 +132,12 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'HOSPITAL_SCHEDULE_DATE_RANGE_CHANGED',
         payload: value,
+      })
+    ),
+    rowKeysChanged: rowKeys => (
+      dispatch({
+        type: 'HOSPITAL_SCHEDULE_SELECT_CHANGED',
+        payload: rowKeys,
       })
     ),
   }
