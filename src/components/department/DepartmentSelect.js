@@ -14,7 +14,7 @@ const DepartmentSelect = ({ departments, value, onSelect, style }) => (
     defaultActiveFirstOption
   >
     {departments.map(department => (
-      <Option key={department.id} value={department.id}>{department.name}</Option>
+      <Option key={department.id} value={String(department.id)}>{department.name}</Option>
     ))}
   </Select>
 );
@@ -26,7 +26,7 @@ DepartmentSelect.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
   style: PropTypes.shape.isRequired,
 };
