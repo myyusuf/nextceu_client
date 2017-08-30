@@ -20,10 +20,10 @@ const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentForm
           help={hospitalDepartmentForm.department.errorMsg}
         >
           <DepartmentSelect
-            value={hospitalDepartmentForm.department}
+            value={hospitalDepartmentForm.department.value}
             onSelect={(value) => {
               hospitalDepartmentFormChanged({
-                name: 'department',
+                key: 'department',
                 value,
               });
             }}
@@ -43,13 +43,13 @@ const HospitalDepartmentForm = ({ hospitalDepartmentForm, hospitalDepartmentForm
           <InputNumber
             min={0}
             max={10}
-            onChange={(e) => {
+            value={hospitalDepartmentForm.quota.value}
+            onChange={(value) => {
               hospitalDepartmentFormChanged({
-                name: 'quota',
-                value: e.target.value,
+                key: 'quota',
+                value,
               });
             }}
-            style={{ width: 250 }}
           />
         </FormItem>
       </Col>
@@ -61,7 +61,7 @@ HospitalDepartmentForm.propTypes = {
   hospitalDepartmentFormChanged: PropTypes.func.isRequired,
   hospitalDepartmentForm: PropTypes.shape({
     department: PropTypes.shape.isRequired,
-    quota: PropTypes.number.isRequired,
+    quota: PropTypes.shape.isRequired,
   }).isRequired,
 };
 

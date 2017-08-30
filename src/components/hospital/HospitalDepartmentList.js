@@ -6,6 +6,7 @@ import Col from 'antd/lib/col';
 import Button from 'antd/lib/button';
 import Table from 'antd/lib/table';
 import Modal from 'antd/lib/modal';
+import HospitalDepartmentWindow from './HospitalDepartmentWindow';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -63,6 +64,7 @@ const HospitalDepartmentList = ({
         </Table>
       </Col>
     </Row>
+    <HospitalDepartmentWindow />
   </div>
 );
 
@@ -84,6 +86,7 @@ HospitalDepartmentList.propTypes = {
 const mapStateToProps = state => (
   {
     hospitalDepartments: state.hospitalReducers.hospitalDepartments,
+    loading: state.hospitalReducers.hospitalDepartmentSearch.loading,
   }
 );
 

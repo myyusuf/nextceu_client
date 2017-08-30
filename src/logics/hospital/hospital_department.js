@@ -5,7 +5,8 @@ import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
 import { validateExist } from '../../utils/validation';
 
-const HOSPITAL_DEPARTMENTS_URL = `${Constant.serverUrl}/api/roles`;
+const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
+const HOSPITAL_DEPARTMENTS_URL = `${Constant.serverUrl}/api/hospitaldepartments`;
 
 const validate = (key, value) => {
   let result = null;
@@ -20,25 +21,26 @@ const validate = (key, value) => {
   return result;
 };
 
-const fetchRolesLogic = createLogic({
+const fetchHospitalDepartmentsLogic = createLogic({
   type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC',
   cancelType: 'CANCEL_FETCH_HOSPITAL_DEPARTMENTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().userReducers.roleSearch;
+    const search = getState().hospitalReducers.hospitalDepartmentSearch;
     const paramameters = search ? { params: { ...search } } : {};
+    const hospitalId = getState().hospitalReducers.hospitalForm.id.value;
     dispatch({ type: 'HOSPITAL_DEPARTMENT_LOADING_START' });
-    axios.get(HOSPITAL_DEPARTMENTS_URL, paramameters)
+    axios.get(`${HOSPITALS_URL}/${hospitalId}/departments`, paramameters)
       .then(resp => resp.data)
-      .then((roles) => {
+      .then((hospitalDepartments) => {
         dispatch({ type: 'HOSPITAL_DEPARTMENT_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_SUCCESS', payload: roles });
+        dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_SUCCESS', payload: hospitalDepartments });
       })
       .catch((err) => {
         console.error(err);
         dispatch({ type: 'HOSPITAL_DEPARTMENT_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch roles error',
+          message: 'Fetch hospitalDepartments error',
           description: 'Please check internet connection.',
         });
       })
@@ -46,28 +48,7 @@ const fetchRolesLogic = createLogic({
   },
 });
 
-const fetchAllRolesLogic = createLogic({
-  type: 'FETCH_ALL_HOSPITAL_DEPARTMENTS_LOGIC',
-  cancelType: 'CANCEL_FETCH_ALL_HOSPITAL_DEPARTMENTS_LOGIC',
-  latest: true,
-  process({ getState, action }, dispatch, done) {
-    axios.get(HOSPITAL_DEPARTMENTS_URL)
-      .then(resp => resp.data)
-      .then((roles) => {
-        dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_SUCCESS', payload: roles });
-      })
-      .catch((err) => {
-        console.error(err);
-        notification.error({
-          message: 'Fetch roles error',
-          description: 'Connection error.',
-        });
-      })
-      .then(() => done());
-  },
-});
-
-const editRoleLogic = createLogic({
+const editHospitalDepartmentLogic = createLogic({
   type: 'EDIT_HOSPITAL_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_HOSPITAL_DEPARTMENT_FORM' });
@@ -76,7 +57,7 @@ const editRoleLogic = createLogic({
   },
 });
 
-const cancelAddRoleLogic = createLogic({
+const cancelEditHospitalDepartmentLogic = createLogic({
   type: 'CANCEL_EDIT_HOSPITAL_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_HOSPITAL_DEPARTMENT_FORM' });
@@ -85,18 +66,18 @@ const cancelAddRoleLogic = createLogic({
   },
 });
 
-const saveRoleLogic = createLogic({
+const saveHospitalDepartmentLogic = createLogic({
   type: 'SAVE_HOSPITAL_DEPARTMENT_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const roleForm = { ...getState().userReducers.roleForm };
+    const hospitalDepartmentForm = { ...getState().hospitalReducers.hospitalDepartmentForm };
     const validationResult = {};
-    const keys = _.keys(roleForm);
+    const keys = _.keys(hospitalDepartmentForm);
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
       if (key !== 'id') {
-        const value = roleForm[key].value;
+        const value = hospitalDepartmentForm[key].value;
         validationResult[key] = {
           value,
           ...validate(key, value),
@@ -115,25 +96,26 @@ const saveRoleLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const roleForm = _.mapValues({ ...getState().userReducers.roleForm }, 'value');
+    const hospitalDepartmentForm = _.mapValues({ ...getState().hospitalReducers.hospitalDepartmentForm }, 'value');
+    hospitalDepartmentForm.hospital = getState().hospitalReducers.hospitalForm.id.value;
     dispatch({ type: 'SHOW_HOSPITAL_DEPARTMENT_WINDOW_CONFIRM_LOADING' });
 
-    if (roleForm.id) {
-      axios.put(`${HOSPITAL_DEPARTMENTS_URL}/${roleForm.id}`, roleForm)
+    if (hospitalDepartmentForm.id) {
+      axios.put(`${HOSPITAL_DEPARTMENTS_URL}/${hospitalDepartmentForm.id}`, hospitalDepartmentForm)
         .then(() => {
           dispatch({ type: 'HIDE_HOSPITAL_DEPARTMENT_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_HOSPITAL_DEPARTMENT_LOGIC' });
           dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
           notification.success({
-            message: 'Update role success',
-            description: 'Success saving role',
+            message: 'Update hospitalDepartment success',
+            description: 'Success saving hospitalDepartment',
           });
         })
         .catch((err) => {
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Role code must be unique';
+              errorMessage = 'Ex. HospitalDepartment code must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -144,27 +126,27 @@ const saveRoleLogic = createLogic({
           }
           dispatch({ type: 'HIDE_HOSPITAL_DEPARTMENT_WINDOW_CONFIRM_LOADING' });
           notification.error({
-            message: 'Update role error',
+            message: 'Update hospitalDepartment error',
             description: errorMessage,
           });
         })
         .then(() => done());
     } else {
-      axios.post(HOSPITAL_DEPARTMENTS_URL, roleForm)
+      axios.post(HOSPITAL_DEPARTMENTS_URL, hospitalDepartmentForm)
         .then(() => {
           dispatch({ type: 'HIDE_HOSPITAL_DEPARTMENT_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_HOSPITAL_DEPARTMENT_LOGIC' });
           dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
           notification.success({
-            message: 'Create role success',
-            description: 'Success saving role',
+            message: 'Create department success',
+            description: 'Success saving department',
           });
         })
         .catch((err) => {
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Role code must be unique';
+              errorMessage = 'Ex. department code must be unique';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -175,7 +157,7 @@ const saveRoleLogic = createLogic({
           }
           dispatch({ type: 'HIDE_HOSPITAL_DEPARTMENT_WINDOW_CONFIRM_LOADING' });
           notification.error({
-            message: 'Create role error',
+            message: 'Create department error',
             description: errorMessage,
           });
         })
@@ -184,22 +166,22 @@ const saveRoleLogic = createLogic({
   },
 });
 
-const deleteRoleLogic = createLogic({
+const deleteHospitalDepartmentLogic = createLogic({
   type: 'DELETE_HOSPITAL_DEPARTMENT_LOGIC',
   process({ getState, action }, dispatch, done) {
     axios.delete(`${HOSPITAL_DEPARTMENTS_URL}/${action.payload.id}`)
       .then(resp => resp.data)
       .then(() => {
         notification.success({
-          message: 'Delete role success',
-          description: 'Success deleting role',
+          message: 'Delete department success',
+          description: 'Success deleting department',
         });
         dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
       })
       .catch((err) => {
         console.error(err);
         notification.error({
-          message: 'Delete role error',
+          message: 'Delete department error',
           description: 'Please check internet connection.',
         });
       })
@@ -208,10 +190,9 @@ const deleteRoleLogic = createLogic({
 });
 
 export default [
-  fetchRolesLogic,
-  editRoleLogic,
-  cancelAddRoleLogic,
-  saveRoleLogic,
-  deleteRoleLogic,
-  fetchAllRolesLogic,
+  fetchHospitalDepartmentsLogic,
+  editHospitalDepartmentLogic,
+  cancelEditHospitalDepartmentLogic,
+  saveHospitalDepartmentLogic,
+  deleteHospitalDepartmentLogic,
 ];

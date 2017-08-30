@@ -40,7 +40,7 @@ const loadHospitalDepartmentFormLogic = createLogic({
         value: hospitalDepartment.id,
       },
       department: {
-        value: hospitalDepartment.department,
+        value: hospitalDepartment.Department,
       },
       quota: {
         value: hospitalDepartment.quota,

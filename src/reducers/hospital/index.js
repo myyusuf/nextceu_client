@@ -7,16 +7,22 @@ import hospitalFormContainer from './hospital_container';
 import hospitalDepartments from './hospital_departments';
 import hospitalStudents from './hospital_students';
 import hospitalSearch from './hospital_search';
+import hospitalDepartmentForm from './hospital_department_form';
+import hospitalDepartmentWindow from './hospital_department_window';
+import hospitalDepartmentSearch from './hospital_department_search';
 
 const hospitalReducer = combineReducers({
   hospitalForm,
   hospitalModalForm,
   hospitalWindow,
   hospitalFormContainer,
-  hospitalDepartments,
   hospitalStudents,
   hospitals,
   hospitalSearch,
+  hospitalDepartments,
+  hospitalDepartmentForm,
+  hospitalDepartmentWindow,
+  hospitalDepartmentSearch,
 });
 
 export default hospitalReducer;
