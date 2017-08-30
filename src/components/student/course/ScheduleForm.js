@@ -190,7 +190,7 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                         <Button
                           icon="select"
                           style={{ height: 32 }}
-                          onClick={() => showHospitalScheduleWindow()}
+                          onClick={() => showHospitalScheduleWindow('hospital1')}
                         />
                       </Col>
                     </InputGroup>
@@ -222,7 +222,7 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                   </FormItem>
                 </Col>
               </Row>
-              <Row  gutter={10}>
+              <Row gutter={10}>
                 <Col span={6}>
                   <FormItem
                     label="Start Date"
@@ -280,7 +280,11 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                         />
                       </Col>
                       <Col span={8}>
-                        <Button icon="select" style={{ height: 32 }}></Button>
+                        <Button
+                          icon="select"
+                          style={{ height: 32 }}
+                          onClick={() => showHospitalScheduleWindow('clinic')}
+                        />
                       </Col>
                     </InputGroup>
 
@@ -390,15 +394,16 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    scheduleFormChanged: (schedule) => {
+    scheduleFormChanged: (payload) => {
       dispatch({
         type: 'COURSE_FORM_CHANGED_LOGIC',
-        payload: schedule,
+        payload,
       });
     },
-    showHospitalScheduleWindow: () => {
+    showHospitalScheduleWindow: (resultContainer) => {
       dispatch({
         type: 'SHOW_HOSPITAL_SCHEDULE_WINDOW',
+        payload: resultContainer,
       });
     },
   }

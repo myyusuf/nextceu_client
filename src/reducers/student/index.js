@@ -25,6 +25,8 @@ import hospitalSchedules from './course/hospital_schedules';
 import hospitalScheduleSearch from './course/hospital_schedule_search';
 import hospitalScheduleWindow from './course/hospital_schedule_window';
 
+import hospitalScheduleSelection from './course/hospital_schedule_selection';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -45,6 +47,7 @@ const studentReducer = combineReducers({
   hospitalSchedules,
   hospitalScheduleSearch,
   hospitalScheduleWindow,
+  hospitalScheduleSelection,
 });
 
 export default studentReducer;

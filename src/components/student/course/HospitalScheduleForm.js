@@ -29,8 +29,8 @@ class HospitalScheduleForm extends Component {
     const rowSelection = {
       type: 'radio',
       selectedRowKeys,
-      onChange: (rowKeys) => {
-        rowKeysChanged(rowKeys);
+      onChange: (rowKeys, selectedRows) => {
+        rowKeysChanged(rowKeys, selectedRows);
       },
     };
     return (
@@ -117,7 +117,7 @@ const mapStateToProps = state => (
     hospitalSchedules: state.studentReducers.hospitalSchedules,
     dateRange: state.studentReducers.hospitalScheduleSearch.dateRange,
     loading: state.studentReducers.hospitalScheduleSearch.loading,
-    selectedRowKeys: state.hospitalReducers.hospitalDepartmentSelection.rowKeys,
+    selectedRowKeys: state.studentReducers.hospitalScheduleSelection.rowKeys,
   }
 );
 
@@ -134,10 +134,10 @@ const mapDispatchToProps = dispatch => (
         payload: value,
       })
     ),
-    rowKeysChanged: rowKeys => (
+    rowKeysChanged: (rowKeys, selectedRows) => (
       dispatch({
         type: 'HOSPITAL_SCHEDULE_SELECT_CHANGED',
-        payload: rowKeys,
+        payload: { rowKeys, selectedRows },
       })
     ),
   }

@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => (
     },
     onOk: () => {
       dispatch({
-        type: 'HIDE_HOSPITAL_SCHEDULE_WINDOW',
+        type: 'HOSPITAL_SCHEDULE_DID_SELECT_LOGIC',
       });
     },
   }

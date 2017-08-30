@@ -11,7 +11,6 @@ import hospitalDepartmentForm from './hospital_department_form';
 import hospitalDepartmentWindow from './hospital_department_window';
 import hospitalDepartmentSearch from './hospital_department_search';
 import hospitalStudentSearch from './hospital_student_search';
-import hospitalDepartmentSelection from './hospital_department_selection';
 
 const hospitalReducer = combineReducers({
   hospitalForm,
@@ -26,7 +25,6 @@ const hospitalReducer = combineReducers({
   hospitalDepartmentWindow,
   hospitalDepartmentSearch,
   hospitalStudentSearch,
-  hospitalDepartmentSelection,
 });
 
 export default hospitalReducer;

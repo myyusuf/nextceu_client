@@ -42,6 +42,26 @@ const fetchHospitalSchedulesLogic = createLogic({
   },
 });
 
+const hospitalScheduleDidSelectLogic = createLogic({
+  type: 'HOSPITAL_SCHEDULE_DID_SELECT_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    const key = getState().studentReducers.hospitalScheduleWindow.resultContainer;
+    const value = getState().studentReducers.hospitalScheduleSelection.selectedRows[0];
+
+    dispatch({
+      type: 'COURSE_FORM_CHANGED_LOGIC',
+      payload: { key, value },
+    });
+
+    dispatch({
+      type: 'HIDE_HOSPITAL_SCHEDULE_WINDOW',
+    });
+
+    done();
+  },
+});
+
 export default [
   fetchHospitalSchedulesLogic,
+  hospitalScheduleDidSelectLogic,
 ];
