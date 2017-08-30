@@ -14,14 +14,14 @@ const HospitalListItem = ({ hospital, selectHospital }) => (
     <Row gutter={10}>
       <Col span={3}>
         <Badge
-          count={10}
+          count={hospital.studentHistoryCount}
           overflowCount={1000}
           style={{ backgroundColor: '#87d068' }}
         />
       </Col>
       <Col span={3}>
         <Badge
-          count={50}
+          count={hospital.departmentQuota}
           overflowCount={1000}
           style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
         />

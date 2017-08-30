@@ -6,6 +6,7 @@ import Constant from '../../Constant';
 import { validateLength, validateExist } from '../../utils/validation';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
+const HOSPITAL_SCHEDULES_URL = `${Constant.serverUrl}/api/hospitalselect/hospitalschedules`;
 
 const validate = (key, value) => {
   let result = null;
@@ -32,7 +33,8 @@ const fetchHospitalsLogic = createLogic({
     const search = getState().hospitalReducers.hospitalSearch;
     const paramameters = search ? { params: { ...search } } : {};
     dispatch({ type: 'HOSPITAL_LOADING_START' });
-    axios.get(HOSPITALS_URL, paramameters)
+    // axios.get(HOSPITALS_URL, paramameters)
+    axios.get(HOSPITAL_SCHEDULES_URL, paramameters)
       .then(resp => resp.data)
       .then((hospitals) => {
         dispatch({ type: 'HOSPITAL_LOADING_FINISH' });
