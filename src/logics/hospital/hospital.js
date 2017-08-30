@@ -230,6 +230,7 @@ const selectHospitalLogic = createLogic({
     dispatch({ type: 'SELECT_HOSPITAL', payload: action.payload });
 
     dispatch({ type: 'LOAD_HOSPITAL_TO_FORM_LOGIC', payload: action.payload });
+    dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
 
     done();
   },

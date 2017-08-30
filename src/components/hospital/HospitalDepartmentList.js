@@ -35,8 +35,7 @@ const HospitalDepartmentList = ({
         <Table dataSource={hospitalDepartments} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
           <Column
             title="Name"
-            dataIndex="name"
-            key="name"
+            dataIndex="Department.name"
           />
           <Column
             title="Quota"
