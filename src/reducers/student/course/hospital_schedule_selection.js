@@ -12,6 +12,12 @@ const hospitalSelectionSelection = (state = defaultState, action) => {
         selectedRows: action.payload.selectedRows,
       };
     }
+    case 'CLEAR_HOSPITAL_SCHEDULE_SELECT': {
+      return {
+        rowKeys: [],
+        selectedRows: [],
+      };
+    }
     default:
       return state;
   }

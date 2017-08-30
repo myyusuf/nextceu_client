@@ -402,6 +402,10 @@ const mapDispatchToProps = dispatch => (
     },
     showHospitalScheduleWindow: (resultContainer) => {
       dispatch({
+        type: 'CLEAR_HOSPITAL_SCHEDULE_SELECT',
+      });
+
+      dispatch({
         type: 'SHOW_HOSPITAL_SCHEDULE_WINDOW',
         payload: resultContainer,
       });
