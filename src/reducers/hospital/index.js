@@ -10,6 +10,7 @@ import hospitalSearch from './hospital_search';
 import hospitalDepartmentForm from './hospital_department_form';
 import hospitalDepartmentWindow from './hospital_department_window';
 import hospitalDepartmentSearch from './hospital_department_search';
+import hospitalStudentSearch from './hospital_student_search';
 
 const hospitalReducer = combineReducers({
   hospitalForm,
@@ -23,6 +24,7 @@ const hospitalReducer = combineReducers({
   hospitalDepartmentForm,
   hospitalDepartmentWindow,
   hospitalDepartmentSearch,
+  hospitalStudentSearch,
 });
 
 export default hospitalReducer;

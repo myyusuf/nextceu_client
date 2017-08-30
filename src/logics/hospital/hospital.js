@@ -234,6 +234,8 @@ const selectHospitalLogic = createLogic({
     dispatch({ type: 'LOAD_HOSPITAL_TO_FORM_LOGIC', payload: action.payload });
     dispatch({ type: 'FETCH_HOSPITAL_DEPARTMENTS_LOGIC' });
 
+    dispatch({ type: 'FETCH_HOSPITAL_STUDENTS_LOGIC' });
+
     done();
   },
 });

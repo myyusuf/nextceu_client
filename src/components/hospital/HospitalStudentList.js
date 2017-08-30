@@ -1,13 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import HospitalStudentListItem from './HospitalStudentListItem';
+import Table from 'antd/lib/table';
 
-const HospitalStudentList = ({ hospitalStudents }) => (
-  <div>
-    {hospitalStudents.map(student => (
-      <HospitalStudentListItem student={student} />
-    ))}
+const Column = Table.Column;
+
+const HospitalStudentList = ({ hospitalStudents, loading }) => (
+  <div style={{ paddingLeft: 15, paddingRight: 15 }}>
+    <Table dataSource={hospitalStudents} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+      <Column
+        title="Old SID"
+        dataIndex="oldSid"
+      />
+      <Column
+        title="Name"
+        dataIndex="Name"
+      />
+    </Table>
   </div>
 );
 
@@ -17,22 +26,19 @@ HospitalStudentList.propTypes = {
     newSid: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     hospitalStudents: state.hospitalReducers.hospitalStudents,
-  }
-);
-
-const mapDispatchToProps = dispatch => (
-  {
+    loading: state.hospitalReducers.hospitalStudentSearch.loading,
   }
 );
 
 const HospitalStudentListWrapper = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(HospitalStudentList);
 
 export default HospitalStudentListWrapper;
