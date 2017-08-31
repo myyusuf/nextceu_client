@@ -1,5 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
+import moment from 'moment';
 import { validateLength, validateExist } from '../../utils/validation';
 
 const validate = (key, value) => {
@@ -49,7 +50,7 @@ const loadSeminarFormLogic = createLogic({
         value: seminar.name,
       },
       eventDate: {
-        value: seminar.eventDate,
+        value: moment(seminar.eventDate),
       },
     };
     const validationResult = {};

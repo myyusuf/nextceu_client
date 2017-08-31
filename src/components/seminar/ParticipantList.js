@@ -6,8 +6,37 @@ import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
+import Upload from 'antd/lib/upload';
+import notification from 'antd/lib/notification';
+import Constant from '../../Constant';
 
 const Column = Table.Column;
+
+const SEMINAR_UPLOAD_URL = `${Constant.serverUrl}/api/seminarupload`;
+
+const uploadProps = {
+  name: 'seminarFile',
+  action: SEMINAR_UPLOAD_URL,
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      notification.success({
+        message: 'Upload file success',
+        description: `${info.file.name} file uploaded successfully.`,
+      });
+    } else if (info.file.status === 'error') {
+      notification.error({
+        message: 'Upload file error',
+        description: `${info.file.name} file upload failed.`,
+      });
+    }
+  },
+};
 
 class ParticipantList extends Component {
   componentWillMount() {
@@ -46,11 +75,13 @@ class ParticipantList extends Component {
                 onClick={() => fetchParticipants()}
                 style={{ marginRight: 15 }}
               />
-              <Button
-                type="primary"
-                shape="circle"
-                icon="upload"
-              />
+              <Upload {...uploadProps}>
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon="upload"
+                />
+              </Upload>
             </span>
           </Col>
         </Row>
