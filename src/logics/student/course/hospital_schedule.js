@@ -40,7 +40,7 @@ const fetchHospitalSchedulesLogic = createLogic({
         console.error(err);
         dispatch({ type: 'HOSPITAL_SCHEDULE_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch roles error',
+          message: 'Fetch schedules error',
           description: 'Please check internet connection.',
         });
       })

@@ -12,7 +12,7 @@ const HospitalScheduleWindow = ({
   <Modal
     title="Select Hospital"
     visible={visible}
-    okText="Save"
+    okText="Select"
     onOk={onOk}
     onCancel={onCancel}
     width={600}

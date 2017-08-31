@@ -5,6 +5,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
+import Badge from 'antd/lib/badge';
 import DatePicker from 'antd/lib/date-picker';
 
 const Column = Table.Column;
@@ -80,11 +81,41 @@ class HospitalScheduleForm extends Component {
                 title="Quota"
                 dataIndex="departmentQuota"
                 key="departmentQuota"
+                render={text => (
+                  <Badge
+                    count={text}
+                    overflowCount={1000}
+                    showZero
+                    style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
+                  />
+                )}
               />
               <Column
                 title="Students"
                 dataIndex="studentsInDepartmentCount"
                 key="studentsInDepartmentCount"
+                render={(text, record) => {
+                  const departmentQuota = parseInt(record.departmentQuota, 10);
+                  const studentsInDepartmentCount = parseInt(text, 10);
+                  if (studentsInDepartmentCount <= departmentQuota) {
+                    return (
+                      <Badge
+                        count={text}
+                        overflowCount={1000}
+                        showZero
+                        style={{ backgroundColor: '#87d068' }}
+                      />
+                    );
+                  }
+
+                  return (
+                    <Badge
+                      count={text}
+                      overflowCount={1000}
+                      showZero
+                    />
+                  );
+                }}
               />
               <Column
                 title="History"
