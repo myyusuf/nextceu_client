@@ -16,7 +16,6 @@ const SeminarWindow = ({
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
-    cancelText="Cancel"
     onCancel={onCancel}
   >
     <SeminarForm />
@@ -41,7 +40,7 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_ADD_SEMINAR_LOGIC',
+        type: 'CANCEL_EDIT_SEMINAR_LOGIC',
       });
     },
     onOk: () => {

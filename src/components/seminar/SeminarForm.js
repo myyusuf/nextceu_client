@@ -5,6 +5,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import DatePicker from 'antd/lib/date-picker';
 
 const FormItem = Form.Item;
 
@@ -52,6 +53,27 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
         </FormItem>
       </Col>
     </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Date"
+          colon={false}
+          validateStatus={seminarForm.eventDate.validateStatus}
+          help={seminarForm.eventDate.errorMsg}
+        >
+          <DatePicker
+            value={seminarForm.eventDate.value}
+            onChange={(date) => {
+              seminarFormChanged({
+                key: 'eventDate',
+                value: date,
+              });
+            }}
+            style={{ width: '100%' }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
   </Form>
 );
 
@@ -60,6 +82,7 @@ SeminarForm.propTypes = {
   seminarForm: PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    eventDate: PropTypes.date.isRequired,
   }).isRequired,
 };
 
@@ -73,7 +96,7 @@ const mapDispatchToProps = dispatch => (
   {
     seminarFormChanged: (payload) => {
       dispatch({
-        type: 'SEMINAR_FORM_CHANGED',
+        type: 'SEMINAR_FORM_CHANGED_LOGIC',
         payload,
       });
     },
