@@ -54,7 +54,7 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
       </Col>
     </Row>
     <Row>
-      <Col span={24}>
+      <Col span={12}>
         <FormItem
           label="Date"
           colon={false}

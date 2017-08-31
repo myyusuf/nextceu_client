@@ -42,7 +42,7 @@ class SeminarList extends Component {
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
-              placeholder="Seminarname or Name"
+              placeholder="Code or Name"
             />
           </Col>
           <Col span={16}>
@@ -128,10 +128,7 @@ SeminarList.propTypes = {
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  seminars: PropTypes.arrayOf(PropTypes.shape({
-    seminarname: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  seminars: PropTypes.arrayOf(PropTypes.shape).isRequired,
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,

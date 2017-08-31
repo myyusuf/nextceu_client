@@ -2,6 +2,7 @@ const defaultState = {
   id: {},
   code: {},
   name: {},
+  eventDate: {},
 };
 
 const seminarForm = (state = defaultState, action) => {
