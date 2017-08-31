@@ -34,6 +34,18 @@ export default class Gantt extends Component {
       ];
     }
 
+    //Weekends Color
+    gantt.templates.scale_cell_class = function(date){
+    if(date.getDay()==0||date.getDay()==6){
+            return "weekend";
+        }
+    };
+    gantt.templates.task_cell_class = function(item,date){
+        if(date.getDay()==0||date.getDay()==6){
+            return "weekend" ;
+        }
+    };
+
     gantt.init(this.ganttContainer);
     gantt.clearAll();
     gantt.parse(this.props.tasks);
@@ -57,6 +69,7 @@ export default class Gantt extends Component {
           {unit:"day", step:1, date:"%D" }
         ];
       }
+
       gantt.clearAll();
       gantt.clearAll();
       gantt.parse(nextProps.tasks);
