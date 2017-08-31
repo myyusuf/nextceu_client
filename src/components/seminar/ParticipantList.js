@@ -54,7 +54,12 @@ class ParticipantList extends Component {
       searchTextChanged,
       pageChanged,
       loading,
+      seminarId,
     } = this.props;
+
+    uploadProps.action = `${SEMINAR_UPLOAD_URL}/${seminarId}`;
+    const buttonDisabled = seminarId === undefined;
+
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
@@ -74,12 +79,14 @@ class ParticipantList extends Component {
                 icon="search"
                 onClick={() => fetchParticipants()}
                 style={{ marginRight: 15 }}
+                disabled={buttonDisabled}
               />
               <Upload {...uploadProps}>
                 <Button
                   type="primary"
                   shape="circle"
                   icon="upload"
+                  disabled={buttonDisabled}
                 />
               </Upload>
             </span>
@@ -135,6 +142,7 @@ ParticipantList.propTypes = {
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
+  seminarId: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -145,6 +153,7 @@ const mapStateToProps = state => (
     pageSize: state.seminarReducers.participantSearch.pageSize,
     currentPage: state.seminarReducers.participantSearch.currentPage,
     loading: state.seminarReducers.participantSearch.loading,
+    seminarId: state.seminarReducers.seminarSelection.rowKeys[0],
   }
 );
 

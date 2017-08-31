@@ -7,6 +7,7 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
+import moment from 'moment';
 
 import SeminarWindow from './SeminarWindow';
 
@@ -32,7 +33,18 @@ class SeminarList extends Component {
       searchTextChanged,
       pageChanged,
       loading,
+      selectedRowKeys,
+      rowKeysChanged,
     } = this.props;
+
+    const rowSelection = {
+      type: 'radio',
+      selectedRowKeys,
+      onChange: (rowKeys, selectedRows) => {
+        rowKeysChanged(rowKeys, selectedRows);
+      },
+    };
+
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
@@ -75,6 +87,7 @@ class SeminarList extends Component {
                 pageSize,
               }}
               onChange={pagination => pageChanged(pagination.current)}
+              rowSelection={rowSelection}
             >
               <Column
                 title="Code"
@@ -90,6 +103,11 @@ class SeminarList extends Component {
                 title="Date"
                 dataIndex="eventDate"
                 key="eventDate"
+                render={(text, record) => (
+                  <span>
+                    {moment(text).format('DD/MM/YYYY')}
+                  </span>
+                )}
               />
               <Column
                 title="Action"
@@ -132,6 +150,8 @@ SeminarList.propTypes = {
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
+  selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  rowKeysChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -142,6 +162,7 @@ const mapStateToProps = state => (
     pageSize: state.seminarReducers.seminarSearch.pageSize,
     currentPage: state.seminarReducers.seminarSearch.currentPage,
     loading: state.seminarReducers.seminarSearch.loading,
+    selectedRowKeys: state.seminarReducers.seminarSelection.rowKeys,
   }
 );
 
@@ -188,6 +209,12 @@ const mapDispatchToProps = dispatch => (
         onCancel() {
           console.log('Cancel');
         },
+      })
+    ),
+    rowKeysChanged: (rowKeys, selectedRows) => (
+      dispatch({
+        type: 'SEMINAR_SELECT_CHANGED',
+        payload: { rowKeys, selectedRows },
       })
     ),
   }

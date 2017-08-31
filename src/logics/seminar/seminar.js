@@ -37,6 +37,8 @@ const fetchSeminarsLogic = createLogic({
       .then((data) => {
         dispatch({ type: 'SEMINAR_LOADING_FINISH' });
         dispatch({ type: 'FETCH_SEMINARS_SUCCESS', payload: data });
+
+        dispatch({ type: 'CLEAR_SEMINAR_SELECT' });
       })
       .catch((err) => {
         console.error(err);
