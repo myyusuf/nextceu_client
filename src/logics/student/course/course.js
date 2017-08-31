@@ -100,6 +100,15 @@ const saveCourseLogic = createLogic({
       ...getState().studentReducers.courseForm,
       ...getState().studentReducers.scoreForm,
     }, 'value');
+
+    if (courseForm.hospital1) {
+      courseForm.hospital1 = courseForm.hospital1.id;
+    }
+
+    if (courseForm.clinic) {
+      courseForm.clinic = courseForm.clinic.id;
+    }
+
     dispatch({ type: 'SHOW_COURSE_WINDOW_CONFIRM_LOADING' });
 
     const student = getState().studentReducers.student;

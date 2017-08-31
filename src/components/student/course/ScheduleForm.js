@@ -16,7 +16,7 @@ const InputGroup = Input.Group;
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 
-const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleWindow }) => {
+const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleWindow, clearField }) => {
   const {
     planDate,
     realStartDate,
@@ -187,11 +187,20 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                         />
                       </Col>
                       <Col span={8}>
-                        <Button
-                          icon="select"
-                          style={{ height: 32 }}
-                          onClick={() => showHospitalScheduleWindow('hospital1')}
-                        />
+                        <span>
+                          <Button
+                            icon="close-circle"
+                            style={{ height: 32 }}
+                            onClick={() => clearField('hospital1')}
+                          />
+                        </span>
+                        <span>
+                          <Button
+                            icon="select"
+                            style={{ height: 32, marginLeft: 5 }}
+                            onClick={() => showHospitalScheduleWindow('hospital1')}
+                          />
+                        </span>
                       </Col>
                     </InputGroup>
 
@@ -280,11 +289,20 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                         />
                       </Col>
                       <Col span={8}>
-                        <Button
-                          icon="select"
-                          style={{ height: 32 }}
-                          onClick={() => showHospitalScheduleWindow('clinic')}
-                        />
+                        <span>
+                          <Button
+                            icon="close-circle"
+                            style={{ height: 32 }}
+                            onClick={() => clearField('clinic')}
+                          />
+                        </span>
+                        <span>
+                          <Button
+                            icon="select"
+                            style={{ height: 32, marginLeft: 5 }}
+                            onClick={() => showHospitalScheduleWindow('clinic')}
+                          />
+                        </span>
                       </Col>
                     </InputGroup>
 
@@ -368,6 +386,7 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
 ScheduleForm.propTypes = {
   scheduleFormChanged: PropTypes.func.isRequired,
   showHospitalScheduleWindow: PropTypes.func.isRequired,
+  clearField: PropTypes.func.isRequired,
   scheduleForm: PropTypes.shape({
     planDate: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     realStartDate: PropTypes.instanceOf(Date),
@@ -408,6 +427,15 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'SHOW_HOSPITAL_SCHEDULE_WINDOW',
         payload: resultContainer,
+      });
+    },
+    clearField: (key) => {
+      dispatch({
+        type: 'COURSE_FORM_CHANGED_LOGIC',
+        payload: {
+          key,
+          value: null,
+        },
       });
     },
   }
