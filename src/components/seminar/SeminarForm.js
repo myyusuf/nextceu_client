@@ -82,7 +82,7 @@ SeminarForm.propTypes = {
   seminarForm: PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    eventDate: PropTypes.date.isRequired,
+    eventDate: PropTypes.instanceOf(Date).isRequired,
   }).isRequired,
 };
 

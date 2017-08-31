@@ -5,7 +5,6 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 
 import './SeminarMain.css';
-import { filterStudentsByLevelText } from '../../actions/student/students';
 import SeminarList from '../../components/seminar/SeminarList';
 import ParticipantList from '../../components/seminar/ParticipantList';
 
@@ -33,9 +32,6 @@ SeminarMain.propTypes = {
 
 const mapDispatchToProps = dispatch => (
   {
-    filterStudents: level => (
-      dispatch(filterStudentsByLevelText(level))
-    ),
     openAddWindow: () => (
       dispatch({
         type: 'ADD_HOSPITAL_LOGIC',
