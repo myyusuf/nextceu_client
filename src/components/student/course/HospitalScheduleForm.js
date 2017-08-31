@@ -12,7 +12,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class HospitalScheduleForm extends Component {
   componentWillMount() {
-    this.props.fetchHospitalSchedules();
+    // this.props.fetchHospitalSchedules();
   }
 
   render() {

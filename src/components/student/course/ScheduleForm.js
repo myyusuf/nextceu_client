@@ -428,6 +428,10 @@ const mapDispatchToProps = dispatch => (
         type: 'SHOW_HOSPITAL_SCHEDULE_WINDOW',
         payload: resultContainer,
       });
+
+      dispatch({
+        type: 'FETCH_HOSPITAL_SCHEDULES_LOGIC',
+      });
     },
     clearField: (key) => {
       dispatch({

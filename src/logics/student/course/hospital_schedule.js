@@ -16,11 +16,17 @@ const fetchHospitalSchedulesLogic = createLogic({
     const student = getState().studentReducers.student.id;
     const startDate = dateRange[0];
     const endDate = dateRange[1];
+    const resultContainer = getState().studentReducers.hospitalScheduleWindow.resultContainer;
+    let hospitalType = '1';
+    if (resultContainer === 'clinic') {
+      hospitalType = '2';
+    }
     const search = {
       department,
       student,
       startDate,
       endDate,
+      hospitalType,
     };
     const paramameters = { params: { ...search } };
     dispatch({ type: 'HOSPITAL_SCHEDULE_LOADING_START' });
