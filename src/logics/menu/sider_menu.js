@@ -5,6 +5,8 @@ const selectSiderMenuLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'SELECT_SIDER_MENU', payload: action.payload });
+
+    // window.location.href = `/${action.payload}`;
     done();
   },
 });

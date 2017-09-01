@@ -1,5 +1,5 @@
 const defaultState = {
-  selectedMenu: 'student',
+  selectedMenu: 'students',
 };
 
 const siderMenu = (state = defaultState, action) => {
