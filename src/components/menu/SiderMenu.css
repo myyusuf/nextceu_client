@@ -4,12 +4,20 @@
   padding: 14px;
 }
 
-.SiderMenu-selected {
+.SiderMenu-box:hover {
+  cursor: pointer;
+}
+
+.SiderMenu-box-selected {
   width: 60px;
   height: 60px;
   padding: 14px;
   background-color: #108ee9;
   color: #fff;
+}
+
+.SiderMenu-box-selected:hover {
+  cursor: pointer;
 }
 
 .SiderMenu-box-icon {

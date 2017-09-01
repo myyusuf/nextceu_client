@@ -6,6 +6,7 @@ import uploadReducers from './upload/';
 import userReducers from './user/';
 import settingsReducers from './settings/';
 import departmentReducers from './department/';
+import menuReducers from './menu/';
 
 const rootReducer = combineReducers({
   studentReducers,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   userReducers,
   settingsReducers,
   departmentReducers,
+  menuReducers,
 });
 
 export default rootReducer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Icon from 'antd/lib/icon';
 import './SiderMenu.css';
@@ -55,7 +56,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    selectSiderMenu: (selectedMenu) => (
+    selectSiderMenu: selectedMenu => (
       dispatch({
         type: 'SELECT_SIDER_MENU_LOGIC',
         payload: selectedMenu,
@@ -64,11 +65,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const RoleListWrapper = connect(
+const SiderMenuWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(RoleList);
+)(SiderMenu);
 
-export default RoleListWrapper;
-
-export default SiderMenu;
+export default SiderMenuWrapper;

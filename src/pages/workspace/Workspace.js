@@ -9,12 +9,13 @@ import './Workspace.css';
 // import SeminarMain from '../seminar/SeminarMain';
 // import UploadList from '../../components/upload/UploadList';
 // import SettingsMain from '../../pages/settings/SettingsMain';
+import SiderMenu from '../../components/menu/SiderMenu';
 
 const Workspace = ({ children }) =>
 (
   <Layout style={{ height: '100%' }}>
     <Sider width={60}>
-      <div>
+      {/*<div>
         <div style={{ width: 60, height: 60, padding: 14 }}>
           <Icon type="home" style={{ fontSize: 27, color: '#fff' }} />
         </div>
@@ -33,7 +34,8 @@ const Workspace = ({ children }) =>
         <div style={{ width: 60, height: 60, padding: 14 }}>
           <Icon type="appstore-o" style={{ fontSize: 27, color: '#7F8391' }} />
         </div>
-      </div>
+      </div>*/}
+      <SiderMenu />
     </Sider>
     <Layout>
       <Header className="Workspace-header">
