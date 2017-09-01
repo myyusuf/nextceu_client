@@ -10,7 +10,7 @@ const fetchHospitalStudentsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_HOSPITAL_STUDENTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().hospitalReducers.hospitalDepartmentSearch;
+    const search = getState().hospitalReducers.hospitalSearch;
     const paramameters = search ? { params: { ...search } } : {};
     const hospitalId = getState().hospitalReducers.hospitalForm.id.value;
     dispatch({ type: 'HOSPITAL_STUDENT_LOADING_START' });

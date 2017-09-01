@@ -14,7 +14,7 @@ const HospitalStudentList = ({ hospitalStudents, loading }) => (
       />
       <Column
         title="Name"
-        dataIndex="Name"
+        dataIndex="name"
       />
     </Table>
   </div>
