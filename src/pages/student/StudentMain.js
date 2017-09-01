@@ -11,7 +11,7 @@ import CoursePage from '../../pages/student/course/CoursePage';
 import StudentWindow from '../../components/student/StudentWindow';
 
 const StudentMain = ({ level, levelChanged }) => (
-  <div>
+  <div style={{ height: '100%' }}>
     <Row>
       <Col span={24}>
         <Menu
