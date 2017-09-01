@@ -7,7 +7,10 @@ import 'antd/dist/antd.css';
 
 import './App.css';
 
-// import WorkspaceWrapper from './containers/workspace/WorkspaceWrapper';
+import StudentMain from './pages/student/StudentMain';
+import HospitalMain from './pages//hospital/HospitalMain';
+import SettingsMain from './pages/settings/SettingsMain';
+
 import Workspace from './pages/workspace/Workspace';
 
 class App extends Component {
@@ -15,7 +18,11 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Workspace></Workspace>
+          <Workspace>
+            <Route path="/students" component={StudentMain} />
+            <Route path="/hospitals" component={HospitalMain} />
+            <Route path="/settings" component={SettingsMain} />
+          </Workspace>
         </Router>
       </div>
     );

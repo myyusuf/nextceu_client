@@ -2,14 +2,15 @@ import React from 'react';
 import Layout, { Header, Content, Sider } from 'antd/lib/layout';
 import { Link } from 'react-router-dom';
 import Icon from 'antd/lib/icon';
+import Progress from 'antd/lib/progress';
 import './Workspace.css';
-import StudentMain from '../student/StudentMain';
+// import StudentMain from '../student/StudentMain';
 // import HospitalMain from '../hospital/HospitalMain';
 // import SeminarMain from '../seminar/SeminarMain';
 // import UploadList from '../../components/upload/UploadList';
 // import SettingsMain from '../../pages/settings/SettingsMain';
 
-const Workspace = () =>
+const Workspace = ({ children }) =>
 (
   <Layout style={{ height: '100%' }}>
     <Sider width={60}>
@@ -39,6 +40,18 @@ const Workspace = () =>
         <Link to="/">CEU</Link> | Administration
         <div
           style={{
+            width: 160,
+            height: 60,
+            padding: 14,
+            position: 'absolute',
+            top: -5,
+            right: 100,
+          }}
+        >
+          <Progress percent={70} strokeWidth={7} showInfo={false} />
+        </div>
+        <div
+          style={{
             width: 60,
             height: 60,
             padding: 14,
@@ -66,7 +79,7 @@ const Workspace = () =>
         </div>
       </Header>
       <Content className="Workspace-content">
-        <StudentMain />
+        {children}
       </Content>
     </Layout>
   </Layout>
