@@ -7,7 +7,7 @@ const Column = Table.Column;
 
 const HospitalStudentList = ({ hospitalStudents, loading }) => (
   <div style={{ paddingLeft: 15, paddingRight: 15 }}>
-    <Table dataSource={hospitalStudents} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+    <Table dataSource={hospitalStudents} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
       <Column
         title="Old SID"
         dataIndex="oldSid"

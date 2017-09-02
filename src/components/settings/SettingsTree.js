@@ -12,6 +12,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
       borderStyle: 'solid',
       borderColor: '#e9e9e9',
       padding: 15,
+      height: 600,
     }}
   >
     <Tree
@@ -21,6 +22,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
     >
       <TreeNode title="Application" key="1">
         <TreeNode title="Department" key="1-1" />
+        <TreeNode title="Upload Scores" key="1-2" />
       </TreeNode>
       <TreeNode title="Security" key="2">
         <TreeNode title="User" key="2-1" />

@@ -60,7 +60,7 @@ class RoleList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={roles} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+            <Table dataSource={roles} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Code"
                 dataIndex="code"

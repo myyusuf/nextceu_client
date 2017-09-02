@@ -105,6 +105,7 @@ class ParticipantList extends Component {
                 pageSize,
               }}
               onChange={pagination => pageChanged(pagination.current)}
+              size="middle"
             >
               <Column
                 title="Old SID"

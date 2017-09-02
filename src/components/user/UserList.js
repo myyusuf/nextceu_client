@@ -75,6 +75,7 @@ class UserList extends Component {
                 pageSize,
               }}
               onChange={pagination => pageChanged(pagination.current)}
+              size="middle"
             >
               <Column
                 title="Username"

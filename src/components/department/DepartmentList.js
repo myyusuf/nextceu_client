@@ -73,7 +73,7 @@ class DepartmentList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={departments} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+            <Table dataSource={departments} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Code"
                 dataIndex="code"

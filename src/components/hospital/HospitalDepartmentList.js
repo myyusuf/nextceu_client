@@ -32,7 +32,7 @@ const HospitalDepartmentList = ({
     </Row>
     <Row>
       <Col span={24}>
-        <Table dataSource={hospitalDepartments} style={{ marginTop: 20 }} rowKey="id" loading={loading}>
+        <Table dataSource={hospitalDepartments} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
           <Column
             title="Name"
             dataIndex="Department.name"

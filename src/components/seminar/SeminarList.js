@@ -88,6 +88,7 @@ class SeminarList extends Component {
               }}
               onChange={pagination => pageChanged(pagination.current)}
               rowSelection={rowSelection}
+              size="middle"
             >
               <Column
                 title="Code"
