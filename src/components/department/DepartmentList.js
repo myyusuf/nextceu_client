@@ -9,6 +9,7 @@ import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
 
 import DepartmentWindow from './DepartmentWindow';
+import DepartmentLevelSelect from './DepartmentLevelSelect';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -27,6 +28,8 @@ class DepartmentList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      searchLevel,
+      searchLevelChanged,
       loading,
     } = this.props;
     return (
@@ -39,9 +42,19 @@ class DepartmentList extends Component {
                 searchTextChanged(e.target.value);
               }}
               placeholder="Code or Name"
+              style={{ height: 32 }}
             />
           </Col>
-          <Col span={16}>
+          <Col span={4}>
+            <DepartmentLevelSelect
+              value={searchLevel}
+              onSelect={(value) => {
+                searchLevelChanged(value);
+              }}
+              style={{ width: '100%' }}
+            />
+          </Col>
+          <Col span={12}>
             <span>
               <Button
                 shape="circle"
@@ -125,6 +138,8 @@ DepartmentList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  searchLevel: PropTypes.string.isRequired,
+  searchLevelChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   departments: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -136,6 +151,7 @@ const mapStateToProps = state => (
   {
     departments: state.departmentReducers.departments,
     searchText: state.departmentReducers.departmentSearch.searchText,
+    searchLevel: state.departmentReducers.departmentSearch.searchLevel,
     loading: state.departmentReducers.departmentSearch.loading,
   }
 );
@@ -161,6 +177,12 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'DEPARTMENT_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchLevelChanged: value => (
+      dispatch({
+        type: 'DEPARTMENT_SEARCH_LEVEL_CHANGED',
         payload: value,
       })
     ),
