@@ -1,6 +1,6 @@
 const defaultState = {
   id: {},
-  username: {},
+  username: { value: '' },
   password: {},
 };
 

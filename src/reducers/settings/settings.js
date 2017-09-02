@@ -1,5 +1,5 @@
 const defaultState = {
-  selectedMenuKey: '',
+  selectedMenuKey: '1-1',
 };
 
 const settings = (state = defaultState, action) => {

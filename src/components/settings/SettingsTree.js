@@ -5,7 +5,7 @@ import Tree from 'antd/lib/tree';
 
 const TreeNode = Tree.TreeNode;
 
-const SettingsTree = ({ selectSettings }) => (
+const SettingsTree = ({ selectSettings, selectedKeys }) => (
   <div
     style={{
       borderWidth: 1,
@@ -16,6 +16,7 @@ const SettingsTree = ({ selectSettings }) => (
   >
     <Tree
       onSelect={selectSettings}
+      selectedKeys={selectedKeys}
       defaultExpandedKeys={['1', '2']}
     >
       <TreeNode title="Application" key="1">
@@ -31,7 +32,14 @@ const SettingsTree = ({ selectSettings }) => (
 
 SettingsTree.propTypes = {
   selectSettings: PropTypes.func.isRequired,
+  selectedKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
+
+const mapStateToProps = state => (
+  {
+    selectedKeys: [state.settingsReducers.settings.selectedMenuKey],
+  }
+);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -47,7 +55,7 @@ const mapDispatchToProps = dispatch => (
 );
 
 const SettingsTreeWrapper = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(SettingsTree);
 

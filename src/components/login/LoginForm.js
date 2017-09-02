@@ -6,11 +6,23 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import Icon from 'antd/lib/icon';
+import Checkbox from 'antd/lib/checkbox';
 
 const FormItem = Form.Item;
 
 const LoginForm = ({ loginForm, loginFormChanged }) => (
   <Form>
+    <Row>
+      <Col span={24}>
+        <FormItem>
+          <div style={{ width: 158, marginLeft: 'auto', marginRight: 'auto', marginBottom: 15 }}>
+            <span style={{ fontSize: 20, color: '#5093E1', fontWeight: 'bold' }}>CEU</span>
+            <span style={{ fontSize: 20, color: 'gray' }}> | </span>
+            <span style={{ fontSize: 15, color: 'silver' }}>Administration</span>
+          </div>
+        </FormItem>
+      </Col>
+    </Row>
     <Row>
       <Col span={24}>
         <FormItem
@@ -35,11 +47,11 @@ const LoginForm = ({ loginForm, loginFormChanged }) => (
     <Row>
       <Col span={24}>
         <FormItem
-          validateStatus={loginForm.name.validateStatus}
-          help={loginForm.name.errorMsg}
+          validateStatus={loginForm.password.validateStatus}
+          help={loginForm.password.errorMsg}
         >
           <Input
-            value={loginForm.name.value}
+            value={loginForm.password.value}
             onChange={(e) => {
               loginFormChanged({
                 key: 'password',
@@ -51,6 +63,14 @@ const LoginForm = ({ loginForm, loginFormChanged }) => (
             placeholder="Password"
             maxLength={30}
           />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem>
+          <Checkbox>Remember me</Checkbox>
+          <a style={{ float: 'right' }} href="#">Forgot password</a>
         </FormItem>
       </Col>
     </Row>

@@ -13,9 +13,14 @@ const LoginFormContainer = ({
     confirmLoading={confirmLoading}
   >
     <LoginForm />
-    <Button type="primary" style={{ width: '100%' }} loading={confirmLoading}>
+    <Button type="primary" style={{ width: '100%', height: 30, marginBottom: 10 }} loading={confirmLoading}>
       Log in
     </Button>
+    Or <a href="#">register now!</a>
+    <div style={{ color: 'silver', fontSize: 11, marginTop: 11 }}>
+      Clinical Education Unit Fakultas Kedokteran Universitas Muslim Indonesia (UMI).
+      &copy; UMI 2017. All rights reserved.
+    </div>
   </div>
 );
 
