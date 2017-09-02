@@ -70,7 +70,7 @@ const LoginForm = ({ loginForm, loginFormChanged }) => (
       <Col span={24}>
         <FormItem>
           <Checkbox>Remember me</Checkbox>
-          <a style={{ float: 'right' }} href="#">Forgot password</a>
+          <a style={{ float: 'right' }} href="#">Forgot password?</a>
         </FormItem>
       </Col>
     </Row>

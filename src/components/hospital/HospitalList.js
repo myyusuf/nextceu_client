@@ -22,7 +22,7 @@ class HospitalList extends Component {
   render() {
     const { hospitals, hospitalType, hospitalTypeChanged, loading, selectHospital } = this.props;
     return (
-      <div style={{ padding: 15, backgroundColor: '#eDeff5' }}>
+      <div style={{ padding: 15, backgroundColor: '#eDeff5', height: 600 }}>
         <Row>
           <Col span={24}>
             <Menu

@@ -61,7 +61,7 @@ const Workspace = ({ children }) => {
               zIndex: 1000,
             }}
           >
-            <Icon type="plus" style={{ fontSize: 23, color: '#fff' }} />
+            <Icon type="bulb" style={{ fontSize: 23, color: '#fff' }} />
           </div>
         </Header>
         <Content className="Workspace-content">
@@ -79,7 +79,8 @@ const Workspace = ({ children }) => {
     </Row>
   );
 
-  return loginComponent;
+  // return loginComponent;
+  return mainComponent;
 };
 
 

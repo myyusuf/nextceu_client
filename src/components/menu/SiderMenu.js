@@ -18,7 +18,7 @@ const SiderMenu = ({ selectedMenu, selectSiderMenu }) => (
         className={selectedMenu === 'students' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}
         style={{ marginTop: 60 }}
       >
-        <Icon type="user" className={selectedMenu === 'students' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
+        <Icon type="team" className={selectedMenu === 'students' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
       </div>
     </Link>
     <Link to="/hospitals">
@@ -45,7 +45,7 @@ const SiderMenu = ({ selectedMenu, selectSiderMenu }) => (
         onClick={() => selectSiderMenu('uploads')}
         className={selectedMenu === 'uploads' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}
       >
-        <Icon type="cloud-upload-o" className={selectedMenu === 'uploads' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
+        <Icon type="copy" className={selectedMenu === 'uploads' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
       </div>
     </Link>
     <Link to="/settings">
