@@ -13,7 +13,12 @@ const LoginFormContainer = ({
     confirmLoading={confirmLoading}
   >
     <LoginForm />
-    <Button type="primary" style={{ width: '100%', height: 30, marginBottom: 10 }} loading={confirmLoading}>
+    <Button
+      type="primary"
+      style={{ width: '100%', height: 30, marginBottom: 10 }}
+      loading={confirmLoading}
+      onClick={() => onLogin()}
+    >
       Log in
     </Button>
     Or <a href="#">register now!</a>

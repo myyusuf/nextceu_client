@@ -5,6 +5,9 @@ import Icon from 'antd/lib/icon';
 import Progress from 'antd/lib/progress';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
+import Menu from 'antd/lib/menu';
+import Dropdown from 'antd/lib/dropdown';
+import Button from 'antd/lib/button';
 import './Workspace.css';
 // import StudentMain from '../student/StudentMain';
 // import HospitalMain from '../hospital/HospitalMain';
@@ -15,6 +18,24 @@ import SiderMenu from '../../components/menu/SiderMenu';
 import LoginFormContainer from '../../components/login/LoginFormContainer';
 
 const Workspace = ({ children }) => {
+
+  const menu = (
+    <Menu style={{ width: 100 }}>
+      <Menu.Item>
+        My Profile
+      </Menu.Item>
+      <Menu.Item>
+        <a href="#"
+          onClick={() => {
+            window.sessionStorage.removeItem('token');
+            window.location.href = '/';
+          }}
+        >
+          Logout
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
 
   const mainComponent = (
     <Layout style={{ height: '100%' }}>
@@ -61,7 +82,9 @@ const Workspace = ({ children }) => {
               zIndex: 1000,
             }}
           >
-            <Icon type="bulb" style={{ fontSize: 23, color: '#fff' }} />
+            <Dropdown overlay={menu}>
+              <Icon type="bulb" style={{ fontSize: 23, color: '#fff' }} />
+            </Dropdown>
           </div>
         </Header>
         <Content className="Workspace-content">
@@ -79,7 +102,9 @@ const Workspace = ({ children }) => {
     </Row>
   );
 
-  // return loginComponent;
+  if (!window.sessionStorage.getItem('token')) {
+    return loginComponent;
+  }
   return mainComponent;
 };
 

@@ -56,8 +56,15 @@ const doLoginLogic = createLogic({
     dispatch({ type: 'SHOW_LOGIN_FORM_CONTAINER_CONFIRM_LOADING' });
 
     axios.post(SIGNIN_URL, loginForm)
-      .then(() => {
+      .then((response) => {
         dispatch({ type: 'HIDE_LOGIN_FORM_CONTAINER_CONFIRM_LOADING' });
+        const token = response.data.token;
+        if (typeof (Storage) !== 'undefined') {
+          window.sessionStorage.setItem('token', token);
+          window.location.href = '/';
+        } else {
+            alert('Sorry! No Web Storage support..');
+        }
       })
       .catch((err) => {
         let errorMessage = '';
@@ -74,7 +81,7 @@ const doLoginLogic = createLogic({
         }
         dispatch({ type: 'HIDE_LOGIN_FORM_CONTAINER_CONFIRM_LOADING' });
         notification.error({
-          message: 'Create login error',
+          message: 'Wrong username or password',
           description: errorMessage,
         });
       })
