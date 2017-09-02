@@ -61,7 +61,7 @@ const doLoginLogic = createLogic({
         const token = response.data.token;
         if (typeof (Storage) !== 'undefined') {
           window.sessionStorage.setItem('token', token);
-          window.location.href = '/';
+          window.location.href = '/students';
         } else {
             alert('Sorry! No Web Storage support..');
         }
