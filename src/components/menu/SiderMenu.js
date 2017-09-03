@@ -10,19 +10,19 @@ import './SiderMenu.css';
 class SiderMenu extends Component {
 
   componentWillMount() {
-    let selectedMenu = '';
-    const location = window.location.href;
-    if (location.indexOf('students') !== -1) {
-      selectedMenu = 'students';
-    } else if (location.indexOf('hospitals') !== -1) {
-      selectedMenu = 'hospitals';
-    } else if (location.indexOf('seminars') !== -1) {
-      selectedMenu = 'seminars';
-    } else if (location.indexOf('reports') !== -1) {
-      selectedMenu = 'reports';
-    } else if (location.indexOf('settings') !== -1) {
-      selectedMenu = 'settings';
-    }
+    const selectedMenu = 'students';
+    // const location = window.location.href;
+    // if (location.indexOf('students') !== -1) {
+    //   selectedMenu = 'students';
+    // } else if (location.indexOf('hospitals') !== -1) {
+    //   selectedMenu = 'hospitals';
+    // } else if (location.indexOf('seminars') !== -1) {
+    //   selectedMenu = 'seminars';
+    // } else if (location.indexOf('reports') !== -1) {
+    //   selectedMenu = 'reports';
+    // } else if (location.indexOf('settings') !== -1) {
+    //   selectedMenu = 'settings';
+    // }
     this.props.selectSiderMenu(selectedMenu);
   }
 
@@ -33,7 +33,7 @@ class SiderMenu extends Component {
         <div className="SiderMenu-box">
           <Icon type="home" style={{ fontSize: 27, color: '#fff' }} />
         </div>
-        <Link to="/students" onClick={() => selectSiderMenu('students')}>
+        <Link to="/" onClick={() => selectSiderMenu('students')}>
           <div
             className={selectedMenu === 'students' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}
             style={{ marginTop: 60 }}
