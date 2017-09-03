@@ -45,7 +45,7 @@ class HospitalList extends Component {
         <Row gutter={15} style={{ marginTop: 5 }}>
           {hospitals.filter(hospital => String(hospital.hospitalType) === hospitalType)
             .map(hospital => (
-              <Col span={8}>
+              <Col span={6}>
                 <HospitalListItem hospital={hospital} selectHospital={selectHospital} />
               </Col>
             ))}

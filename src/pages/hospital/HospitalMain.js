@@ -60,10 +60,10 @@ const HospitalMain = ({
     </Row>
 
     <Row>
-      <Col span={17}>
+      <Col span={18}>
         <HospitalList />
       </Col>
-      <Col span={7} style={{ backgroundColor: '#fff' }}>
+      <Col span={6} style={{ backgroundColor: '#fff' }}>
         <HospitalDetailsPage />
       </Col>
     </Row>

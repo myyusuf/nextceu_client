@@ -18,7 +18,7 @@ class StudentList extends Component {
             { this.props.students.map(student => (
               <li
                 key={student.id}
-                className={student.selected ? 'StudentList-item-selected' : ''}
+                className={student.selected ? 'StudentList-item-selected' : 'StudentList-item'}
                 onClick={() => this.props.onItemClick(student)}
               >
                 <span className="StudentList-item-text">{student.name}</span>

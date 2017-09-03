@@ -9,7 +9,7 @@ const TabPane = Tabs.TabPane;
 
 const HospitalDetailsPage = () => (
   <div className="HospitalDetailsPage-container ">
-    <Tabs defaultActiveKey="1" tabBarStyle={{ marginLeft: 5 }}>
+    <Tabs defaultActiveKey="1" tabBarStyle={{ marginLeft: 0 }}>
       <TabPane tab="Main" key="1">
         <HospitalFormContainer />
       </TabPane>

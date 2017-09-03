@@ -8,9 +8,17 @@
   list-style: none;
 }
 
+.StudentList-item:hover {
+  cursor: pointer;
+}
+
 .StudentList-item-selected {
   background-color: #108ee9;
   color: #fff;
+}
+
+.StudentList-item-selected:hover {
+  cursor: pointer;
 }
 
 .StudentList-item-text {
