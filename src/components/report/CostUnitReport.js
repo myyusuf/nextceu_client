@@ -52,6 +52,46 @@ class CostUnitReport extends Component {
                 title="Department"
                 dataIndex="Department.name"
               />
+              <Column
+                title="Duration"
+                dataIndex="duration"
+              />
+              <Column
+                title="Name"
+                dataIndex="name"
+              />
+              <Column
+                title="NST. Fee/Week"
+                dataIndex="fee1"
+              />
+              <Column
+                title="DIR (20rb)"
+                dataIndex="fee2"
+              />
+              <Column
+                title="BKD (20rb)"
+                dataIndex="fee3"
+              />
+              <Column
+                title="KDI (5rb)"
+                dataIndex="fee4"
+              />
+              <Column
+                title="DPK (50rb)"
+                dataIndex="fee5"
+              />
+              <Column
+                title="PEMBBG (50rb)"
+                dataIndex="fee6"
+              />
+              <Column
+                title="Penguji (500rb)"
+                dataIndex="fee7"
+              />
+              <Column
+                title="Total"
+                dataIndex="total"
+              />
             </Table>
           </Col>
         </Row>
