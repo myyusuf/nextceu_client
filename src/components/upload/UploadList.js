@@ -4,41 +4,79 @@ import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
+import notification from 'antd/lib/notification';
 import Button from 'antd/lib/button';
-import Input from 'antd/lib/input';
+import Upload from 'antd/lib/upload';
+import Constant from '../../Constant';
 
-const columns = [
+const SCORE_UPLOAD_URL = `${Constant.serverUrl}/api/scoreupload`;
+
+const Column = Table.Column;
+
+const uploadProps = {
+  name: 'scoreFile',
+  action: SCORE_UPLOAD_URL,
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      notification.success({
+        message: 'Upload file success',
+        description: `${info.file.name} file uploaded successfully.`,
+      });
+    } else if (info.file.status === 'error') {
+      notification.error({
+        message: 'Upload file error',
+        description: `${info.file.name} file upload failed.`,
+      });
+    }
+  },
+};
+
+const uploads = [
   {
-    title: 'Code',
-    dataIndex: 'code',
-    key: 'code',
+    id: 1,
+    name: 'Score Type 1',
+  },
+  {
+    id: 2,
+    name: 'Score Type 2',
   },
 ];
 
-const UploadList = ({ uploads, openAddWindow, searchText, searchTextChanged }) => (
+const UploadList = () => (
   <div style={{ paddingLeft: 10, paddingRight: 10 }}>
-    <Row gutter={10}>
-      <Col span={12}>
-        <Input
-          value={searchText}
-          onChange={(e) => {
-            searchTextChanged(e.target.value);
-          }}
-          placeholder="Code"
-        />
-      </Col>
-      <Col span={12}>
-        <Button
-          type="primary"
-          shape="circle"
-          icon="upload"
-          onClick={() => openAddWindow()}
-        />
-      </Col>
-    </Row>
     <Row>
       <Col span={24}>
-        <Table columns={columns} dataSource={uploads} style={{ marginTop: 20 }} />
+        <Table dataSource={uploads} style={{ marginTop: 20 }} size="middle">
+          <Column
+            title="Name"
+            dataIndex="name"
+            key="name"
+          />
+          <Column
+            title="Action"
+            key="action"
+            render={(text, record) => {
+              const tempUploadProps = { ...uploadProps, action: `${SCORE_UPLOAD_URL}/${record.id}` };
+              return (
+                <span>
+                  <Upload {...tempUploadProps}>
+                    <Button
+                      type="primary"
+                      shape="circle"
+                      icon="upload"
+                    />
+                  </Upload>
+                </span>
+              );
+            }}
+          />
+        </Table>
       </Col>
     </Row>
   </div>
@@ -48,20 +86,11 @@ UploadList.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string,
   searchTextChanged: PropTypes.func.isRequired,
-  uploads: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.string.isRequired,
-  })).isRequired,
 };
 
 UploadList.defaultProps = {
   searchText: '',
 };
-
-const mapStateToProps = state => (
-  {
-    uploads: state.uploadReducers.uploads,
-  }
-);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -80,7 +109,7 @@ const mapDispatchToProps = dispatch => (
 );
 
 const UploadListWrapper = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(UploadList);
 

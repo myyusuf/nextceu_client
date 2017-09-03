@@ -4,27 +4,15 @@ import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 
-import './SettingsMain.css';
-import SettingsTree from '../../components/settings/SettingsTree';
+import './ReportMain.css';
+import ReportTree from '../../components/report/ReportTree';
 import DepartmentList from '../../components/department/DepartmentList';
-import UserList from '../../components/user/UserList';
-import RoleList from '../../components/user/RoleList';
-import UploadList from '../../components/upload/UploadList';
 
-const SettingsMain = ({ selectedMenuKey }) => {
+const ReportMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
   switch (selectedMenuKey) {
     case '1-1':
       componentToRender = <DepartmentList />;
-      break;
-    case '1-2':
-      componentToRender = <UploadList />;
-      break;
-    case '2-1':
-      componentToRender = <UserList />;
-      break;
-    case '2-2':
-      componentToRender = <RoleList />;
       break;
     default:
       break;
@@ -33,7 +21,7 @@ const SettingsMain = ({ selectedMenuKey }) => {
     <div>
       <Row>
         <Col span={6}>
-          <SettingsTree />
+          <ReportTree />
         </Col>
         <Col span={18} style={{ backgroundColor: '#fff' }}>
           {componentToRender}
@@ -43,13 +31,13 @@ const SettingsMain = ({ selectedMenuKey }) => {
   );
 };
 
-SettingsMain.propTypes = {
+ReportMain.propTypes = {
   selectedMenuKey: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    selectedMenuKey: state.settingsReducers.settings.selectedMenuKey,
+    selectedMenuKey: state.reportReducers.reports.selectedMenuKey,
   }
 );
 
@@ -63,9 +51,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const SettingsMainWrapper = connect(
+const ReportMainWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingsMain);
+)(ReportMain);
 
-export default SettingsMainWrapper;
+export default ReportMainWrapper;

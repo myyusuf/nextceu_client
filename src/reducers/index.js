@@ -8,6 +8,7 @@ import settingsReducers from './settings/';
 import departmentReducers from './department/';
 import menuReducers from './menu/';
 import loginReducers from './login/';
+import reportReducers from './report/';
 
 const rootReducer = combineReducers({
   studentReducers,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   departmentReducers,
   menuReducers,
   loginReducers,
+  reportReducers,
 });
 
 export default rootReducer;
