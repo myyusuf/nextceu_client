@@ -18,3 +18,8 @@
 .HospitalList-item-selected:hover {
   cursor: pointer;
 }
+
+.ant-card-body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
