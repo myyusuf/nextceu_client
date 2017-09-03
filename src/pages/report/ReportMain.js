@@ -6,13 +6,13 @@ import Col from 'antd/lib/col';
 
 import './ReportMain.css';
 import ReportTree from '../../components/report/ReportTree';
-import DepartmentList from '../../components/department/DepartmentList';
+import CostUnitReport from '../../components/report/CostUnitReport';
 
 const ReportMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
   switch (selectedMenuKey) {
     case '1-1':
-      componentToRender = <DepartmentList />;
+      componentToRender = <CostUnitReport />;
       break;
     default:
       break;
@@ -20,10 +20,10 @@ const ReportMain = ({ selectedMenuKey }) => {
   return (
     <div>
       <Row>
-        <Col span={6}>
+        <Col span={4}>
           <ReportTree />
         </Col>
-        <Col span={18} style={{ backgroundColor: '#fff' }}>
+        <Col span={20} style={{ backgroundColor: '#fff' }}>
           {componentToRender}
         </Col>
       </Row>
