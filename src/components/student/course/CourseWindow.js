@@ -20,7 +20,10 @@ const CourseWindow = ({
   onCancel,
   confirmLoading,
   confirmDelete,
+  confirmPending,
   courseId,
+  courseStatus,
+  confirmUnPending,
 }) => (
   <Modal
     title={title}
@@ -31,7 +34,11 @@ const CourseWindow = ({
     cancelText="Cancel"
     onCancel={onCancel}
     width="700"
-    footer={[
+    footer={[courseStatus !== 4 ?
+      <Button key="pending" type="danger" size="large" onClick={() => confirmPending(title, courseId)}>Pending</Button>
+      :
+      <Button key="unPending" type="default" size="large" onClick={() => confirmUnPending(title, courseId)}>Un Pending</Button>,
+
       <Button key="delete" type="danger" size="large" onClick={() => confirmDelete(title, courseId)}>Delete</Button>,
       <Button key="back" size="large" onClick={onCancel}>Cancel</Button>,
       <Button key="save" type="primary" size="large" loading={confirmLoading} onClick={onOk}>
@@ -66,7 +73,10 @@ CourseWindow.propTypes = {
   onCancel: PropTypes.func.isRequired,
   confirmLoading: PropTypes.bool.isRequired,
   confirmDelete: PropTypes.func.isRequired,
+  confirmPending: PropTypes.func.isRequired,
+  confirmUnPending: PropTypes.func.isRequired,
   courseId: PropTypes.number.isRequired,
+  courseStatus: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -75,6 +85,8 @@ const mapStateToProps = state => (
     courseId: state.studentReducers.courseForm.id.value,
     visible: state.studentReducers.courseWindow.visible,
     confirmLoading: state.studentReducers.courseWindow.confirmLoading,
+    courseStatus: state.studentReducers.courseForm.status ?
+    state.studentReducers.courseForm.status.value : null,
   }
 );
 
@@ -97,6 +109,36 @@ const mapDispatchToProps = dispatch => (
         onOk() {
           dispatch({
             type: 'DELETE_COURSE_LOGIC',
+            payload: { id: courseId },
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      })
+    ),
+    confirmPending: (title, courseId) => (
+      confirm({
+        title: `Do you Want to pending course: ${title}`,
+        content: 'This action cannot be undone',
+        onOk() {
+          dispatch({
+            type: 'PENDING_COURSE_LOGIC',
+            payload: { id: courseId },
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      })
+    ),
+    confirmUnPending: (title, courseId) => (
+      confirm({
+        title: `Do you Want to unpending course: ${title}`,
+        content: 'This action cannot be undone',
+        onOk() {
+          dispatch({
+            type: 'UN_PENDING_COURSE_LOGIC',
             payload: { id: courseId },
           });
         },

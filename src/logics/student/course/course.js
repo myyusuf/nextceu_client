@@ -198,6 +198,68 @@ const deleteCourseLogic = createLogic({
   },
 });
 
+const pendingCourseLogic = createLogic({
+  type: 'PENDING_COURSE_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    axios.put(`${COURSES_URL}/${action.payload.id}/pending`)
+      .then(resp => resp.data)
+      .then(() => {
+        notification.success({
+          message: 'Pending course success',
+          description: 'Success pending course',
+        });
+
+        dispatch({
+          type: 'CANCEL_EDIT_COURSE_LOGIC',
+        });
+
+        dispatch({
+          type: 'FETCH_COURSES_LOGIC',
+          payload: getState().studentReducers.student,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Pending error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
+const unPendingCourseLogic = createLogic({
+  type: 'UN_PENDING_COURSE_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    axios.put(`${COURSES_URL}/${action.payload.id}/unpending`)
+      .then(resp => resp.data)
+      .then(() => {
+        notification.success({
+          message: 'Unpending course success',
+          description: 'Success unpending course',
+        });
+
+        dispatch({
+          type: 'CANCEL_EDIT_COURSE_LOGIC',
+        });
+
+        dispatch({
+          type: 'FETCH_COURSES_LOGIC',
+          payload: getState().studentReducers.student,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Unpending error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 export default [
   fetchCoursesLogic,
   fetchCourseLogic,
@@ -205,4 +267,6 @@ export default [
   editCourseLogic,
   cancelAddCourseLogic,
   deleteCourseLogic,
+  pendingCourseLogic,
+  unPendingCourseLogic,
 ];
