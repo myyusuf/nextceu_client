@@ -19,7 +19,7 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
   switch (courseForm.status ? courseForm.status.value : null) {
     case 0:
       status = 'default';
-      text = 'Pending';
+      text = 'Scheduled';
       break;
     case 1:
       status = 'processing';
@@ -32,6 +32,10 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
     case 3:
       status = 'error';
       text = 'Problem';
+      break;
+    case 4:
+      status = 'error';
+      text = 'Pending';
       break;
     default:
       break;
