@@ -6,69 +6,102 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import Select from 'antd/lib/select';
+import Badge from 'antd/lib/badge';
 
 const Option = Select.Option;
 
 const FormItem = Form.Item;
 
-const CourseForm = ({ courseForm, courseFormChanged }) => (
-  <Form>
-    <Row>
-      <Col span={24}>
-        <Row>
-          <Col span={12}>
-            <FormItem
-              label="Title"
-              colon={false}
-              validateStatus={courseForm.title.validateStatus}
-              help={courseForm.title.errorMsg}
-            >
-              <Input
-                value={courseForm.title.value}
-                onChange={(e) => {
-                  courseFormChanged({
-                    key: 'title',
-                    value: e.target.value,
-                  });
-                }}
-                placeholder="Title"
-              />
-            </FormItem>
-          </Col>
-        </Row>
+const CourseForm = ({ courseForm, courseFormChanged }) => {
+  let status = '';
+  let text = '';
 
-        <Row>
-          <Col span={12}>
-            <FormItem
-              label="Completion"
-              colon={false}
-              validateStatus={courseForm.completion.validateStatus}
-              help={courseForm.completion.errorMsg}
-            >
-              <Select
-                defaultValue="0"
-                value={courseForm.completion.value}
-                style={{ width: 120 }}
-                onChange={(value) => {
-                  courseFormChanged({
-                    key: 'completion',
-                    value,
-                  });
-                }}
+  switch (courseForm.status ? courseForm.status.value : null) {
+    case 0:
+      status = 'default';
+      text = 'Pending';
+      break;
+    case 1:
+      status = 'processing';
+      text = 'On Going';
+      break;
+    case 2:
+      status = 'success';
+      text = 'Completed';
+      break;
+    case 3:
+      status = 'error';
+      text = 'Problem';
+      break;
+    default:
+      break;
+  }
+
+  return (
+    <Form>
+      <Row>
+        <Col span={24}>
+          <Row>
+            <Col span={12}>
+              <FormItem
+                label="Title"
+                colon={false}
+                validateStatus={courseForm.title.validateStatus}
+                help={courseForm.title.errorMsg}
               >
-                <Option value={0}>0 %</Option>
-                <Option value={25}>25 %</Option>
-                <Option value={50}>50 %</Option>
-                <Option value={75}>75 %</Option>
-                <Option value={100}>100 %</Option>
-              </Select>
-            </FormItem>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
-  </Form>
-);
+                <Input
+                  value={courseForm.title.value}
+                  onChange={(e) => {
+                    courseFormChanged({
+                      key: 'title',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Title"
+                />
+              </FormItem>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col span={12}>
+              {/* <FormItem
+                label="Completion"
+                colon={false}
+                validateStatus={courseForm.completion.validateStatus}
+                help={courseForm.completion.errorMsg}
+              >
+                <Select
+                  defaultValue="0"
+                  value={courseForm.completion.value}
+                  style={{ width: 120 }}
+                  onChange={(value) => {
+                    courseFormChanged({
+                      key: 'completion',
+                      value,
+                    });
+                  }}
+                >
+                  <Option value={0}>0 %</Option>
+                  <Option value={25}>25 %</Option>
+                  <Option value={50}>50 %</Option>
+                  <Option value={75}>75 %</Option>
+                  <Option value={100}>100 %</Option>
+                </Select>
+              </FormItem> */}
+              <FormItem
+                label="Status"
+                colon={false}
+              >
+                <Badge status={status} text={text} />
+              </FormItem>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Form>
+  );
+};
 
 CourseForm.propTypes = {
   courseFormChanged: PropTypes.func.isRequired,

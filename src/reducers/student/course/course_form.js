@@ -1,7 +1,7 @@
 const defaultState = {
   id: {},
   title: {},
-  completion: { value: 0 },
+  // completion: { value: 0 },
 
   planDate: {},
   realStartDate: {},

@@ -64,8 +64,11 @@ const loadCourseToFormLogic = createLogic({
       title: {
         value: course.title,
       },
-      completion: {
-        value: course.completion,
+      // completion: {
+      //   value: course.completion,
+      // },
+      status: {
+        value: course.status,
       },
 
       planDate: {

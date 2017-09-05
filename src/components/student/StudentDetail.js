@@ -11,13 +11,14 @@ import Modal from 'antd/lib/modal';
 import './StudentDetail.css';
 
 const confirm = Modal.confirm;
-const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE'];
+const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE', '#000'];
 
 const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
-  const pendingCount = courses.filter(course => course.status === 0).length;
+  const scheduledCount = courses.filter(course => course.status === 0).length;
   const problemCount = courses.filter(course => course.status === 3).length;
+  const pendingCount = courses.filter(course => course.status === 4).length;
   const data = [
     {
       name: 'On Going',
@@ -30,6 +31,10 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
     {
       name: 'Problem',
       value: problemCount,
+    },
+    {
+      name: 'Scheduled',
+      value: scheduledCount,
     },
     {
       name: 'Pending',
@@ -120,10 +125,11 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
             </PieChart>
           </Col>
           <Col span={12}>
-            <div style={{ marginTop: 80 }}><Tag color="#9DA5BE">{pendingCount}</Tag> Pending </div>
+            <div style={{ marginTop: 60 }}><Tag color="#9DA5BE">{scheduledCount}</Tag> Scheduled </div>
             <div style={{ marginTop: 5 }}><Tag color="#5093E1">{onGoingCount}</Tag> On Going </div>
             <div style={{ marginTop: 5 }}><Tag color="#50C14E">{completedCount}</Tag> Completed </div>
             <div style={{ marginTop: 5 }}><Tag color="#F65177">{problemCount}</Tag> Problem </div>
+            <div style={{ marginTop: 5 }}><Tag color="#000">{pendingCount}</Tag> Pending </div>
           </Col>
         </Row>
         <Row>
