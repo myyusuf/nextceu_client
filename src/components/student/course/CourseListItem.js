@@ -14,7 +14,7 @@ const CourseListItem = ({ course, showDetails }) => {
   switch (course.status) {
     case 0:
       status = 'default';
-      text = 'Pending';
+      text = 'Scheduled';
       break;
     case 1:
       status = 'processing';
@@ -28,6 +28,10 @@ const CourseListItem = ({ course, showDetails }) => {
       status = 'error';
       text = 'Problem';
       break;
+    case 4:
+      status = 'error';
+      text = 'Pending';
+      break;
     default:
       break;
   }
@@ -39,10 +43,10 @@ const CourseListItem = ({ course, showDetails }) => {
             {course.Department.code}
           </Tag>
         </Col>
-        <Col span={11}>
+        <Col span={13}>
           <div className="CourseListItem-title">{course.title}</div>
         </Col>
-        <Col span={2}>
+        {/* <Col span={2}>
           <Badge
             className="CourseListItem-badge"
             overflowCount={100}
@@ -50,7 +54,7 @@ const CourseListItem = ({ course, showDetails }) => {
             count={course.completion}
             style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
           />
-        </Col>
+        </Col>*/ }
         <Col span={7}>
           <Badge className="CourseListItem-status" status={status} text={text} />
         </Col>
