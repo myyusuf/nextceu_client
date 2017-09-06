@@ -33,6 +33,11 @@ import scoreWindow from './course/score/score_window';
 import scoreSearch from './course/score/score_search';
 import scoreTypes from './course/score/score_types';
 
+import cpts from './course/cpt/cpts';
+import cptForm from './course/cpt/cpt_form';
+import cptWindow from './course/cpt/cpt_window';
+import cptSearch from './course/cpt/cpt_search';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -43,7 +48,6 @@ const studentReducer = combineReducers({
   courseForm,
   courseWindow,
   scheduleForm,
-  // scoreForm,
   seminars,
   addCourseByLevelForm,
   addCourseByLevelWindow,
@@ -59,6 +63,10 @@ const studentReducer = combineReducers({
   scoreWindow,
   scoreSearch,
   scoreTypes,
+  cpts,
+  cptForm,
+  cptWindow,
+  cptSearch,
 });
 
 export default studentReducer;

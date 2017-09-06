@@ -10,6 +10,7 @@ import DepartmentList from '../../components/department/DepartmentList';
 import UserList from '../../components/user/UserList';
 import RoleList from '../../components/user/RoleList';
 import UploadList from '../../components/upload/UploadList';
+import CptList from '../../components/student/course/cpt/CptList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
@@ -19,6 +20,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '1-2':
       componentToRender = <UploadList />;
+      break;
+    case '1-3':
+      componentToRender = <CptList />;
       break;
     case '2-1':
       componentToRender = <UserList />;
@@ -53,19 +57,9 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
-  {
-    openAddWindow: () => (
-      dispatch({
-        type: 'ADD_HOSPITAL_LOGIC',
-      })
-    ),
-  }
-);
-
 const SettingsMainWrapper = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(SettingsMain);
 
 export default SettingsMainWrapper;

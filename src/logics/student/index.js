@@ -15,6 +15,9 @@ import hospitalScheduleLogics from './course/hospital_schedule';
 import scoreLogics from './course/score/score';
 import scoreFormLogics from './course/score/score_form';
 
+import cptLogics from './course/cpt/cpt';
+import cptFormLogics from './course/cpt/cpt_form';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -28,4 +31,6 @@ export default [
   ...hospitalScheduleLogics,
   ...scoreLogics,
   ...scoreFormLogics,
+  ...cptLogics,
+  ...cptFormLogics,
 ];
