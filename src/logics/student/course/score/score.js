@@ -5,6 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
 import { validateExist } from '../../../../utils/validation';
 
+const COURSES_URL = `${Constant.serverUrl}/api/courses`;
 const SCORES_URL = `${Constant.serverUrl}/api/scores`;
 const SCORE_TYPES_URL = `${Constant.serverUrl}/api/scoretypes`;
 
@@ -118,6 +119,7 @@ const saveScoreLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const scoreForm = _.mapValues({ ...getState().studentReducers.scoreForm }, 'value');
+    const courseId = getState().studentReducers.courseForm.courseId.value;
     dispatch({ type: 'SHOW_SCORE_WINDOW_CONFIRM_LOADING' });
 
     if (scoreForm.id) {
@@ -152,7 +154,7 @@ const saveScoreLogic = createLogic({
         })
         .then(() => done());
     } else {
-      axios.post(SCORES_URL, scoreForm)
+      axios.post(`${COURSES_URL}/${courseId}/scores`, scoreForm)
         .then(() => {
           dispatch({ type: 'HIDE_SCORE_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_SCORE_LOGIC' });
