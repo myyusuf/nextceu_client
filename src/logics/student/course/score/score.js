@@ -6,6 +6,7 @@ import Constant from '../../../../Constant';
 import { validateExist } from '../../../../utils/validation';
 
 const SCORES_URL = `${Constant.serverUrl}/api/scores`;
+const SCORE_TYPES_URL = `${Constant.serverUrl}/api/scoretypes`;
 
 const validate = (key, value) => {
   let result = null;
@@ -47,6 +48,27 @@ const fetchScoresLogic = createLogic({
   },
 });
 
+const fetchScoreTypessLogic = createLogic({
+  type: 'FETCH_SCORE_TYPES_LOGIC',
+  cancelType: 'CANCEL_FETCH_SCORE_TYPES_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    axios.get(SCORE_TYPES_URL)
+      .then(resp => resp.data)
+      .then((data) => {
+        dispatch({ type: 'FETCH_SCORE_TYPES_SUCCESS', payload: data });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch score types error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 const editScoreLogic = createLogic({
   type: 'EDIT_SCORE_LOGIC',
   process({ getState, action }, dispatch, done) {
@@ -70,7 +92,7 @@ const saveScoreLogic = createLogic({
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const scoreForm = { ...getState().scoreReducers.scoreForm };
+    const scoreForm = { ...getState().studentReducers.scoreForm };
     const validationResult = {};
     const keys = _.keys(scoreForm);
     for (let i = 0; i < keys.length; i += 1) {
@@ -95,7 +117,7 @@ const saveScoreLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const scoreForm = _.mapValues({ ...getState().scoreReducers.scoreForm }, 'value');
+    const scoreForm = _.mapValues({ ...getState().studentReducers.scoreForm }, 'value');
     dispatch({ type: 'SHOW_SCORE_WINDOW_CONFIRM_LOADING' });
 
     if (scoreForm.id) {
@@ -203,4 +225,5 @@ export default [
   saveScoreLogic,
   deleteScoreLogic,
   scorePageChangedLogic,
+  fetchScoreTypessLogic,
 ];

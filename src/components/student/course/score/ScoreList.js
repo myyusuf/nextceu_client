@@ -111,11 +111,15 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_SCORES_LOGIC',
       })
     ),
-    openAddWindow: () => (
+    openAddWindow: () => {
+      dispatch({
+        type: 'FETCH_SCORE_TYPES_LOGIC',
+      });
+
       dispatch({
         type: 'EDIT_SCORE_LOGIC',
-      })
-    ),
+      });
+    },
     openEditWindow: record => (
       dispatch({
         type: 'LOAD_SCORE_TO_FORM_LOGIC',

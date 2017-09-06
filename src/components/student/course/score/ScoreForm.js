@@ -6,6 +6,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import InputNumber from 'antd/lib/input-number';
 import DatePicker from 'antd/lib/date-picker';
+import ScoreTypeSelect from './ScoreTypeSelect';
 
 const FormItem = Form.Item;
 
@@ -29,6 +30,26 @@ const ScoreForm = ({ scoreForm, scoreFormChanged }) => (
                 onChange={(value) => {
                   scoreFormChanged({
                     key: 'scoreValue',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <FormItem
+              label="Type"
+              colon={false}
+              validateStatus={scoreForm.scoreType.validateStatus}
+              help={scoreForm.scoreType.errorMsg}
+            >
+              <ScoreTypeSelect
+                value={scoreForm.scoreType.value}
+                onSelect={(value) => {
+                  scoreFormChanged({
+                    key: 'scoreType',
                     value,
                   });
                 }}

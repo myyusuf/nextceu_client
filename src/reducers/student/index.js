@@ -31,6 +31,7 @@ import scores from './course/score/scores';
 import scoreForm from './course/score/score_form';
 import scoreWindow from './course/score/score_window';
 import scoreSearch from './course/score/score_search';
+import scoreTypes from './course/score/score_types';
 
 const studentReducer = combineReducers({
   students,
@@ -57,6 +58,7 @@ const studentReducer = combineReducers({
   scoreForm,
   scoreWindow,
   scoreSearch,
+  scoreTypes,
 });
 
 export default studentReducer;
