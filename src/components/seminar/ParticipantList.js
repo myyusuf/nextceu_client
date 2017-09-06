@@ -20,27 +20,11 @@ const uploadProps = {
   headers: {
     authorization: 'authorization-text',
   },
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      notification.success({
-        message: 'Upload file success',
-        description: `${info.file.name} file uploaded successfully.`,
-      });
-    } else if (info.file.status === 'error') {
-      notification.error({
-        message: 'Upload file error',
-        description: `${info.file.name} file upload failed.`,
-      });
-    }
-  },
 };
 
 class ParticipantList extends Component {
   componentWillMount() {
-    this.props.fetchParticipants();
+    // this.props.fetchParticipants();
   }
 
   render() {
@@ -59,6 +43,24 @@ class ParticipantList extends Component {
 
     uploadProps.action = `${SEMINAR_UPLOAD_URL}/${seminarId}`;
     const buttonDisabled = seminarId === undefined;
+    uploadProps.onChange = (info) => {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        fetchParticipants();
+
+        notification.success({
+          message: 'Upload file success',
+          description: info.file.response,
+        });
+      } else if (info.file.status === 'error') {
+        notification.error({
+          message: 'Upload file error',
+          description: `${info.file.name} file upload failed.`,
+        });
+      }
+    };
 
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
