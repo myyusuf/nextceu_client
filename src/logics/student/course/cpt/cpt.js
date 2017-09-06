@@ -26,7 +26,7 @@ const fetchCptsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_CPTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().userReducers.cptSearch;
+    const search = getState().studentReducers.cptSearch;
     const paramameters = search ? { params: { ...search } } : {};
     dispatch({ type: 'CPT_LOADING_START' });
     axios.get(CPTS_URL, paramameters)
@@ -91,7 +91,7 @@ const saveCptLogic = createLogic({
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const cptForm = { ...getState().userReducers.cptForm };
+    const cptForm = { ...getState().studentReducers.cptForm };
     const validationResult = {};
     const keys = _.keys(cptForm);
     for (let i = 0; i < keys.length; i += 1) {
@@ -116,7 +116,7 @@ const saveCptLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const cptForm = _.mapValues({ ...getState().userReducers.cptForm }, 'value');
+    const cptForm = _.mapValues({ ...getState().studentReducers.cptForm }, 'value');
     dispatch({ type: 'SHOW_CPT_WINDOW_CONFIRM_LOADING' });
 
     if (cptForm.id) {

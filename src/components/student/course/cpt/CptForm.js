@@ -49,7 +49,7 @@ const CptForm = ({ cptForm, cptFormChanged }) => (
               });
             }}
             placeholder="Name"
-            maxLength={30}
+            maxLength={150}
           />
         </FormItem>
       </Col>
