@@ -119,7 +119,7 @@ const saveScoreLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const scoreForm = _.mapValues({ ...getState().studentReducers.scoreForm }, 'value');
-    const courseId = getState().studentReducers.courseForm.courseId.value;
+    const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'SHOW_SCORE_WINDOW_CONFIRM_LOADING' });
 
     if (scoreForm.id) {
