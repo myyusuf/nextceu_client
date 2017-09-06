@@ -1,19 +1,15 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateExist, validateLength, validateEmail } from '../../utils/validation';
+import moment from 'moment';
+import { validateExist } from '../../../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
   switch (key) {
-    case 'scorename':
-    case 'name':
-      result = validateLength(key, value, 3);
-      break;
-    case 'role':
+    case 'scoreValue':
+    case 'scoreType':
+    case 'scoreDate':
       result = validateExist(key, value);
-      break;
-    case 'email':
-      result = validateEmail(key, value);
       break;
     default:
       break;
@@ -41,22 +37,20 @@ const loadUserFormLogic = createLogic({
   type: 'LOAD_SCORE_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const score = action.payload;
-    const roleId = score.Role ? score.Role.id : undefined;
+    const scoreTypeId = score.ScoreType ? score.ScoreType.id : undefined;
+    if (score.scoreDate) score.scoreDate = moment(score.scoreDate);
     const scoreForm = {
       id: {
         value: score.id,
       },
-      scorename: {
-        value: score.scorename,
+      scoreValue: {
+        value: score.scoreValue,
       },
-      name: {
-        value: score.name,
+      scoreType: {
+        value: scoreTypeId,
       },
-      role: {
-        value: roleId,
-      },
-      email: {
-        value: score.email,
+      scoreDate: {
+        value: score.scoreDate,
       },
     };
     const validationResult = {};

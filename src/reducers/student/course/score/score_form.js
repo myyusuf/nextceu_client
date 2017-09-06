@@ -1,7 +1,8 @@
 const defaultState = {
   id: {},
-  code: {},
-  name: {},
+  scoreValue: {},
+  scoreType: {},
+  scoreDate: {},
 };
 
 const scoreForm = (state = defaultState, action) => {

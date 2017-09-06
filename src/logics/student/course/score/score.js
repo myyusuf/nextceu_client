@@ -2,28 +2,22 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
-import Constant from '../../Constant';
-import { validateExist, validateLength, validateEmail } from '../../utils/validation';
+import Constant from '../../../../Constant';
+import { validateExist } from '../../../../utils/validation';
 
 const SCORES_URL = `${Constant.serverUrl}/api/scores`;
 
 const validate = (key, value) => {
   let result = null;
   switch (key) {
-    case 'scorename':
-    case 'name':
-      result = validateLength(key, value, 3);
-      break;
-    case 'role':
+    case 'scoreValue':
+    case 'scoreType':
+    case 'scoreDate':
       result = validateExist(key, value);
-      break;
-    case 'email':
-      result = validateEmail(key, value);
       break;
     default:
       break;
   }
-
   return result;
 };
 
@@ -62,7 +56,7 @@ const editScoreLogic = createLogic({
   },
 });
 
-const cancelAddScoreLogic = createLogic({
+const cancelEditScoreLogic = createLogic({
   type: 'CANCEL_EDIT_SCORE_LOGIC',
   process({ getState, action }, dispatch, done) {
     dispatch({ type: 'CLEAR_SCORE_FORM' });
@@ -205,7 +199,7 @@ const scorePageChangedLogic = createLogic({
 export default [
   fetchScoresLogic,
   editScoreLogic,
-  cancelAddScoreLogic,
+  cancelEditScoreLogic,
   saveScoreLogic,
   deleteScoreLogic,
   scorePageChangedLogic,

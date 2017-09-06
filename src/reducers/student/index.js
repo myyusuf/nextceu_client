@@ -10,7 +10,7 @@ import courses from './course/courses';
 import courseForm from './course/course_form';
 import courseWindow from './course/course_window';
 import scheduleForm from './course/schedule_form';
-import scoreForm from './course/score_form';
+// import scoreForm from './course/score_form';
 import seminars from './course/seminars';
 
 import addCourseByLevelForm from './course/add_course_by_level_form';
@@ -27,6 +27,11 @@ import hospitalScheduleWindow from './course/hospital_schedule_window';
 
 import hospitalScheduleSelection from './course/hospital_schedule_selection';
 
+import scores from './course/score/scores';
+import scoreForm from './course/score/score_form';
+import scoreWindow from './course/score/score_window';
+import scoreSearch from './course/score/score_search';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -37,7 +42,7 @@ const studentReducer = combineReducers({
   courseForm,
   courseWindow,
   scheduleForm,
-  scoreForm,
+  // scoreForm,
   seminars,
   addCourseByLevelForm,
   addCourseByLevelWindow,
@@ -48,6 +53,10 @@ const studentReducer = combineReducers({
   hospitalScheduleSearch,
   hospitalScheduleWindow,
   hospitalScheduleSelection,
+  scores,
+  scoreForm,
+  scoreWindow,
+  scoreSearch,
 });
 
 export default studentReducer;
