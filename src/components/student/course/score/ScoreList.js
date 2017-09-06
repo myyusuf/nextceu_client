@@ -97,15 +97,10 @@ ScoreList.propTypes = {
   })).isRequired,
 };
 
-// ScoreList.defaultProps = {
-//   searchText: '',
-// };
-
 const mapStateToProps = state => (
   {
-    scores: state.userReducers.scores,
-    searchText: state.userReducers.scoreSearch.searchText,
-    loading: state.userReducers.scoreSearch.loading,
+    scores: state.studentReducers.scores,
+    loading: state.studentReducers.scoreSearch.loading,
   }
 );
 

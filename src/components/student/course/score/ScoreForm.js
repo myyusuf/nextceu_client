@@ -14,7 +14,7 @@ const ScoreForm = ({ scoreForm, scoreFormChanged }) => (
     <Row>
       <Col span={24}>
         <Row>
-          <Col span={6}>
+          <Col span={12}>
             <FormItem
               label="Score"
               colon={false}
@@ -32,13 +32,12 @@ const ScoreForm = ({ scoreForm, scoreFormChanged }) => (
                     value,
                   });
                 }}
-                style={{ width: 250 }}
               />
             </FormItem>
           </Col>
         </Row>
         <Row>
-          <Col span={6}>
+          <Col span={12}>
             <FormItem
               label="Date"
               colon={false}

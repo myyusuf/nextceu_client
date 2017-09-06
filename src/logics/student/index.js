@@ -2,7 +2,7 @@ import studentLogics from './student';
 import studentFormLogics from './student_form';
 import courseLogics from './course/course';
 import courseFormLogics from './course/course_form';
-import scoreFormLogics from './course/score_form';
+// import scoreFormLogics from './course/score_form';
 
 import addCourseByLevelFormLogics from './course/add_course_by_level_form';
 import addCourseByLevelLogics from './course/add_course_by_level';
@@ -12,15 +12,20 @@ import addCourseByDepartmentLogics from './course/add_course_by_department';
 
 import hospitalScheduleLogics from './course/hospital_schedule';
 
+import scoreLogics from './course/score/score';
+import scoreFormLogics from './course/score/score_form';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
   ...courseLogics,
   ...courseFormLogics,
-  ...scoreFormLogics,
+  // ...scoreFormLogics,
   ...addCourseByLevelFormLogics,
   ...addCourseByLevelLogics,
   ...addCourseByDepartmentFormLogics,
   ...addCourseByDepartmentLogics,
   ...hospitalScheduleLogics,
+  ...scoreLogics,
+  ...scoreFormLogics,
 ];

@@ -17,6 +17,7 @@ const ScoreWindow = ({
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    width={400}
   >
     <ScoreForm />
   </Modal>
