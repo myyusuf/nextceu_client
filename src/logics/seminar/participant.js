@@ -24,8 +24,8 @@ const fetchParticipantsLogic = createLogic({
         console.error(err);
         dispatch({ type: 'PARTICIPANT_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch seminars error',
-          description: 'Please check internet connection.',
+          message: 'Fetch participants error',
+          description: 'Connection error.',
         });
       })
       .then(() => done());

@@ -111,18 +111,15 @@ class ParticipantList extends Component {
             >
               <Column
                 title="Old SID"
-                dataIndex="oldSid"
-                key="oldSid"
+                dataIndex="Student.oldSid"
               />
               <Column
                 title="New SID"
-                dataIndex="newSid"
-                key="newSid"
+                dataIndex="Student.newSid"
               />
               <Column
                 title="Name"
-                dataIndex="name"
-                key="name"
+                dataIndex="Student.name"
               />
             </Table>
           </Col>
