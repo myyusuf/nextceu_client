@@ -44,12 +44,17 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    showDetails: course => (
+    showDetails: (course) => {
       dispatch({
         type: 'LOAD_COURSE_TO_FORM_LOGIC',
         payload: course,
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_SCORES_LOGIC',
+        payload: course,
+      });
+    },
   }
 );
 

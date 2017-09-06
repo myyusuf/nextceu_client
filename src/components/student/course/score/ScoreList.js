@@ -15,7 +15,7 @@ const confirm = Modal.confirm;
 
 class ScoreList extends Component {
   componentWillMount() {
-    this.props.fetchScores();
+    // this.props.fetchScores();
   }
 
   render() {
