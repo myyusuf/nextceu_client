@@ -6,6 +6,7 @@ import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Modal from 'antd/lib/modal';
+import moment from 'moment';
 
 import ScoreWindow from './ScoreWindow';
 
@@ -56,6 +57,11 @@ class ScoreList extends Component {
                 title="Date"
                 dataIndex="scoreDate"
                 key="scoreDate"
+                render={(text, record) => (
+                  <span>
+                    {moment(text).format('DD/MM/YYYY')}
+                  </span>
+                )}
               />
               <Column
                 title="Action"
@@ -120,12 +126,16 @@ const mapDispatchToProps = dispatch => (
         type: 'EDIT_SCORE_LOGIC',
       });
     },
-    openEditWindow: record => (
+    openEditWindow: (record) => {
+      dispatch({
+        type: 'FETCH_SCORE_TYPES_LOGIC',
+      });
+
       dispatch({
         type: 'LOAD_SCORE_TO_FORM_LOGIC',
         payload: record,
-      })
-    ),
+      });
+    },
     searchTextChanged: value => (
       dispatch({
         type: 'SCORE_SEARCH_TEXT_CHANGED',
@@ -134,7 +144,7 @@ const mapDispatchToProps = dispatch => (
     ),
     confirmDelete: record => (
       confirm({
-        title: `Do you Want to delete score: ${record.name}`,
+        title: 'Do you Want to delete score',
         content: 'This action cannot be undone',
         onOk() {
           dispatch({

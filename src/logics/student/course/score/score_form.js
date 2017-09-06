@@ -47,7 +47,7 @@ const loadUserFormLogic = createLogic({
         value: score.scoreValue,
       },
       scoreType: {
-        value: scoreTypeId,
+        value: String(scoreTypeId),
       },
       scoreDate: {
         value: score.scoreDate,

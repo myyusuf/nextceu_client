@@ -28,10 +28,11 @@ const fetchScoresLogic = createLogic({
   cancelType: 'CANCEL_FETCH_SCORES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().scoreReducers.scoreSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    // const search = getState().scoreReducers.scoreSearch;
+    // const paramameters = search ? { params: { ...search } } : {};
+    const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'SCORE_LOADING_START' });
-    axios.get(SCORES_URL, paramameters)
+    axios.get(`${COURSES_URL}/${courseId}/scores`)
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'SCORE_LOADING_FINISH' });
