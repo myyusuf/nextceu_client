@@ -124,7 +124,7 @@ const mapDispatchToProps = dispatch => (
     ),
     openAddWindow: () => {
       dispatch({
-        type: 'FETCH_COURSE_PROBLEM_TYPES_LOGIC',
+        type: 'FETCH_CPTS_LOGIC',
       });
 
       dispatch({

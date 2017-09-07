@@ -7,7 +7,7 @@ import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 import Checkbox from 'antd/lib/checkbox';
-import CourseProblemTypeSelect from './CptSelect';
+import CourseProblemTypeSelect from '../cpt/CptSelect';
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
@@ -55,13 +55,13 @@ const CourseProblemForm = ({ courseProblemForm, courseProblemFormChanged }) => (
                   });
                 }}
                 placeholder="Description"
-                rows={4}
+                rows={2}
               />
             </FormItem>
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
+          <Col span={15}>
             <FormItem
               label="Type"
               colon={false}
@@ -119,7 +119,7 @@ const CourseProblemForm = ({ courseProblemForm, courseProblemFormChanged }) => (
                   });
                 }}
                 placeholder="Comment"
-                rows={4}
+                rows={2}
               />
             </FormItem>
           </Col>

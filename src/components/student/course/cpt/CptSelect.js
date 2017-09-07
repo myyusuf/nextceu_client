@@ -5,10 +5,10 @@ import Select from 'antd/lib/select';
 
 const Option = Select.Option;
 
-const CptSelect = ({ cpts, value, onSelect }) => (
+const CptSelect = ({ cpts, value, onSelect, style = {} }) => (
   <Select
     placeholder="Select Type"
-    style={{ width: 120 }}
+    style={style}
     onSelect={onSelect}
     value={value}
   >
@@ -27,6 +27,7 @@ CptSelect.propTypes = {
   ).isRequired,
   value: PropTypes.number.isRequired,
   onSelect: PropTypes.func.isRequired,
+  style: PropTypes.shape,
 };
 
 const mapStateToProps = state => (

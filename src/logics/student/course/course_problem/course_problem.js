@@ -125,7 +125,7 @@ const saveCourseProblemLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const courseProblemForm = _.mapValues({ ...getState().studentReducers.courseProblemForm }, 'value');
-    const courseId = getState().studentReducers.courseProblemForm.id.value;
+    const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'SHOW_COURSE_PROBLEM_WINDOW_CONFIRM_LOADING' });
 
     if (courseProblemForm.id) {

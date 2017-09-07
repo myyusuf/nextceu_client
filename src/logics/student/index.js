@@ -18,6 +18,9 @@ import scoreFormLogics from './course/score/score_form';
 import cptLogics from './course/cpt/cpt';
 import cptFormLogics from './course/cpt/cpt_form';
 
+import courseProblemLogics from './course/course_problem/course_problem';
+import courseProblemFormLogics from './course/course_problem/course_problem_form';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -33,4 +36,6 @@ export default [
   ...scoreFormLogics,
   ...cptLogics,
   ...cptFormLogics,
+  ...courseProblemLogics,
+  ...courseProblemFormLogics,
 ];

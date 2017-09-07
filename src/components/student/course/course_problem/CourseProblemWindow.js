@@ -17,7 +17,7 @@ const CourseProblemWindow = ({
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
-    width={400}
+    wrapClassName="vertical-center-modal"
   >
     <CourseProblemForm />
   </Modal>
