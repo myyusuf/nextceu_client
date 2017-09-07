@@ -98,7 +98,6 @@ const saveCourseLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const courseForm = _.mapValues({
       ...getState().studentReducers.courseForm,
-      ...getState().studentReducers.scoreForm,
     }, 'value');
 
     if (courseForm.hospital1) {

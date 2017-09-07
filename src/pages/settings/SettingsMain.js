@@ -36,10 +36,10 @@ const SettingsMain = ({ selectedMenuKey }) => {
   return (
     <div>
       <Row>
-        <Col span={6}>
+        <Col span={4}>
           <SettingsTree />
         </Col>
-        <Col span={18} style={{ backgroundColor: '#fff' }}>
+        <Col span={20} style={{ backgroundColor: '#fff' }}>
           {componentToRender}
         </Col>
       </Row>
