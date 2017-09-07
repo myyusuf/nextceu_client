@@ -61,7 +61,7 @@ const CourseProblemForm = ({ courseProblemForm, courseProblemFormChanged }) => (
           </Col>
         </Row>
         <Row>
-          <Col span={15}>
+          <Col span={24}>
             <FormItem
               label="Type"
               colon={false}
@@ -132,11 +132,11 @@ const CourseProblemForm = ({ courseProblemForm, courseProblemFormChanged }) => (
               help={courseProblemForm.completed.errorMsg}
             >
               <Checkbox
-                value={courseProblemForm.completed.value}
+                checked={courseProblemForm.completed.value}
                 onChange={(e) => {
                   courseProblemFormChanged({
                     key: 'completed',
-                    value: e.target.value,
+                    value: e.target.checked,
                   });
                 }}
               >

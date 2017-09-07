@@ -5,6 +5,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
+import Checkbox from 'antd/lib/checkbox';
 import Modal from 'antd/lib/modal';
 import moment from 'moment';
 
@@ -47,7 +48,11 @@ class CourseProblemList extends Component {
               <Column
                 title="Completed"
                 dataIndex="completed"
-                key="completed"
+                render={(text, record) => (
+                  <span>
+                    <Checkbox checked={record.completed} />
+                  </span>
+                )}
               />
               <Column
                 title="Title"
@@ -133,7 +138,7 @@ const mapDispatchToProps = dispatch => (
     },
     openEditWindow: (record) => {
       dispatch({
-        type: 'FETCH_COURSE_PROBLEM_TYPES_LOGIC',
+        type: 'FETCH_CPTS_LOGIC',
       });
 
       dispatch({
