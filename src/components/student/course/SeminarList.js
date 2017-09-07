@@ -34,8 +34,8 @@ class SeminarList extends Component {
             <Table dataSource={seminars} style={{ marginTop: 15 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Title"
-                dataIndex="title"
-                key="title"
+                dataIndex="name"
+                key="name"
               />
               <Column
                 title="Date"
