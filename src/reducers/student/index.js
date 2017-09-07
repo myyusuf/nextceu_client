@@ -38,6 +38,11 @@ import cptForm from './course/cpt/cpt_form';
 import cptWindow from './course/cpt/cpt_window';
 import cptSearch from './course/cpt/cpt_search';
 
+import courseProblems from './course/course_problem/course_problems';
+import courseProblemForm from './course/course_problem/course_problem_form';
+import courseProblemWindow from './course/course_problem/course_problem_window';
+import courseProblemSearch from './course/course_problem/course_problem_search';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -67,6 +72,10 @@ const studentReducer = combineReducers({
   cptForm,
   cptWindow,
   cptSearch,
+  courseProblems,
+  courseProblemForm,
+  courseProblemWindow,
+  courseProblemSearch,
 });
 
 export default studentReducer;
