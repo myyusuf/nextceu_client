@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
@@ -23,15 +24,25 @@ class CompletedCourseList extends Component {
       pageSize,
       currentPage,
       fetchCompletedCourses,
-      openAddWindow,
-      openEditWindow,
+      openExportWindow,
       searchText,
       searchTextChanged,
       pageChanged,
       loading,
       dateRange,
       dateRangeChanged,
+      selectedRowKeys,
+      rowKeysChanged,
     } = this.props;
+
+    const rowSelection = {
+      type: 'checkbox',
+      selectedRowKeys,
+      onChange: (rowKeys, selectedRows) => {
+        rowKeysChanged(rowKeys, selectedRows);
+      },
+    };
+
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
@@ -49,7 +60,7 @@ class CompletedCourseList extends Component {
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
-              placeholder="Name"
+              placeholder="SID or Name"
             />
           </Col>
           <Col span={8}>
@@ -61,10 +72,10 @@ class CompletedCourseList extends Component {
                 style={{ marginRight: 15 }}
               />
               <Button
-                type="primary"
                 shape="circle"
-                icon="plus"
-                onClick={() => openAddWindow()}
+                icon="export"
+                onClick={() => openExportWindow()}
+                style={{ backgroundColor: '#50C14E', color: '#fff' }}
               />
             </span>
           </Col>
@@ -83,6 +94,7 @@ class CompletedCourseList extends Component {
               }}
               onChange={pagination => pageChanged(pagination.current)}
               size="middle"
+              rowSelection={rowSelection}
             >
               <Column
                 title="Title"
@@ -90,22 +102,26 @@ class CompletedCourseList extends Component {
                 key="title"
               />
               <Column
-                title="Name"
-                dataIndex="name"
-                key="name"
-              />
-              <Column
-                title="Action"
-                key="action"
+                title="End Date"
+                dataIndex="realEndDate"
+                key="realEndDate"
                 render={(text, record) => (
                   <span>
-                    <Button
-                      icon="edit"
-                      onClick={() => openEditWindow(record)}
-                      style={{ marginRight: 5 }}
-                    />
+                    {moment(text).format('DD/MM/YYYY')}
                   </span>
                 )}
+              />
+              <Column
+                title="Old SID"
+                dataIndex="Student.oldSid"
+              />
+              <Column
+                title="New SID"
+                dataIndex="Student.newSid"
+              />
+              <Column
+                title="Name"
+                dataIndex="Student.name"
               />
             </Table>
           </Col>
@@ -117,21 +133,19 @@ class CompletedCourseList extends Component {
 
 CompletedCourseList.propTypes = {
   fetchCompletedCourses: PropTypes.func.isRequired,
-  openAddWindow: PropTypes.func.isRequired,
-  openEditWindow: PropTypes.func.isRequired,
+  openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  completedCourses: PropTypes.arrayOf(PropTypes.shape({
-    completedCoursename: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  completedCourses: PropTypes.arrayOf(PropTypes.shape).isRequired,
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   dateRangeChanged: PropTypes.func.isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  rowKeysChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -143,6 +157,7 @@ const mapStateToProps = state => (
     currentPage: state.reportReducers.completedCourseSearch.currentPage,
     loading: state.reportReducers.completedCourseSearch.loading,
     dateRange: state.reportReducers.completedCourseSearch.dateRange,
+    selectedRowKeys: state.reportReducers.completedCourseSelection.rowKeys,
   }
 );
 
@@ -152,14 +167,10 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'FETCH_COMPLETED_COURSES_LOGIC',
       });
-
-      dispatch({
-        type: 'FETCH_ALL_ROLES_LOGIC',
-      });
     },
-    openAddWindow: () => (
+    openExportWindow: () => (
       dispatch({
-        type: 'EDIT_COMPLETED_REPORT_LOGIC',
+        type: 'PREPARE_EXPORT_COMPLETED_REPORT_LOGIC',
       })
     ),
     searchTextChanged: value => (
@@ -178,6 +189,12 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'COMPLETED_COURSE_SEARCH_DATE_RANGE_CHANGED',
         payload: value,
+      })
+    ),
+    rowKeysChanged: (rowKeys, selectedRows) => (
+      dispatch({
+        type: 'COMPLETED_COURSE_SELECT_CHANGED',
+        payload: { rowKeys, selectedRows },
       })
     ),
   }
