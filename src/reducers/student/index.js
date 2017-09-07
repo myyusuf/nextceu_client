@@ -11,7 +11,7 @@ import courseForm from './course/course_form';
 import courseWindow from './course/course_window';
 import scheduleForm from './course/schedule_form';
 // import scoreForm from './course/score_form';
-import seminars from './course/seminars';
+import courseSeminars from './course/course_seminars';
 
 import addCourseByLevelForm from './course/add_course_by_level_form';
 import addCourseByLevelWindow from './course/add_course_by_level_window';
@@ -53,7 +53,7 @@ const studentReducer = combineReducers({
   courseForm,
   courseWindow,
   scheduleForm,
-  seminars,
+  courseSeminars,
   addCourseByLevelForm,
   addCourseByLevelWindow,
   addCourseByDepartmentForm,

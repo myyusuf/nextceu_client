@@ -7,7 +7,7 @@ import Button from 'antd/lib/button';
 import CourseForm from './CourseForm';
 import ScheduleForm from './ScheduleForm';
 import ScoreList from './score/ScoreList';
-import SeminarForm from './SeminarForm';
+import SeminarList from './SeminarList';
 import CourseProblemList from './course_problem/CourseProblemList';
 import HospitalScheduleWindow from './HospitalScheduleWindow';
 
@@ -58,7 +58,7 @@ const CourseWindow = ({
         <ScoreList />
       </TabPane>
       <TabPane tab="Seminars" key="4">
-        <SeminarForm />
+        <SeminarList />
       </TabPane>
       <TabPane tab="Problems" key="5">
         <CourseProblemList />
