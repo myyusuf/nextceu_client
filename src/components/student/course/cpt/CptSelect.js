@@ -13,7 +13,7 @@ const CptSelect = ({ cpts, value, onSelect, style = {} }) => (
     value={value}
   >
     {cpts.map(cpt => (
-      <Option value={cpt.id}>{cpt.name}</Option>
+      <Option value={String(cpt.id)}>{cpt.name}</Option>
     ))}
   </Select>
 );

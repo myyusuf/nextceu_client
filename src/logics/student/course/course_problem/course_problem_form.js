@@ -54,11 +54,20 @@ const loadUserFormLogic = createLogic({
       title: {
         value: courseProblem.title,
       },
+      description: {
+        value: courseProblem.description,
+      },
       courseProblemType: {
         value: String(courseProblemTypeId),
       },
       problemDate: {
         value: courseProblem.problemDate,
+      },
+      comment: {
+        value: courseProblem.comment,
+      },
+      completed: {
+        value: courseProblem.completed,
       },
     };
     const validationResult = {};

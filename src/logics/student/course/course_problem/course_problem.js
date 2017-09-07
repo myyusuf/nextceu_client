@@ -6,8 +6,8 @@ import Constant from '../../../../Constant';
 import { validateExist, validateLength } from '../../../../utils/validation';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
-const COURSE_PROBLEMS_URL = `${Constant.serverUrl}/api/courseProblems`;
-const COURSE_PROBLEM_TYPES_URL = `${Constant.serverUrl}/api/courseProblemtypes`;
+const COURSE_PROBLEMS_URL = `${Constant.serverUrl}/api/courseproblems`;
+const COURSE_PROBLEM_TYPES_URL = `${Constant.serverUrl}/api/courseproblemtypes`;
 
 const validate = (key, value) => {
   let result = null;
@@ -35,9 +35,9 @@ const fetchCourseProblemsLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     // const search = getState().courseProblemReducers.courseProblemSearch;
     // const paramameters = search ? { params: { ...search } } : {};
-    const courseId = getState().studentReducers.courseProblemForm.id.value;
+    const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'COURSE_PROBLEM_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/courseProblems`)
+    axios.get(`${COURSES_URL}/${courseId}/courseproblems`)
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'COURSE_PROBLEM_LOADING_FINISH' });
