@@ -54,10 +54,9 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_SCORES_LOGIC',
       });
 
-      // dispatch({
-      //   type: 'FETCH_SEMINARS_LOGIC',
-      //   payload: course,
-      // });
+      dispatch({
+        type: 'FETCH_COURSE_SEMINARS_LOGIC',
+      });
 
       dispatch({
         type: 'FETCH_COURSE_PROBLEMS_LOGIC',

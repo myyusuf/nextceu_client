@@ -44,7 +44,7 @@ class CourseProblemList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={courseProblems} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
+            <Table dataSource={courseProblems} style={{ marginTop: 15 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Completed"
                 dataIndex="completed"

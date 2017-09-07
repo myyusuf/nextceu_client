@@ -21,6 +21,8 @@ import cptFormLogics from './course/cpt/cpt_form';
 import courseProblemLogics from './course/course_problem/course_problem';
 import courseProblemFormLogics from './course/course_problem/course_problem_form';
 
+import courseSeminarLogics from './course/course_seminar';
+
 export default [
   ...studentLogics,
   ...studentFormLogics,
@@ -38,4 +40,5 @@ export default [
   ...cptFormLogics,
   ...courseProblemLogics,
   ...courseProblemFormLogics,
+  ...courseSeminarLogics,
 ];

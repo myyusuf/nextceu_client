@@ -23,7 +23,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
       <TreeNode title="Application" key="1">
         <TreeNode title="Department" key="1-1" />
         <TreeNode title="Upload Scores" key="1-2" />
-        <TreeNode title="CPT" key="1-3" />
+        <TreeNode title="Problem Types" key="1-3" />
       </TreeNode>
       <TreeNode title="Security" key="2">
         <TreeNode title="User" key="2-1" />

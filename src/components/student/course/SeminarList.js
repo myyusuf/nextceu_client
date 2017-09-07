@@ -31,7 +31,7 @@ class SeminarList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={seminars} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
+            <Table dataSource={seminars} style={{ marginTop: 15 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Title"
                 dataIndex="title"
