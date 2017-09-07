@@ -7,6 +7,7 @@ const defaultState = {
   duration1: {},
   duration2: {},
   duration3: {},
+  seminarsCount: {},
   color: {},
 };
 

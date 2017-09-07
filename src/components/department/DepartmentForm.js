@@ -163,6 +163,29 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
       </Col>
     </Row>
     <Row>
+      <Col span={24}>
+        <FormItem
+          label="Seminars Count"
+          colon={false}
+          validateStatus={departmentForm.seminarsCount.validateStatus}
+          help={departmentForm.seminarsCount.errorMsg}
+        >
+          <InputNumber
+            min={1}
+            max={10}
+            value={departmentForm.seminarsCount.value}
+            onChange={(value) => {
+              departmentFormChanged({
+                key: 'seminarsCount',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
       <Col span={8}>
         <FormItem
           label="Color"
