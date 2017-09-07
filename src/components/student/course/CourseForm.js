@@ -31,7 +31,7 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
       break;
     case 3:
       status = 'error';
-      text = 'Problem';
+      text = `Problem : ${courseForm.tempProblemDescription.value}`;
       break;
     case 4:
       status = 'error';
@@ -68,7 +68,7 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
           </Row>
 
           <Row>
-            <Col span={12}>
+            <Col span={24}>
               {/* <FormItem
                 label="Completion"
                 colon={false}

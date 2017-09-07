@@ -17,6 +17,7 @@ const defaultState = {
   realEndDate3: {},
   hospital1: {},
   clinic: {},
+  tempProblemDescription: {},
 };
 
 const courseForm = (state = defaultState, action) => {

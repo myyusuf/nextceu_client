@@ -113,6 +113,9 @@ const loadCourseToFormLogic = createLogic({
       clinic: {
         value: course.clinic,
       },
+      tempProblemDescription: {
+        value: course.problemDescription,
+      },
     };
     const validationResult = {};
     const keys = _.keys(courseForm);
