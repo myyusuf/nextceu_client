@@ -17,6 +17,7 @@ const DepartmentWindow = ({
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    wrapClassName="vertical-center-modal"
   >
     <DepartmentForm />
   </Modal>
