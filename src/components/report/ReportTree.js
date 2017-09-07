@@ -18,10 +18,13 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
     <Tree
       onSelect={selectSettings}
       selectedKeys={selectedKeys}
-      defaultExpandedKeys={['1', '2']}
+      defaultExpandedKeys={['1', '2', '3']}
     >
       <TreeNode title="Finance" key="1">
         <TreeNode title="Cost Unit" key="1-1" />
+      </TreeNode>
+      <TreeNode title="Students" key="3">
+        <TreeNode title="Completed" key="3-1" />
       </TreeNode>
       <TreeNode title="Schedules" key="2">
         <TreeNode title="Pre test" key="2-1" />

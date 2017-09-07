@@ -9,9 +9,6 @@ const validate = (key, value) => {
     case 'title':
       result = validateLength(key, value, 3);
       break;
-    case 'description':
-      result = validateLength(key, value, 10);
-      break;
     case 'courseProblemType':
     case 'problemDate':
       result = validateExist(key, value);

@@ -7,12 +7,16 @@ import Col from 'antd/lib/col';
 import './ReportMain.css';
 import ReportTree from '../../components/report/ReportTree';
 import CostUnitReport from '../../components/report/CostUnitReport';
+import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
 
 const ReportMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
   switch (selectedMenuKey) {
     case '1-1':
       componentToRender = <CostUnitReport />;
+      break;
+    case '3-1':
+      componentToRender = <CompletedCourseReport />;
       break;
     default:
       break;
