@@ -5,6 +5,7 @@ import userLogics from './user/';
 import departmentLogics from './department/';
 import menuLogics from './menu/';
 import loginLogics from './login/';
+import reportLogics from './report/';
 
 export default [
   ...studentLogics,
@@ -14,4 +15,5 @@ export default [
   ...departmentLogics,
   ...menuLogics,
   ...loginLogics,
+  ...reportLogics,
 ];
