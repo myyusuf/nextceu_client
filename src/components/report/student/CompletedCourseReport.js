@@ -9,6 +9,8 @@ import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 
+import ExportToPreTestWindow from './ExportToPreTestWindow';
+
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
 
@@ -126,6 +128,7 @@ class CompletedCourseList extends Component {
             </Table>
           </Col>
         </Row>
+        <ExportToPreTestWindow />
       </div>
     );
   }
@@ -170,7 +173,7 @@ const mapDispatchToProps = dispatch => (
     },
     openExportWindow: () => (
       dispatch({
-        type: 'PREPARE_EXPORT_COMPLETED_REPORT_LOGIC',
+        type: 'PREP_EXPORT_TO_PRE_TEST_LOGIC',
       })
     ),
     searchTextChanged: value => (
