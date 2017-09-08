@@ -11,6 +11,7 @@ import UserList from '../../components/user/UserList';
 import RoleList from '../../components/user/RoleList';
 import UploadList from '../../components/upload/UploadList';
 import CptList from '../../components/student/course/cpt/CptList';
+import PftList from '../../components/student/course/pft/PftList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
@@ -23,6 +24,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '1-3':
       componentToRender = <CptList />;
+      break;
+    case '1-4':
+      componentToRender = <PftList />;
       break;
     case '2-1':
       componentToRender = <UserList />;

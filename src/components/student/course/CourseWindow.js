@@ -35,7 +35,7 @@ const CourseWindow = ({
     confirmLoading={confirmLoading}
     cancelText="Cancel"
     onCancel={onCancel}
-    width="700"
+    width="800"
     footer={[courseStatus !== 4 ?
       <Button key="pending" type="danger" size="large" onClick={() => confirmPending(title, courseId)}>Pending</Button>
       :
@@ -61,7 +61,7 @@ const CourseWindow = ({
       <TabPane tab="Seminars" key="4">
         <SeminarList />
       </TabPane>
-      <TabPane tab="Seminars" key="5">
+      <TabPane tab="Portofolios" key="5">
         <PortofolioList />
       </TabPane>
       <TabPane tab="Problems" key="6">

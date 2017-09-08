@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
 import { validateLength } from '../../../../utils/validation';
 
-const PFTS_URL = `${Constant.serverUrl}/api/courseproblemtypes`;
+const PFTS_URL = `${Constant.serverUrl}/api/portofoliotypes`;
 
 const validate = (key, value) => {
   let result = null;

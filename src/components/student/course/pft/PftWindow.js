@@ -40,12 +40,12 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_EDIT_CPT_LOGIC',
+        type: 'CANCEL_EDIT_PFT_LOGIC',
       });
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_CPT_LOGIC',
+        type: 'SAVE_PFT_LOGIC',
       });
     },
   }

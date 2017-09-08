@@ -41,14 +41,14 @@ const PortofolioForm = ({ portofolioForm, portofolioFormChanged }) => (
             <FormItem
               label="Date"
               colon={false}
-              validateStatus={portofolioForm.problemDate.validateStatus}
-              help={portofolioForm.problemDate.errorMsg}
+              validateStatus={portofolioForm.portofolioDate.validateStatus}
+              help={portofolioForm.portofolioDate.errorMsg}
             >
               <DatePicker
-                value={portofolioForm.problemDate.value}
+                value={portofolioForm.portofolioDate.value}
                 onChange={(date) => {
                   portofolioFormChanged({
-                    key: 'problemDate',
+                    key: 'portofolioDate',
                     value: date,
                   });
                 }}

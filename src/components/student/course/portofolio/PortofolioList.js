@@ -55,11 +55,6 @@ class PortofolioList extends Component {
                 )}
               />
               <Column
-                title="Title"
-                dataIndex="title"
-                key="title"
-              />
-              <Column
                 title="Type"
                 dataIndex="PortofolioType.name"
               />
