@@ -12,7 +12,7 @@ const preTestSearch = (state = defaultState, action) => {
       return { ...state, searchText: action.payload };
     }
     case 'PRE_TEST_SEARCH_DATE_CHANGED': {
-      return { ...state, dateRange: action.payload };
+      return { ...state, dateSelect: action.payload };
     }
     case 'PRE_TEST_CURRENT_PAGE_CHANGED': {
       return { ...state, currentPage: action.payload };

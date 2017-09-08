@@ -28,7 +28,7 @@ class PreTestReport extends Component {
       searchTextChanged,
       pageChanged,
       loading,
-      dateSelected,
+      dateSelect,
       dateChanged,
       selectedRowKeys,
       rowKeysChanged,
@@ -47,7 +47,7 @@ class PreTestReport extends Component {
         <Row gutter={10}>
           <Col span={4}>
             <DatePicker
-              value={dateSelected}
+              value={dateSelect}
               onChange={(date) => {
                 dateChanged(date);
               }}
@@ -143,7 +143,7 @@ PreTestReport.propTypes = {
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
   dateChanged: PropTypes.func.isRequired,
-  dateSelected: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  dateSelect: PropTypes.arrayOf(PropTypes.shape).isRequired,
   selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
   rowKeysChanged: PropTypes.func.isRequired,
 };
@@ -156,7 +156,7 @@ const mapStateToProps = state => (
     pageSize: state.reportReducers.preTestSearch.pageSize,
     currentPage: state.reportReducers.preTestSearch.currentPage,
     loading: state.reportReducers.preTestSearch.loading,
-    dateSelected: state.reportReducers.preTestSearch.dateSelected,
+    dateSelect: state.reportReducers.preTestSearch.dateSelect,
     selectedRowKeys: state.reportReducers.preTestSelection.rowKeys,
   }
 );

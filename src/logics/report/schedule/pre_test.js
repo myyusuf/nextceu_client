@@ -25,7 +25,7 @@ const fetchCompletedCoursesLogic = createLogic({
         console.error(err);
         dispatch({ type: 'PRE_TEST_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch completed courses error',
+          message: 'Fetch pre test report error',
           description: 'Connection error.',
         });
       })
