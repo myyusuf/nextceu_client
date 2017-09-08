@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
 import { validateExist } from '../../../utils/validation';
 
-const EXPORT_TO_PRE_TESTS_URL = `${Constant.serverUrl}/api/exportToPreTests`;
+const EXPORT_TO_PRE_TESTS_URL = `${Constant.serverUrl}/api/reports/exporttopretest`;
 
 const validate = (key, value) => {
   let result = null;
@@ -42,7 +42,9 @@ const doExportToPreTestLogic = createLogic({
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const exportToPreTestForm = { ...getState().reportReducers.exportToPreTestForm };
+    const exportToPreTestForm = {
+      ...getState().reportReducers.exportToPreTestForm,
+    };
     const validationResult = {};
     const keys = _.keys(exportToPreTestForm);
     for (let i = 0; i < keys.length; i += 1) {
@@ -67,7 +69,8 @@ const doExportToPreTestLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const exportToPreTestForm = _.mapValues({ ...getState().userReducers.exportToPreTestForm }, 'value');
+    const exportToPreTestForm = _.mapValues({ ...getState().reportReducers.exportToPreTestForm }, 'value');
+    exportToPreTestForm.courseIds = getState().reportReducers.completedCourseSelection.rowKeys;
     dispatch({ type: 'SHOW_EXPORT_TO_PRE_TEST_WINDOW_CONFIRM_LOADING' });
 
     axios.post(EXPORT_TO_PRE_TESTS_URL, exportToPreTestForm)
