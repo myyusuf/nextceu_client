@@ -106,7 +106,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
           help={departmentForm.duration1.errorMsg}
         >
           <InputNumber
-            min={0}
+            min={1}
             max={10}
             value={departmentForm.duration1.value}
             onChange={(value) => {
@@ -121,7 +121,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
       </Col>
       <Col span={8}>
         <FormItem
-          label="Hospital Duration 2"
+          label="Clinic Duration"
           colon={false}
           validateStatus={departmentForm.duration2.validateStatus}
           help={departmentForm.duration2.errorMsg}
@@ -142,7 +142,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
       </Col>
       <Col span={8}>
         <FormItem
-          label="Clinic Duration"
+          label="Hospital Duration 2"
           colon={false}
           validateStatus={departmentForm.duration3.validateStatus}
           help={departmentForm.duration3.errorMsg}

@@ -31,30 +31,33 @@ const parseChartData = (courses) => {
 
     childId += 1;
 
-    const clinic = {
-      id: course.id + childId,
-      parent: course.id,
-      text: 'Puskesmas',
-      color: '#D6DBDF',
-      start_date: moment(course.planStartDate2).format('DD-MM-YYYY'),
-      end_date: moment(course.planEndDate2).format('DD-MM-YYYY'),
-    };
-
-    childId += 1;
-
-    const hospitalSchedule2 = {
-      id: course.id + childId,
-      parent: course.id,
-      text: 'RS 2',
-      color: '#D6DBDF',
-      start_date: moment(course.planStartDate3).format('DD-MM-YYYY'),
-      end_date: moment(course.planEndDate3).format('DD-MM-YYYY'),
-    };
-
     result.push(mainSchedule);
     result.push(hospitalSchedule1);
-    result.push(clinic);
-    result.push(hospitalSchedule2);
+
+    if (course.planStartDate2 && course.planStartDate3) {
+      const clinic = {
+        id: course.id + childId,
+        parent: course.id,
+        text: 'Puskesmas',
+        color: '#D6DBDF',
+        start_date: moment(course.planStartDate2).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate2).format('DD-MM-YYYY'),
+      };
+
+      childId += 1;
+
+      const hospitalSchedule2 = {
+        id: course.id + childId,
+        parent: course.id,
+        text: 'RS 2',
+        color: '#D6DBDF',
+        start_date: moment(course.planStartDate3).format('DD-MM-YYYY'),
+        end_date: moment(course.planEndDate3).format('DD-MM-YYYY'),
+      };
+
+      result.push(clinic);
+      result.push(hospitalSchedule2);
+    }
 
     childId += 300;
   }
