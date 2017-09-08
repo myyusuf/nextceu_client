@@ -3,7 +3,7 @@ const defaultState = {
   pageSize: 10,
   currentPage: 1,
   loading: false,
-  dateRange: [],
+  dateSelect: null,
 };
 
 const preTestSearch = (state = defaultState, action) => {
@@ -11,7 +11,7 @@ const preTestSearch = (state = defaultState, action) => {
     case 'PRE_TEST_SEARCH_TEXT_CHANGED': {
       return { ...state, searchText: action.payload };
     }
-    case 'PRE_TEST_SEARCH_DATE_RANGE_CHANGED': {
+    case 'PRE_TEST_SEARCH_DATE_CHANGED': {
       return { ...state, dateRange: action.payload };
     }
     case 'PRE_TEST_CURRENT_PAGE_CHANGED': {

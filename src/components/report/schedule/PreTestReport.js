@@ -10,7 +10,6 @@ import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 
 const Column = Table.Column;
-const RangePicker = DatePicker.RangePicker;
 
 class PreTestReport extends Component {
   componentWillMount() {
@@ -29,8 +28,8 @@ class PreTestReport extends Component {
       searchTextChanged,
       pageChanged,
       loading,
-      dateRange,
-      dateRangeChanged,
+      dateSelected,
+      dateChanged,
       selectedRowKeys,
       rowKeysChanged,
     } = this.props;
@@ -46,12 +45,13 @@ class PreTestReport extends Component {
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={6}>
-            <RangePicker
-              value={dateRange}
+          <Col span={4}>
+            <DatePicker
+              value={dateSelected}
               onChange={(date) => {
-                dateRangeChanged(date);
+                dateChanged(date);
               }}
+              style={{ width: '100%' }}
             />
           </Col>
           <Col span={6}>
@@ -142,8 +142,8 @@ PreTestReport.propTypes = {
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
-  dateRangeChanged: PropTypes.func.isRequired,
-  dateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  dateChanged: PropTypes.func.isRequired,
+  dateSelected: PropTypes.arrayOf(PropTypes.shape).isRequired,
   selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
   rowKeysChanged: PropTypes.func.isRequired,
 };
@@ -156,7 +156,7 @@ const mapStateToProps = state => (
     pageSize: state.reportReducers.preTestSearch.pageSize,
     currentPage: state.reportReducers.preTestSearch.currentPage,
     loading: state.reportReducers.preTestSearch.loading,
-    dateRange: state.reportReducers.preTestSearch.dateRange,
+    dateSelected: state.reportReducers.preTestSearch.dateSelected,
     selectedRowKeys: state.reportReducers.preTestSelection.rowKeys,
   }
 );
@@ -185,9 +185,9 @@ const mapDispatchToProps = dispatch => (
         payload: currentPage,
       })
     ),
-    dateRangeChanged: value => (
+    dateChanged: value => (
       dispatch({
-        type: 'PRE_TEST_SEARCH_DATE_RANGE_CHANGED',
+        type: 'PRE_TEST_SEARCH_DATE_CHANGED',
         payload: value,
       })
     ),
