@@ -9,6 +9,7 @@ import ScheduleForm from './ScheduleForm';
 import ScoreList from './score/ScoreList';
 import SeminarList from './SeminarList';
 import CourseProblemList from './course_problem/CourseProblemList';
+import PortofolioList from './portofolio/PortofolioList';
 import HospitalScheduleWindow from './HospitalScheduleWindow';
 
 const TabPane = Tabs.TabPane;
@@ -60,7 +61,10 @@ const CourseWindow = ({
       <TabPane tab="Seminars" key="4">
         <SeminarList />
       </TabPane>
-      <TabPane tab="Problems" key="5">
+      <TabPane tab="Seminars" key="5">
+        <PortofolioList />
+      </TabPane>
+      <TabPane tab="Problems" key="6">
         <CourseProblemList />
       </TabPane>
     </Tabs>

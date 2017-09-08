@@ -152,13 +152,7 @@ const CourseProblemForm = ({ courseProblemForm, courseProblemFormChanged }) => (
 
 CourseProblemForm.propTypes = {
   courseProblemFormChanged: PropTypes.func.isRequired,
-  courseProblemForm: PropTypes.shape({
-    preTest: PropTypes.number.isRequired,
-    research: PropTypes.number.isRequired,
-    weeklyDiscussion: PropTypes.number.isRequired,
-    test: PropTypes.number.isRequired,
-    postTest: PropTypes.number.isRequired,
-  }).isRequired,
+  courseProblemForm: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => (

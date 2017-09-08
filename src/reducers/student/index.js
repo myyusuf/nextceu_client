@@ -43,6 +43,16 @@ import courseProblemForm from './course/course_problem/course_problem_form';
 import courseProblemWindow from './course/course_problem/course_problem_window';
 import courseProblemSearch from './course/course_problem/course_problem_search';
 
+import pfts from './course/pft/pfts';
+import pftForm from './course/pft/pft_form';
+import pftWindow from './course/pft/pft_window';
+import pftSearch from './course/pft/pft_search';
+
+import portofolios from './course/portofolio/portofolios';
+import portofolioForm from './course/portofolio/portofolio_form';
+import portofolioWindow from './course/portofolio/portofolio_window';
+import portofolioSearch from './course/portofolio/portofolio_search';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -76,6 +86,14 @@ const studentReducer = combineReducers({
   courseProblemForm,
   courseProblemWindow,
   courseProblemSearch,
+  pfts,
+  pftForm,
+  pftWindow,
+  pftSearch,
+  portofolios,
+  portofolioForm,
+  portofolioWindow,
+  portofolioSearch,
 });
 
 export default studentReducer;
