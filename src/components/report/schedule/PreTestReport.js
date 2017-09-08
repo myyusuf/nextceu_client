@@ -8,8 +8,10 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
+import Modal from 'antd/lib/modal';
 
 const Column = Table.Column;
+const confirm = Modal.confirm;
 
 class PreTestReport extends Component {
   componentWillMount() {
@@ -23,7 +25,7 @@ class PreTestReport extends Component {
       pageSize,
       currentPage,
       fetchPreTests,
-      openExportWindow,
+      confirmDelete,
       searchText,
       searchTextChanged,
       pageChanged,
@@ -75,7 +77,7 @@ class PreTestReport extends Component {
                 type="danger"
                 shape="circle"
                 icon="delete"
-                onClick={() => openExportWindow()}
+                onClick={() => confirmDelete()}
               />
             </span>
           </Col>
@@ -133,7 +135,7 @@ class PreTestReport extends Component {
 
 PreTestReport.propTypes = {
   fetchPreTests: PropTypes.func.isRequired,
-  openExportWindow: PropTypes.func.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
@@ -168,9 +170,19 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_PRE_TESTS_LOGIC',
       });
     },
-    openExportWindow: () => (
-      dispatch({
-        type: 'PREP_EXPORT_TO_PRE_TEST_LOGIC',
+    confirmDelete: record => (
+      confirm({
+        title: 'Do you want remove students from pre test schedule?',
+        content: 'This action cannot be undone',
+        onOk() {
+          dispatch({
+            type: 'REMOVE_COURSES_FROM_PRETEST_LOGIC',
+            payload: record,
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
       })
     ),
     searchTextChanged: value => (

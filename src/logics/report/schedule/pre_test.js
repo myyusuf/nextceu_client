@@ -33,6 +33,41 @@ const fetchCompletedCoursesLogic = createLogic({
   },
 });
 
+const removeCoursesFromPreTestLogic = createLogic({
+  type: 'REMOVE_COURSES_FROM_PRETEST_LOGIC',
+  process({ getState, action }, dispatch, done) {
+    const exportToPreTestForm = { courseIds: getState().reportReducers.preTestSelection.rowKeys };
+    axios.put(`${PRE_TEST_REPORTS_URL}/remove`, exportToPreTestForm)
+      .then(() => {
+        dispatch({ type: 'FETCH_PRE_TESTS_LOGIC' });
+        notification.success({
+          message: 'Remove success',
+          description: 'Success removing students.',
+        });
+      })
+      .catch((err) => {
+        let errorMessage = '';
+        if (err.response) {
+          if (err.response.status === 500) {
+            errorMessage = 'Error';
+          } else {
+            errorMessage = `Status: ${err.response.status}`;
+          }
+        } else if (err.request) {
+          errorMessage = 'Connection error.';
+        } else {
+          errorMessage = err.message;
+        }
+        notification.error({
+          message: 'Error',
+          description: errorMessage,
+        });
+      })
+      .then(() => done());
+  },
+});
+
 export default [
   fetchCompletedCoursesLogic,
+  removeCoursesFromPreTestLogic,
 ];
