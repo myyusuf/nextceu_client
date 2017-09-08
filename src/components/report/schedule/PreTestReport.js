@@ -9,23 +9,21 @@ import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 
-import ExportToPreTestWindow from './ExportToPreTestWindow';
-
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
 
-class CompletedCourseList extends Component {
+class PreTestReport extends Component {
   componentWillMount() {
-    this.props.fetchCompletedCourses();
+    this.props.fetchPreTests();
   }
 
   render() {
     const {
-      completedCourses,
+      preTests,
       count,
       pageSize,
       currentPage,
-      fetchCompletedCourses,
+      fetchPreTests,
       openExportWindow,
       searchText,
       searchTextChanged,
@@ -70,14 +68,14 @@ class CompletedCourseList extends Component {
               <Button
                 shape="circle"
                 icon="search"
-                onClick={() => fetchCompletedCourses()}
+                onClick={() => fetchPreTests()}
                 style={{ marginRight: 15 }}
               />
               <Button
+                type="danger"
                 shape="circle"
-                icon="export"
+                icon="delete"
                 onClick={() => openExportWindow()}
-                style={{ backgroundColor: '#50C14E', color: '#fff' }}
               />
             </span>
           </Col>
@@ -85,7 +83,7 @@ class CompletedCourseList extends Component {
         <Row>
           <Col span={24}>
             <Table
-              dataSource={completedCourses}
+              dataSource={preTests}
               style={{ marginTop: 20 }}
               rowKey="id"
               loading={loading}
@@ -128,20 +126,19 @@ class CompletedCourseList extends Component {
             </Table>
           </Col>
         </Row>
-        <ExportToPreTestWindow />
       </div>
     );
   }
 }
 
-CompletedCourseList.propTypes = {
-  fetchCompletedCourses: PropTypes.func.isRequired,
+PreTestReport.propTypes = {
+  fetchPreTests: PropTypes.func.isRequired,
   openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  completedCourses: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  preTests: PropTypes.arrayOf(PropTypes.shape).isRequired,
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
@@ -153,22 +150,22 @@ CompletedCourseList.propTypes = {
 
 const mapStateToProps = state => (
   {
-    completedCourses: state.reportReducers.completedCourses.rows,
-    count: state.reportReducers.completedCourses.count,
-    searchText: state.reportReducers.completedCourseSearch.searchText,
-    pageSize: state.reportReducers.completedCourseSearch.pageSize,
-    currentPage: state.reportReducers.completedCourseSearch.currentPage,
-    loading: state.reportReducers.completedCourseSearch.loading,
-    dateRange: state.reportReducers.completedCourseSearch.dateRange,
-    selectedRowKeys: state.reportReducers.completedCourseSelection.rowKeys,
+    preTests: state.reportReducers.preTests.rows,
+    count: state.reportReducers.preTests.count,
+    searchText: state.reportReducers.preTestSearch.searchText,
+    pageSize: state.reportReducers.preTestSearch.pageSize,
+    currentPage: state.reportReducers.preTestSearch.currentPage,
+    loading: state.reportReducers.preTestSearch.loading,
+    dateRange: state.reportReducers.preTestSearch.dateRange,
+    selectedRowKeys: state.reportReducers.preTestSelection.rowKeys,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCompletedCourses: () => {
+    fetchPreTests: () => {
       dispatch({
-        type: 'FETCH_COMPLETED_COURSES_LOGIC',
+        type: 'FETCH_PRE_TESTS_LOGIC',
       });
     },
     openExportWindow: () => (
@@ -178,34 +175,34 @@ const mapDispatchToProps = dispatch => (
     ),
     searchTextChanged: value => (
       dispatch({
-        type: 'COMPLETED_COURSE_SEARCH_TEXT_CHANGED',
+        type: 'PRE_TEST_SEARCH_TEXT_CHANGED',
         payload: value,
       })
     ),
     pageChanged: currentPage => (
       dispatch({
-        type: 'COMPLETED_COURSE_PAGE_CHANGED_LOGIC',
+        type: 'PRE_TEST_PAGE_CHANGED_LOGIC',
         payload: currentPage,
       })
     ),
     dateRangeChanged: value => (
       dispatch({
-        type: 'COMPLETED_COURSE_SEARCH_DATE_RANGE_CHANGED',
+        type: 'PRE_TEST_SEARCH_DATE_RANGE_CHANGED',
         payload: value,
       })
     ),
     rowKeysChanged: (rowKeys, selectedRows) => (
       dispatch({
-        type: 'COMPLETED_COURSE_SELECT_CHANGED',
+        type: 'PRE_TEST_SELECT_CHANGED',
         payload: { rowKeys, selectedRows },
       })
     ),
   }
 );
 
-const CompletedCourseListWrapper = connect(
+const PreTestReportWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CompletedCourseList);
+)(PreTestReport);
 
-export default CompletedCourseListWrapper;
+export default PreTestReportWrapper;

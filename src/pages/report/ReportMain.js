@@ -8,6 +8,7 @@ import './ReportMain.css';
 import ReportTree from '../../components/report/ReportTree';
 import CostUnitReport from '../../components/report/CostUnitReport';
 import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
+import PreTestReport from '../../components/report/schedule/PreTestReport';
 
 const ReportMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
@@ -17,6 +18,9 @@ const ReportMain = ({ selectedMenuKey }) => {
       break;
     case '3-1':
       componentToRender = <CompletedCourseReport />;
+      break;
+    case '2-1':
+      componentToRender = <PreTestReport />;
       break;
     default:
       break;
