@@ -54,6 +54,27 @@ const fetchHospitalsLogic = createLogic({
   },
 });
 
+const fetchAllHospitalsLogic = createLogic({
+  type: 'FETCH_ALL_HOSPITALS_LOGIC',
+  cancelType: 'CANCEL_FETCH_ALL_HOSPITALS_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    axios.get(HOSPITALS_URL)
+      .then(resp => resp.data)
+      .then((hospitals) => {
+        dispatch({ type: 'FETCH_ALL_HOSPITALS_SUCCESS', payload: hospitals });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch hospitals error',
+          description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 const editHospitalLogic = createLogic({
   type: 'EDIT_HOSPITAL_LOGIC',
   process({ getState, action }, dispatch, done) {
@@ -242,6 +263,7 @@ const selectHospitalLogic = createLogic({
 
 export default [
   fetchHospitalsLogic,
+  fetchAllHospitalsLogic,
   editHospitalLogic,
   cancelAddHospitalLogic,
   saveHospitalModalLogic,

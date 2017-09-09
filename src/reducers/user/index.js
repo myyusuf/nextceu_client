@@ -9,6 +9,8 @@ import roleForm from './role_form';
 import roleWindow from './role_window';
 import roleSearch from './role_search';
 
+import allUsersByRole from './all_users';
+
 const userReducer = combineReducers({
   users,
   userForm,
@@ -18,6 +20,7 @@ const userReducer = combineReducers({
   roleForm,
   roleWindow,
   roleSearch,
+  allUsersByRole,
 });
 
 export default userReducer;

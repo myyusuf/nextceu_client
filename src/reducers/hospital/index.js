@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import hospitals from './hospitals';
+import allHospitals from './all_hospitals';
 import hospitalForm from './hospital_form';
 import hospitalModalForm from './hospital_modal_form';
 import hospitalWindow from './hospital_window';
@@ -19,6 +20,7 @@ const hospitalReducer = combineReducers({
   hospitalFormContainer,
   hospitalStudents,
   hospitals,
+  allHospitals,
   hospitalSearch,
   hospitalDepartments,
   hospitalDepartmentForm,

@@ -3,23 +3,16 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validateExist, validateLength, validateEmail } from '../../utils/validation';
+import { validateExist } from '../../utils/validation';
 
-const USERS_URL = `${Constant.serverUrl}/api/users`;
-const USERS_BY_ROLE_URL = `${Constant.serverUrl}/api/usersbyrole`;
+const HOSPITAL_USERS_URL = `${Constant.serverUrl}/api/hospitalusers`;
 
 const validate = (key, value) => {
   let result = null;
   switch (key) {
-    case 'username':
-    case 'name':
-      result = validateLength(key, value, 3);
-      break;
-    case 'role':
+    case 'hospital':
+    case 'user':
       result = validateExist(key, value);
-      break;
-    case 'email':
-      result = validateEmail(key, value);
       break;
     default:
       break;
@@ -28,45 +21,23 @@ const validate = (key, value) => {
   return result;
 };
 
-const fetchUsersLogic = createLogic({
-  type: 'FETCH_USERS_LOGIC',
-  cancelType: 'CANCEL_FETCH_USERS_LOGIC',
+const fetchHospitalUsersLogic = createLogic({
+  type: 'FETCH_HOSPITAL_USERS_LOGIC',
+  cancelType: 'CANCEL_FETCH_HOSPITAL_USERS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().userReducers.userSearch;
+    const search = getState().settingsReducers.userSearch;
     const paramameters = search ? { params: { ...search } } : {};
-    dispatch({ type: 'USER_LOADING_START' });
-    axios.get(USERS_URL, paramameters)
+    dispatch({ type: 'HOSPITAL_USER_LOADING_START' });
+    axios.get(HOSPITAL_USERS_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'USER_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_USERS_SUCCESS', payload: data });
+        dispatch({ type: 'HOSPITAL_USER_LOADING_FINISH' });
+        dispatch({ type: 'FETCH_HOSPITAL_USERS_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);
-        dispatch({ type: 'USER_LOADING_FINISH' });
-        notification.error({
-          message: 'Fetch users error',
-          description: 'Please check internet connection.',
-        });
-      })
-      .then(() => done());
-  },
-});
-
-const fetchAllUsersByRoleLogic = createLogic({
-  type: 'FETCH_ALL_USERS_BY_ROLE_LOGIC',
-  cancelType: 'CANCEL_FETCH_ALL_USERS_BY_ROLE_LOGIC',
-  latest: true,
-  process({ getState, action }, dispatch, done) {
-    const paramameters = { params: { role: action.payload } };
-    axios.get(USERS_BY_ROLE_URL, paramameters)
-      .then(resp => resp.data)
-      .then((data) => {
-        dispatch({ type: 'FETCH_ALL_USERS_BY_ROLE_SUCCESS', payload: data });
-      })
-      .catch((err) => {
-        console.error(err);
+        dispatch({ type: 'HOSPITAL_USER_LOADING_FINISH' });
         notification.error({
           message: 'Fetch users error',
           description: 'Connection error.',
@@ -76,36 +47,36 @@ const fetchAllUsersByRoleLogic = createLogic({
   },
 });
 
-const editUserLogic = createLogic({
-  type: 'EDIT_USER_LOGIC',
+const editHospitalUserLogic = createLogic({
+  type: 'EDIT_HOSPITAL_USER_LOGIC',
   process({ getState, action }, dispatch, done) {
-    dispatch({ type: 'CLEAR_USER_FORM' });
-    dispatch({ type: 'SHOW_USER_WINDOW' });
+    dispatch({ type: 'CLEAR_HOSPITAL_USER_FORM' });
+    dispatch({ type: 'SHOW_HOSPITAL_USER_WINDOW' });
     done();
   },
 });
 
-const cancelAddUserLogic = createLogic({
-  type: 'CANCEL_EDIT_USER_LOGIC',
+const cancelEditHospitalUserLogic = createLogic({
+  type: 'CANCEL_EDIT_HOSPITAL_USER_LOGIC',
   process({ getState, action }, dispatch, done) {
-    dispatch({ type: 'CLEAR_USER_FORM' });
-    dispatch({ type: 'HIDE_USER_WINDOW' });
+    dispatch({ type: 'CLEAR_HOSPITAL_USER_FORM' });
+    dispatch({ type: 'HIDE_HOSPITAL_USER_WINDOW' });
     done();
   },
 });
 
-const saveUserLogic = createLogic({
-  type: 'SAVE_USER_LOGIC',
+const saveHospitalUserLogic = createLogic({
+  type: 'SAVE_HOSPITAL_USER_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const userForm = { ...getState().userReducers.userForm };
+    const hospitalUserForm = { ...getState().settingsReducers.hospitalUserForm };
     const validationResult = {};
-    const keys = _.keys(userForm);
+    const keys = _.keys(hospitalUserForm);
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
       if (key !== 'id') {
-        const value = userForm[key].value;
+        const value = hospitalUserForm[key].value;
         validationResult[key] = {
           value,
           ...validate(key, value),
@@ -120,19 +91,19 @@ const saveUserLogic = createLogic({
     if (isFormValid) {
       allow(action);
     } else {
-      reject({ type: 'SHOW_USER_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
+      reject({ type: 'SHOW_HOSPITAL_USER_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
     }
   },
   process({ getState, action }, dispatch, done) {
-    const userForm = _.mapValues({ ...getState().userReducers.userForm }, 'value');
-    dispatch({ type: 'SHOW_USER_WINDOW_CONFIRM_LOADING' });
+    const hospitalUserForm = _.mapValues({ ...getState().settingsReducers.hospitalUserForm }, 'value');
+    dispatch({ type: 'SHOW_HOSPITAL_USER_WINDOW_CONFIRM_LOADING' });
 
-    if (userForm.id) {
-      axios.put(`${USERS_URL}/${userForm.id}`, userForm)
+    if (hospitalUserForm.id) {
+      axios.put(`${HOSPITAL_USERS_URL}/${hospitalUserForm.id}`, hospitalUserForm)
         .then(() => {
-          dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
-          dispatch({ type: 'CANCEL_EDIT_USER_LOGIC' });
-          dispatch({ type: 'FETCH_USERS_LOGIC' });
+          dispatch({ type: 'HIDE_HOSPITAL_USER_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'CANCEL_EDIT_HOSPITAL_USER_LOGIC' });
+          dispatch({ type: 'FETCH_HOSPITAL_USERS_LOGIC' });
           notification.success({
             message: 'Update user success',
             description: 'Success saving user',
@@ -142,7 +113,7 @@ const saveUserLogic = createLogic({
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Username must be unique';
+              errorMessage = 'Error';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -151,7 +122,7 @@ const saveUserLogic = createLogic({
           } else {
             errorMessage = err.message;
           }
-          dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'HIDE_HOSPITAL_USER_WINDOW_CONFIRM_LOADING' });
           notification.error({
             message: 'Update user error',
             description: errorMessage,
@@ -159,11 +130,11 @@ const saveUserLogic = createLogic({
         })
         .then(() => done());
     } else {
-      axios.post(USERS_URL, userForm)
+      axios.post(HOSPITAL_USERS_URL, hospitalUserForm)
         .then(() => {
-          dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
-          dispatch({ type: 'CANCEL_EDIT_USER_LOGIC' });
-          dispatch({ type: 'FETCH_USERS_LOGIC' });
+          dispatch({ type: 'HIDE_HOSPITAL_USER_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'CANCEL_EDIT_HOSPITAL_USER_LOGIC' });
+          dispatch({ type: 'FETCH_HOSPITAL_USERS_LOGIC' });
           notification.success({
             message: 'Create user success',
             description: 'Success saving user',
@@ -173,7 +144,7 @@ const saveUserLogic = createLogic({
           let errorMessage = '';
           if (err.response) {
             if (err.response.status === 500) {
-              errorMessage = 'Ex. Username must be unique';
+              errorMessage = 'Error';
             } else {
               errorMessage = `Status: ${err.response.status}`;
             }
@@ -182,7 +153,7 @@ const saveUserLogic = createLogic({
           } else {
             errorMessage = err.message;
           }
-          dispatch({ type: 'HIDE_USER_WINDOW_CONFIRM_LOADING' });
+          dispatch({ type: 'HIDE_HOSPITAL_USER_WINDOW_CONFIRM_LOADING' });
           notification.error({
             message: 'Create user error',
             description: errorMessage,
@@ -193,17 +164,17 @@ const saveUserLogic = createLogic({
   },
 });
 
-const deleteUserLogic = createLogic({
-  type: 'DELETE_USER_LOGIC',
+const deleteHospitalUserLogic = createLogic({
+  type: 'DELETE_HOSPITAL_USER_LOGIC',
   process({ getState, action }, dispatch, done) {
-    axios.delete(`${USERS_URL}/${action.payload.id}`)
+    axios.delete(`${HOSPITAL_USERS_URL}/${action.payload.id}`)
       .then(resp => resp.data)
       .then(() => {
         notification.success({
           message: 'Delete user success',
           description: 'Success deleting user',
         });
-        dispatch({ type: 'FETCH_USERS_LOGIC' });
+        dispatch({ type: 'FETCH_HOSPITAL_USERS_LOGIC' });
       })
       .catch((err) => {
         console.error(err);
@@ -216,21 +187,20 @@ const deleteUserLogic = createLogic({
   },
 });
 
-const userPageChangedLogic = createLogic({
-  type: 'USER_PAGE_CHANGED_LOGIC',
+const hospitalUserPageChangedLogic = createLogic({
+  type: 'HOSPITAL_USER_PAGE_CHANGED_LOGIC',
   process({ getState, action }, dispatch, done) {
-    dispatch({ type: 'USER_CURRENT_PAGE_CHANGED', payload: action.payload });
-    dispatch({ type: 'FETCH_USERS_LOGIC' });
+    dispatch({ type: 'HOSPITAL_USER_CURRENT_PAGE_CHANGED', payload: action.payload });
+    dispatch({ type: 'FETCH_HOSPITAL_USERS_LOGIC' });
     done();
   },
 });
 
 export default [
-  fetchUsersLogic,
-  fetchAllUsersByRoleLogic,
-  editUserLogic,
-  cancelAddUserLogic,
-  saveUserLogic,
-  deleteUserLogic,
-  userPageChangedLogic,
+  fetchHospitalUsersLogic,
+  editHospitalUserLogic,
+  cancelEditHospitalUserLogic,
+  saveHospitalUserLogic,
+  deleteHospitalUserLogic,
+  hospitalUserPageChangedLogic,
 ];
