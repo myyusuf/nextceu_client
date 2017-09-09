@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validateExist, validateLength, validateEmail } from '../../utils/validation';
+import { validateExist, validateLength } from '../../utils/validation';
 
 const DOCENTS_URL = `${Constant.serverUrl}/api/docents`;
 const DOCENTS_BY_HD_URL = `${Constant.serverUrl}/api/docentsbyhd`;
@@ -56,8 +56,10 @@ const fetchAllDocentsByRoleLogic = createLogic({
   cancelType: 'CANCEL_FETCH_DOCENTS_BY_HD_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
+    const hospitalId = getState().studentReducers.courseForm.hospital1.value ?
+    getState().studentReducers.courseForm.hospital1.value.id : null;
     const paramameters = { params: {
-      hospital: getState().studentReducers.courseForm.hospital1.value,
+      hospital: hospitalId,
       department: getState().studentReducers.courseForm.tempDepartment.value,
     } };
     axios.get(DOCENTS_BY_HD_URL, paramameters)
