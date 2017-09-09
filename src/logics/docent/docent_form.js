@@ -52,10 +52,10 @@ const loadUserFormLogic = createLogic({
         value: docent.name,
       },
       hospital: {
-        value: hospitalId,
+        value: String(hospitalId),
       },
       department: {
-        value: departmentId,
+        value: String(departmentId),
       },
     };
     const validationResult = {};

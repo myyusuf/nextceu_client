@@ -11,12 +11,13 @@ const DocentWindow = ({
   confirmLoading,
 }) => (
   <Modal
-    title="Add Docent"
+    title="Docent"
     visible={visible}
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    width={400}
   >
     <DocentForm />
   </Modal>
