@@ -40,11 +40,11 @@ const uploadProps = {
 const uploads = [
   {
     id: 1,
-    name: 'Score Type 1',
+    name: 'Pre Test',
   },
   {
     id: 2,
-    name: 'Score Type 2',
+    name: 'Post Test',
   },
 ];
 
