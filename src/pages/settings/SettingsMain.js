@@ -10,6 +10,7 @@ import AppPropList from '../../components/settings/AppPropList';
 import DepartmentList from '../../components/department/DepartmentList';
 import UserList from '../../components/user/UserList';
 import RoleList from '../../components/user/RoleList';
+import HospitalUserList from '../../components/settings/HospitalUserList';
 import UploadList from '../../components/upload/UploadList';
 import CptList from '../../components/student/course/cpt/CptList';
 import PftList from '../../components/student/course/pft/PftList';
@@ -37,6 +38,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '2-2':
       componentToRender = <RoleList />;
+      break;
+    case '2-3':
+      componentToRender = <HospitalUserList />;
       break;
     default:
       break;

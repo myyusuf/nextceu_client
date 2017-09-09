@@ -79,16 +79,15 @@ class HospitalUserList extends Component {
             >
               <Column
                 title="Username"
-                dataIndex="user.username"
+                dataIndex="User.username"
               />
               <Column
                 title="Name"
-                dataIndex="name"
-                key="name"
+                dataIndex="User.name"
               />
               <Column
                 title="Hospital"
-                dataIndex="hospital.name"
+                dataIndex="Hospital.name"
               />
               <Column
                 title="Action"
@@ -185,7 +184,7 @@ const mapDispatchToProps = dispatch => (
     ),
     confirmDelete: record => (
       confirm({
-        title: `Do you Want to delete hospital user: ${record.name}`,
+        title: `Do you Want to delete hospital user: ${record.User.name}`,
         content: 'This action cannot be undone',
         onOk() {
           dispatch({

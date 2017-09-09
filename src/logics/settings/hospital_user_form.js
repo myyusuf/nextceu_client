@@ -43,10 +43,10 @@ const loadHospitalUserFormLogic = createLogic({
         value: hospitalUser.id,
       },
       user: {
-        value: userId,
+        value: String(userId),
       },
       hospital: {
-        value: hospitalId,
+        value: String(hospitalId),
       },
     };
     const validationResult = {};

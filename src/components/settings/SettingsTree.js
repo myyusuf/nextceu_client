@@ -30,6 +30,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
       <TreeNode title="Security" key="2">
         <TreeNode title="User" key="2-1" />
         <TreeNode title="Role" key="2-2" />
+        <TreeNode title="Hospital User" key="2-3" />
       </TreeNode>
     </Tree>
   </div>
