@@ -57,12 +57,21 @@ const loadCourseToFormLogic = createLogic({
     if (course.realStartDate3) course.realStartDate3 = moment(course.realStartDate3);
     if (course.realEndDate3) course.realEndDate3 = moment(course.realEndDate3);
 
+    const adviserId = course.adviser ? String(course.adviser.id) : course.adviser;
+    const examinerId = course.examiner ? String(course.examiner.id) : course.examiner;
+
     const courseForm = {
       id: {
         value: course.id,
       },
       title: {
         value: course.title,
+      },
+      adviser: {
+        value: adviserId,
+      },
+      examiner: {
+        value: examinerId,
       },
       // completion: {
       //   value: course.completion,
@@ -115,6 +124,9 @@ const loadCourseToFormLogic = createLogic({
       },
       tempProblemDescription: {
         value: course.problemDescription,
+      },
+      tempDepartment: {
+        value: course.Department.id,
       },
     };
     const validationResult = {};

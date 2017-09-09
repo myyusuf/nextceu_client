@@ -65,6 +65,10 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'FETCH_PORTOFOLIOS_LOGIC',
       });
+
+      dispatch({
+        type: 'FETCH_DOCENTS_BY_HD_LOGIC',
+      });
     },
   }
 );

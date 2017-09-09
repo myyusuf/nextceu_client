@@ -1,6 +1,8 @@
 const defaultState = {
   id: {},
   title: {},
+  adviser: {},
+  examiner: {},
   // completion: { value: 0 },
 
   planDate: {},
@@ -18,6 +20,7 @@ const defaultState = {
   hospital1: {},
   clinic: {},
   tempProblemDescription: {},
+  tempDepartment: {},
 };
 
 const courseForm = (state = defaultState, action) => {

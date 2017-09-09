@@ -52,18 +52,18 @@ const fetchDocentsLogic = createLogic({
 });
 
 const fetchAllDocentsByRoleLogic = createLogic({
-  type: 'FETCH_ALL_DOCENTS_BY_HD_LOGIC',
-  cancelType: 'CANCEL_FETCH_ALL_DOCENTS_BY_HD_LOGIC',
+  type: 'FETCH_DOCENTS_BY_HD_LOGIC',
+  cancelType: 'CANCEL_FETCH_DOCENTS_BY_HD_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
     const paramameters = { params: {
-      hospital: action.payload.hospitalId,
-      department: action.payload.departmentId,
+      hospital: getState().studentReducers.courseForm.hospital1.value,
+      department: getState().studentReducers.courseForm.tempDepartment.value,
     } };
     axios.get(DOCENTS_BY_HD_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'FETCH_ALL_DOCENTS_BY_HD_SUCCESS', payload: data });
+        dispatch({ type: 'FETCH_DOCENTS_BY_HD_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);

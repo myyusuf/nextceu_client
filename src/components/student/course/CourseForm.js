@@ -7,6 +7,7 @@ import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import Select from 'antd/lib/select';
 import Badge from 'antd/lib/badge';
+import DocentSelect from '../../docent/DocentSelect';
 
 const Option = Select.Option;
 
@@ -62,6 +63,48 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
                     });
                   }}
                   placeholder="Title"
+                />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <FormItem
+                label="Adviser"
+                colon={false}
+                validateStatus={courseForm.adviser.validateStatus}
+                help={courseForm.adviser.errorMsg}
+              >
+                <DocentSelect
+                  value={courseForm.adviser.value}
+                  onSelect={(value) => {
+                    courseFormChanged({
+                      key: 'adviser',
+                      value,
+                    });
+                  }}
+                  style={{ width: '40%' }}
+                />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <FormItem
+                label="Examiner"
+                colon={false}
+                validateStatus={courseForm.examiner.validateStatus}
+                help={courseForm.examiner.errorMsg}
+              >
+                <DocentSelect
+                  value={courseForm.examiner.value}
+                  onSelect={(value) => {
+                    courseFormChanged({
+                      key: 'examiner',
+                      value,
+                    });
+                  }}
+                  style={{ width: '40%' }}
                 />
               </FormItem>
             </Col>

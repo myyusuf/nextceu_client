@@ -27,7 +27,7 @@ DocentSelect.propTypes = {
 
 const mapStateToProps = state => (
   {
-    docents: state.docentReducers.allDocents,
+    docents: state.docentReducers.docentsByHD,
   }
 );
 
