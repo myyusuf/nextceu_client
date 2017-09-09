@@ -14,6 +14,7 @@ import HospitalUserList from '../../components/settings/HospitalUserList';
 import UploadList from '../../components/upload/UploadList';
 import CptList from '../../components/student/course/cpt/CptList';
 import PftList from '../../components/student/course/pft/PftList';
+import DocentList from '../../components/docent/DocentList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
@@ -32,6 +33,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '1-4':
       componentToRender = <PftList />;
+      break;
+    case '1-5':
+      componentToRender = <DocentList />;
       break;
     case '2-1':
       componentToRender = <UserList />;

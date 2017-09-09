@@ -2,28 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-import HospitalUserForm from './HospitalUserForm';
+import DocentForm from './DocentForm';
 
-const HospitalUserWindow = ({
+const DocentWindow = ({
   visible,
   onOk,
   onCancel,
   confirmLoading,
 }) => (
   <Modal
-    title="Add HospitalUser"
+    title="Add Docent"
     visible={visible}
     okText="Save"
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
-    width={400}
   >
-    <HospitalUserForm />
+    <DocentForm />
   </Modal>
 );
 
-HospitalUserWindow.propTypes = {
+DocentWindow.propTypes = {
   visible: PropTypes.bool.isRequired,
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
@@ -32,8 +31,8 @@ HospitalUserWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.settingsReducers.hospitalUserWindow.visible,
-    confirmLoading: state.settingsReducers.hospitalUserWindow.confirmLoading,
+    visible: state.docentReducers.docentWindow.visible,
+    confirmLoading: state.docentReducers.docentWindow.confirmLoading,
   }
 );
 
@@ -41,20 +40,20 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: 'CANCEL_EDIT_HOSPITAL_USER_LOGIC',
+        type: 'CANCEL_EDIT_DOCENT_LOGIC',
       });
     },
     onOk: () => {
       dispatch({
-        type: 'SAVE_HOSPITAL_USER_LOGIC',
+        type: 'SAVE_DOCENT_LOGIC',
       });
     },
   }
 );
 
-const HospitalUserWindowWrapper = connect(
+const DocentWindowWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HospitalUserWindow);
+)(DocentWindow);
 
-export default HospitalUserWindowWrapper;
+export default DocentWindowWrapper;

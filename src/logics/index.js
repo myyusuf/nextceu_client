@@ -7,6 +7,7 @@ import departmentLogics from './department/';
 import menuLogics from './menu/';
 import loginLogics from './login/';
 import reportLogics from './report/';
+import docentLogics from './docent/';
 
 export default [
   ...settingsLogics,
@@ -18,4 +19,5 @@ export default [
   ...menuLogics,
   ...loginLogics,
   ...reportLogics,
+  ...docentLogics,
 ];
