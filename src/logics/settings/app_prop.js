@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
 import { validateLength } from '../../utils/validation';
 
-const APP_PROPS_URL = `${Constant.serverUrl}/api/roles`;
+const APP_PROPS_URL = `${Constant.serverUrl}/api/appprops`;
 
 const validate = (key, value) => {
   let result = null;
@@ -28,14 +28,14 @@ const fetchAppPropsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_APP_PROPS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().userReducers.roleSearch;
+    const search = getState().settingsReducers.appPropSearch;
     const paramameters = search ? { params: { ...search } } : {};
     dispatch({ type: 'APP_PROP_LOADING_START' });
     axios.get(APP_PROPS_URL, paramameters)
       .then(resp => resp.data)
-      .then((roles) => {
+      .then((appProps) => {
         dispatch({ type: 'APP_PROP_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_APP_PROPS_SUCCESS', payload: roles });
+        dispatch({ type: 'FETCH_APP_PROPS_SUCCESS', payload: appProps });
       })
       .catch((err) => {
         console.error(err);
@@ -56,8 +56,8 @@ const fetchAllAppPropsLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     axios.get(APP_PROPS_URL)
       .then(resp => resp.data)
-      .then((roles) => {
-        dispatch({ type: 'FETCH_APP_PROPS_SUCCESS', payload: roles });
+      .then((appProps) => {
+        dispatch({ type: 'FETCH_APP_PROPS_SUCCESS', payload: appProps });
       })
       .catch((err) => {
         console.error(err);
@@ -93,13 +93,13 @@ const saveAppPropLogic = createLogic({
   latest: true,
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
-    const roleForm = { ...getState().userReducers.roleForm };
+    const appPropForm = { ...getState().settingsReducers.appPropForm };
     const validationResult = {};
-    const keys = _.keys(roleForm);
+    const keys = _.keys(appPropForm);
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
       if (key !== 'id') {
-        const value = roleForm[key].value;
+        const value = appPropForm[key].value;
         validationResult[key] = {
           value,
           ...validate(key, value),
@@ -118,11 +118,11 @@ const saveAppPropLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const roleForm = _.mapValues({ ...getState().userReducers.roleForm }, 'value');
+    const appPropForm = _.mapValues({ ...getState().settingsReducers.appPropForm }, 'value');
     dispatch({ type: 'SHOW_APP_PROP_WINDOW_CONFIRM_LOADING' });
 
-    if (roleForm.id) {
-      axios.put(`${APP_PROPS_URL}/${roleForm.id}`, roleForm)
+    if (appPropForm.id) {
+      axios.put(`${APP_PROPS_URL}/${appPropForm.id}`, appPropForm)
         .then(() => {
           dispatch({ type: 'HIDE_APP_PROP_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_APP_PROP_LOGIC' });
@@ -153,7 +153,7 @@ const saveAppPropLogic = createLogic({
         })
         .then(() => done());
     } else {
-      axios.post(APP_PROPS_URL, roleForm)
+      axios.post(APP_PROPS_URL, appPropForm)
         .then(() => {
           dispatch({ type: 'HIDE_APP_PROP_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_APP_PROP_LOGIC' });

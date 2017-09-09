@@ -6,6 +6,7 @@ import Col from 'antd/lib/col';
 
 import './SettingsMain.css';
 import SettingsTree from '../../components/settings/SettingsTree';
+import AppPropList from '../../components/settings/AppPropList';
 import DepartmentList from '../../components/department/DepartmentList';
 import UserList from '../../components/user/UserList';
 import RoleList from '../../components/user/RoleList';
@@ -16,6 +17,9 @@ import PftList from '../../components/student/course/pft/PftList';
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
   switch (selectedMenuKey) {
+    case '1-0':
+      componentToRender = <AppPropList />;
+      break;
     case '1-1':
       componentToRender = <DepartmentList />;
       break;

@@ -8,20 +8,20 @@ import Input from 'antd/lib/input';
 
 const FormItem = Form.Item;
 
-const AppPropForm = ({ apPropForm, apPropFormChanged }) => (
+const AppPropForm = ({ appPropForm, appPropFormChanged }) => (
   <Form>
     <Row>
       <Col span={24}>
         <FormItem
           label="Code"
           colon={false}
-          validateStatus={apPropForm.code.validateStatus}
-          help={apPropForm.code.errorMsg}
+          validateStatus={appPropForm.code.validateStatus}
+          help={appPropForm.code.errorMsg}
         >
           <Input
-            value={apPropForm.code.value}
+            value={appPropForm.code.value}
             onChange={(e) => {
-              apPropFormChanged({
+              appPropFormChanged({
                 key: 'code',
                 value: e.target.value,
               });
@@ -37,13 +37,13 @@ const AppPropForm = ({ apPropForm, apPropFormChanged }) => (
         <FormItem
           label="Name"
           colon={false}
-          validateStatus={apPropForm.name.validateStatus}
-          help={apPropForm.name.errorMsg}
+          validateStatus={appPropForm.name.validateStatus}
+          help={appPropForm.name.errorMsg}
         >
           <Input
-            value={apPropForm.name.value}
+            value={appPropForm.name.value}
             onChange={(e) => {
-              apPropFormChanged({
+              appPropFormChanged({
                 key: 'name',
                 value: e.target.value,
               });
@@ -59,13 +59,13 @@ const AppPropForm = ({ apPropForm, apPropFormChanged }) => (
         <FormItem
           label="String Value"
           colon={false}
-          validateStatus={apPropForm.stringValue.validateStatus}
-          help={apPropForm.stringValue.errorMsg}
+          validateStatus={appPropForm.stringValue.validateStatus}
+          help={appPropForm.stringValue.errorMsg}
         >
           <Input
-            value={apPropForm.stringValue.value}
+            value={appPropForm.stringValue.value}
             onChange={(e) => {
-              apPropFormChanged({
+              appPropFormChanged({
                 key: 'stringValue',
                 value: e.target.value,
               });
@@ -80,24 +80,21 @@ const AppPropForm = ({ apPropForm, apPropFormChanged }) => (
 );
 
 AppPropForm.propTypes = {
-  apPropFormChanged: PropTypes.func.isRequired,
-  apPropForm: PropTypes.shape({
-    code: PropTypes.shape.isRequired,
-    name: PropTypes.shape.isRequired,
-  }).isRequired,
+  appPropFormChanged: PropTypes.func.isRequired,
+  appPropForm: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    apPropForm: state.settingsReducers.apPropForm,
+    appPropForm: state.settingsReducers.appPropForm,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    apPropFormChanged: (payload) => {
+    appPropFormChanged: (payload) => {
       dispatch({
-        type: 'ROLE_FORM_CHANGED_LOGIC',
+        type: 'APP_PROP_FORM_CHANGED_LOGIC',
         payload,
       });
     },

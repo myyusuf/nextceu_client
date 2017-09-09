@@ -21,6 +21,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
       defaultExpandedKeys={['1', '2']}
     >
       <TreeNode title="Application" key="1">
+        <TreeNode title="Application Properties" key="1-0" />
         <TreeNode title="Department" key="1-1" />
         <TreeNode title="Upload Scores" key="1-2" />
         <TreeNode title="Problem Types" key="1-3" />
