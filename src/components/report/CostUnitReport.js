@@ -5,9 +5,11 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
-import Input from 'antd/lib/input';
+import DatePicker from 'antd/lib/date-picker';
+import HospitalSelect from '../hospital/HospitalSelect';
 
 const Column = Table.Column;
+const RangePicker = DatePicker.RangePicker;
 
 class CostUnitReport extends Component {
   componentWillMount() {
@@ -18,23 +20,33 @@ class CostUnitReport extends Component {
     const {
       costUnits,
       fetchCostUnits,
-      searchText,
-      searchTextChanged,
+      dateRange,
+      dateRangeChanged,
+      hospital,
+      hospitalChanged,
       loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
           <Col span={8}>
-            <Input
-              value={searchText}
-              onChange={(e) => {
-                searchTextChanged(e.target.value);
+            <RangePicker
+              value={dateRange}
+              onChange={(date) => {
+                dateRangeChanged(date);
               }}
-              placeholder="Code or Name"
             />
           </Col>
-          <Col span={16}>
+          <Col span={8}>
+            <HospitalSelect
+              value={hospital}
+              onSelect={(value) => {
+                hospitalChanged(value);
+              }}
+              style={{ width: 200, marginBottom: 20 }}
+            />
+          </Col>
+          <Col span={8}>
             <span>
               <Button
                 shape="circle"
@@ -103,8 +115,10 @@ class CostUnitReport extends Component {
 
 CostUnitReport.propTypes = {
   fetchCostUnits: PropTypes.func.isRequired,
-  searchText: PropTypes.string.isRequired,
-  searchTextChanged: PropTypes.func.isRequired,
+  dateRange: PropTypes.string.isRequired,
+  dateRangeChanged: PropTypes.func.isRequired,
+  hospital: PropTypes.string.isRequired,
+  hospitalChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   costUnits: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -119,7 +133,8 @@ CostUnitReport.propTypes = {
 const mapStateToProps = state => (
   {
     costUnits: state.reportReducers.costUnits,
-    searchText: state.reportReducers.costUnitSearch.searchText,
+    dateRange: state.reportReducers.costUnitSearch.dateRange,
+    hospital: state.reportReducers.costUnitSearch.hospital,
     loading: state.reportReducers.costUnitSearch.loading,
   }
 );
@@ -131,9 +146,15 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_COST_UNITS_LOGIC',
       })
     ),
-    searchTextChanged: value => (
+    dateRangeChanged: value => (
       dispatch({
-        type: 'COST_UNIT_SEARCH_TEXT_CHANGED',
+        type: 'COST_UNIT_DATE_RANGE_CHANGED',
+        payload: value,
+      })
+    ),
+    hospitalChanged: value => (
+      dispatch({
+        type: 'COST_UNIT_HOSPITAL_CHANGED',
         payload: value,
       })
     ),

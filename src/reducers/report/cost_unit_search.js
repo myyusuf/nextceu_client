@@ -1,12 +1,16 @@
 const defaultState = {
-  searchText: '',
+  dateRange: [],
+  hospital: null,
   loading: false,
 };
 
 const costUnitSearch = (state = defaultState, action) => {
   switch (action.type) {
-    case 'COST_UNIT_SEARCH_TEXT_CHANGED': {
-      return { ...state, searchText: action.payload };
+    case 'COST_UNIT_DATE_RANGE_CHANGED': {
+      return { ...state, dateRange: action.payload };
+    }
+    case 'COST_UNIT_HOSPITAL_CHANGED': {
+      return { ...state, hospital: action.payload };
     }
     case 'COST_UNIT_LOADING_START': {
       return { ...state, loading: true };
