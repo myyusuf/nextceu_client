@@ -6,7 +6,6 @@ import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import DatePicker from 'antd/lib/date-picker';
-import numeral from 'numeral';
 import HospitalSelect from '../hospital/HospitalSelect';
 
 const Column = Table.Column;
@@ -60,84 +59,50 @@ class CostUnitReport extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table
-              dataSource={costUnits}
-              style={{ marginTop: 20, width: 1000 }}
-              rowKey="id"
-              loading={loading}
-              size="middle"
-              scroll={{ x: 1350 }}
-            >
+            <Table dataSource={costUnits} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
               <Column
                 title="Department"
                 dataIndex="Department.name"
-                fixed="left"
-                width={100}
-              />
-              <Column
-                title="Name"
-                dataIndex="Student.name"
-                fixed="left"
-                width={100}
               />
               <Column
                 title="Duration"
                 dataIndex="courseDuration"
-                fixed="left"
-                width={100}
+              />
+              <Column
+                title="Name"
+                dataIndex="Student.name"
               />
               <Column
                 title="NST. Fee/Week"
                 dataIndex="fee1"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="DIR (20rb)"
                 dataIndex="fee2"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="BKD (20rb)"
                 dataIndex="fee3"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="KDI (5rb)"
                 dataIndex="fee4"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
-                title="Adviser"
-                dataIndex="adviser.name"
-                width={100}
+                title="DPK (50rb)"
+                dataIndex="fee5"
               />
               <Column
-                title="Adviser (50rb)"
+                title="PEMBBG (50rb)"
                 dataIndex="fee6"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
-                title="Examiner"
-                dataIndex="examiner.name"
-                width={100}
-              />
-              <Column
-                title="Examiner (500rb)"
+                title="Penguji (500rb)"
                 dataIndex="fee7"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="Total"
                 dataIndex="total"
-                fixed="right"
-                width={100}
-                render={text => (numeral(text).format('0,0.00'))}
               />
             </Table>
           </Col>
