@@ -51,7 +51,7 @@ const fetchDocentsLogic = createLogic({
   },
 });
 
-const fetchAllDocentsByRoleLogic = createLogic({
+const fetchAllDocentsByHDLogic = createLogic({
   type: 'FETCH_DOCENTS_BY_HD_LOGIC',
   cancelType: 'CANCEL_FETCH_DOCENTS_BY_HD_LOGIC',
   latest: true,
@@ -66,6 +66,33 @@ const fetchAllDocentsByRoleLogic = createLogic({
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_DOCENTS_BY_HD_SUCCESS', payload: data });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch docents error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
+const fetchAllDocentsByCDLogic = createLogic({
+  type: 'FETCH_DOCENTS_BY_CD_LOGIC',
+  cancelType: 'CANCEL_FETCH_DOCENTS_BY_CD_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const hospitalId = getState().studentReducers.courseForm.clinic.value ?
+    getState().studentReducers.courseForm.clinic.value.id : null;
+    const paramameters = { params: {
+      hospital: hospitalId,
+      department: getState().studentReducers.courseForm.tempDepartment.value,
+    } };
+    axios.get(DOCENTS_BY_HD_URL, paramameters)
+      .then(resp => resp.data)
+      .then((data) => {
+        dispatch({ type: 'FETCH_DOCENTS_BY_CD_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);
@@ -229,7 +256,8 @@ const docentPageChangedLogic = createLogic({
 
 export default [
   fetchDocentsLogic,
-  fetchAllDocentsByRoleLogic,
+  fetchAllDocentsByHDLogic,
+  fetchAllDocentsByCDLogic,
   editDocentLogic,
   cancelAddDocentLogic,
   saveDocentLogic,

@@ -64,6 +64,9 @@ const hospitalScheduleDidSelectLogic = createLogic({
         type: 'COURSE_FORM_CHANGED_LOGIC',
         payload: { key: 'dpk', value: null },
       });
+      dispatch({
+        type: 'CLEAR_DOCENTS_BY_CD',
+      });
     } else {
       dispatch({
         type: 'COURSE_FORM_CHANGED_LOGIC',
