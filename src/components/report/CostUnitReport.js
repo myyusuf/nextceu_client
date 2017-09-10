@@ -141,11 +141,15 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCostUnits: () => (
+    fetchCostUnits: () => {
       dispatch({
         type: 'FETCH_COST_UNITS_LOGIC',
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_HOSPITALS_LOGIC',
+      });
+    },
     dateRangeChanged: value => (
       dispatch({
         type: 'COST_UNIT_DATE_RANGE_CHANGED',

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import reports from './reports';
+import costUnits from './cost_units';
 import costUnitSearch from './cost_unit_search';
 import completedCourses from './student/completed_courses';
 import completedCourseSearch from './student/completed_course_search';
@@ -13,6 +14,7 @@ import preTestSelection from './schedule/pre_test_selection';
 
 const reportReducer = combineReducers({
   reports,
+  costUnits,
   costUnitSearch,
   completedCourses,
   completedCourseSearch,
