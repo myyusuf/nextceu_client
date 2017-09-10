@@ -40,6 +40,7 @@ class CostUnitClinicReport extends Component {
           </Col>
           <Col span={7}>
             <HospitalSelect
+              hospitalType="clinic"
               value={hospital}
               onSelect={(value) => {
                 hospitalChanged(value);

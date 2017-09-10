@@ -5,8 +5,8 @@ import Constant from '../../Constant';
 
 const COST_UNITS_CLINIC_URL = `${Constant.serverUrl}/api/reports/costunitsclinic`;
 const fetchCostUnitsClinicLogic = createLogic({
-  type: 'FETCH_COST_UNITS_LOGIC',
-  cancelType: 'CANCEL_FETCH_COST_UNITS_LOGIC',
+  type: 'FETCH_COST_UNITS_CLINIC_LOGIC',
+  cancelType: 'CANCEL_FETCH_COST_UNITS_CLINIC_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.costUnitSearchClinic;
