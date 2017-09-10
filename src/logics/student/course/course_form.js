@@ -59,6 +59,7 @@ const loadCourseToFormLogic = createLogic({
 
     const adviserId = course.adviser ? String(course.adviser.id) : course.adviser;
     const examinerId = course.examiner ? String(course.examiner.id) : course.examiner;
+    const dpkId = course.dpk ? String(course.dpk.id) : course.dpk;
 
     const courseForm = {
       id: {
@@ -72,6 +73,9 @@ const loadCourseToFormLogic = createLogic({
       },
       examiner: {
         value: examinerId,
+      },
+      dpk: {
+        value: dpkId,
       },
       // completion: {
       //   value: course.completion,

@@ -8,6 +8,8 @@ import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 import Tabs from 'antd/lib/tabs';
 import Button from 'antd/lib/button';
+import DocentSelect from '../../docent/DocentSelect';
+import DocentSelectCD from '../../docent/DocentSelectCD';
 
 const RangePicker = DatePicker.RangePicker;
 
@@ -32,6 +34,9 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
     realEndDate3,
     hospital1,
     clinic,
+    adviser,
+    examiner,
+    dpk,
   } = scheduleForm;
   const hospitalName = hospital1.value ? hospital1.value.name : '';
   const clinicName = clinic.value ? clinic.value.name : '';
@@ -207,6 +212,48 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                   </FormItem>
                 </Col>
               </Row>
+              <Row>
+                <Col span={24}>
+                  <FormItem
+                    label="Adviser"
+                    colon={false}
+                    validateStatus={adviser.validateStatus}
+                    help={adviser.errorMsg}
+                  >
+                    <DocentSelect
+                      value={adviser.value}
+                      onSelect={(value) => {
+                        scheduleFormChanged({
+                          key: 'adviser',
+                          value,
+                        });
+                      }}
+                      style={{ width: '40%' }}
+                    />
+                  </FormItem>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <FormItem
+                    label="Examiner"
+                    colon={false}
+                    validateStatus={examiner.validateStatus}
+                    help={examiner.errorMsg}
+                  >
+                    <DocentSelect
+                      value={examiner.value}
+                      onSelect={(value) => {
+                        scheduleFormChanged({
+                          key: 'examiner',
+                          value,
+                        });
+                      }}
+                      style={{ width: '40%' }}
+                    />
+                  </FormItem>
+                </Col>
+              </Row>
             </TabPane>
             <TabPane tab="Clinic" key="3">
               <Row>
@@ -306,6 +353,27 @@ const ScheduleForm = ({ scheduleForm, scheduleFormChanged, showHospitalScheduleW
                       </Col>
                     </InputGroup>
 
+                  </FormItem>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <FormItem
+                    label="DPK"
+                    colon={false}
+                    validateStatus={dpk.validateStatus}
+                    help={dpk.errorMsg}
+                  >
+                    <DocentSelectCD
+                      value={dpk.value}
+                      onSelect={(value) => {
+                        scheduleFormChanged({
+                          key: 'dpk',
+                          value,
+                        });
+                      }}
+                      style={{ width: '40%' }}
+                    />
                   </FormItem>
                 </Col>
               </Row>

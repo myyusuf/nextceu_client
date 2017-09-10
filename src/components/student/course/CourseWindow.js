@@ -36,6 +36,7 @@ const CourseWindow = ({
     cancelText="Cancel"
     onCancel={onCancel}
     width="800"
+    wrapClassName="vertical-center-modal"
     footer={[courseStatus !== 4 ?
       <Button key="pending" type="danger" size="large" onClick={() => confirmPending(title, courseId)}>Pending</Button>
       :

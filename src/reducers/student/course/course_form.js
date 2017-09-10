@@ -3,6 +3,7 @@ const defaultState = {
   title: {},
   adviser: {},
   examiner: {},
+  dpk: {},
   // completion: { value: 0 },
 
   planDate: {},
