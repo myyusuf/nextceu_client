@@ -6,20 +6,21 @@ import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import DatePicker from 'antd/lib/date-picker';
+import numeral from 'numeral';
 import HospitalSelect from '../hospital/HospitalSelect';
 
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
 
-class CostUnitReport extends Component {
+class CostUnitClinicReport extends Component {
   componentWillMount() {
-    this.props.fetchCostUnits();
+    this.props.fetchCostUnitsClinic();
   }
 
   render() {
     const {
       costUnits,
-      fetchCostUnits,
+      fetchCostUnitsClinic,
       dateRange,
       dateRangeChanged,
       hospital,
@@ -51,7 +52,7 @@ class CostUnitReport extends Component {
               <Button
                 shape="circle"
                 icon="search"
-                onClick={() => fetchCostUnits()}
+                onClick={() => fetchCostUnitsClinic()}
                 style={{ marginRight: 15 }}
               />
             </span>
@@ -59,50 +60,73 @@ class CostUnitReport extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Table dataSource={costUnits} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
+            <Table
+              dataSource={costUnits}
+              style={{ marginTop: 20, width: 1000 }}
+              rowKey="id"
+              loading={loading}
+              size="middle"
+              scroll={{ x: 1350 }}
+            >
               <Column
                 title="Department"
                 dataIndex="Department.name"
-              />
-              <Column
-                title="Duration"
-                dataIndex="courseDuration"
+                fixed="left"
+                width={100}
               />
               <Column
                 title="Name"
                 dataIndex="Student.name"
+                fixed="left"
+                width={100}
+              />
+              <Column
+                title="Duration"
+                dataIndex="courseDuration"
+                fixed="left"
+                width={100}
               />
               <Column
                 title="NST. Fee/Week"
                 dataIndex="fee1"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="DIR (20rb)"
                 dataIndex="fee2"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="BKD (20rb)"
                 dataIndex="fee3"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="KDI (5rb)"
                 dataIndex="fee4"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
+              />
+              <Column
+                title="DPK"
+                dataIndex="dpk.name"
+                width={100}
               />
               <Column
                 title="DPK (50rb)"
-                dataIndex="fee5"
-              />
-              <Column
-                title="PEMBBG (50rb)"
                 dataIndex="fee6"
-              />
-              <Column
-                title="Penguji (500rb)"
-                dataIndex="fee7"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
               />
               <Column
                 title="Total"
                 dataIndex="total"
+                fixed="right"
+                width={100}
+                render={text => (numeral(text).format('0,0.00'))}
               />
             </Table>
           </Col>
@@ -113,37 +137,34 @@ class CostUnitReport extends Component {
   }
 }
 
-CostUnitReport.propTypes = {
-  fetchCostUnits: PropTypes.func.isRequired,
+CostUnitClinicReport.propTypes = {
+  fetchCostUnitsClinic: PropTypes.func.isRequired,
   dateRange: PropTypes.string.isRequired,
   dateRangeChanged: PropTypes.func.isRequired,
   hospital: PropTypes.string.isRequired,
   hospitalChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  costUnits: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  costUnits: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
-// CostUnitReport.defaultProps = {
+// CostUnitClinicReport.defaultProps = {
 //   searchText: '',
 // };
 
 const mapStateToProps = state => (
   {
-    costUnits: state.reportReducers.costUnits,
-    dateRange: state.reportReducers.costUnitSearch.dateRange,
-    hospital: state.reportReducers.costUnitSearch.hospital,
-    loading: state.reportReducers.costUnitSearch.loading,
+    costUnits: state.reportReducers.costUnitsClinic,
+    dateRange: state.reportReducers.costUnitSearchClinic.dateRange,
+    hospital: state.reportReducers.costUnitSearchClinic.hospital,
+    loading: state.reportReducers.costUnitSearchClinic.loading,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCostUnits: () => {
+    fetchCostUnitsClinic: () => {
       dispatch({
-        type: 'FETCH_COST_UNITS_LOGIC',
+        type: 'FETCH_COST_UNITS_CLINIC_LOGIC',
       });
 
       dispatch({
@@ -152,22 +173,22 @@ const mapDispatchToProps = dispatch => (
     },
     dateRangeChanged: value => (
       dispatch({
-        type: 'COST_UNIT_DATE_RANGE_CHANGED',
+        type: 'COST_UNIT_CLINIC_DATE_RANGE_CHANGED',
         payload: value,
       })
     ),
     hospitalChanged: value => (
       dispatch({
-        type: 'COST_UNIT_HOSPITAL_CHANGED',
+        type: 'COST_UNIT_CLINIC_HOSPITAL_CHANGED',
         payload: value,
       })
     ),
   }
 );
 
-const CostUnitReportWrapper = connect(
+const CostUnitClinicReportWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CostUnitReport);
+)(CostUnitClinicReport);
 
-export default CostUnitReportWrapper;
+export default CostUnitClinicReportWrapper;

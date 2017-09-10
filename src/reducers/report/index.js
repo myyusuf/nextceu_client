@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import reports from './reports';
 import costUnits from './cost_units';
 import costUnitSearch from './cost_unit_search';
+import costUnitsClinic from './cost_units_clinic';
+import costUnitSearchClinic from './cost_unit_search_clinic';
 import completedCourses from './student/completed_courses';
 import completedCourseSearch from './student/completed_course_search';
 import completedCourseSelection from './student/completed_course_selection';
@@ -16,6 +18,8 @@ const reportReducer = combineReducers({
   reports,
   costUnits,
   costUnitSearch,
+  costUnitsClinic,
+  costUnitSearchClinic,
   completedCourses,
   completedCourseSearch,
   completedCourseSelection,
