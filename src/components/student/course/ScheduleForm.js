@@ -441,6 +441,24 @@ const mapDispatchToProps = dispatch => (
           value: null,
         },
       });
+      if (key === 'clinic') {
+        dispatch({
+          type: 'COURSE_FORM_CHANGED_LOGIC',
+          payload: { key: 'dpk', value: null },
+        });
+      } else {
+        dispatch({
+          type: 'COURSE_FORM_CHANGED_LOGIC',
+          payload: { key: 'adviser', value: null },
+        });
+        dispatch({
+          type: 'COURSE_FORM_CHANGED_LOGIC',
+          payload: { key: 'examiner', value: null },
+        });
+        dispatch({
+          type: 'CLEAR_DOCENTS_BY_HD',
+        });
+      }
     },
   }
 );
