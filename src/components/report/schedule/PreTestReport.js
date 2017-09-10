@@ -104,9 +104,9 @@ class PreTestReport extends Component {
                 key="title"
               />
               <Column
-                title="End Date"
-                dataIndex="realEndDate"
-                key="realEndDate"
+                title="Pre Test Date"
+                dataIndex="preTestDate"
+                key="preTestDate"
                 render={(text, record) => (
                   <span>
                     {moment(text).format('DD/MM/YYYY')}

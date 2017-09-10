@@ -11,9 +11,9 @@ const deps = { // optional injected dependencies for logic
 
 const logicMiddleware = createLogicMiddleware(arrLogic, deps);
 
-const store = createStore(rootReducer, compose(applyMiddleware(logicMiddleware),
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+// const store = createStore(rootReducer, compose(applyMiddleware(logicMiddleware),
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
-// const store = createStore(rootReducer, compose(applyMiddleware(logicMiddleware)));
+const store = createStore(rootReducer, compose(applyMiddleware(logicMiddleware)));
 
 export default store;
