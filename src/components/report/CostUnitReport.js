@@ -66,11 +66,11 @@ class CostUnitReport extends Component {
               />
               <Column
                 title="Duration"
-                dataIndex="duration"
+                dataIndex="courseDuration"
               />
               <Column
                 title="Name"
-                dataIndex="name"
+                dataIndex="Student.name"
               />
               <Column
                 title="NST. Fee/Week"
