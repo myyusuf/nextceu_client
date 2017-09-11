@@ -46,11 +46,11 @@ class KompreList extends Component {
           <Col span={24}>
             <Table dataSource={kompres} style={{ marginTop: 15 }} rowKey="id" loading={loading} size="middle">
               <Column
-                title="Completed"
-                dataIndex="completed"
+                title="Selected"
+                dataIndex="selected"
                 render={(text, record) => (
                   <span>
-                    <Checkbox checked={record.completed} />
+                    <Checkbox checked={record.selected} />
                   </span>
                 )}
               />

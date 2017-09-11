@@ -199,9 +199,14 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    openUkmppdWindow: () => dispatch({
-      type: 'EDIT_UKMPPD_LOGIC',
-    }),
+    openUkmppdWindow: () => {
+      dispatch({
+        type: 'EDIT_UKMPPD_LOGIC',
+      });
+      dispatch({
+        type: 'FETCH_KOMPRES_LOGIC',
+      });
+    },
     editStudent: student => dispatch({
       type: 'LOAD_STUDENT_TO_FORM_LOGIC',
       payload: student,

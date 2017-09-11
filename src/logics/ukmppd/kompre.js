@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
 import { validateExist } from '../../utils/validation';
 
-const COURSES_URL = `${Constant.serverUrl}/api/courses`;
+const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 const KOMPRES_URL = `${Constant.serverUrl}/api/kompres`;
 const KOMPRE_TYPES_URL = `${Constant.serverUrl}/api/kompretypes`;
 
@@ -28,11 +28,9 @@ const fetchKompresLogic = createLogic({
   cancelType: 'CANCEL_FETCH_KOMPRES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    // const search = getState().kompreReducers.kompreSearch;
-    // const paramameters = search ? { params: { ...search } } : {};
-    const courseId = getState().ukmppdReducers.courseForm.id.value;
+    const studentId = getState().studentReducers.student.id;
     dispatch({ type: 'KOMPRE_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/kompres`)
+    axios.get(`${STUDENTS_URL}/${studentId}/kompres`)
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'KOMPRE_LOADING_FINISH' });
@@ -42,7 +40,7 @@ const fetchKompresLogic = createLogic({
         console.error(err);
         dispatch({ type: 'KOMPRE_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch kompres error',
+          message: 'Fetch kompre error',
           description: 'Connection error.',
         });
       })
@@ -120,7 +118,7 @@ const saveKompreLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const kompreForm = _.mapValues({ ...getState().ukmppdReducers.kompreForm }, 'value');
-    const courseId = getState().ukmppdReducers.courseForm.id.value;
+    const studentId = getState().studentReducers.student.id;
     dispatch({ type: 'SHOW_KOMPRE_WINDOW_CONFIRM_LOADING' });
 
     if (kompreForm.id) {
@@ -155,7 +153,7 @@ const saveKompreLogic = createLogic({
         })
         .then(() => done());
     } else {
-      axios.post(`${COURSES_URL}/${courseId}/kompres`, kompreForm)
+      axios.post(`${STUDENTS_URL}/${studentId}/kompres`, kompreForm)
         .then(() => {
           dispatch({ type: 'HIDE_KOMPRE_WINDOW_CONFIRM_LOADING' });
           dispatch({ type: 'CANCEL_EDIT_KOMPRE_LOGIC' });
@@ -212,21 +210,11 @@ const deleteKompreLogic = createLogic({
   },
 });
 
-const komprePageChangedLogic = createLogic({
-  type: 'KOMPRE_PAGE_CHANGED_LOGIC',
-  process({ getState, action }, dispatch, done) {
-    dispatch({ type: 'KOMPRE_CURRENT_PAGE_CHANGED', payload: action.payload });
-    dispatch({ type: 'FETCH_KOMPRES_LOGIC' });
-    done();
-  },
-});
-
 export default [
   fetchKompresLogic,
   editKompreLogic,
   cancelEditKompreLogic,
   saveKompreLogic,
   deleteKompreLogic,
-  komprePageChangedLogic,
   fetchKompreTypessLogic,
 ];

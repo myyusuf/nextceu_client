@@ -96,7 +96,7 @@ const KompreForm = ({ kompreForm, kompreFormChanged }) => (
                   });
                 }}
               >
-                Completed
+                Selected
               </Checkbox>
             </FormItem>
           </Col>
