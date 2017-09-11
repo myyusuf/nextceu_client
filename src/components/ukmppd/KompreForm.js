@@ -6,6 +6,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import DatePicker from 'antd/lib/date-picker';
 import Checkbox from 'antd/lib/checkbox';
+import InputNumber from 'antd/lib/input-number';
 import UptSelect from './upt/UptSelect';
 
 const FormItem = Form.Item;
@@ -14,6 +15,29 @@ const KompreForm = ({ kompreForm, kompreFormChanged }) => (
   <Form>
     <Row>
       <Col span={24}>
+        <Row>
+          <Col span={24}>
+            <FormItem
+              label="Score"
+              colon={false}
+              validateStatus={kompreForm.score.validateStatus}
+              help={kompreForm.score.errorMsg}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                step={0.1}
+                value={kompreForm.score.value}
+                onChange={(value) => {
+                  kompreFormChanged({
+                    key: 'score',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
         <Row>
           <Col span={24}>
             <FormItem

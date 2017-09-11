@@ -55,6 +55,10 @@ class KompreList extends Component {
                 )}
               />
               <Column
+                title="Score"
+                dataIndex="score"
+              />
+              <Column
                 title="Type"
                 dataIndex="KompreType.name"
               />

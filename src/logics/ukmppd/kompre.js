@@ -14,6 +14,7 @@ const validate = (key, value) => {
   switch (key) {
     case 'kompreType':
     case 'kompreDate':
+    case 'score':
       result = validateExist(key, value);
       break;
     default:

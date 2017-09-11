@@ -8,6 +8,7 @@ const validate = (key, value) => {
   switch (key) {
     case 'kompreType':
     case 'kompreDate':
+    case 'score':
       result = validateExist(key, value);
       break;
     default:
@@ -44,6 +45,9 @@ const loadKompreFormLogic = createLogic({
     const kompreForm = {
       id: {
         value: kompre.id,
+      },
+      score: {
+        value: kompre.score,
       },
       kompreType: {
         value: String(kompreTypeId),
