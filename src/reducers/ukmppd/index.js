@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import ukmppdWindow from './ukmppd_window';
 import upts from './upt/upts';
 import uptForm from './upt/upt_form';
 import uptWindow from './upt/upt_window';
@@ -10,6 +11,7 @@ import kompreWindow from './kompre_window';
 import kompreSearch from './kompre_search';
 
 const userReducer = combineReducers({
+  ukmppdWindow,
   upts,
   uptForm,
   uptWindow,

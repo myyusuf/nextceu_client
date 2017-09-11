@@ -32,8 +32,8 @@ KompreWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.ukmppdReducers.portofolioWindow.visible,
-    confirmLoading: state.ukmppdReducers.portofolioWindow.confirmLoading,
+    visible: state.ukmppdReducers.kompreWindow.visible,
+    confirmLoading: state.ukmppdReducers.kompreWindow.confirmLoading,
   }
 );
 

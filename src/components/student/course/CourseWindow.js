@@ -35,7 +35,7 @@ const CourseWindow = ({
     confirmLoading={confirmLoading}
     cancelText="Cancel"
     onCancel={onCancel}
-    width="800"
+    width={800}
     wrapClassName="vertical-center-modal"
     footer={[courseStatus !== 4 ?
       <Button key="pending" type="danger" size="large" onClick={() => confirmPending(title, courseId)}>Pending</Button>
@@ -49,7 +49,7 @@ const CourseWindow = ({
       </Button>,
     ]}
   >
-    <Tabs defaultActiveKey="1" style={{ marginTop: -10 }}>
+    <Tabs defaultActiveKey="1" style={{ marginTop: -10, height: 500 }}>
       <TabPane tab="Info" key="1">
         <CourseForm />
       </TabPane>

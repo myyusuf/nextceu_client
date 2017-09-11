@@ -8,12 +8,13 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import { PieChart, Pie, Cell } from 'recharts';
 import Modal from 'antd/lib/modal';
+import UkmppdWindow from '../ukmppd/UkmppdWindow';
 import './StudentDetail.css';
 
 const confirm = Modal.confirm;
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE', '#000'];
 
-const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
+const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmppdWindow }) => {
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const scheduledCount = courses.filter(course => course.status === 0).length;
@@ -141,7 +142,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
         </Row>
         <Row style={{ marginTop: 10 }}>
           <Col span={24}>
-            <Button type="">
+            <Button type="" onClick={() => openUkmppdWindow()}>
               UKMPPD Score
             </Button>
             <Button type="" style={{ marginLeft: 10 }}>
@@ -161,6 +162,8 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses }) => {
             </Button>
           </Col>
         </Row>
+
+        <UkmppdWindow />
       </div>
     );
   }
@@ -184,6 +187,7 @@ StudentDetail.propTypes = {
   ).isRequired,
   confirmDelete: PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
+  openUkmppdWindow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -195,6 +199,9 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    openUkmppdWindow: () => dispatch({
+      type: 'EDIT_UKMPPD_LOGIC',
+    }),
     editStudent: student => dispatch({
       type: 'LOAD_STUDENT_TO_FORM_LOGIC',
       payload: student,

@@ -111,8 +111,8 @@ KompreList.propTypes = {
 
 const mapStateToProps = state => (
   {
-    kompres: state.studentReducers.kompres,
-    loading: state.studentReducers.kompreSearch.loading,
+    kompres: state.ukmppdReducers.kompres,
+    loading: state.ukmppdReducers.kompreSearch.loading,
   }
 );
 
