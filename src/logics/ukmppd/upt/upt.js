@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
 import { validateLength } from '../../../utils/validation';
 
-const UPTS_URL = `${Constant.serverUrl}/api/courseproblemtypes`;
+const UPTS_URL = `${Constant.serverUrl}/api/kompretypes`;
 
 const validate = (key, value) => {
   let result = null;

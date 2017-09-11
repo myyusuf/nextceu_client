@@ -15,6 +15,7 @@ import UploadList from '../../components/upload/UploadList';
 import CptList from '../../components/student/course/cpt/CptList';
 import PftList from '../../components/student/course/pft/PftList';
 import DocentList from '../../components/docent/DocentList';
+import UptList from '../../components/ukmppd/upt/UptList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
   let componentToRender = <div style={{ padding: 20 }}>No Component</div>;
@@ -35,6 +36,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       componentToRender = <PftList />;
       break;
     case '1-5':
+      componentToRender = <UptList />;
+      break;
+    case '1-6':
       componentToRender = <DocentList />;
       break;
     case '2-1':
