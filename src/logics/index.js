@@ -8,6 +8,7 @@ import menuLogics from './menu/';
 import loginLogics from './login/';
 import reportLogics from './report/';
 import docentLogics from './docent/';
+import ukmppdLogics from './ukmppd/';
 
 export default [
   ...settingsLogics,
@@ -20,4 +21,5 @@ export default [
   ...loginLogics,
   ...reportLogics,
   ...docentLogics,
+  ...ukmppdLogics,
 ];
