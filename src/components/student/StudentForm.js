@@ -9,6 +9,7 @@ import InputNumber from 'antd/lib/input-number';
 import Radio from 'antd/lib/radio';
 import Tabs from 'antd/lib/tabs';
 import DatePicker from 'antd/lib/date-picker';
+import Checkbox from 'antd/lib/checkbox';
 import StudentLevelSelect from './StudentLevelSelect';
 
 const FormItem = Form.Item;
@@ -17,7 +18,7 @@ const TabPane = Tabs.TabPane;
 
 const StudentForm = ({ studentForm, studentFormChanged }) => (
   <Form style={{ marginTop: -5 }}>
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="1" style={{ height: 500 }}>
       <TabPane tab="Main" key="1">
         <Row gutter={15}>
           <Col span={12}>
@@ -313,6 +314,50 @@ const StudentForm = ({ studentForm, studentFormChanged }) => (
                   });
                 }}
               />
+            </FormItem>
+          </Col>
+        </Row>
+      </TabPane>
+      <TabPane tab="Registration" key="5">
+        <Row>
+          <Col span={24}>
+            <FormItem
+              colon={false}
+              validateStatus={studentForm.krs.validateStatus}
+              help={studentForm.krs.errorMsg}
+            >
+              <Checkbox
+                checked={studentForm.krs.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'krs',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                KRS
+              </Checkbox>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <FormItem
+              colon={false}
+              validateStatus={studentForm.spp.validateStatus}
+              help={studentForm.spp.errorMsg}
+            >
+              <Checkbox
+                checked={studentForm.spp.value}
+                onChange={(e) => {
+                  studentFormChanged({
+                    key: 'spp',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                SPP
+              </Checkbox>
             </FormItem>
           </Col>
         </Row>

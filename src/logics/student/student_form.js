@@ -94,6 +94,12 @@ const loadStudentFormLogic = createLogic({
       ipk: {
         value: student.ipk,
       },
+      krs: {
+        value: student.krs,
+      },
+      spp: {
+        value: student.spp,
+      },
     };
     const validationResult = {};
     const keys = _.keys(studentForm);

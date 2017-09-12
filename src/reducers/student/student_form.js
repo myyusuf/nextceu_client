@@ -14,6 +14,8 @@ const defaultState = {
   graduateYear: {},
   certificateNumber: {},
   ipk: {},
+  krs: {},
+  spp: {},
 };
 
 const studentForm = (state = defaultState, action) => {

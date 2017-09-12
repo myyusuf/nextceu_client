@@ -32,7 +32,10 @@ const UkmppdWindow = ({
     ]}
   >
     <Tabs defaultActiveKey="1" style={{ marginTop: -10, height: 500 }}>
-      <TabPane tab="Score" key="1">
+      <TabPane tab="Prerequesite" key="1">
+        
+      </TabPane>
+      <TabPane tab="Score" key="2">
         <KompreList />
       </TabPane>
     </Tabs>

@@ -143,7 +143,13 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmpp
         <Row style={{ marginTop: 10 }}>
           <Col span={24}>
             <Button type="" onClick={() => openUkmppdWindow()}>
-              UKMPPD Score
+              Yudisium 1
+            </Button>
+            <Button type="" onClick={() => openUkmppdWindow()} style={{ marginLeft: 10 }}>
+              Yudisium 2
+            </Button>
+            <Button type="" onClick={() => openUkmppdWindow()} style={{ marginLeft: 10 }}>
+              UKMPPD
             </Button>
             <Button type="" style={{ marginLeft: 10 }}>
               Problems
