@@ -8,7 +8,8 @@ import './ReportMain.css';
 import ReportTree from '../../components/report/ReportTree';
 import CostUnitReport from '../../components/report/CostUnitReport';
 import CostUnitReportClinic from '../../components/report/CostUnitReportClinic';
-import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
+// import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
+import CompletedCourseReport from '../../containers/report/student/CompletedCourseReport';
 import PreTestReport from '../../components/report/schedule/PreTestReport';
 
 const ReportMain = ({ selectedMenuKey }) => {
