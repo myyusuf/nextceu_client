@@ -15,6 +15,7 @@ const defaultState = {
   certificateNumber: {},
   ipk: {},
   krs: {},
+  krsFileId: {},
   spp: {},
 };
 

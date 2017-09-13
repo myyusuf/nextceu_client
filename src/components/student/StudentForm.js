@@ -29,13 +29,20 @@ const uploadProps = {
   headers: {
     authorization: 'authorization-text',
   },
-  onChange(info) {
+};
+
+const StudentForm = ({ studentForm, studentFormChanged }) => {
+  uploadProps.action = `${STUDENTS_URL}/${studentForm.id.value}/uploadfile/krs`;
+  uploadProps.onChange = (info) => {
     if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
+      // console.log(info.file, info.fileList);
     }
     if (info.file.status === 'done') {
       // fetchParticipants();
-      console.log('Done Upload....');
+      studentFormChanged({
+        key: 'krsFileId',
+        value: info.file.response,
+      });
       notification.success({
         message: 'Upload file success',
         description: info.file.response,
@@ -46,11 +53,18 @@ const uploadProps = {
         description: `${info.file.name} file upload failed.`,
       });
     }
-  },
-};
+  };
 
-const StudentForm = ({ studentForm, studentFormChanged }) => {
-  uploadProps.action = `${STUDENTS_URL}/${studentForm.id.value}/uploadfile/krs`;
+  let krsFileIdComponent = 'No File';
+
+  if (studentForm.krsFileId.value) {
+    krsFileIdComponent = (
+      <a target="_blank" href={`${Constant.appFilesUrl}/student/krs/${studentForm.krsFileId.value}.jpg`}>
+        {studentForm.krsFileId.value}
+      </a>
+    );
+  }
+
   return (
     <Form style={{ marginTop: -5 }}>
       <Tabs defaultActiveKey="1" style={{ minHeight: 435 }}>
@@ -378,7 +392,7 @@ const StudentForm = ({ studentForm, studentFormChanged }) => {
               <FormItem
                 colon={false}
               >
-                No File
+                {krsFileIdComponent}
               </FormItem>
             </Col>
             <Col span={8}>
@@ -386,7 +400,7 @@ const StudentForm = ({ studentForm, studentFormChanged }) => {
                 colon={false}
               >
                 <Upload {...uploadProps} disabled={!studentForm.id.value} showUploadList={false}>
-                  <Button>
+                  <Button disabled={!studentForm.id.value}>
                     <Icon type="upload" /> Click to Upload
                   </Button>
                 </Upload>

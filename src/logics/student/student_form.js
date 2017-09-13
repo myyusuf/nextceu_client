@@ -97,6 +97,9 @@ const loadStudentFormLogic = createLogic({
       krs: {
         value: student.krs,
       },
+      krsFileId: {
+        value: student.krsFileId,
+      },
       spp: {
         value: student.spp,
       },
