@@ -1,3 +1,5 @@
+import * as actions from '../../../actions/ActionType';
+
 const defaultState = {
   rowKeys: [],
   selectedRows: [],
@@ -5,14 +7,14 @@ const defaultState = {
 
 const initiateCourseSelection = (state = defaultState, action) => {
   switch (action.type) {
-    case 'INITIATE_COURSE_SELECT_CHANGED': {
+    case actions.report.student.initiateCourse.list.selection.selectChanged: {
       return {
         ...state,
         rowKeys: action.payload.rowKeys,
         selectedRows: action.payload.selectedRows,
       };
     }
-    case 'CLEAR_INITIATE_COURSE_SELECT': {
+    case actions.report.student.initiateCourse.list.selection.clear: {
       return {
         rowKeys: [],
         selectedRows: [],

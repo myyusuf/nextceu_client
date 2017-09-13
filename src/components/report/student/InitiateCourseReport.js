@@ -63,7 +63,7 @@ class InitiateCourseReport extends Component {
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
-              placeholder="SID or Name"
+              placeholder="SID or Name Init"
             />
           </Col>
           <Col span={8}>
@@ -174,33 +174,33 @@ const mapDispatchToProps = dispatch => (
     },
     openExportWindow: () => {
       dispatch({
-        type: actions.report.student.initiateXpt.form.clear,
+        type: actions.report.student.initiateCourse.form.clear,
       });
       dispatch({
-        type: actions.report.student.initiateXpt.window.open,
+        type: actions.report.student.initiateCourse.window.open,
       });
     },
     searchTextChanged: value => (
       dispatch({
-        type: actions.report.student.initiateXpt.list.search.textChanged,
+        type: actions.report.student.initiateCourse.list.search.textChanged,
         payload: value,
       })
     ),
     pageChanged: currentPage => (
       dispatch({
-        type: actions.report.student.initiateXpt.list.search.pageChanged,
+        type: actions.report.student.initiateCourse.list.search.pageChanged,
         payload: currentPage,
       })
     ),
     dateRangeChanged: value => (
       dispatch({
-        type: actions.report.student.initiateXpt.list.search.dateRangeChanged,
+        type: actions.report.student.initiateCourse.list.search.dateRangeChanged,
         payload: value,
       })
     ),
     rowKeysChanged: (rowKeys, selectedRows) => (
       dispatch({
-        type: actions.report.student.initiateXpt.list.selection.selectChanged,
+        type: actions.report.student.initiateCourse.list.selection.selectChanged,
         payload: { rowKeys, selectedRows },
       })
     ),

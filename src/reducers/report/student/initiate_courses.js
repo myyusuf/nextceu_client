@@ -1,3 +1,5 @@
+import * as actions from '../../../actions/ActionType';
+
 const defaultState = {
   rows: [],
   count: 0,
@@ -5,7 +7,7 @@ const defaultState = {
 
 const initiateCourses = (state = defaultState, action) => {
   switch (action.type) {
-    case 'FETCH_INITIATE_COURSES_SUCCESS':
+    case actions.report.student.initiateCourse.fetchCoursesSuccess:
       return { ...state, rows: action.payload.rows, count: action.payload.count };
     default:
       return state;

@@ -13,24 +13,19 @@ const fetchCompletedCoursesLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.initiateCourseSearch;
     const paramameters = search ? { params: { ...search } } : {};
-    dispatch({ type: 'INITIATE_COURSE_LOADING_START' });
+    dispatch({ type: actions.report.student.initiateCourse.list.loadingStart });
     axios.get(INITIATE_COURSE_REPORTS_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'INITIATE_COURSE_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_INITIATE_COURSES_SUCCESS', payload: data });
-
+        dispatch({ type: actions.report.student.initiateCourse.list.loadingFinish });
         dispatch({
-          type: 'EXPORT_TO_PRE_TEST_FORM_CHANGED_LOGIC',
-          payload: {
-            key: 'preTestType',
-            value: 'INITIATE',
-          },
+          type: actions.report.student.initiateCourse.fetchCoursesSuccess,
+          payload: data,
         });
       })
       .catch((err) => {
         console.error(err);
-        dispatch({ type: 'INITIATE_COURSE_LOADING_FINISH' });
+        dispatch({ type: actions.report.student.initiateCourse.list.loadingFinish });
         notification.error({
           message: 'Fetch initiate courses error',
           description: 'Connection error.',

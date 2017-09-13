@@ -7,22 +7,23 @@ export const report = {
       list: {
         loadingStart: 'report/student/initiateCourse/list/loadingStart',
         loadingFinish: 'report/student/initiateCourse/list/loadingFinish',
+        search: {
+          textChanged: 'report/student/initiateCourse/list/search/textChanged',
+          dateRangeChanged: 'report/student/initiateCourse/list/search/dateRangeChanged',
+          pageChanged: 'report/student/initiateCourse/list/search/pageChanged',
+        },
+        selection: {
+          selectChanged: 'report/student/initiateCourse/list/selection/selectChanged',
+          clear: 'report/student/initiateCourse/list/selection/clear',
+        },
       },
     },
+    //-----------------------------------------
     completedCourse: {
       fetchCourses: 'report/student/completedCourse/fetchCourses',
       fetchCoursesSuccess: 'report/student/completedCourse/fetchCoursesSuccess',
     },
     initiateXpt: {
-      list: {
-        search: {
-          textChanged: 'report/student/initiateXpt/list/search/textChanged',
-          pageChanged: 'report/student/initiateXpt/list/search/pageChanged',
-        },
-        selection: {
-          selectChanged: 'report/student/initiateXpt/list/selection/selectChanged',
-        },
-      },
       form: {
         changed: 'report/student/initiateXpt/form/changed',
         update: 'report/student/initiateXpt/form/update',

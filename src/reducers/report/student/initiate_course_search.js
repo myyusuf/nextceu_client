@@ -1,3 +1,5 @@
+import * as actions from '../../../actions/ActionType';
+
 const defaultState = {
   searchText: '',
   pageSize: 10,
@@ -8,19 +10,19 @@ const defaultState = {
 
 const initiateCourseSearch = (state = defaultState, action) => {
   switch (action.type) {
-    case 'INITIATE_COURSE_SEARCH_TEXT_CHANGED': {
+    case actions.report.student.initiateCourse.list.search.textChanged: {
       return { ...state, searchText: action.payload };
     }
-    case 'INITIATE_COURSE_SEARCH_DATE_RANGE_CHANGED': {
+    case actions.report.student.initiateCourse.list.search.dateRangeChanged: {
       return { ...state, dateRange: action.payload };
     }
-    case 'INITIATE_COURSE_CURRENT_PAGE_CHANGED': {
+    case actions.report.student.initiateCourse.list.search.pageChanged: {
       return { ...state, currentPage: action.payload };
     }
-    case 'INITIATE_COURSE_LOADING_START': {
+    case actions.report.student.initiateCourse.list.loadingStart: {
       return { ...state, loading: true };
     }
-    case 'INITIATE_COURSE_LOADING_FINISH': {
+    case actions.report.student.initiateCourse.list.loadingFinish: {
       return { ...state, loading: false };
     }
     default:
