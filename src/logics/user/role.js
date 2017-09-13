@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validate, validateForm } from './role_form';
+import { validateForm } from './role_form';
 
 const ROLES_URL = `${Constant.serverUrl}/api/roles`;
 
@@ -76,29 +76,12 @@ const saveRoleLogic = createLogic({
   type: 'SAVE_ROLE_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
-    let isFormValid = true;
     const roleForm = { ...getState().userReducers.roleForm };
-    const validationResult = {};
-    const keys = _.keys(roleForm);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      if (key !== 'id') {
-        const value = roleForm[key].value;
-        validationResult[key] = {
-          value,
-          ...validate(key, value),
-        };
-
-        if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
-          isFormValid = false;
-        }
-      }
-    }
-
-    if (isFormValid) {
+    const validatedForm = validateForm(roleForm);
+    if (validatedForm.isFormValid) {
       allow(action);
     } else {
-      reject({ type: 'SHOW_ROLE_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
+      reject({ type: 'SHOW_ROLE_FORM_VALIDATION_ERRORS', payload: validatedForm.validationResult, error: true });
     }
   },
   process({ getState, action }, dispatch, done) {

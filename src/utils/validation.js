@@ -103,15 +103,13 @@ export const validateFormFields = (form, validation) => {
   const keys = _.keys(form);
   for (let i = 0; i < keys.length; i += 1) {
     const key = keys[i];
-    if (key !== 'id') {
-      const value = form[key].value;
-      validationResult[key] = {
-        value,
-        ...validation(key, value),
-      };
-      if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
-        isFormValid = false;
-      }
+    const value = form[key].value;
+    validationResult[key] = {
+      value,
+      ...validation(key, value),
+    };
+    if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
+      isFormValid = false;
     }
   }
 
