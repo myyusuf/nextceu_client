@@ -15,7 +15,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class StudentCourseReport extends Component {
   componentWillMount() {
-    this.props.fetchCompletedCourses();
+    this.props.fetchCourses();
   }
 
   render() {
@@ -24,7 +24,7 @@ class StudentCourseReport extends Component {
       count,
       pageSize,
       currentPage,
-      fetchCompletedCourses,
+      fetchCourses,
       openExportWindow,
       searchText,
       searchTextChanged,
@@ -69,7 +69,7 @@ class StudentCourseReport extends Component {
               <Button
                 shape="circle"
                 icon="search"
-                onClick={() => fetchCompletedCourses()}
+                onClick={() => fetchCourses()}
                 style={{ marginRight: 15 }}
               />
               <Button
@@ -106,7 +106,7 @@ class StudentCourseReport extends Component {
                 title="End Date"
                 dataIndex="realEndDate"
                 key="realEndDate"
-                render={(text, record) => (
+                render={text => (
                   <span>
                     {moment(text).format('DD/MM/YYYY')}
                   </span>
@@ -134,7 +134,7 @@ class StudentCourseReport extends Component {
 }
 
 StudentCourseReport.propTypes = {
-  fetchCompletedCourses: PropTypes.func.isRequired,
+  fetchCourses: PropTypes.func.isRequired,
   openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,

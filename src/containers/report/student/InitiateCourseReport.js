@@ -53,9 +53,9 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const CompletedCourseListWrapper = connect(
+const InitiateCourseListWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(StudentCourseReport);
 
-export default CompletedCourseListWrapper;
+export default InitiateCourseListWrapper;

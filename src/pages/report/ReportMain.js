@@ -9,6 +9,7 @@ import ReportTree from '../../components/report/ReportTree';
 import CostUnitReport from '../../components/report/CostUnitReport';
 import CostUnitReportClinic from '../../components/report/CostUnitReportClinic';
 // import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
+import InitiateCourseReport from '../../containers/report/student/InitiateCourseReport';
 import CompletedCourseReport from '../../containers/report/student/CompletedCourseReport';
 import PreTestReport from '../../components/report/schedule/PreTestReport';
 
@@ -22,6 +23,9 @@ const ReportMain = ({ selectedMenuKey }) => {
       componentToRender = <CostUnitReportClinic />;
       break;
     case '3-1':
+      componentToRender = <InitiateCourseReport />;
+      break;
+    case '3-2':
       componentToRender = <CompletedCourseReport />;
       break;
     case '2-1':
