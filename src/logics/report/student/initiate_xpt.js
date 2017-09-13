@@ -3,22 +3,10 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
-import { validateExist } from '../../../utils/validation';
 import * as actions from '../../../actions/ActionType';
+import { validate } from './initiate_xpt_form';
 
 const EXPORT_TO_PRE_TESTS_URL = `${Constant.serverUrl}/api/reports/initiatexpt`;
-
-const validate = (key, value) => {
-  let result = null;
-  switch (key) {
-    case 'preTestDate':
-      result = validateExist(key, value);
-      break;
-    default:
-      break;
-  }
-  return result;
-};
 
 const doExportToPreTestLogic = createLogic({
   type: actions.report.student.initiateXpt.doExport,

@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic';
 import { validateExist } from '../../../utils/validation';
 import * as actions from '../../../actions/ActionType';
 
-const validate = (key, value) => {
+export const validate = (key, value) => {
   let result = null;
   switch (key) {
     case 'preTestDate':
