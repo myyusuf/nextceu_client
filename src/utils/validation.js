@@ -96,3 +96,34 @@ export const validateEmail = (name, value) => {
     errorMsg: `${_.startCase(name)} is required`,
   };
 };
+
+export const validateFormFields = (form, validation) => {
+  const validationResult = {};
+  let isFormValid = true;
+  const keys = _.keys(form);
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    if (key !== 'id') {
+      const value = form[key].value;
+      validationResult[key] = {
+        value,
+        ...validation(key, value),
+      };
+      if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
+        isFormValid = false;
+      }
+    }
+  }
+
+  return { validationResult, isFormValid };
+};
+
+export const validateFormField = (field, validation) => {
+  const result = {
+    [field.key]: {
+      value: field.value,
+      ...validation(field.key, field.value),
+    },
+  };
+  return result;
+};

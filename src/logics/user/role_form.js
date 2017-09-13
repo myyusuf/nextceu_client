@@ -1,8 +1,8 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateLength } from '../../utils/validation';
+import { validateLength, validateFormFields, validateFormField } from '../../utils/validation';
 
-const validate = (key, value) => {
+export const validate = (key, value) => {
   let result = null;
   switch (key) {
     case 'code':
@@ -15,17 +15,20 @@ const validate = (key, value) => {
   return result;
 };
 
+export const validateForm = form => (validateFormFields(form, validate));
+
 const roleFormChangedLogic = createLogic({
   type: 'ROLE_FORM_CHANGED_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const payload = action.payload;
-    const result = {
-      [payload.key]: {
-        value: payload.value,
-        ...validate(payload.key, payload.value),
-      },
-    };
+    // const payload = action.payload;
+    // const result = {
+    //   [payload.key]: {
+    //     value: payload.value,
+    //     ...validate(payload.key, payload.value),
+    //   },
+    // };
+    const result = validateFormField(action.payload, validate);
     dispatch({ type: 'UPDATE_ROLE_FORM', payload: result });
     done();
   },
@@ -46,16 +49,17 @@ const loadRoleFormLogic = createLogic({
         value: role.name,
       },
     };
-    const validationResult = {};
-    const keys = _.keys(roleForm);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      const value = roleForm[key].value;
-      validationResult[key] = {
-        value,
-        ...validate(key, value),
-      };
-    }
+    const validationResult = validateFormFields(roleForm, validate).validationResult;
+    // const validationResult = {};
+    // const keys = _.keys(roleForm);
+    // for (let i = 0; i < keys.length; i += 1) {
+    //   const key = keys[i];
+    //   const value = roleForm[key].value;
+    //   validationResult[key] = {
+    //     value,
+    //     ...validate(key, value),
+    //   };
+    // }
 
     dispatch({ type: 'EDIT_ROLE_LOGIC' });
     dispatch({ type: 'LOAD_ROLE', payload: validationResult });

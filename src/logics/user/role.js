@@ -3,23 +3,9 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
-import { validateLength } from '../../utils/validation';
+import { validate, validateForm } from './role_form';
 
 const ROLES_URL = `${Constant.serverUrl}/api/roles`;
-
-const validate = (key, value) => {
-  let result = null;
-  switch (key) {
-    case 'code':
-    case 'name':
-      result = validateLength(key, value, 3);
-      break;
-    default:
-      break;
-  }
-
-  return result;
-};
 
 const fetchRolesLogic = createLogic({
   type: 'FETCH_ROLES_LOGIC',
