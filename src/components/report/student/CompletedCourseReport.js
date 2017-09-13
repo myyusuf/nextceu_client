@@ -14,18 +14,18 @@ import ExportToPreTestWindow from './ExportToPreTestWindow';
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
 
-class CompletedCourseList extends Component {
+class CompletedCourseReport extends Component {
   componentWillMount() {
-    this.props.fetchCompletedCourses();
+    this.props.fetchCourses();
   }
 
   render() {
     const {
-      completedCourses,
+      courses,
       count,
       pageSize,
       currentPage,
-      fetchCompletedCourses,
+      fetchCourses,
       openExportWindow,
       searchText,
       searchTextChanged,
@@ -70,7 +70,7 @@ class CompletedCourseList extends Component {
               <Button
                 shape="circle"
                 icon="search"
-                onClick={() => fetchCompletedCourses()}
+                onClick={() => fetchCourses()}
                 style={{ marginRight: 15 }}
               />
               <Button
@@ -85,7 +85,7 @@ class CompletedCourseList extends Component {
         <Row>
           <Col span={24}>
             <Table
-              dataSource={completedCourses}
+              dataSource={courses}
               style={{ marginTop: 20 }}
               rowKey="id"
               loading={loading}
@@ -107,7 +107,7 @@ class CompletedCourseList extends Component {
                 title="End Date"
                 dataIndex="realEndDate"
                 key="realEndDate"
-                render={(text, record) => (
+                render={text => (
                   <span>
                     {moment(text).format('DD/MM/YYYY')}
                   </span>
@@ -134,14 +134,14 @@ class CompletedCourseList extends Component {
   }
 }
 
-CompletedCourseList.propTypes = {
-  fetchCompletedCourses: PropTypes.func.isRequired,
+CompletedCourseReport.propTypes = {
+  fetchCourses: PropTypes.func.isRequired,
   openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  completedCourses: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  courses: PropTypes.arrayOf(PropTypes.shape).isRequired,
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
@@ -153,7 +153,7 @@ CompletedCourseList.propTypes = {
 
 const mapStateToProps = state => (
   {
-    completedCourses: state.reportReducers.completedCourses.rows,
+    courses: state.reportReducers.completedCourses.rows,
     count: state.reportReducers.completedCourses.count,
     searchText: state.reportReducers.completedCourseSearch.searchText,
     pageSize: state.reportReducers.completedCourseSearch.pageSize,
@@ -166,7 +166,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCompletedCourses: () => {
+    fetchCourses: () => {
       dispatch({
         type: 'FETCH_COMPLETED_COURSES_LOGIC',
       });
@@ -206,6 +206,6 @@ const mapDispatchToProps = dispatch => (
 const CompletedCourseListWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CompletedCourseList);
+)(CompletedCourseReport);
 
 export default CompletedCourseListWrapper;

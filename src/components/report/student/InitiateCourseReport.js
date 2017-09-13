@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Row from 'antd/lib/row';
@@ -8,19 +9,20 @@ import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 
+import * as actions from '../../../actions/ActionType';
 import ExportToPreTestWindow from './ExportToPreTestWindow';
 
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
 
-class StudentCourseReport extends Component {
+class InitiateCourseReport extends Component {
   componentWillMount() {
     this.props.fetchCourses();
   }
 
   render() {
     const {
-      completedCourses,
+      courses,
       count,
       pageSize,
       currentPage,
@@ -84,7 +86,7 @@ class StudentCourseReport extends Component {
         <Row>
           <Col span={24}>
             <Table
-              dataSource={completedCourses}
+              dataSource={courses}
               style={{ marginTop: 20 }}
               rowKey="id"
               loading={loading}
@@ -103,9 +105,9 @@ class StudentCourseReport extends Component {
                 key="title"
               />
               <Column
-                title="End Date"
-                dataIndex="realEndDate"
-                key="realEndDate"
+                title="Plan Start Date"
+                dataIndex="planStartDate"
+                key="planStartDate"
                 render={text => (
                   <span>
                     {moment(text).format('DD/MM/YYYY')}
@@ -133,14 +135,14 @@ class StudentCourseReport extends Component {
   }
 }
 
-StudentCourseReport.propTypes = {
+InitiateCourseReport.propTypes = {
   fetchCourses: PropTypes.func.isRequired,
   openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  completedCourses: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  courses: PropTypes.arrayOf(PropTypes.shape).isRequired,
   count: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
@@ -150,4 +152,61 @@ StudentCourseReport.propTypes = {
   rowKeysChanged: PropTypes.func.isRequired,
 };
 
-export default StudentCourseReport;
+const mapStateToProps = state => (
+  {
+    courses: state.reportReducers.initiateCourses.rows,
+    count: state.reportReducers.initiateCourses.count,
+    searchText: state.reportReducers.initiateCourseSearch.searchText,
+    pageSize: state.reportReducers.initiateCourseSearch.pageSize,
+    currentPage: state.reportReducers.initiateCourseSearch.currentPage,
+    loading: state.reportReducers.initiateCourseSearch.loading,
+    dateRange: state.reportReducers.initiateCourseSearch.dateRange,
+    selectedRowKeys: state.reportReducers.initiateCourseSelection.rowKeys,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    fetchCourses: () => {
+      dispatch({
+        type: actions.report.student.initiateCourse.fetchCourses,
+      });
+    },
+    openExportWindow: () => (
+      dispatch({
+        type: 'PREP_EXPORT_TO_PRE_TEST_LOGIC',
+      })
+    ),
+    searchTextChanged: value => (
+      dispatch({
+        type: 'INITIATE_COURSE_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    pageChanged: currentPage => (
+      dispatch({
+        type: 'INITIATE_COURSE_PAGE_CHANGED_LOGIC',
+        payload: currentPage,
+      })
+    ),
+    dateRangeChanged: value => (
+      dispatch({
+        type: 'INITIATE_COURSE_SEARCH_DATE_RANGE_CHANGED',
+        payload: value,
+      })
+    ),
+    rowKeysChanged: (rowKeys, selectedRows) => (
+      dispatch({
+        type: 'INITIATE_COURSE_SELECT_CHANGED',
+        payload: { rowKeys, selectedRows },
+      })
+    ),
+  }
+);
+
+const InitiateCourseListWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InitiateCourseReport);
+
+export default InitiateCourseListWrapper;

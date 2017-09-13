@@ -1,39 +1,38 @@
 import { createLogic } from 'redux-logic';
 import axios from 'axios';
-// import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
-// import { validateExist, validateLength, validateEmail } from '../../../utils/validation';
+import * as actions from '../../../actions/ActionType';
 
-const COMPLETED_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/reports/completedcourses`;
+const INITIATE_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/reports/initiatecourses`;
 
 const fetchCompletedCoursesLogic = createLogic({
-  type: 'FETCH_COMPLETED_COURSES_LOGIC',
-  cancelType: 'CANCEL_FETCH_COMPLETED_COURSES_LOGIC',
+  type: actions.report.student.initiateCourse.fetchCourses,
+  cancelType: actions.report.student.initiateCourse.cancelFetchCourses,
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().reportReducers.completedCourseSearch;
+    const search = getState().reportReducers.initiateCourseSearch;
     const paramameters = search ? { params: { ...search } } : {};
-    dispatch({ type: 'COMPLETED_COURSE_LOADING_START' });
-    axios.get(COMPLETED_COURSE_REPORTS_URL, paramameters)
+    dispatch({ type: 'INITIATE_COURSE_LOADING_START' });
+    axios.get(INITIATE_COURSE_REPORTS_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'COMPLETED_COURSE_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_COMPLETED_COURSES_SUCCESS', payload: data });
+        dispatch({ type: 'INITIATE_COURSE_LOADING_FINISH' });
+        dispatch({ type: 'FETCH_INITIATE_COURSES_SUCCESS', payload: data });
 
         dispatch({
           type: 'EXPORT_TO_PRE_TEST_FORM_CHANGED_LOGIC',
           payload: {
             key: 'preTestType',
-            value: 'COMPLETED',
+            value: 'INITIATE',
           },
         });
       })
       .catch((err) => {
         console.error(err);
-        dispatch({ type: 'COMPLETED_COURSE_LOADING_FINISH' });
+        dispatch({ type: 'INITIATE_COURSE_LOADING_FINISH' });
         notification.error({
-          message: 'Fetch completed courses error',
+          message: 'Fetch initiate courses error',
           description: 'Connection error.',
         });
       })
