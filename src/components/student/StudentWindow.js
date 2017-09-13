@@ -13,7 +13,7 @@ const StudentWindow = ({ visible, onOk, onCancel, confirmLoading }) => (
     confirmLoading={confirmLoading}
     onCancel={onCancel}
     wrapClassName="vertical-center-modal"
-    width={630}
+    width={610}
   >
     <StudentForm />
   </Modal>
