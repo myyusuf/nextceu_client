@@ -7,6 +7,8 @@ import costUnitSearchClinic from './cost_unit_search_clinic';
 import initiateCourses from './student/initiate_courses';
 import initiateCourseSearch from './student/initiate_course_search';
 import initiateCourseSelection from './student/initiate_course_selection';
+import initiateXptForm from './student/initiate_xpt_form';
+import initiateXptWindow from './student/initiate_xpt_window';
 import completedCourses from './student/completed_courses';
 import completedCourseSearch from './student/completed_course_search';
 import completedCourseSelection from './student/completed_course_selection';
@@ -26,6 +28,8 @@ const reportReducer = combineReducers({
   initiateCourses,
   initiateCourseSearch,
   initiateCourseSelection,
+  initiateXptForm,
+  initiateXptWindow,
   completedCourses,
   completedCourseSearch,
   completedCourseSelection,

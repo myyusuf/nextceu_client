@@ -10,7 +10,7 @@ import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 
 import * as actions from '../../../actions/ActionType';
-import ExportToPreTestWindow from './ExportToPreTestWindow';
+import InitiateXptWindow from './InitiateXptWindow';
 
 const Column = Table.Column;
 const RangePicker = DatePicker.RangePicker;
@@ -129,7 +129,7 @@ class InitiateCourseReport extends Component {
             </Table>
           </Col>
         </Row>
-        <ExportToPreTestWindow />
+        <InitiateXptWindow />
       </div>
     );
   }
@@ -174,10 +174,10 @@ const mapDispatchToProps = dispatch => (
     },
     openExportWindow: () => {
       dispatch({
-        type: actions.report.student.initiateCourse.form.clear,
+        type: actions.report.student.initiateXpt.form.clear,
       });
       dispatch({
-        type: actions.report.student.initiateCourse.window.open,
+        type: actions.report.student.initiateXpt.window.open,
       });
     },
     searchTextChanged: value => (

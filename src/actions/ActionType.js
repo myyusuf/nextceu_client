@@ -18,7 +18,6 @@ export const report = {
         },
       },
     },
-    //-----------------------------------------
     completedCourse: {
       fetchCourses: 'report/student/completedCourse/fetchCourses',
       fetchCoursesSuccess: 'report/student/completedCourse/fetchCoursesSuccess',
@@ -27,12 +26,16 @@ export const report = {
       form: {
         changed: 'report/student/initiateXpt/form/changed',
         update: 'report/student/initiateXpt/form/update',
+        showErrors: 'report/student/initiateXpt/form/showErrors',
         clear: 'report/student/initiateXpt/form/clear',
       },
       window: {
         open: 'report/student/initiateXpt/window/open',
         close: 'report/student/initiateXpt/window/close',
+        loadingStart: 'report/student/initiateXpt/window/loadingStart',
+        loadingFinish: 'report/student/initiateXpt/window/loadingFinish',
       },
+      doExport: 'report/student/initiateXpt/doExport',
     },
     completedXpt: {
       form: {
