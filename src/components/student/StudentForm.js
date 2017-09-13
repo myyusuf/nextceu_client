@@ -23,32 +23,34 @@ const TabPane = Tabs.TabPane;
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
-const StudentForm = ({ studentForm, studentFormChanged }) => {
-  const uploadProps = {
-    name: 'krsFile',
-    action: `${STUDENTS_URL}/${studentForm.id.value}/uploadkrs`,
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        // fetchParticipants();
-
-        notification.success({
-          message: 'Upload file success',
-          description: info.file.response,
-        });
-      } else if (info.file.status === 'error') {
-        notification.error({
-          message: 'Upload file error',
-          description: `${info.file.name} file upload failed.`,
-        });
-      }
+const uploadProps = {
+  name: 'krsFile',
+  action: '',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
     }
-  };
+    if (info.file.status === 'done') {
+      // fetchParticipants();
+      console.log('Done Upload....');
+      notification.success({
+        message: 'Upload file success',
+        description: info.file.response,
+      });
+    } else if (info.file.status === 'error') {
+      notification.error({
+        message: 'Upload file error',
+        description: `${info.file.name} file upload failed.`,
+      });
+    }
+  },
+};
+
+const StudentForm = ({ studentForm, studentFormChanged }) => {
+  uploadProps.action = `${STUDENTS_URL}/${studentForm.id.value}/uploadfile/krs`;
   return (
     <Form style={{ marginTop: -5 }}>
       <Tabs defaultActiveKey="1" style={{ minHeight: 435 }}>
@@ -383,7 +385,7 @@ const StudentForm = ({ studentForm, studentFormChanged }) => {
               <FormItem
                 colon={false}
               >
-                <Upload {...uploadProps} disabled={!studentForm.id.value}>
+                <Upload {...uploadProps} disabled={!studentForm.id.value} showUploadList={false}>
                   <Button>
                     <Icon type="upload" /> Click to Upload
                   </Button>
