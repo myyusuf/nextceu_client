@@ -26,7 +26,7 @@ const doExportToPreTestLogic = createLogic({
   validate({ getState, action }, allow, reject) {
     let isFormValid = true;
     const exportToPreTestForm = {
-      ...getState().reportReducers.exportToPreTestForm,
+      ...getState().reportReducers.initiateXptForm,
     };
     const validationResult = {};
     const keys = _.keys(exportToPreTestForm);
@@ -56,8 +56,8 @@ const doExportToPreTestLogic = createLogic({
     }
   },
   process({ getState, action }, dispatch, done) {
-    const exportToPreTestForm = _.mapValues({ ...getState().reportReducers.exportToPreTestForm }, 'value');
-    exportToPreTestForm.courseIds = getState().reportReducers.completedCourseSelection.rowKeys;
+    const exportToPreTestForm = _.mapValues({ ...getState().reportReducers.initiateXptForm }, 'value');
+    exportToPreTestForm.courseIds = getState().reportReducers.initiateCourseSelection.rowKeys;
     dispatch({ type: actions.report.student.initiateXpt.window.startLoading });
 
     axios.post(EXPORT_TO_PRE_TESTS_URL, exportToPreTestForm)
