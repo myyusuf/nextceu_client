@@ -3,33 +3,9 @@ import axios from 'axios';
 import notification from 'antd/lib/notification';
 import _ from 'lodash';
 import Constant from '../../Constant';
-import { validateLength, validateEmail, validateExist } from '../../utils/validation';
+import { validateForm } from './student_form';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
-
-const validate = (key, value) => {
-  let result = null;
-  switch (key) {
-    case 'oldSid':
-    case 'newSid':
-    case 'name':
-      result = validateLength(key, value, 3);
-      break;
-    case 'email':
-      result = validateEmail(key, value);
-      break;
-    case 'gender':
-      result = validateExist(key, value);
-      break;
-    case 'level':
-      result = validateExist(key, value);
-      break;
-    default:
-      break;
-  }
-
-  return result;
-};
 
 const fetchStudentsLogic = createLogic({
   type: 'FETCH_STUDENTS_LOGIC',
@@ -99,29 +75,12 @@ const saveStudentLogic = createLogic({
   type: 'SAVE_STUDENT_LOGIC',
   latest: true,
   validate({ getState, action }, allow, reject) {
-    let isFormValid = true;
     const studentForm = { ...getState().studentReducers.studentForm };
-    const validationResult = {};
-    const keys = _.keys(studentForm);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      if (key !== 'id') {
-        const value = studentForm[key].value;
-        validationResult[key] = {
-          value,
-          ...validate(key, value),
-        };
-
-        if (validationResult[key].validateStatus && validationResult[key].validateStatus === 'error') {
-          isFormValid = false;
-        }
-      }
-    }
-
-    if (isFormValid) {
+    const validatedForm = validateForm(studentForm);
+    if (validatedForm.isFormValid) {
       allow(action);
     } else {
-      reject({ type: 'SHOW_STUDENT_FORM_VALIDATION_ERRORS', payload: validationResult, error: true });
+      reject({ type: 'SHOW_STUDENT_FORM_VALIDATION_ERRORS', payload: validatedForm.validationResult, error: true });
     }
   },
   process({ getState, action }, dispatch, done) {

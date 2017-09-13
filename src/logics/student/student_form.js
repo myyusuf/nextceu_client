@@ -1,7 +1,12 @@
 import { createLogic } from 'redux-logic';
-import _ from 'lodash';
 import moment from 'moment';
-import { validateLength, validateEmail, validateExist } from '../../utils/validation';
+import {
+  validateLength,
+  validateEmail,
+  validateExist,
+  validateFormFields,
+  validateFormField,
+} from '../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -23,26 +28,20 @@ const validate = (key, value) => {
     default:
       break;
   }
-
   return result;
 };
+
+export const validateForm = form => (validateFormFields(form, validate));
 
 const studentFormChangedLogic = createLogic({
   type: 'STUDENT_FORM_CHANGED_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const payload = action.payload;
-    const result = {
-      [payload.key]: {
-        value: payload.value,
-        ...validate(payload.key, payload.value),
-      },
-    };
+    const result = validateFormField(action.payload, validate);
     dispatch({ type: 'UPDATE_STUDENT_FORM', payload: result });
     done();
   },
 });
-
 
 const loadStudentFormLogic = createLogic({
   type: 'LOAD_STUDENT_TO_FORM_LOGIC',
@@ -119,17 +118,7 @@ const loadStudentFormLogic = createLogic({
         value: student.parentMobilePhone,
       },
     };
-    const validationResult = {};
-    const keys = _.keys(studentForm);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      const value = studentForm[key].value;
-      validationResult[key] = {
-        value,
-        ...validate(key, value),
-      };
-    }
-
+    const validationResult = validateFormFields(studentForm, validate).validationResult;
     dispatch({ type: 'EDIT_STUDENT_LOGIC' });
     dispatch({ type: 'LOAD_STUDENT', payload: validationResult });
     done();
