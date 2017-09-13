@@ -17,6 +17,11 @@ const defaultState = {
   krs: {},
   krsFileId: {},
   spp: {},
+  fatherName: {},
+  motherName: {},
+  parentAddress: {},
+  parentPhone: {},
+  parentMobilePhone: {},
 };
 
 const studentForm = (state = defaultState, action) => {

@@ -217,6 +217,48 @@ const StudentForm = ({ studentForm, studentFormChanged }) => {
               </FormItem>
             </Col>
           </Row>
+          <Row>
+            <Col span={24}>
+              <FormItem
+                label="Father Name"
+                colon={false}
+                validateStatus={studentForm.fatherName.validateStatus}
+                help={studentForm.fatherName.errorMsg}
+              >
+                <Input
+                  value={studentForm.fatherName.value}
+                  onChange={(e) => {
+                    studentFormChanged({
+                      key: 'fatherName',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Father name"
+                />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <FormItem
+                label="Mother Name"
+                colon={false}
+                validateStatus={studentForm.motherName.validateStatus}
+                help={studentForm.motherName.errorMsg}
+              >
+                <Input
+                  value={studentForm.motherName.value}
+                  onChange={(e) => {
+                    studentFormChanged({
+                      key: 'motherName',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Mother name"
+                />
+              </FormItem>
+            </Col>
+          </Row>
         </TabPane>
         <TabPane tab="Contact" key="3">
           <Row>
@@ -276,6 +318,67 @@ const StudentForm = ({ studentForm, studentFormChanged }) => {
                     });
                   }}
                   placeholder="Mobile"
+                />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row style={{ marginTop: 30 }}>
+            <Col span={24}>
+              <FormItem
+                label="Parent Address"
+                colon={false}
+                validateStatus={studentForm.parentAddress.validateStatus}
+                help={studentForm.parentAddress.errorMsg}
+              >
+                <Input
+                  value={studentForm.parentAddress.value}
+                  onChange={(e) => {
+                    studentFormChanged({
+                      key: 'parentAddress',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Parent Address"
+                />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={15}>
+            <Col span={12}>
+              <FormItem
+                label="Parent Landline"
+                colon={false}
+                validateStatus={studentForm.parentPhone.validateStatus}
+                help={studentForm.parentPhone.errorMsg}
+              >
+                <Input
+                  value={studentForm.parentPhone.value}
+                  onChange={(e) => {
+                    studentFormChanged({
+                      key: 'parentPhone',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Parent landline"
+                />
+              </FormItem>
+            </Col>
+            <Col span={12}>
+              <FormItem
+                label="Parent Mobile"
+                colon={false}
+                validateStatus={studentForm.parentMobilePhone.validateStatus}
+                help={studentForm.parentMobilePhone.errorMsg}
+              >
+                <Input
+                  value={studentForm.parentMobilePhone.value}
+                  onChange={(e) => {
+                    studentFormChanged({
+                      key: 'parentMobilePhone',
+                      value: e.target.value,
+                    });
+                  }}
+                  placeholder="Parent Mobile"
                 />
               </FormItem>
             </Col>

@@ -103,6 +103,21 @@ const loadStudentFormLogic = createLogic({
       spp: {
         value: student.spp,
       },
+      fatherName: {
+        value: student.fatherName,
+      },
+      motherName: {
+        value: student.motherName,
+      },
+      parentAddress: {
+        value: student.parentAddress,
+      },
+      parentPhone: {
+        value: student.parentPhone,
+      },
+      parentMobilePhone: {
+        value: student.parentMobilePhone,
+      },
     };
     const validationResult = {};
     const keys = _.keys(studentForm);
