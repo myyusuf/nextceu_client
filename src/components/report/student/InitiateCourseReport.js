@@ -172,32 +172,35 @@ const mapDispatchToProps = dispatch => (
         type: actions.report.student.initiateCourse.fetchCourses,
       });
     },
-    openExportWindow: () => (
+    openExportWindow: () => {
       dispatch({
-        type: 'PREP_EXPORT_TO_PRE_TEST_LOGIC',
-      })
-    ),
+        type: actions.report.student.initiateXpt.form.clear,
+      });
+      dispatch({
+        type: actions.report.student.initiateXpt.window.open,
+      });
+    },
     searchTextChanged: value => (
       dispatch({
-        type: 'INITIATE_COURSE_SEARCH_TEXT_CHANGED',
+        type: actions.report.student.initiateXpt.list.search.textChanged,
         payload: value,
       })
     ),
     pageChanged: currentPage => (
       dispatch({
-        type: 'INITIATE_COURSE_PAGE_CHANGED_LOGIC',
+        type: actions.report.student.initiateXpt.list.search.pageChanged,
         payload: currentPage,
       })
     ),
     dateRangeChanged: value => (
       dispatch({
-        type: 'INITIATE_COURSE_SEARCH_DATE_RANGE_CHANGED',
+        type: actions.report.student.initiateXpt.list.search.dateRangeChanged,
         payload: value,
       })
     ),
     rowKeysChanged: (rowKeys, selectedRows) => (
       dispatch({
-        type: 'INITIATE_COURSE_SELECT_CHANGED',
+        type: actions.report.student.initiateXpt.list.selection.selectChanged,
         payload: { rowKeys, selectedRows },
       })
     ),
