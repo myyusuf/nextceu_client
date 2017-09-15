@@ -50,3 +50,11 @@ export const report = {
     },
   },
 };
+
+export const bakordik = {
+  treeSelect: 'bakordik/treeSelect',
+  initiateStudent: {
+    fetchCourses: 'bakordik/initiateStudent/fetchCourses',
+    fetchCoursesSuccess: 'bakordik/initiateStudent/fetchCoursesSuccess',
+  },
+};

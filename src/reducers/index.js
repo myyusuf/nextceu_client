@@ -11,6 +11,7 @@ import loginReducers from './login/';
 import reportReducers from './report/';
 import docentReducers from './docent/';
 import ukmppdReducers from './ukmppd/';
+import bakordikReducers from './bakordik/';
 
 const rootReducer = combineReducers({
   studentReducers,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   reportReducers,
   docentReducers,
   ukmppdReducers,
+  bakordikReducers,
 });
 
 export default rootReducer;
