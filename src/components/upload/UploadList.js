@@ -41,10 +41,12 @@ const uploads = [
   {
     id: 1,
     name: 'Pre Test',
+    url: 'pretest',
   },
   {
     id: 2,
     name: 'Post Test',
+    url: 'posttest',
   },
 ];
 
@@ -62,7 +64,7 @@ const UploadList = () => (
             title="Action"
             key="action"
             render={(text, record) => {
-              const tempUploadProps = { ...uploadProps, action: `${SCORE_UPLOAD_URL}/${record.id}` };
+              const tempUploadProps = { ...uploadProps, action: `${SCORE_UPLOAD_URL}/${record.url}` };
               return (
                 <span>
                   <Upload {...tempUploadProps}>
