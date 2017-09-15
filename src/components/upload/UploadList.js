@@ -21,23 +21,6 @@ const uploadProps = {
   headers: {
     authorization: 'authorization-text',
   },
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      // console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      console.log(info.file.response);
-      notification.success({
-        message: 'Upload file success',
-        description: `${info.file.name} file uploaded successfully.`,
-      });
-    } else if (info.file.status === 'error') {
-      notification.error({
-        message: 'Upload file error',
-        description: `${info.file.name} file upload failed.`,
-      });
-    }
-  },
 };
 
 const uploads = [
