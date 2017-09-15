@@ -11,7 +11,7 @@ const fetchCompletedCoursesLogic = createLogic({
   cancelType: actions.bakordik.initiateStudent.cancelFetchCourses,
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().reportReducers.initiateStudentSearch;
+    const search = getState().bakordikReducers.initiateStudentSearch;
     const paramameters = search ? { params: { ...search } } : {};
     dispatch({ type: actions.bakordik.initiateStudent.list.loadingStart });
     axios.get(INITIATE_COURSE_REPORTS_URL, paramameters)

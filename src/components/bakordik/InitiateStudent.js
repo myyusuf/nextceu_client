@@ -8,7 +8,9 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
+import Tag from 'antd/lib/tag';
 
+import CourseWindow from '../../components/student/course/CourseWindow';
 import * as actions from '../../actions/ActionType';
 
 const Column = Table.Column;
@@ -35,6 +37,7 @@ class InitiateStudent extends Component {
       dateRangeChanged,
       selectedRowKeys,
       rowKeysChanged,
+      showDetails,
     } = this.props;
 
     const rowSelection = {
@@ -128,10 +131,16 @@ class InitiateStudent extends Component {
               <Column
                 title="Department"
                 dataIndex="Department.name"
+                render={(text, record) => (
+                  <Tag className="CourseListItem-tag" color={record.Department.color} onClick={() => showDetails(record)}>
+                    {text}
+                  </Tag>
+                )}
               />
             </Table>
           </Col>
         </Row>
+        <CourseWindow />
       </div>
     );
   }
@@ -152,6 +161,7 @@ InitiateStudent.propTypes = {
   dateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
   selectedRowKeys: PropTypes.arrayOf(PropTypes.shape).isRequired,
   rowKeysChanged: PropTypes.func.isRequired,
+  showDetails: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -198,6 +208,35 @@ const mapDispatchToProps = dispatch => (
         payload: { rowKeys, selectedRows },
       })
     ),
+    showDetails: (course) => {
+      dispatch({
+        type: 'LOAD_COURSE_TO_FORM_LOGIC',
+        payload: course,
+      });
+
+      dispatch({
+        type: 'FETCH_SCORES_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_COURSE_SEMINARS_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_COURSE_PROBLEMS_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_PORTOFOLIOS_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_DOCENTS_BY_HD_LOGIC',
+      });
+      dispatch({
+        type: 'FETCH_DOCENTS_BY_CD_LOGIC',
+      });
+    },
   }
 );
 
