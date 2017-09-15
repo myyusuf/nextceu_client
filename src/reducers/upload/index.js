@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import uploads from './uploads';
+import uploadResultWindow from './upload_result_window';
 
 const uploadReducer = combineReducers({
-  uploads,
+  uploadResultWindow,
 });
 
 export default uploadReducer;
