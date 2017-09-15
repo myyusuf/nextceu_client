@@ -21,9 +21,10 @@ const uploadProps = {
   },
   onChange(info) {
     if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
+      // console.log(info.file, info.fileList);
     }
     if (info.file.status === 'done') {
+      console.log(info.file.response);
       notification.success({
         message: 'Upload file success',
         description: `${info.file.name} file uploaded successfully.`,
