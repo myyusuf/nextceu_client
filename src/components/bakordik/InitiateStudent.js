@@ -125,6 +125,10 @@ class InitiateStudent extends Component {
                 dataIndex="title"
                 key="title"
               />
+              <Column
+                title="Department"
+                dataIndex="Department.name"
+              />
             </Table>
           </Col>
         </Row>

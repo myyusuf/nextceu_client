@@ -37,7 +37,7 @@ BakordikMain.propTypes = {
 
 const mapStateToProps = state => (
   {
-    selectedMenuKey: state.bakordikReducers.selectedMenuKey,
+    selectedMenuKey: state.bakordikReducers.trees.selectedMenuKey,
   }
 );
 

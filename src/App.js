@@ -12,6 +12,7 @@ import SeminarMain from './pages/seminar/SeminarMain';
 import HospitalMain from './pages//hospital/HospitalMain';
 import SettingsMain from './pages/settings/SettingsMain';
 import ReportMain from './pages/report/ReportMain';
+import BakordikMain from './pages/bakordik/BakordikMain';
 
 import Workspace from './pages/workspace/Workspace';
 
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/seminars" component={SeminarMain} />
             <Route path="/settings" component={SettingsMain} />
             <Route path="/reports" component={ReportMain} />
+            <Route path="/bakordik" component={BakordikMain} />
           </Workspace>
         </Router>
       </div>
