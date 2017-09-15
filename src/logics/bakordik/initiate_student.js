@@ -4,7 +4,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
 import * as actions from '../../actions/ActionType';
 
-const INITIATE_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/bakordik/initiatecourses`;
+const INITIATE_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/bakordik/initiatestudents`;
 
 const fetchCompletedCoursesLogic = createLogic({
   type: actions.bakordik.initiateStudent.fetchCourses,

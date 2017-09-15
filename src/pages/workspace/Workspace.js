@@ -29,6 +29,7 @@ const Workspace = ({ children }) => {
         <a href="#"
           onClick={() => {
             window.sessionStorage.removeItem('token');
+            window.sessionStorage.removeItem('role');
             window.location.href = '/';
           }}
         >
@@ -163,7 +164,10 @@ const Workspace = ({ children }) => {
   if (!window.sessionStorage.getItem('token')) {
     return loginComponent;
   }
-  // return mainComponent;
+
+  if (window.sessionStorage.getItem('role') === 'ADMIN') {
+    return mainComponent;
+  }
   return bakordikComponent;
 };
 

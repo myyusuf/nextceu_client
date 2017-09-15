@@ -33,7 +33,7 @@ class BakordikSiderMenu extends Component {
         <div className="SiderMenu-box">
           <Icon type="home" style={{ fontSize: 27, color: '#fff' }} />
         </div>
-        <Link to="/bakordik" onClick={() => selectSiderMenu('students')}>
+        <Link to="/" onClick={() => selectSiderMenu('students')}>
           <div
             className={selectedMenu === 'students' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}
             style={{ marginTop: 60 }}

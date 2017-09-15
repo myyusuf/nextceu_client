@@ -18,17 +18,28 @@ import Workspace from './pages/workspace/Workspace';
 
 class App extends Component {
   render() {
+    const role = window.sessionStorage.getItem('role');
+    let componentToRender = (
+      <Workspace>
+        <Route exact path="/" component={StudentMain} />
+        <Route path="/hospitals" component={HospitalMain} />
+        <Route path="/seminars" component={SeminarMain} />
+        <Route path="/settings" component={SettingsMain} />
+        <Route path="/reports" component={ReportMain} />
+      </Workspace>
+    );
+
+    if (role === 'BAKORDIK') {
+      componentToRender = (
+        <Workspace>
+          <Route exact path="/" component={BakordikMain} />
+        </Workspace>
+      );
+    }
     return (
       <div className="App">
         <Router>
-          <Workspace>
-            <Route exact path="/" component={StudentMain} />
-            <Route path="/hospitals" component={HospitalMain} />
-            <Route path="/seminars" component={SeminarMain} />
-            <Route path="/settings" component={SettingsMain} />
-            <Route path="/reports" component={ReportMain} />
-            <Route path="/bakordik" component={BakordikMain} />
-          </Workspace>
+          {componentToRender}
         </Router>
       </div>
     );

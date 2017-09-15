@@ -59,8 +59,10 @@ const doLoginLogic = createLogic({
       .then((response) => {
         dispatch({ type: 'HIDE_LOGIN_FORM_CONTAINER_CONFIRM_LOADING' });
         const token = response.data.token;
+        const role = response.data.role;
         if (typeof (Storage) !== 'undefined') {
           window.sessionStorage.setItem('token', token);
+          window.sessionStorage.setItem('role', role);
           window.location.href = '/';
         } else {
             alert('Sorry! No Web Storage support..');
