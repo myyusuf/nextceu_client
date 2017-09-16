@@ -5,6 +5,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import DepartmentSelect from '../../../department/DepartmentSelect';
 
 const FormItem = Form.Item;
 
@@ -54,15 +55,32 @@ const PftForm = ({ pftForm, pftFormChanged }) => (
         </FormItem>
       </Col>
     </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Department"
+          colon={false}
+          validateStatus={pftForm.department.validateStatus}
+          help={pftForm.department.errorMsg}
+        >
+          <DepartmentSelect
+            value={pftForm.department.value}
+            onSelect={(value) => {
+              pftFormChanged({
+                key: 'department',
+                value,
+              });
+            }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
   </Form>
 );
 
 PftForm.propTypes = {
   pftFormChanged: PropTypes.func.isRequired,
-  pftForm: PropTypes.shape({
-    code: PropTypes.shape.isRequired,
-    name: PropTypes.shape.isRequired,
-  }).isRequired,
+  pftForm: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => (

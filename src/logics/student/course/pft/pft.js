@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
-import { validateLength } from '../../../../utils/validation';
+import { validateLength, validateExist } from '../../../../utils/validation';
 
 const PFTS_URL = `${Constant.serverUrl}/api/portofoliotypes`;
 
@@ -13,6 +13,9 @@ const validate = (key, value) => {
     case 'code':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'department':
+      result = validateExist(key, value);
       break;
     default:
       break;

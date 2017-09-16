@@ -1,6 +1,6 @@
 import { createLogic } from 'redux-logic';
 import _ from 'lodash';
-import { validateLength } from '../../../../utils/validation';
+import { validateLength, validateExist } from '../../../../utils/validation';
 
 const validate = (key, value) => {
   let result = null;
@@ -8,6 +8,9 @@ const validate = (key, value) => {
     case 'code':
     case 'name':
       result = validateLength(key, value, 3);
+      break;
+    case 'department':
+      result = validateExist(key, value);
       break;
     default:
       break;
@@ -35,6 +38,8 @@ const loadPftFormLogic = createLogic({
   type: 'LOAD_PFT_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const pft = action.payload;
+    const departmentId = pft.Department ?
+    pft.Department.id : undefined;
     const pftForm = {
       id: {
         value: pft.id,
@@ -44,6 +49,9 @@ const loadPftFormLogic = createLogic({
       },
       name: {
         value: pft.name,
+      },
+      department: {
+        value: String(departmentId),
       },
     };
     const validationResult = {};

@@ -2,6 +2,7 @@ const defaultState = {
   id: {},
   code: {},
   name: {},
+  department: {},
 };
 
 const pftForm = (state = defaultState, action) => {
