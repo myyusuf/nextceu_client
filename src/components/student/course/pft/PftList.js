@@ -9,6 +9,7 @@ import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
 
 import PftWindow from './PftWindow';
+import DepartmentSelect from '../../../department/DepartmentSelect';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -27,18 +28,30 @@ class PftList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      searchDepartment,
+      searchDepartmentChanged,
       loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={8}>
+          <Col span={4}>
             <Input
               value={searchText}
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
               placeholder="Code or Name"
+            />
+          </Col>
+          <Col span={4}>
+            <DepartmentSelect
+              value={searchDepartment}
+              onSelect={(value) => {
+                searchDepartmentChanged(value);
+              }}
+              style={{ width: '100%' }}
+              allowClear
             />
           </Col>
           <Col span={16}>
@@ -110,11 +123,10 @@ PftList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  searchDepartment: PropTypes.string.isRequired,
+  searchDepartmentChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  pfts: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  pfts: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 // PftList.defaultProps = {
@@ -125,6 +137,7 @@ const mapStateToProps = state => (
   {
     pfts: state.studentReducers.pfts,
     searchText: state.studentReducers.pftSearch.searchText,
+    searchDepartment: state.studentReducers.pftSearch.searchDepartment,
     loading: state.studentReducers.pftSearch.loading,
   }
 );
@@ -150,6 +163,12 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'PFT_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchDepartmentChanged: value => (
+      dispatch({
+        type: 'PFT_SEARCH_DEPARTMENT_CHANGED',
         payload: value,
       })
     ),
