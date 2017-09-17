@@ -1,6 +1,6 @@
 const defaultState = [];
 
-const gls = (state = defaultState, action) => {
+const sgls = (state = defaultState, action) => {
   switch (action.type) {
     case 'FETCH_SGLS_SUCCESS':
       return action.payload;
@@ -9,4 +9,4 @@ const gls = (state = defaultState, action) => {
   }
 };
 
-export default gls;
+export default sgls;

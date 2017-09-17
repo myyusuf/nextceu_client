@@ -59,6 +59,10 @@ class SglList extends Component {
                 dataIndex="SglType.name"
               />
               <Column
+                title="Pengampu"
+                dataIndex="Pengampu.name"
+              />
+              <Column
                 title="Date"
                 dataIndex="problemDate"
                 key="problemDate"

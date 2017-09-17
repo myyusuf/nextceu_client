@@ -7,6 +7,7 @@ const validate = (key, value) => {
   let result = null;
   switch (key) {
     case 'sglType':
+    case 'pengampu':
     case 'sglDate':
       result = validateExist(key, value);
       break;
@@ -38,6 +39,10 @@ const loadSglFormLogic = createLogic({
     const sgl = action.payload;
     const sglTypeId = sgl.SglType ?
     sgl.SglType.id : undefined;
+
+    const pengampuId = sgl.Pengampu ?
+    sgl.Pengampu.id : undefined;
+
     if (sgl.sglDate) {
       sgl.sglDate = moment(sgl.sglDate);
     }
@@ -47,6 +52,9 @@ const loadSglFormLogic = createLogic({
       },
       sglType: {
         value: String(sglTypeId),
+      },
+      pengampu: {
+        value: String(pengampuId),
       },
       sglDate: {
         value: sgl.sglDate,

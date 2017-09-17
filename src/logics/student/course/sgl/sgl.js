@@ -13,6 +13,7 @@ const validate = (key, value) => {
   let result = null;
   switch (key) {
     case 'sglType':
+    case 'pengampu':
     case 'sglDate':
       result = validateExist(key, value);
       break;

@@ -7,6 +7,7 @@ import Col from 'antd/lib/col';
 import DatePicker from 'antd/lib/date-picker';
 import Checkbox from 'antd/lib/checkbox';
 import SglTypeSelect from '../sgt/SgtSelect';
+import PengampuSelect from '../../../pengampu/PengampuSelect';
 
 const FormItem = Form.Item;
 
@@ -27,6 +28,26 @@ const SglForm = ({ sglForm, sglFormChanged }) => (
                 onSelect={(value) => {
                   sglFormChanged({
                     key: 'sglType',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <FormItem
+              label="Pengampu"
+              colon={false}
+              validateStatus={sglForm.pengampu.validateStatus}
+              help={sglForm.pengampu.errorMsg}
+            >
+              <PengampuSelect
+                value={sglForm.pengampu.value}
+                onSelect={(value) => {
+                  sglFormChanged({
+                    key: 'pengampu',
                     value,
                   });
                 }}

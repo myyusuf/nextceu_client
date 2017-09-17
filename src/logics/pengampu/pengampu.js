@@ -6,7 +6,7 @@ import Constant from '../../Constant';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const PENGAMPUS_URL = `${Constant.serverUrl}/api/pengampus`;
-const PENGAMPUS_BY_HD_URL = `${Constant.serverUrl}/api/pengampusbyhd`;
+const PENGAMPUS_BY_DEPARTMENT_URL = `${Constant.serverUrl}/api/pengampusbydepartment`;
 
 const validate = (key, value) => {
   let result = null;
@@ -51,8 +51,8 @@ const fetchPengampusLogic = createLogic({
 });
 
 const fetchAllPengampusByHDLogic = createLogic({
-  type: 'FETCH_PENGAMPUS_BY_HD_LOGIC',
-  cancelType: 'CANCEL_FETCH_PENGAMPUS_BY_HD_LOGIC',
+  type: 'FETCH_PENGAMPUS_BY_DEPARTMENT_LOGIC',
+  cancelType: 'CANCEL_FETCH_PENGAMPUS_BY_DEPARTMENT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
     const hospitalId = getState().studentReducers.courseForm.hospital1.value ?
@@ -61,37 +61,10 @@ const fetchAllPengampusByHDLogic = createLogic({
       hospital: hospitalId,
       department: getState().studentReducers.courseForm.tempDepartment.value,
     } };
-    axios.get(PENGAMPUS_BY_HD_URL, paramameters)
+    axios.get(PENGAMPUS_BY_DEPARTMENT_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'FETCH_PENGAMPUS_BY_HD_SUCCESS', payload: data });
-      })
-      .catch((err) => {
-        console.error(err);
-        notification.error({
-          message: 'Fetch pengampus error',
-          description: 'Connection error.',
-        });
-      })
-      .then(() => done());
-  },
-});
-
-const fetchAllPengampusByCDLogic = createLogic({
-  type: 'FETCH_PENGAMPUS_BY_CD_LOGIC',
-  cancelType: 'CANCEL_FETCH_PENGAMPUS_BY_CD_LOGIC',
-  latest: true,
-  process({ getState, action }, dispatch, done) {
-    const hospitalId = getState().studentReducers.courseForm.clinic.value ?
-    getState().studentReducers.courseForm.clinic.value.id : null;
-    const paramameters = { params: {
-      hospital: hospitalId,
-      department: getState().studentReducers.courseForm.tempDepartment.value,
-    } };
-    axios.get(PENGAMPUS_BY_HD_URL, paramameters)
-      .then(resp => resp.data)
-      .then((data) => {
-        dispatch({ type: 'FETCH_PENGAMPUS_BY_CD_SUCCESS', payload: data });
+        dispatch({ type: 'FETCH_PENGAMPUS_BY_DEPARTMENT_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);
@@ -256,7 +229,6 @@ const pengampuPageChangedLogic = createLogic({
 export default [
   fetchPengampusLogic,
   fetchAllPengampusByHDLogic,
-  fetchAllPengampusByCDLogic,
   editPengampuLogic,
   cancelAddPengampuLogic,
   savePengampuLogic,

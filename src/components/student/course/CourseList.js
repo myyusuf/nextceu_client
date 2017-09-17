@@ -67,10 +67,18 @@ const mapDispatchToProps = dispatch => (
       });
 
       dispatch({
+        type: 'FETCH_SGLS_LOGIC',
+      });
+
+      dispatch({
         type: 'FETCH_DOCENTS_BY_HD_LOGIC',
       });
       dispatch({
         type: 'FETCH_DOCENTS_BY_CD_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_PENGAMPUS_BY_DEPARTMENT_LOGIC',
       });
     },
   }

@@ -1,6 +1,7 @@
 const defaultState = {
   id: {},
   sglType: {},
+  pengampu: {},
   sglDate: {},
   completed: {},
 };
