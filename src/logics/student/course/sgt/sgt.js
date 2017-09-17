@@ -6,6 +6,7 @@ import Constant from '../../../../Constant';
 import { validateLength, validateExist } from '../../../../utils/validation';
 
 const SGTS_URL = `${Constant.serverUrl}/api/sgltypes`;
+const SGTS_BY_DEPARTMENT_URL = `${Constant.serverUrl}/api/sgltypesbydepartment`;
 
 const validate = (key, value) => {
   let result = null;
@@ -44,6 +45,30 @@ const fetchSgtsLogic = createLogic({
         notification.error({
           message: 'Fetch sgts error',
           description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
+const fetchSgtsByDepartmentLogic = createLogic({
+  type: 'FETCH_SGTS_BY_DEPARTMENT_LOGIC',
+  cancelType: 'CANCEL_FETCH_SGTS_BY_DEPARTMENT_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const paramameters = { params: {
+      department: getState().studentReducers.courseForm.tempDepartment.value,
+    } };
+    axios.get(SGTS_BY_DEPARTMENT_URL, paramameters)
+      .then(resp => resp.data)
+      .then((data) => {
+        dispatch({ type: 'FETCH_SGTS_BY_DEPARTMENT_SUCCESS', payload: data });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch pengampu error',
+          description: 'Connection error.',
         });
       })
       .then(() => done());
@@ -213,6 +238,7 @@ const deleteSgtLogic = createLogic({
 
 export default [
   fetchSgtsLogic,
+  fetchSgtsByDepartmentLogic,
   editSgtLogic,
   cancelAddSgtLogic,
   saveSgtLogic,

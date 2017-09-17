@@ -6,6 +6,7 @@ import Constant from '../../../../Constant';
 import { validateLength, validateExist } from '../../../../utils/validation';
 
 const PFTS_URL = `${Constant.serverUrl}/api/portofoliotypes`;
+const PFTS_BY_DEPARTMENT_URL = `${Constant.serverUrl}/api/portofoliotypesbydepartment`;
 
 const validate = (key, value) => {
   let result = null;
@@ -44,6 +45,30 @@ const fetchPftsLogic = createLogic({
         notification.error({
           message: 'Fetch pfts error',
           description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
+const fetchPftsByDepartmentLogic = createLogic({
+  type: 'FETCH_PFTS_BY_DEPARTMENT_LOGIC',
+  cancelType: 'CANCEL_FETCH_PFTS_BY_DEPARTMENT_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const paramameters = { params: {
+      department: getState().studentReducers.courseForm.tempDepartment.value,
+    } };
+    axios.get(PFTS_BY_DEPARTMENT_URL, paramameters)
+      .then(resp => resp.data)
+      .then((data) => {
+        dispatch({ type: 'FETCH_PFTS_BY_DEPARTMENT_SUCCESS', payload: data });
+      })
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch pengampu error',
+          description: 'Connection error.',
         });
       })
       .then(() => done());
@@ -213,6 +238,7 @@ const deletePftLogic = createLogic({
 
 export default [
   fetchPftsLogic,
+  fetchPftsByDepartmentLogic,
   editPftLogic,
   cancelAddPftLogic,
   savePftLogic,

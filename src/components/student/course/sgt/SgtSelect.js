@@ -32,7 +32,7 @@ SgtSelect.propTypes = {
 
 const mapStateToProps = state => (
   {
-    sgts: state.studentReducers.sgts,
+    sgts: state.studentReducers.sgtsByDepartment,
   }
 );
 

@@ -32,7 +32,7 @@ PftSelect.propTypes = {
 
 const mapStateToProps = state => (
   {
-    pfts: state.studentReducers.pfts,
+    pfts: state.studentReducers.pftsByDepartment,
   }
 );
 

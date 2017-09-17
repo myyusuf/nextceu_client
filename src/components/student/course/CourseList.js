@@ -65,9 +65,15 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'FETCH_PORTOFOLIOS_LOGIC',
       });
+      dispatch({
+        type: 'FETCH_PFTS_BY_DEPARTMENT_LOGIC',
+      });
 
       dispatch({
         type: 'FETCH_SGLS_LOGIC',
+      });
+      dispatch({
+        type: 'FETCH_SGTS_BY_DEPARTMENT_LOGIC',
       });
 
       dispatch({

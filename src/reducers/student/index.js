@@ -44,11 +44,13 @@ import courseProblemWindow from './course/course_problem/course_problem_window';
 import courseProblemSearch from './course/course_problem/course_problem_search';
 
 import pfts from './course/pft/pfts';
+import pftsByDepartment from './course/pft/pfts_by_department';
 import pftForm from './course/pft/pft_form';
 import pftWindow from './course/pft/pft_window';
 import pftSearch from './course/pft/pft_search';
 
 import sgts from './course/sgt/sgts';
+import sgtsByDepartment from './course/sgt/sgts_by_department';
 import sgtForm from './course/sgt/sgt_form';
 import sgtWindow from './course/sgt/sgt_window';
 import sgtSearch from './course/sgt/sgt_search';
@@ -97,10 +99,12 @@ const studentReducer = combineReducers({
   courseProblemWindow,
   courseProblemSearch,
   pfts,
+  pftsByDepartment,
   pftForm,
   pftWindow,
   pftSearch,
   sgts,
+  sgtsByDepartment,
   sgtForm,
   sgtWindow,
   sgtSearch,
