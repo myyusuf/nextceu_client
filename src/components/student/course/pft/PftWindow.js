@@ -11,7 +11,7 @@ const PftWindow = ({
   confirmLoading,
 }) => (
   <Modal
-    title="Course Problem Type"
+    title="Portofolio Type"
     visible={visible}
     okText="Save"
     onOk={onOk}

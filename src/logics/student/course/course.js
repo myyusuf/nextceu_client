@@ -174,7 +174,7 @@ const deleteCourseLogic = createLogic({
       .then(() => {
         notification.success({
           message: 'Delete course success',
-          description: 'Success deleting role',
+          description: 'Success deleting course',
         });
 
         dispatch({
