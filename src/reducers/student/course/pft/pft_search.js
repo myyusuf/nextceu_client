@@ -1,6 +1,6 @@
 const defaultState = {
   searchText: '',
-  searchDepartment: null,
+  searchDepartment: undefined,
   loading: false,
 };
 

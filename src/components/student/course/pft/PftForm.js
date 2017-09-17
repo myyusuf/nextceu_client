@@ -5,6 +5,7 @@ import Form from 'antd/lib/form';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
+import Checkbox from 'antd/lib/checkbox';
 import DepartmentSelect from '../../../department/DepartmentSelect';
 
 const FormItem = Form.Item;
@@ -72,6 +73,27 @@ const PftForm = ({ pftForm, pftFormChanged }) => (
               });
             }}
           />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          colon={false}
+          validateStatus={pftForm.active.validateStatus}
+          help={pftForm.active.errorMsg}
+        >
+          <Checkbox
+            checked={pftForm.active.value}
+            onChange={(e) => {
+              pftFormChanged({
+                key: 'active',
+                value: e.target.checked,
+              });
+            }}
+          >
+            Active
+          </Checkbox>
         </FormItem>
       </Col>
     </Row>

@@ -7,6 +7,7 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
+import Checkbox from 'antd/lib/checkbox';
 
 import PftWindow from './PftWindow';
 import DepartmentSelect from '../../../department/DepartmentSelect';
@@ -87,6 +88,15 @@ class PftList extends Component {
               <Column
                 title="Department"
                 dataIndex="Department.name"
+              />
+              <Column
+                title="Active"
+                dataIndex="active"
+                render={(text, record) => (
+                  <span>
+                    <Checkbox checked={record.active} />
+                  </span>
+                )}
               />
               <Column
                 title="Action"

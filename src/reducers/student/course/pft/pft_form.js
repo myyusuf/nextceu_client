@@ -3,6 +3,7 @@ const defaultState = {
   code: {},
   name: {},
   department: {},
+  active: { value: true },
 };
 
 const pftForm = (state = defaultState, action) => {

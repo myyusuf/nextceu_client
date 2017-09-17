@@ -53,6 +53,9 @@ const loadPftFormLogic = createLogic({
       department: {
         value: String(departmentId),
       },
+      active: {
+        value: pft.active,
+      },
     };
     const validationResult = {};
     const keys = _.keys(pftForm);
