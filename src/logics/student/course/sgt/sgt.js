@@ -5,7 +5,7 @@ import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
 import { validateLength, validateExist } from '../../../../utils/validation';
 
-const SGTS_URL = `${Constant.serverUrl}/api/portofoliotypes`;
+const SGTS_URL = `${Constant.serverUrl}/api/sgltypes`;
 
 const validate = (key, value) => {
   let result = null;
