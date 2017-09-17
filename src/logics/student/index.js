@@ -30,6 +30,9 @@ import sgtFormLogics from './course/sgt/sgt_form';
 import portofolioLogics from './course/portofolio/portofolio';
 import portofolioFormLogics from './course/portofolio/portofolio_form';
 
+import sglLogics from './course/sgl/sgl';
+import sglFormLogics from './course/sgl/sgl_form';
+
 import courseSeminarLogics from './course/course_seminar';
 
 export default [
@@ -55,5 +58,7 @@ export default [
   ...sgtFormLogics,
   ...portofolioLogics,
   ...portofolioFormLogics,
+  ...sglLogics,
+  ...sglFormLogics,
   ...courseSeminarLogics,
 ];

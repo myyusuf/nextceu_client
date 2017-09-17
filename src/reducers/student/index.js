@@ -58,6 +58,11 @@ import portofolioForm from './course/portofolio/portofolio_form';
 import portofolioWindow from './course/portofolio/portofolio_window';
 import portofolioSearch from './course/portofolio/portofolio_search';
 
+import sgls from './course/sgl/sgls';
+import sglForm from './course/sgl/sgl_form';
+import sglWindow from './course/sgl/sgl_window';
+import sglSearch from './course/sgl/sgl_search';
+
 const studentReducer = combineReducers({
   students,
   student,
@@ -103,6 +108,10 @@ const studentReducer = combineReducers({
   portofolioForm,
   portofolioWindow,
   portofolioSearch,
+  sgls,
+  sglForm,
+  sglWindow,
+  sglSearch,
 });
 
 export default studentReducer;
