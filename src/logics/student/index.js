@@ -24,6 +24,9 @@ import courseProblemFormLogics from './course/course_problem/course_problem_form
 import pftLogics from './course/pft/pft';
 import pftFormLogics from './course/pft/pft_form';
 
+import sgtLogics from './course/sgt/sgt';
+import sgtFormLogics from './course/sgt/sgt_form';
+
 import portofolioLogics from './course/portofolio/portofolio';
 import portofolioFormLogics from './course/portofolio/portofolio_form';
 
@@ -48,6 +51,8 @@ export default [
   ...courseProblemFormLogics,
   ...pftLogics,
   ...pftFormLogics,
+  ...sgtLogics,
+  ...sgtFormLogics,
   ...portofolioLogics,
   ...portofolioFormLogics,
   ...courseSeminarLogics,

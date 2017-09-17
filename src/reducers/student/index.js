@@ -48,6 +48,11 @@ import pftForm from './course/pft/pft_form';
 import pftWindow from './course/pft/pft_window';
 import pftSearch from './course/pft/pft_search';
 
+import sgts from './course/sgt/sgts';
+import sgtForm from './course/sgt/sgt_form';
+import sgtWindow from './course/sgt/sgt_window';
+import sgtSearch from './course/sgt/sgt_search';
+
 import portofolios from './course/portofolio/portofolios';
 import portofolioForm from './course/portofolio/portofolio_form';
 import portofolioWindow from './course/portofolio/portofolio_window';
@@ -90,6 +95,10 @@ const studentReducer = combineReducers({
   pftForm,
   pftWindow,
   pftSearch,
+  sgts,
+  sgtForm,
+  sgtWindow,
+  sgtSearch,
   portofolios,
   portofolioForm,
   portofolioWindow,
