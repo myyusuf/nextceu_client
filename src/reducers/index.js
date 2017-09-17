@@ -10,6 +10,7 @@ import menuReducers from './menu/';
 import loginReducers from './login/';
 import reportReducers from './report/';
 import docentReducers from './docent/';
+import pengampuReducers from './pengampu/';
 import ukmppdReducers from './ukmppd/';
 import bakordikReducers from './bakordik/';
 
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   loginReducers,
   reportReducers,
   docentReducers,
+  pengampuReducers,
   ukmppdReducers,
   bakordikReducers,
 });

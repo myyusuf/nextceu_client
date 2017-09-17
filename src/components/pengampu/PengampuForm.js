@@ -94,7 +94,7 @@ const mapDispatchToProps = dispatch => (
   {
     pengampuFormChanged: (payload) => {
       dispatch({
-        type: 'DOCENT_FORM_CHANGED_LOGIC',
+        type: 'PENGAMPU_FORM_CHANGED_LOGIC',
         payload,
       });
     },

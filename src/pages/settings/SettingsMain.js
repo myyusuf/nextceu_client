@@ -15,6 +15,7 @@ import UploadList from '../../components/upload/UploadList';
 import CptList from '../../components/student/course/cpt/CptList';
 import PftList from '../../components/student/course/pft/PftList';
 import DocentList from '../../components/docent/DocentList';
+import PengampuList from '../../components/pengampu/PengampuList';
 import UptList from '../../components/ukmppd/upt/UptList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
@@ -40,6 +41,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '1-6':
       componentToRender = <DocentList />;
+      break;
+    case '1-7':
+      componentToRender = <PengampuList />;
       break;
     case '2-1':
       componentToRender = <UserList />;
