@@ -136,7 +136,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmpp
         <Row>
           <Col span={24}>
             <div className="StudentDetail-contact">
-              <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>OTHER RESOURCES</span>
+              <span style={{ fontSize: 11, fontWeight: 'bold', color: 'gray' }}>PREREQUISITE</span>
             </div>
           </Col>
         </Row>

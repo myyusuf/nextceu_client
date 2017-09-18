@@ -1,3 +1,5 @@
+import yudisiumTypes from './Yudisium';
+
 export const report = {
   student: {
     initiateCourse: {
@@ -83,3 +85,5 @@ export const upload = {
     },
   },
 };
+
+export const yudisium = yudisiumTypes;
