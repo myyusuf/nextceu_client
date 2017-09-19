@@ -6,7 +6,7 @@ import Constant from '../../Constant';
 import { validateForm } from './ysc_form';
 import * as actions from '../../actions/ActionType';
 
-const YUDISIUMS_URL = `${Constant.serverUrl}/api/yudisiums`;
+const YUDISIUM_CHECKLISTS_URL = `${Constant.serverUrl}/api/yudisiumchecklists`;
 
 const saveYudisiumLogic = createLogic({
   type: actions.yudisium.yudisium.save,
@@ -25,12 +25,12 @@ const saveYudisiumLogic = createLogic({
   },
   process({ getState, action }, dispatch, done) {
     const yscForm = _.mapValues({ ...getState().yudisiumReducers.yscForm }, 'value');
-    dispatch({ type: actions.yudisium.yusdisiumWindow.loadingStart });
+    dispatch({ type: actions.yudisium.yudisiumWindow.loadingStart });
 
-    axios.put(`${YUDISIUMS_URL}/${yscForm.id}`, yscForm)
+    axios.put(`${YUDISIUM_CHECKLISTS_URL}/${yscForm.id}`, yscForm)
       .then(() => {
-        dispatch({ type: actions.yudisium.yusdisiumWindow.loadingFinish });
-        dispatch({ type: actions.yudisium.yusdisiumWindow.close });
+        dispatch({ type: actions.yudisium.yudisiumWindow.loadingFinish });
+        dispatch({ type: actions.yudisium.yudisiumWindow.close });
         notification.success({
           message: 'Update yudisium success',
           description: 'Success saving yudisium',
@@ -49,7 +49,7 @@ const saveYudisiumLogic = createLogic({
         } else {
           errorMessage = err.message;
         }
-        dispatch({ type: actions.yudisium.yusdisiumWindow.loadingFinish });
+        dispatch({ type: actions.yudisium.yudisiumWindow.loadingFinish });
         notification.error({
           message: 'Update role error',
           description: errorMessage,
