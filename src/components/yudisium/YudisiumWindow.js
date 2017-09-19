@@ -42,9 +42,6 @@ const mapDispatchToProps = dispatch => (
   {
     onCancel: () => {
       dispatch({
-        type: actions.yudisium.yscForm.clear,
-      });
-      dispatch({
         type: actions.yudisium.yudisiumWindow.close,
       });
     },

@@ -37,7 +37,7 @@ const loadYscFormLogic = createLogic({
       },
     };
     const validationResult = validateFormFields(yscForm, validate).validationResult;
-    dispatch({ type: action.yudisium.yscForm.setForm, payload: validationResult });
+    dispatch({ type: actions.yudisium.yscForm.setForm, payload: validationResult });
     done();
   },
 });

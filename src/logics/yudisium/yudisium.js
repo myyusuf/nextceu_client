@@ -15,7 +15,7 @@ const fetchYscLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${action.payload.id}`)
       .then(resp => resp.data)
-      .then(student => dispatch({ type: actions.yudisium.yscForm.loadData, payload: student }))
+      .then(ysc => dispatch({ type: actions.yudisium.yscForm.loadData, payload: ysc }))
       .catch((err) => {
         console.error(err);
         notification.error({
@@ -70,7 +70,7 @@ const saveYudisiumLogic = createLogic({
         }
         dispatch({ type: actions.yudisium.yudisiumWindow.loadingFinish });
         notification.error({
-          message: 'Update role error',
+          message: 'Update yudisium error',
           description: errorMessage,
         });
       })
