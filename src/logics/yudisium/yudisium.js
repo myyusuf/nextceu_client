@@ -8,6 +8,25 @@ import * as actions from '../../actions/ActionType';
 
 const YUDISIUM_CHECKLISTS_URL = `${Constant.serverUrl}/api/yudisiumchecklists`;
 
+const fetchYscLogic = createLogic({
+  type: actions.yudisium.yudisium.fetchData,
+  cancelType: actions.yudisium.yudisium.cancelFetchData,
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${action.payload.id}`)
+      .then(resp => resp.data)
+      .then(student => dispatch({ type: actions.yudisium.yscForm.loadData, payload: student }))
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch yudisium checklist error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 const saveYudisiumLogic = createLogic({
   type: actions.yudisium.yudisium.save,
   latest: true,
@@ -60,5 +79,6 @@ const saveYudisiumLogic = createLogic({
 });
 
 export default [
+  fetchYscLogic,
   saveYudisiumLogic,
 ];

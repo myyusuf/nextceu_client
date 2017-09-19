@@ -21,7 +21,7 @@ const yscFormChangedLogic = createLogic({
 const loadYscFormLogic = createLogic({
   type: actions.yudisium.yscForm.loadData,
   process({ getState, action }, dispatch, done) {
-    const ysc = getState().studentReducers.student.YudisiumChecklist; //action.payload;
+    const ysc = action.payload;
     const yscForm = {
       id: {
         value: ysc.id,

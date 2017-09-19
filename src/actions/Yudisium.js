@@ -15,6 +15,8 @@ export default {
     clear: '/yudisium/yscForm/clear',
   },
   yudisium: {
+    fetchData: '/yudisium/yudisium/fetchData',
+    cancelFetchData: '/yudisium/yudisium/cancelFetchData',
     save: '/yudisium/yudisium/save',
   },
 };

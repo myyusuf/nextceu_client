@@ -4,6 +4,7 @@ import notification from 'antd/lib/notification';
 import _ from 'lodash';
 import Constant from '../../Constant';
 import { validateForm } from './student_form';
+import * as actions from '../../actions/ActionType';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
 
@@ -212,6 +213,11 @@ const selectStudentLogic = createLogic({
 
     dispatch({
       type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+    });
+
+    dispatch({
+      type: actions.yudisium.yudisium.fetchData,
+      payload: action.payload,
     });
     done();
   },
