@@ -9,6 +9,7 @@ import loginLogics from './login/';
 import reportLogics from './report/';
 import docentLogics from './docent/';
 import pengampuLogics from './pengampu/';
+import yudisiumLogics from './yudisium/';
 import ukmppdLogics from './ukmppd/';
 import bakordikLogics from './bakordik/';
 
@@ -24,6 +25,7 @@ export default [
   ...reportLogics,
   ...docentLogics,
   ...pengampuLogics,
+  ...yudisiumLogics,
   ...ukmppdLogics,
   ...bakordikLogics,
 ];

@@ -8,13 +8,22 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import { PieChart, Pie, Cell } from 'recharts';
 import Modal from 'antd/lib/modal';
+import YudisiumWindow from '../yudisium/YudisiumWindow';
 import UkmppdWindow from '../ukmppd/UkmppdWindow';
+import * as actions from '../../actions/ActionType';
 import './StudentDetail.css';
 
 const confirm = Modal.confirm;
 const COLORS = ['#5093E1', '#50C14E', '#F65177', '#9DA5BE', '#000'];
 
-const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmppdWindow }) => {
+const StudentDetail = ({
+  student,
+  confirmDelete,
+  editStudent,
+  courses,
+  openYudisiumWindow,
+  openUkmppdWindow,
+}) => {
   const onGoingCount = courses.filter(course => course.status === 1).length;
   const completedCount = courses.filter(course => course.status === 2).length;
   const scheduledCount = courses.filter(course => course.status === 0).length;
@@ -142,11 +151,8 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmpp
         </Row>
         <Row style={{ marginTop: 10 }}>
           <Col span={24}>
-            <Button type="" onClick={() => openUkmppdWindow()}>
+            <Button type="" onClick={() => openYudisiumWindow()}>
               Yudisium 1
-            </Button>
-            <Button type="" onClick={() => openUkmppdWindow()} style={{ marginLeft: 10 }}>
-              Yudisium 2
             </Button>
             <Button type="" onClick={() => openUkmppdWindow()} style={{ marginLeft: 10 }}>
               UKMPPD
@@ -169,6 +175,7 @@ const StudentDetail = ({ student, confirmDelete, editStudent, courses, openUkmpp
           </Col>
         </Row>
 
+        <YudisiumWindow />
         <UkmppdWindow />
       </div>
     );
@@ -193,6 +200,7 @@ StudentDetail.propTypes = {
   ).isRequired,
   confirmDelete: PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
+  openYudisiumWindow: PropTypes.func.isRequired,
   openUkmppdWindow: PropTypes.func.isRequired,
 };
 
@@ -205,6 +213,14 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    openYudisiumWindow: () => {
+      dispatch({
+        type: actions.yudisium.yscForm.loadData,
+      });
+      dispatch({
+        type: actions.yudisium.yudisiumWindow.open,
+      });
+    },
     openUkmppdWindow: () => {
       dispatch({
         type: 'EDIT_UKMPPD_LOGIC',

@@ -33,8 +33,8 @@ YudisiumWindow.propTypes = {
 
 const mapStateToProps = state => (
   {
-    visible: state.userReducers.roleWindow.visible,
-    confirmLoading: state.userReducers.roleWindow.confirmLoading,
+    visible: state.yudisiumReducers.yudisiumWindow.visible,
+    confirmLoading: state.yudisiumReducers.yudisiumWindow.confirmLoading,
   }
 );
 
@@ -45,12 +45,12 @@ const mapDispatchToProps = dispatch => (
         type: actions.yudisium.yscForm.clear,
       });
       dispatch({
-        type: actions.yudisium.yudisiumWindow.open,
+        type: actions.yudisium.yudisiumWindow.close,
       });
     },
     onOk: () => {
       dispatch({
-        type: actions.yudisium.yscForm.save,
+        type: actions.yudisium.yudisium.save,
       });
       dispatch({
         type: actions.yudisium.yudisiumWindow.close,
