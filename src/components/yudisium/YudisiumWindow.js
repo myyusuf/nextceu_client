@@ -23,6 +23,7 @@ const YudisiumWindow = ({
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    width={580}
   >
     <Tabs defaultActiveKey="1" style={{ minHeight: 335 }}>
       <TabPane tab="Checklist" key="1">

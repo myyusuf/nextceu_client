@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Table from 'antd/lib/table';
+import numeral from 'numeral';
 
 const Column = Table.Column;
 
@@ -15,18 +16,41 @@ const PortofolioCompletion = ({ portofolioCompletions, loading }) => {
           <Table dataSource={portofolioCompletions} style={{ marginTop: 20 }} rowKey="id" loading={loading} size="middle">
             <Column
               title="Title"
-              dataIndex="title"
+              dataIndex="course.title"
             />
             <Column
               title="Department"
-              dataIndex="Department.name"
+              dataIndex="course.Department.name"
             />
             <Column
               title="Total"
               key="total"
               render={(text, record) => (
-                record.portofolioCompletions.length
+                record.portofolios.length
               )}
+            />
+            <Column
+              title="Competed"
+              key="completed"
+              render={(text, record) => (
+                record.portofolios.length > 0 ?
+                record.portofolios.filter(portofolio => (portofolio.completed)).length :
+                '-'
+              )}
+            />
+            <Column
+              title="Completion"
+              key="cmpletions"
+              render={(text, record) => {
+                if (record.portofolios.length > 0) {
+                  const percentage =
+                  (record.portofolios.filter(portofolio => (portofolio.completed)).length
+                  / record.portofolios.length) * 100;
+                  return `${numeral(percentage).format('0,0')}%`;
+                }
+
+                return '-';
+              }}
             />
           </Table>
         </Col>
