@@ -19,4 +19,11 @@ export default {
     cancelFetchData: '/yudisium/yudisium/cancelFetchData',
     save: '/yudisium/yudisium/save',
   },
+  portofolioCompletion: {
+    fetchPortofolioCompletions: '/yudisium/portofolioCompletion/fetchPortofolioCompletions',
+    cancelFetchPortofolioCompletions: '/yudisium/portofolioCompletion/cancelFetchPortofolioCompletions',
+    fetchPortofolioCompletionsSuccess: '/yudisium/portofolioCompletion/fetchPortofolioCompletionsSuccess',
+    startLoading: '/yudisium/portofolioCompletion/startLoading',
+    finishLoading: '/yudisium/portofolioCompletion/finishLoading',
+  },
 };

@@ -2,9 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
+import Tabs from 'antd/lib/tabs';
 import YudisiumChecklistForm from './YscForm';
+import PortofolioCompletion from './PortofolioCompletion';
 
 import * as actions from '../../actions/ActionType';
+
+const TabPane = Tabs.TabPane;
 
 const YudisiumWindow = ({
   visible,
@@ -20,7 +24,14 @@ const YudisiumWindow = ({
     confirmLoading={confirmLoading}
     onCancel={onCancel}
   >
-    <YudisiumChecklistForm />
+    <Tabs defaultActiveKey="1" style={{ minHeight: 335 }}>
+      <TabPane tab="Checklist" key="1">
+        <YudisiumChecklistForm />
+      </TabPane>
+      <TabPane tab="Portofolios" key="2">
+        <PortofolioCompletion />
+      </TabPane>
+    </Tabs>
   </Modal>
 );
 

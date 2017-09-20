@@ -218,6 +218,9 @@ const mapDispatchToProps = dispatch => (
         type: actions.yudisium.yscForm.loadData,
       });
       dispatch({
+        type: actions.yudisium.portofolioCompletion.fetchPortofolioCompletions,
+      });
+      dispatch({
         type: actions.yudisium.yudisiumWindow.open,
       });
     },

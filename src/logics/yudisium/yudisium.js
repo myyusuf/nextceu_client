@@ -27,6 +27,28 @@ const fetchYscLogic = createLogic({
   },
 });
 
+const fetchPortofolioCompletionsLogic = createLogic({
+  type: actions.yudisium.portofolioCompletion.fetchPortofolioCompletions,
+  cancelType: actions.yudisium.portofolioCompletion.cancelFetchPortofolioCompletions,
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const studentId = getState().studentReducers.student.id;
+    axios.get(`${YUDISIUM_CHECKLISTS_URL}/portofolios/${studentId}`)
+      .then(resp => resp.data)
+      .then(portofolioCompletions => dispatch({
+        type: actions.yudisium.portofolioCompletion.fetchPortofolioCompletionsSuccess,
+        payload: portofolioCompletions }))
+      .catch((err) => {
+        console.error(err);
+        notification.error({
+          message: 'Fetch yudisium checklist error',
+          description: 'Connection error.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
 const saveYudisiumLogic = createLogic({
   type: actions.yudisium.yudisium.save,
   latest: true,
@@ -80,5 +102,6 @@ const saveYudisiumLogic = createLogic({
 
 export default [
   fetchYscLogic,
+  fetchPortofolioCompletionsLogic,
   saveYudisiumLogic,
 ];
