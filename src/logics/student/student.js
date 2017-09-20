@@ -215,13 +215,6 @@ const selectStudentLogic = createLogic({
       type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
     });
 
-    dispatch({
-      type: actions.yudisium.yscForm.clear,
-    });
-    dispatch({
-      type: actions.yudisium.yudisium.fetchData,
-      payload: action.payload,
-    });
     done();
   },
 });

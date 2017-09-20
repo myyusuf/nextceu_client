@@ -13,7 +13,8 @@ const fetchYscLogic = createLogic({
   cancelType: actions.yudisium.yudisium.cancelFetchData,
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${action.payload.id}`)
+    const studentId = getState().studentReducers.student.id;
+    axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${studentId}`)
       .then(resp => resp.data)
       .then(ysc => dispatch({ type: actions.yudisium.yscForm.loadData, payload: ysc }))
       .catch((err) => {
