@@ -11,6 +11,7 @@ const validate = (key, value) => {
       result = validateLength(key, value, 3);
       break;
     case 'eventDate':
+    case 'eventTime':
       result = validateExist(key, value);
       break;
     default:
@@ -51,6 +52,9 @@ const loadAssistanceFormLogic = createLogic({
       },
       eventDate: {
         value: moment(assistance.eventDate),
+      },
+      eventTime: {
+        value: moment(assistance.eventTime, 'hh:mm:ss a'),
       },
     };
     const validationResult = {};

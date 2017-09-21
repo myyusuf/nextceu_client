@@ -3,6 +3,7 @@ const defaultState = {
   code: {},
   name: {},
   eventDate: {},
+  eventTime: {},
 };
 
 const assistanceForm = (state = defaultState, action) => {

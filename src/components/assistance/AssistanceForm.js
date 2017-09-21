@@ -6,6 +6,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
+import TimePicker from 'antd/lib/time-picker';
 
 const FormItem = Form.Item;
 
@@ -74,6 +75,27 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
         </FormItem>
       </Col>
     </Row>
+    <Row>
+      <Col span={12}>
+        <FormItem
+          label="Time"
+          colon={false}
+          validateStatus={assistanceForm.eventTime.validateStatus}
+          help={assistanceForm.eventTime.errorMsg}
+        >
+          <TimePicker
+            value={assistanceForm.eventTime.value}
+            onChange={(date) => {
+              assistanceFormChanged({
+                key: 'eventTime',
+                value: date,
+              });
+            }}
+            style={{ width: '100%' }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
   </Form>
 );
 
@@ -83,6 +105,7 @@ AssistanceForm.propTypes = {
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     eventDate: PropTypes.instanceOf(Date).isRequired,
+    eventTime: PropTypes.shape.isRequired,
   }).isRequired,
 };
 
