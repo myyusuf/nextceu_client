@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import studentReducers from './student/';
 import hospitalReducers from './hospital/';
 import seminarReducers from './seminar/';
+import assistanceReducers from './assistance/';
 import uploadReducers from './upload/';
 import userReducers from './user/';
 import settingsReducers from './settings/';
@@ -18,6 +19,7 @@ import bakordikReducers from './bakordik/';
 const rootReducer = combineReducers({
   studentReducers,
   hospitalReducers,
+  assistanceReducers,
   seminarReducers,
   uploadReducers,
   userReducers,

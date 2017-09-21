@@ -1,6 +1,7 @@
 import settingsLogics from './settings/';
 import studentLogics from './student/';
 import hospitalLogics from './hospital/';
+import assistanceLogics from './assistance/';
 import seminarLogics from './seminar/';
 import userLogics from './user/';
 import departmentLogics from './department/';
@@ -17,6 +18,7 @@ export default [
   ...settingsLogics,
   ...studentLogics,
   ...hospitalLogics,
+  ...assistanceLogics,
   ...seminarLogics,
   ...userLogics,
   ...departmentLogics,

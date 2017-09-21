@@ -12,11 +12,11 @@ import Constant from '../../Constant';
 
 const Column = Table.Column;
 
-const SEMINAR_UPLOAD_URL = `${Constant.serverUrl}/api/assistanceupload`;
+const ASSISTANCE_UPLOAD_URL = `${Constant.serverUrl}/api/assistanceupload`;
 
 const uploadProps = {
   name: 'assistanceFile',
-  action: SEMINAR_UPLOAD_URL,
+  action: ASSISTANCE_UPLOAD_URL,
   headers: {
     authorization: 'authorization-text',
   },
@@ -41,7 +41,7 @@ class ParticipantList extends Component {
       assistanceId,
     } = this.props;
 
-    uploadProps.action = `${SEMINAR_UPLOAD_URL}/${assistanceId}`;
+    uploadProps.action = `${ASSISTANCE_UPLOAD_URL}/${assistanceId}`;
     const buttonDisabled = assistanceId === undefined;
     uploadProps.onChange = (info) => {
       if (info.file.status !== 'uploading') {
