@@ -7,12 +7,14 @@ import Table from 'antd/lib/table';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
+import DatePicker from 'antd/lib/date-picker';
 import moment from 'moment';
 
 import SeminarWindow from './SeminarWindow';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
+const RangePicker = DatePicker.RangePicker;
 
 class SeminarList extends Component {
   componentWillMount() {
@@ -31,6 +33,8 @@ class SeminarList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      dateRange,
+      dateRangeChanged,
       pageChanged,
       loading,
       selectedRowKeys,
@@ -57,7 +61,15 @@ class SeminarList extends Component {
               placeholder="Code or Name"
             />
           </Col>
-          <Col span={16}>
+          <Col span={11}>
+            <RangePicker
+              value={dateRange}
+              onChange={(date) => {
+                dateRangeChanged(date);
+              }}
+            />
+          </Col>
+          <Col span={5}>
             <span>
               <Button
                 shape="circle"
@@ -145,6 +157,8 @@ SeminarList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  dateRange: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  dateRangeChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   seminars: PropTypes.arrayOf(PropTypes.shape).isRequired,
@@ -160,6 +174,7 @@ const mapStateToProps = state => (
     seminars: state.seminarReducers.seminars.rows,
     count: state.seminarReducers.seminars.count,
     searchText: state.seminarReducers.seminarSearch.searchText,
+    dateRange: state.seminarReducers.seminarSearch.dateRange,
     pageSize: state.seminarReducers.seminarSearch.pageSize,
     currentPage: state.seminarReducers.seminarSearch.currentPage,
     loading: state.seminarReducers.seminarSearch.loading,
@@ -188,6 +203,12 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'SEMINAR_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    dateRangeChanged: value => (
+      dispatch({
+        type: 'SEMINAR_SEARCH_DATE_RANGE_CHANGED',
         payload: value,
       })
     ),
