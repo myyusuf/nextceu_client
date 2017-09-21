@@ -55,6 +55,13 @@ class SiderMenu extends Component {
             <Icon type="solution" className={selectedMenu === 'seminars' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
           </div>
         </Link>
+        <Link to="/assistances" onClick={() => selectSiderMenu('seminars')}>
+          <div
+            className={selectedMenu === 'assistances' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}
+          >
+            <Icon type="schedule" className={selectedMenu === 'assistances' ? 'SiderMenu-box-icon-selected' : 'SiderMenu-box-icon'} />
+          </div>
+        </Link>
         <Link to="/reports" onClick={() => selectSiderMenu('reports')}>
           <div
             className={selectedMenu === 'reports' ? 'SiderMenu-box-selected' : 'SiderMenu-box'}

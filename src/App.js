@@ -8,6 +8,7 @@ import 'antd/dist/antd.css';
 import './App.css';
 
 import StudentMain from './pages/student/StudentMain';
+import AssistanceMain from './pages/assistance/AssistanceMain';
 import SeminarMain from './pages/seminar/SeminarMain';
 import HospitalMain from './pages//hospital/HospitalMain';
 import SettingsMain from './pages/settings/SettingsMain';
@@ -24,6 +25,7 @@ class App extends Component {
         <Route exact path="/" component={StudentMain} />
         <Route path="/hospitals" component={HospitalMain} />
         <Route path="/seminars" component={SeminarMain} />
+        <Route path="/assistances" component={AssistanceMain} />
         <Route path="/settings" component={SettingsMain} />
         <Route path="/reports" component={ReportMain} />
       </Workspace>
