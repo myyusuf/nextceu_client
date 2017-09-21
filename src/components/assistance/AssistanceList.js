@@ -186,35 +186,35 @@ const mapDispatchToProps = dispatch => (
   {
     fetchAssistances: () => {
       dispatch({
-        type: 'FETCH_SEMINARS_LOGIC',
+        type: 'FETCH_ASSISTANCES_LOGIC',
       });
     },
     openAddWindow: () => (
       dispatch({
-        type: 'EDIT_SEMINAR_LOGIC',
+        type: 'EDIT_ASSISTANCE_LOGIC',
       })
     ),
     openEditWindow: record => (
       dispatch({
-        type: 'LOAD_SEMINAR_TO_FORM_LOGIC',
+        type: 'LOAD_ASSISTANCE_TO_FORM_LOGIC',
         payload: record,
       })
     ),
     searchTextChanged: value => (
       dispatch({
-        type: 'SEMINAR_SEARCH_TEXT_CHANGED',
+        type: 'ASSISTANCE_SEARCH_TEXT_CHANGED',
         payload: value,
       })
     ),
     dateRangeChanged: value => (
       dispatch({
-        type: 'SEMINAR_SEARCH_DATE_RANGE_CHANGED',
+        type: 'ASSISTANCE_SEARCH_DATE_RANGE_CHANGED',
         payload: value,
       })
     ),
     pageChanged: currentPage => (
       dispatch({
-        type: 'SEMINAR_PAGE_CHANGED_LOGIC',
+        type: 'ASSISTANCE_PAGE_CHANGED_LOGIC',
         payload: currentPage,
       })
     ),
@@ -224,7 +224,7 @@ const mapDispatchToProps = dispatch => (
         content: 'This action cannot be undone',
         onOk() {
           dispatch({
-            type: 'DELETE_SEMINAR_LOGIC',
+            type: 'DELETE_ASSISTANCE_LOGIC',
             payload: record,
           });
         },
@@ -235,7 +235,7 @@ const mapDispatchToProps = dispatch => (
     ),
     rowKeysChanged: (rowKeys, selectedRows) => (
       dispatch({
-        type: 'SEMINAR_SELECT_CHANGED',
+        type: 'ASSISTANCE_SELECT_CHANGED',
         payload: { rowKeys, selectedRows },
       })
     ),

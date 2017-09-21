@@ -12,7 +12,7 @@ const assistanceForm = (state = defaultState, action) => {
       const newState = { ...state, ...action.payload };
       return newState;
     }
-    case 'LOAD_ASSISTANCE_': {
+    case 'LOAD_ASSISTANCE': {
       return action.payload;
     }
     case 'CLEAR_ASSISTANCE_FORM':
