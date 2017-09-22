@@ -4,6 +4,10 @@ const defaultState = {
   name: {},
   eventDate: {},
   eventTime: {},
+  mainTutor: {},
+  secondTutor: {},
+  thirdTutor: {},
+  facilitator: {},
 };
 
 const assistanceForm = (state = defaultState, action) => {

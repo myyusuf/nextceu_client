@@ -189,17 +189,25 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_ASSISTANCES_LOGIC',
       });
     },
-    openAddWindow: () => (
+    openAddWindow: () => {
       dispatch({
         type: 'EDIT_ASSISTANCE_LOGIC',
-      })
-    ),
-    openEditWindow: record => (
+      });
+
+      dispatch({
+        type: 'FETCH_TUTORS_FOR_SELECT_LOGIC',
+      });
+    },
+    openEditWindow: (record) => {
       dispatch({
         type: 'LOAD_ASSISTANCE_TO_FORM_LOGIC',
         payload: record,
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_TUTORS_FOR_SELECT_LOGIC',
+      });
+    },
     searchTextChanged: value => (
       dispatch({
         type: 'ASSISTANCE_SEARCH_TEXT_CHANGED',

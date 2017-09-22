@@ -6,6 +6,7 @@ import Constant from '../../Constant';
 import { validateLength } from '../../utils/validation';
 
 const TUTORS_URL = `${Constant.serverUrl}/api/tutors`;
+const TUTORS_FOR_SELECT_URL = `${Constant.serverUrl}/api/tutorsforselect`;
 
 const validate = (key, value) => {
   let result = null;
@@ -51,7 +52,7 @@ const fetchTutorsForSelectLogic = createLogic({
   cancelType: 'CANCEL_FETCH_TUTORS_FOR_SELECT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(TUTORS_URL)
+    axios.get(TUTORS_FOR_SELECT_URL)
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_TUTORS_FOR_SELECT_SUCCESS', payload: data });

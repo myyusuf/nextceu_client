@@ -40,6 +40,10 @@ const loadAssistanceFormLogic = createLogic({
   type: 'LOAD_ASSISTANCE_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const assistance = action.payload;
+    const mainTutorId = assistance.mainTutorId ? String(assistance.mainTutorId) : undefined;
+    const secondTutorId = assistance.secondTutorId ? String(assistance.secondTutorId) : undefined;
+    const thirdTutorId = assistance.thirdTutorId ? String(assistance.thirdTutorId) : undefined;
+    const facilitatorId = assistance.facilitatorId ? String(assistance.facilitatorId) : undefined;
     const assistanceForm = {
       id: {
         value: assistance.id,
@@ -55,6 +59,18 @@ const loadAssistanceFormLogic = createLogic({
       },
       eventTime: {
         value: moment(assistance.eventTime, 'hh:mm:ss a'),
+      },
+      mainTutor: {
+        value: mainTutorId,
+      },
+      secondTutor: {
+        value: secondTutorId,
+      },
+      thirdTutor: {
+        value: thirdTutorId,
+      },
+      facilitator: {
+        value: facilitatorId,
       },
     };
     const validationResult = {};
