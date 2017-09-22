@@ -8,6 +8,10 @@ const defaultState = {
   secondTutor: {},
   thirdTutor: {},
   facilitator: {},
+  mainTutorPresent: {},
+  secondTutorPresent: {},
+  thirdTutorPresent: {},
+  facilitatorPresent: {},
 };
 
 const assistanceForm = (state = defaultState, action) => {

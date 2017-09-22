@@ -8,6 +8,7 @@ import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 import TimePicker from 'antd/lib/time-picker';
 import Tabs from 'antd/lib/tabs';
+import Checkbox from 'antd/lib/checkbox';
 import TutorSelect from '../tutor/TutorSelect';
 
 const FormItem = Form.Item;
@@ -105,7 +106,7 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
       </TabPane>
       <TabPane tab="Tutors" key="2">
         <Row>
-          <Col span={24}>
+          <Col span={16}>
             <FormItem
               label="Utama"
               colon={false}
@@ -114,7 +115,7 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
             >
               <TutorSelect
                 value={assistanceForm.mainTutor.value}
-                onSelect={(value) => {
+                onChange={(value) => {
                   assistanceFormChanged({
                     key: 'mainTutor',
                     value,
@@ -123,9 +124,30 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
               />
             </FormItem>
           </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={assistanceForm.mainTutorPresent.validateStatus}
+              help={assistanceForm.mainTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={assistanceForm.mainTutorPresent.value}
+                onChange={(e) => {
+                  assistanceFormChanged({
+                    key: 'mainTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
+            </FormItem>
+          </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={16}>
             <FormItem
               label="Cadangan"
               colon={false}
@@ -134,7 +156,7 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
             >
               <TutorSelect
                 value={assistanceForm.secondTutor.value}
-                onSelect={(value) => {
+                onChange={(value) => {
                   assistanceFormChanged({
                     key: 'secondTutor',
                     value,
@@ -143,9 +165,30 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
               />
             </FormItem>
           </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={assistanceForm.secondTutorPresent.validateStatus}
+              help={assistanceForm.secondTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={assistanceForm.secondTutorPresent.value}
+                onChange={(e) => {
+                  assistanceFormChanged({
+                    key: 'secondTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
+            </FormItem>
+          </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={16}>
             <FormItem
               label="Siaga"
               colon={false}
@@ -154,7 +197,7 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
             >
               <TutorSelect
                 value={assistanceForm.thirdTutor.value}
-                onSelect={(value) => {
+                onChange={(value) => {
                   assistanceFormChanged({
                     key: 'thirdTutor',
                     value,
@@ -163,9 +206,30 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
               />
             </FormItem>
           </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={assistanceForm.thirdTutorPresent.validateStatus}
+              help={assistanceForm.thirdTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={assistanceForm.thirdTutorPresent.value}
+                onChange={(e) => {
+                  assistanceFormChanged({
+                    key: 'thirdTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
+            </FormItem>
+          </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={16}>
             <FormItem
               label="Pendamping"
               colon={false}
@@ -174,13 +238,34 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
             >
               <TutorSelect
                 value={assistanceForm.facilitator.value}
-                onSelect={(value) => {
+                onChange={(value) => {
                   assistanceFormChanged({
                     key: 'facilitator',
                     value,
                   });
                 }}
               />
+            </FormItem>
+          </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={assistanceForm.facilitatorPresent.validateStatus}
+              help={assistanceForm.facilitatorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={assistanceForm.facilitatorPresent.value}
+                onChange={(e) => {
+                  assistanceFormChanged({
+                    key: 'facilitatorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
             </FormItem>
           </Col>
         </Row>

@@ -72,6 +72,18 @@ const loadAssistanceFormLogic = createLogic({
       facilitator: {
         value: facilitatorId,
       },
+      mainTutorPresent: {
+        value: assistance.mainTutorPresent,
+      },
+      secondTutorPresent: {
+        value: assistance.secondTutorPresent,
+      },
+      thirdTutorPresent: {
+        value: assistance.thirdTutorPresent,
+      },
+      facilitatorPresent: {
+        value: assistance.facilitatorPresent,
+      },
     };
     const validationResult = {};
     const keys = _.keys(assistanceForm);

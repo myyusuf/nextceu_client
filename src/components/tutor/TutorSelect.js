@@ -5,12 +5,13 @@ import Select from 'antd/lib/select';
 
 const Option = Select.Option;
 
-const TutorSelect = ({ tutors, value, onSelect, style }) => (
+const TutorSelect = ({ tutors, value, onChange, style }) => (
   <Select
     placeholder="Select Tutor"
-    onSelect={onSelect}
+    onChange={onChange}
     value={value}
     style={style}
+    allowClear
   >
     {tutors.map(tutor => (
       <Option value={String(tutor.id)}>{tutor.name}</Option>
@@ -21,7 +22,7 @@ const TutorSelect = ({ tutors, value, onSelect, style }) => (
 TutorSelect.propTypes = {
   tutors: PropTypes.arrayOf(PropTypes.shape).isRequired,
   value: PropTypes.number.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   style: PropTypes.shape(),
 };
 
