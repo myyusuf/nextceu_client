@@ -12,6 +12,7 @@ import loginReducers from './login/';
 import reportReducers from './report/';
 import docentReducers from './docent/';
 import pengampuReducers from './pengampu/';
+import tutorReducers from './tutor/';
 import yudisiumReducers from './yudisium/';
 import ukmppdReducers from './ukmppd/';
 import bakordikReducers from './bakordik/';
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   reportReducers,
   docentReducers,
   pengampuReducers,
+  tutorReducers,
   yudisiumReducers,
   ukmppdReducers,
   bakordikReducers,

@@ -30,6 +30,8 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
         <TreeNode title="Kompre Types" key="1-5" />
         <TreeNode title="Docents" key="1-6" />
         <TreeNode title="Pengampu" key="1-7" />
+        <TreeNode title="Tutor" key="1-8" />
+        <TreeNode title="Supervisor" key="1-9" />
       </TreeNode>
       <TreeNode title="Security" key="2">
         <TreeNode title="User" key="2-1" />

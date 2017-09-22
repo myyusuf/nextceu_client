@@ -88,10 +88,6 @@ class TutorList extends Component {
                 key="name"
               />
               <Column
-                title="Department"
-                dataIndex="Department.name"
-              />
-              <Column
                 title="Action"
                 key="action"
                 render={(text, record) => (
