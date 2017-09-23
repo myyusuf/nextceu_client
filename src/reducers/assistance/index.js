@@ -6,6 +6,7 @@ import assistanceWindow from './assistance_window';
 import assistanceSearch from './assistance_search';
 import participantSearch from './participant_search';
 import assistanceSelection from './assistance_selection';
+import studentAssistances from './student_assistances';
 
 const assistanceReducer = combineReducers({
   assistances,
@@ -15,6 +16,7 @@ const assistanceReducer = combineReducers({
   assistanceSearch,
   participantSearch,
   assistanceSelection,
+  studentAssistances,
 });
 
 export default assistanceReducer;

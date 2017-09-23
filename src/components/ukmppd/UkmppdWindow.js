@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'antd/lib/modal';
-// import Tabs from 'antd/lib/tabs';
+import Tabs from 'antd/lib/tabs';
 import Button from 'antd/lib/button';
+import AssistanceList from './AssistanceList';
 import KompreList from './KompreList';
 
-// const TabPane = Tabs.TabPane;
+const TabPane = Tabs.TabPane;
 
 const UkmppdWindow = ({
   visible,
@@ -31,7 +32,14 @@ const UkmppdWindow = ({
       </Button>,
     ]}
   >
-    <KompreList />
+    <Tabs defaultActiveKey="1" style={{ marginTop: 0, height: 500 }}>
+      <TabPane tab="Assistances" key="1">
+        <AssistanceList />
+      </TabPane>
+      <TabPane tab="Scores" key="2">
+        <KompreList />
+      </TabPane>
+    </Tabs>
   </Modal>
 );
 

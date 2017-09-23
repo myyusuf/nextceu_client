@@ -36,7 +36,7 @@ class KompreList extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Tabs defaultActiveKey="1" style={{ marginTop: 0, height: 500 }}>
+            <Tabs type="card" defaultActiveKey="1" style={{ marginTop: 10, height: 500 }}>
               <TabPane tab="Pre kompre" key="1">
                 <ScoreList kompreType="K001" />
               </TabPane>

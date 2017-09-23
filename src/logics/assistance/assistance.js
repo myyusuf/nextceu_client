@@ -6,6 +6,7 @@ import Constant from '../../Constant';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const ASSISTANCES_URL = `${Constant.serverUrl}/api/assistances`;
+const STUDENT_ASSISTANCES_URL = `${Constant.serverUrl}/api/assistanceparticipants`;
 
 const validate = (key, value) => {
   let result = null;
@@ -44,6 +45,31 @@ const fetchAssistancesLogic = createLogic({
       .catch((err) => {
         console.error(err);
         dispatch({ type: 'ASSISTANCE_LOADING_FINISH' });
+        notification.error({
+          message: 'Fetch assistances error',
+          description: 'Please check internet connection.',
+        });
+      })
+      .then(() => done());
+  },
+});
+
+const fetchStudentAssistancesLogic = createLogic({
+  type: 'FETCH_STUDENT_ASSISTANCES_LOGIC',
+  cancelType: 'CANCEL_FETCH_STUDENT_ASSISTANCES_LOGIC',
+  latest: true,
+  process({ getState, action }, dispatch, done) {
+    const studentId = getState().studentReducers.student.id;
+    dispatch({ type: 'STUDENT_ASSISTANCE_LOADING_START' });
+    axios.get(`${STUDENT_ASSISTANCES_URL}/bystudent/${studentId}`)
+      .then(resp => resp.data)
+      .then((data) => {
+        dispatch({ type: 'STUDENT_ASSISTANCE_LOADING_FINISH' });
+        dispatch({ type: 'FETCH_STUDENT_ASSISTANCES_SUCCESS', payload: data });
+      })
+      .catch((err) => {
+        console.error(err);
+        dispatch({ type: 'STUDENT_ASSISTANCE_LOADING_FINISH' });
         notification.error({
           message: 'Fetch assistances error',
           description: 'Please check internet connection.',
@@ -204,6 +230,7 @@ const assistancePageChangedLogic = createLogic({
 
 export default [
   fetchAssistancesLogic,
+  fetchStudentAssistancesLogic,
   editAssistanceLogic,
   cancelAddAssistanceLogic,
   saveAssistanceLogic,
