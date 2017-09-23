@@ -11,6 +11,7 @@ import reportLogics from './report/';
 import docentLogics from './docent/';
 import pengampuLogics from './pengampu/';
 import tutorLogics from './tutor/';
+import supervisorLogics from './supervisor/';
 import yudisiumLogics from './yudisium/';
 import ukmppdLogics from './ukmppd/';
 import bakordikLogics from './bakordik/';
@@ -29,6 +30,7 @@ export default [
   ...docentLogics,
   ...pengampuLogics,
   ...tutorLogics,
+  ...supervisorLogics,
   ...yudisiumLogics,
   ...ukmppdLogics,
   ...bakordikLogics,

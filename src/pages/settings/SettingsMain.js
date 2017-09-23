@@ -18,6 +18,7 @@ import SgtList from '../../components/student/course/sgt/SgtList';
 import DocentList from '../../components/docent/DocentList';
 import PengampuList from '../../components/pengampu/PengampuList';
 import TutorList from '../../components/tutor/TutorList';
+import SupervisorList from '../../components/supervisor/SupervisorList';
 import UptList from '../../components/ukmppd/upt/UptList';
 
 const SettingsMain = ({ selectedMenuKey }) => {
@@ -52,6 +53,9 @@ const SettingsMain = ({ selectedMenuKey }) => {
       break;
     case '1-8':
       componentToRender = <TutorList />;
+      break;
+    case '1-9':
+      componentToRender = <SupervisorList />;
       break;
     case '2-1':
       componentToRender = <UserList />;

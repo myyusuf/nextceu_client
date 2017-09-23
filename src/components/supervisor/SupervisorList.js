@@ -145,7 +145,7 @@ const mapDispatchToProps = dispatch => (
   {
     fetchSupervisors: () => {
       dispatch({
-        type: 'FETCH_SUPERVISOR_LOGIC',
+        type: 'FETCH_SUPERVISORS_LOGIC',
       });
     },
     openAddWindow: () => (
