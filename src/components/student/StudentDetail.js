@@ -183,6 +183,10 @@ const StudentDetail = ({
 
   return (
     <div className="StudentDetail-container">
+      <img
+        src="https://s3-ap-southeast-1.amazonaws.com/admin.ceufkumi.id/static/images/empty_pages/Empty_student_detail1.png?v=1"
+        style={{ width: 363 }}
+      />
     </div>
   );
 };

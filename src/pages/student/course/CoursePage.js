@@ -91,7 +91,11 @@ const CoursePage = ({
   }
 
   return (
-    <div>
+    <div className="CoursePage-container" style={{ backgroundColor: '#f9f9f9' }}>
+      <img
+        src="https://s3-ap-southeast-1.amazonaws.com/admin.ceufkumi.id/static/images/empty_pages/Empty_student_detail2.png"
+        style={{ width: 318, marginTop: 25 }}
+      />
     </div>
   );
 };
