@@ -6,6 +6,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
+import SupervisorSelect from '../supervisor/SupervisorSelect';
 
 const FormItem = Form.Item;
 
@@ -70,6 +71,46 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
               });
             }}
             style={{ width: '100%' }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Speaker"
+          colon={false}
+          validateStatus={seminarForm.speaker.validateStatus}
+          help={seminarForm.speaker.errorMsg}
+        >
+          <SupervisorSelect
+            value={seminarForm.speaker.value}
+            onChange={(value) => {
+              seminarFormChanged({
+                key: 'speaker',
+                value,
+              });
+            }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <FormItem
+          label="Moderator"
+          colon={false}
+          validateStatus={seminarForm.moderator.validateStatus}
+          help={seminarForm.moderator.errorMsg}
+        >
+          <SupervisorSelect
+            value={seminarForm.moderator.value}
+            onChange={(value) => {
+              seminarFormChanged({
+                key: 'moderator',
+                value,
+              });
+            }}
           />
         </FormItem>
       </Col>

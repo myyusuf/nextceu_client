@@ -3,6 +3,8 @@ const defaultState = {
   code: {},
   name: {},
   eventDate: {},
+  speaker: {},
+  moderator: {},
 };
 
 const seminarForm = (state = defaultState, action) => {

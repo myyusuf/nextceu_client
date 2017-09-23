@@ -39,6 +39,8 @@ const loadSeminarFormLogic = createLogic({
   type: 'LOAD_SEMINAR_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const seminar = action.payload;
+    const speakerId = seminar.speakerId ? String(seminar.speakerId) : undefined;
+    const moderatorId = seminar.moderatorId ? String(seminar.moderatorId) : undefined;
     const seminarForm = {
       id: {
         value: seminar.id,
@@ -51,6 +53,12 @@ const loadSeminarFormLogic = createLogic({
       },
       eventDate: {
         value: moment(seminar.eventDate),
+      },
+      speaker: {
+        value: speakerId,
+      },
+      moderator: {
+        value: moderatorId,
       },
     };
     const validationResult = {};
