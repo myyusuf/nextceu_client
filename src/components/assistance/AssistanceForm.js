@@ -61,7 +61,7 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
             </FormItem>
           </Col>
         </Row>
-        <Row>
+        <Row gutter={10}>
           <Col span={12}>
             <FormItem
               label="Date"
@@ -81,8 +81,6 @@ const AssistanceForm = ({ assistanceForm, assistanceFormChanged }) => (
               />
             </FormItem>
           </Col>
-        </Row>
-        <Row>
           <Col span={12}>
             <FormItem
               label="Time"

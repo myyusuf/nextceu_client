@@ -189,17 +189,25 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_SEMINARS_LOGIC',
       });
     },
-    openAddWindow: () => (
+    openAddWindow: () => {
       dispatch({
         type: 'EDIT_SEMINAR_LOGIC',
-      })
-    ),
-    openEditWindow: record => (
+      });
+
+      dispatch({
+        type: 'FETCH_SUPERVISORS_FOR_SELECT_LOGIC',
+      });
+    },
+    openEditWindow: (record) => {
       dispatch({
         type: 'LOAD_SEMINAR_TO_FORM_LOGIC',
         payload: record,
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_SUPERVISORS_FOR_SELECT_LOGIC',
+      });
+    },
     searchTextChanged: value => (
       dispatch({
         type: 'SEMINAR_SEARCH_TEXT_CHANGED',

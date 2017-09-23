@@ -11,6 +11,7 @@ const validate = (key, value) => {
       result = validateLength(key, value, 3);
       break;
     case 'eventDate':
+    case 'eventTime':
       result = validateExist(key, value);
       break;
     default:
@@ -53,6 +54,9 @@ const loadSeminarFormLogic = createLogic({
       },
       eventDate: {
         value: moment(seminar.eventDate),
+      },
+      eventTime: {
+        value: moment(seminar.eventTime, 'hh:mm:ss a'),
       },
       speaker: {
         value: speakerId,

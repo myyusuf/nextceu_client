@@ -3,6 +3,7 @@ const defaultState = {
   code: {},
   name: {},
   eventDate: {},
+  eventTime: {},
   speaker: {},
   moderator: {},
 };
