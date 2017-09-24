@@ -28,6 +28,7 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
         <TreeNode title="Initiate" key="3-1" />
         <TreeNode title="Completed" key="3-2" />
         <TreeNode title="Pre Yudisium" key="3-3" />
+        <TreeNode title="Assistance" key="3-4" />
       </TreeNode>
       <TreeNode title="Schedules" key="2">
         <TreeNode title="Pre test" key="2-1" />

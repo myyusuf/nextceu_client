@@ -14,6 +14,11 @@ import levelCourseSearch from './student/level_course_search';
 import levelCourseSelection from './student/level_course_selection';
 import levelXptForm from './student/level_xpt_form';
 import levelXptWindow from './student/level_xpt_window';
+import assistanceCourses from './student/assistance_courses';
+import assistanceCourseSearch from './student/assistance_course_search';
+import assistanceCourseSelection from './student/assistance_course_selection';
+import assistanceXptForm from './student/assistance_xpt_form';
+import assistanceXptWindow from './student/assistance_xpt_window';
 import completedCourses from './student/completed_courses';
 import completedCourseSearch from './student/completed_course_search';
 import completedCourseSelection from './student/completed_course_selection';
@@ -40,6 +45,11 @@ const reportReducer = combineReducers({
   levelCourseSelection,
   levelXptForm,
   levelXptWindow,
+  assistanceCourses,
+  assistanceCourseSearch,
+  assistanceCourseSelection,
+  assistanceXptForm,
+  assistanceXptWindow,
   completedCourses,
   completedCourseSearch,
   completedCourseSelection,

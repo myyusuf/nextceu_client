@@ -12,6 +12,7 @@ import CostUnitReportClinic from '../../components/report/CostUnitReportClinic';
 import InitiateCourseReport from '../../components/report/student/InitiateCourseReport';
 import CompletedCourseReport from '../../components/report/student/CompletedCourseReport';
 import LevelCourseReport from '../../components/report/student/LevelCourseReport';
+import AssistanceCourseReport from '../../components/report/student/AssistanceCourseReport';
 import PreTestReport from '../../components/report/schedule/PreTestReport';
 
 const ReportMain = ({ selectedMenuKey }) => {
@@ -31,6 +32,9 @@ const ReportMain = ({ selectedMenuKey }) => {
       break;
     case '3-3':
       componentToRender = <LevelCourseReport />;
+      break;
+    case '3-4':
+      componentToRender = <AssistanceCourseReport />;
       break;
     case '2-1':
       componentToRender = <PreTestReport />;

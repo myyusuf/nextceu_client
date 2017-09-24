@@ -40,6 +40,24 @@ export default {
         },
       },
     },
+    assistanceCourse: {
+      fetchCourses: 'report/student/assistanceCourse/fetchCourses',
+      cancelFetchCourses: 'report/student/assistanceCourse/cancelFetchCourses',
+      fetchCoursesSuccess: 'report/student/assistanceCourse/fetchCoursesSuccess',
+      list: {
+        loadingStart: 'report/student/assistanceCourse/list/loadingStart',
+        loadingFinish: 'report/student/assistanceCourse/list/loadingFinish',
+        search: {
+          textChanged: 'report/student/assistanceCourse/list/search/textChanged',
+          dateRangeChanged: 'report/student/assistanceCourse/list/search/dateRangeChanged',
+          pageChanged: 'report/student/assistanceCourse/list/search/pageChanged',
+        },
+        selection: {
+          selectChanged: 'report/student/assistanceCourse/list/selection/selectChanged',
+          clear: 'report/student/assistanceCourse/list/selection/clear',
+        },
+      },
+    },
     initiateXpt: {
       form: {
         changed: 'report/student/initiateXpt/form/changed',
@@ -80,6 +98,21 @@ export default {
         loadingFinish: 'report/student/levelXpt/window/loadingFinish',
       },
       doExport: 'report/student/levelXpt/doExport',
+    },
+    assistanceXpt: {
+      form: {
+        changed: 'report/student/assistanceXpt/form/changed',
+        update: 'report/student/assistanceXpt/form/update',
+        showErrors: 'report/student/assistanceXpt/form/showErrors',
+        clear: 'report/student/assistanceXpt/form/clear',
+      },
+      window: {
+        open: 'report/student/assistanceXpt/window/open',
+        close: 'report/student/assistanceXpt/window/close',
+        loadingStart: 'report/student/assistanceXpt/window/loadingStart',
+        loadingFinish: 'report/student/assistanceXpt/window/loadingFinish',
+      },
+      doExport: 'report/student/assistanceXpt/doExport',
     },
   },
 };
