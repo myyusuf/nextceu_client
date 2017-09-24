@@ -59,6 +59,62 @@ const parseChartData = (courses) => {
       result.push(hospitalSchedule2);
     }
 
+    if (course.realStartDate && course.realEndDate) {
+      childId += 1;
+
+      const realMainSchedule = {
+        id: course.id + childId,
+        text: `${course.title} - Real`,
+        color: course.Department.color,
+        start_date: moment(course.realStartDate).format('DD-MM-YYYY'),
+        end_date: moment(course.realEndDate).format('DD-MM-YYYY'),
+      };
+
+      result.push(realMainSchedule);
+
+      if (course.realStartDate1 && course.realEndDate1) {
+        childId += 1;
+        const realHospitalSchedule1 = {
+          id: course.id + childId,
+          parent: realMainSchedule.id,
+          text: 'RS 1 - Real',
+          color: '#D6DBDF',
+          start_date: moment(course.realStartDate1).format('DD-MM-YYYY'),
+          end_date: moment(course.realEndDate1).format('DD-MM-YYYY'),
+        };
+
+        result.push(realHospitalSchedule1);
+      }
+
+      if (course.realStartDate2 && course.realEndDate2) {
+        childId += 1;
+        const realClinic = {
+          id: course.id + childId,
+          parent: realMainSchedule.id,
+          text: 'Puskesmas - Real',
+          color: '#D6DBDF',
+          start_date: moment(course.realStartDate2).format('DD-MM-YYYY'),
+          end_date: moment(course.realEndDate2).format('DD-MM-YYYY'),
+        };
+
+        result.push(realClinic);
+      }
+
+      if (course.realStartDate3 && course.realEndDate3) {
+        childId += 1;
+        const realHospitalSchedule2 = {
+          id: course.id + childId,
+          parent: realMainSchedule.id,
+          text: 'RS 2 - Real',
+          color: '#D6DBDF',
+          start_date: moment(course.realStartDate3).format('DD-MM-YYYY'),
+          end_date: moment(course.realEndDate3).format('DD-MM-YYYY'),
+        };
+
+        result.push(realHospitalSchedule2);
+      }
+    }
+
     childId += 300;
   }
 
