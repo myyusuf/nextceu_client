@@ -11,6 +11,7 @@ const validate = (key, value) => {
       break;
     case 'level':
     case 'duration':
+    case 'halfDuration':
     case 'duration1':
     case 'seminarsCount':
       result = validateExist(key, value);
@@ -59,6 +60,9 @@ const loadDepartmentFormLogic = createLogic({
       },
       duration: {
         value: department.duration,
+      },
+      halfDuration: {
+        value: department.halfDuration,
       },
       duration1: {
         value: department.duration1,

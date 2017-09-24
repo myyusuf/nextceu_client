@@ -75,7 +75,7 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
       </Col>
     </Row>
     <Row>
-      <Col span={24}>
+      <Col span={8}>
         <FormItem
           label="Duration"
           colon={false}
@@ -89,6 +89,27 @@ const DepartmentForm = ({ departmentForm, departmentFormChanged }) => (
             onChange={(value) => {
               departmentFormChanged({
                 key: 'duration',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+      <Col span={8}>
+        <FormItem
+          label="Half Duration"
+          colon={false}
+          validateStatus={departmentForm.halfDuration.validateStatus}
+          help={departmentForm.halfDuration.errorMsg}
+        >
+          <InputNumber
+            min={1}
+            max={10}
+            value={departmentForm.halfDuration.value}
+            onChange={(value) => {
+              departmentFormChanged({
+                key: 'halfDuration',
                 value,
               });
             }}
