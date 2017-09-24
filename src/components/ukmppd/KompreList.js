@@ -43,6 +43,12 @@ class KompreList extends Component {
               <TabPane tab="Mid Kompre" key="2">
                 <ScoreList kompreType="K002" />
               </TabPane>
+              <TabPane tab="Final Kompre" key="3">
+                <ScoreList kompreType="K003" />
+              </TabPane>
+              <TabPane tab="Try Out" key="4">
+                <ScoreList kompreType="K004" />
+              </TabPane>
             </Tabs>
           </Col>
         </Row>
