@@ -7,12 +7,14 @@ import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import Select from 'antd/lib/select';
 import Badge from 'antd/lib/badge';
+import Tag from 'antd/lib/tag';
+import numeral from 'numeral';
 
 const Option = Select.Option;
 
 const FormItem = Form.Item;
 
-const CourseForm = ({ courseForm, courseFormChanged }) => {
+const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
   let status = '';
   let text = '';
 
@@ -41,6 +43,10 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
       break;
   }
 
+  const score1Arr = scores.filter(score => score.ScoreType.code === 'PRETEST');
+  const score1 = score1Arr.length > 0 ? score1Arr[0].scoreValue : null;
+  const total = score1;
+
   return (
     <Form>
       <Row>
@@ -63,6 +69,52 @@ const CourseForm = ({ courseForm, courseFormChanged }) => {
                   }}
                   placeholder="Title"
                 />
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <FormItem
+                label="Score Summary"
+                colon={false}
+              >
+                <table>
+                  <tr>
+                    <td style={{ width: 180 }}>1. Pre Test (SCB)</td>
+                    <td style={{ width: 40, textAlign: 'right' }}>{score1 ? numeral(score1).format('0,0.00') : '-'}</td>
+                    <td style={{ textAlign: 'right' }}><Tag>0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td>2. Case Report</td>
+                    <td>90</td>
+                    <td><Tag>80.0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td>3. Weekly Discussion</td>
+                    <td>90</td>
+                    <td><Tag>80.0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td>4. Case Test</td>
+                    <td>90</td>
+                    <td><Tag>80.0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td>5. Post Test</td>
+                    <td>90</td>
+                    <td><Tag>80.0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td><span style={{ fontWeight: 'bold', fontSize: 15 }}>Total</span></td>
+                    <td>{numeral(total).format('0,0.00')}</td>
+                    <td><Tag>80.0 %</Tag></td>
+                  </tr>
+                  <tr>
+                    <td><span style={{ fontWeight: 'bold', fontSize: 15 }}>Score</span></td>
+                    <td></td>
+                    <td style={{ textAlign: 'center' }}><span style={{ fontWeight: 'bold', fontSize: 20 }}>A</span></td>
+                  </tr>
+                </table>
               </FormItem>
             </Col>
           </Row>
@@ -112,11 +164,13 @@ CourseForm.propTypes = {
     title: PropTypes.string.isRequired,
     completion: PropTypes.number.isRequired,
   }).isRequired,
+  scores: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 const mapStateToProps = state => (
   {
     courseForm: state.studentReducers.courseForm,
+    scores: state.studentReducers.scores,
   }
 );
 
