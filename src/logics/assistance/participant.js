@@ -3,26 +3,26 @@ import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
 
-const SEMINARS_URL = `${Constant.serverUrl}/api/seminars`;
+const ASSISTANCES_URL = `${Constant.serverUrl}/api/assistances`;
 
 const fetchParticipantsLogic = createLogic({
-  type: 'FETCH_PARTICIPANTS_LOGIC',
-  cancelType: 'CANCEL_FETCH_PARTICIPANTS_LOGIC',
+  type: 'FETCH_ASSISTANCE_PARTICIPANTS_LOGIC',
+  cancelType: 'CANCEL_FETCH_ASSISTANCE_PARTICIPANTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const seminarId = getState().seminarReducers.seminarSelection.rowKeys[0];
-    const search = getState().seminarReducers.participantSearch;
+    const assistanceId = getState().assistanceReducers.assistanceSelection.rowKeys[0];
+    const search = getState().assistanceReducers.participantSearch;
     const paramameters = search ? { params: { ...search } } : {};
-    dispatch({ type: 'PARTICIPANT_LOADING_START' });
-    axios.get(`${SEMINARS_URL}/${seminarId}/participants`, paramameters)
+    dispatch({ type: 'ASSISTANCE_PARTICIPANT_LOADING_START' });
+    axios.get(`${ASSISTANCES_URL}/${assistanceId}/participants`, paramameters)
       .then(resp => resp.data)
       .then((data) => {
-        dispatch({ type: 'PARTICIPANT_LOADING_FINISH' });
-        dispatch({ type: 'FETCH_PARTICIPANTS_SUCCESS', payload: data });
+        dispatch({ type: 'ASSISTANCE_PARTICIPANT_LOADING_FINISH' });
+        dispatch({ type: 'FETCH_ASSISTANCE_PARTICIPANTS_SUCCESS', payload: data });
       })
       .catch((err) => {
         console.error(err);
-        dispatch({ type: 'PARTICIPANT_LOADING_FINISH' });
+        dispatch({ type: 'ASSISTANCE_PARTICIPANT_LOADING_FINISH' });
         notification.error({
           message: 'Fetch participants error',
           description: 'Connection error.',
