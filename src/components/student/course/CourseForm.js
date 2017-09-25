@@ -9,6 +9,7 @@ import Select from 'antd/lib/select';
 import Badge from 'antd/lib/badge';
 import Tag from 'antd/lib/tag';
 import numeral from 'numeral';
+import mathjs from 'mathjs';
 
 const Option = Select.Option;
 
@@ -45,7 +46,22 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
 
   const score1Arr = scores.filter(score => score.ScoreType.code === 'PRETEST');
   const score1 = score1Arr.length > 0 ? score1Arr[0].scoreValue : null;
-  const total = score1;
+  const score1Percentage = score1 ? score1 * 0 : null;
+  const score2Arr = scores.filter(score => score.ScoreType.code === 'CASEREPORT');
+  const score2 = score2Arr.length > 0 ? score2Arr[0].scoreValue : null;
+  const score2Percentage = score2 ? score2 * 0.1 : null;
+  const total = score1Percentage + score2Percentage;
+  let totalInCriteria = '';
+  const totalRound = mathjs.round(total, 2);
+  if (totalRound >= 80 && totalRound <= 100) {
+    totalInCriteria = 'A';
+  } else if (totalRound >= 70 && totalRound <= 79) {
+    totalInCriteria = 'B';
+  } else if (totalRound >= 60 && totalRound <= 69) {
+    totalInCriteria = 'C';
+  } else if (totalRound <= 59) {
+    totalInCriteria = 'E';
+  }
 
   return (
     <Form>
@@ -80,14 +96,26 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
               >
                 <table>
                   <tr>
-                    <td style={{ width: 180 }}>1. Pre Test (SCB)</td>
-                    <td style={{ width: 40, textAlign: 'right' }}>{score1 ? numeral(score1).format('0,0.00') : '-'}</td>
-                    <td style={{ textAlign: 'right' }}><Tag>0 %</Tag></td>
+                    <td style={{ width: 160 }}>1. Pre Test (SCB)</td>
+                    <td
+                      style={{ width: 40, textAlign: 'right' }}
+                    >
+                      {score1 ? numeral(score1).format('0,0.00') : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(score1Percentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
-                    <td>2. Case Report</td>
-                    <td>90</td>
-                    <td><Tag>80.0 %</Tag></td>
+                    <td style={{ width: 160 }}>2. Case Report</td>
+                    <td
+                      style={{ width: 40, textAlign: 'right' }}
+                    >
+                      {score2 ? numeral(score2).format('0,0.00') : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(score2Percentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
                     <td>3. Weekly Discussion</td>
@@ -112,7 +140,7 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
                   <tr>
                     <td><span style={{ fontWeight: 'bold', fontSize: 15 }}>Score</span></td>
                     <td></td>
-                    <td style={{ textAlign: 'center' }}><span style={{ fontWeight: 'bold', fontSize: 20 }}>A</span></td>
+                    <td style={{ textAlign: 'center' }}><span style={{ fontWeight: 'bold', fontSize: 20 }}>{totalInCriteria}</span></td>
                   </tr>
                 </table>
               </FormItem>
