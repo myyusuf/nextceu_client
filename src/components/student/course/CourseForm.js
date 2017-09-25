@@ -47,19 +47,38 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
   const score1Arr = scores.filter(score => score.ScoreType.code === 'PRETEST');
   const score1 = score1Arr.length > 0 ? score1Arr[0].scoreValue : null;
   const score1Percentage = score1 ? score1 * 0 : null;
+
   const score2Arr = scores.filter(score => score.ScoreType.code === 'CASEREPORT');
   const score2 = score2Arr.length > 0 ? score2Arr[0].scoreValue : null;
   const score2Percentage = score2 ? score2 * 0.1 : null;
-  const total = score1Percentage + score2Percentage;
+
+  const score3Arr = scores.filter(score => score.ScoreType.code === 'WEEKLYDISCUSSION');
+  const score3 = score3Arr.length > 0 ? score3Arr[0].scoreValue : null;
+  const score3Percentage = score3 ? score3 * 0.2 : null;
+
+  const score4Arr = scores.filter(score => score.ScoreType.code === 'CASETEST');
+  const score4 = score4Arr.length > 0 ? score4Arr[0].scoreValue : null;
+  const score4Percentage = score4 ? score4 * 0.35 : null;
+
+  const score5Arr = scores.filter(score => score.ScoreType.code === 'POSTTEST');
+  const score5 = score5Arr.length > 0 ? score5Arr[0].scoreValue : null;
+  const score5Percentage = score5 ? score5 * 0.35 : null;
+
+  const totalPercentage = score1Percentage + score2Percentage + score3Percentage
+  + score4Percentage + score5Percentage;
+
+  const total = score1 + score2 + score3
+  + score4 + score5;
+
   let totalInCriteria = '';
-  const totalRound = mathjs.round(total, 2);
-  if (totalRound >= 80 && totalRound <= 100) {
+  const totalPercentageRound = mathjs.round(totalPercentage, 2);
+  if (totalPercentageRound >= 80 && totalPercentageRound <= 100) {
     totalInCriteria = 'A';
-  } else if (totalRound >= 70 && totalRound <= 79) {
+  } else if (totalPercentageRound >= 70 && totalPercentageRound <= 79) {
     totalInCriteria = 'B';
-  } else if (totalRound >= 60 && totalRound <= 69) {
+  } else if (totalPercentageRound >= 60 && totalPercentageRound <= 69) {
     totalInCriteria = 'C';
-  } else if (totalRound <= 59) {
+  } else if (totalPercentageRound <= 59) {
     totalInCriteria = 'E';
   }
 
@@ -118,24 +137,46 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
                     </td>
                   </tr>
                   <tr>
-                    <td>3. Weekly Discussion</td>
-                    <td>90</td>
-                    <td><Tag>80.0 %</Tag></td>
+                    <td style={{ width: 160 }}>3. Weekly Discussion</td>
+                    <td
+                      style={{ width: 40, textAlign: 'right' }}
+                    >
+                      {score3 ? numeral(score3).format('0,0.00') : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(score3Percentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
-                    <td>4. Case Test</td>
-                    <td>90</td>
-                    <td><Tag>80.0 %</Tag></td>
+                    <td style={{ width: 160 }}>4. Case Test</td>
+                    <td
+                      style={{ width: 40, textAlign: 'right' }}
+                    >
+                      {score4 ? numeral(score4).format('0,0.00') : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(score4Percentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
-                    <td>5. Post Test</td>
-                    <td>90</td>
-                    <td><Tag>80.0 %</Tag></td>
+                    <td style={{ width: 160 }}>5. Post Test</td>
+                    <td
+                      style={{ width: 40, textAlign: 'right' }}
+                    >
+                      {score5 ? numeral(score5).format('0,0.00') : '-'}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(score5Percentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
-                    <td><span style={{ fontWeight: 'bold', fontSize: 15 }}>Total</span></td>
-                    <td>{numeral(total).format('0,0.00')}</td>
-                    <td><Tag>80.0 %</Tag></td>
+                    <td><span style={{ width: 160, fontWeight: 'bold', fontSize: 15 }}>Total</span></td>
+                    <td style={{ width: 40, textAlign: 'right' }}>
+                      {numeral(total).format('0,0.00')}
+                    </td>
+                    <td style={{ textAlign: 'right', paddingLeft: 20 }}>
+                      <Tag>{`${numeral(totalPercentage).format('0,0.00')} %`}</Tag>
+                    </td>
                   </tr>
                   <tr>
                     <td><span style={{ fontWeight: 'bold', fontSize: 15 }}>Score</span></td>
