@@ -6,6 +6,7 @@ import Constant from '../../Constant';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const DEPARTMENTS_URL = `${Constant.serverUrl}/api/departments`;
+const ALL_DEPARTMENTS_URL = `${Constant.serverUrl}/api/alldepartments`;
 
 const validate = (key, value) => {
   let result = null;
@@ -62,10 +63,10 @@ const fetchAllDepartmentLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_DEPARTMENTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(DEPARTMENTS_URL)
+    axios.get(ALL_DEPARTMENTS_URL)
       .then(resp => resp.data)
       .then((departments) => {
-        dispatch({ type: 'FETCH_DEPARTMENTS_SUCCESS', payload: departments });
+        dispatch({ type: 'FETCH_ALL_DEPARTMENTS_SUCCESS', payload: departments });
       })
       .catch((err) => {
         console.error(err);
