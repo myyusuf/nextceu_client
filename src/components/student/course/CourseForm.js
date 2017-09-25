@@ -9,7 +9,7 @@ import Select from 'antd/lib/select';
 import Badge from 'antd/lib/badge';
 import Tag from 'antd/lib/tag';
 import numeral from 'numeral';
-import mathjs from 'mathjs';
+// import mathjs from 'mathjs';
 
 const Option = Select.Option;
 
@@ -71,7 +71,7 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
   + score4 + score5;
 
   let totalInCriteria = null;
-  const totalPercentageRound = mathjs.round(totalPercentage, 2);
+  const totalPercentageRound = totalPercentage; // mathjs.round(totalPercentage, 2);
   if (totalPercentageRound >= 80 && totalPercentageRound <= 100) {
     totalInCriteria = <span style={{ color: '#5093E1' }}>A</span>;
   } else if (totalPercentageRound >= 70 && totalPercentageRound <= 79) {
