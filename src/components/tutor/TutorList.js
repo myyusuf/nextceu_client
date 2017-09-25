@@ -145,7 +145,7 @@ const mapDispatchToProps = dispatch => (
   {
     fetchTutors: () => {
       dispatch({
-        type: 'FETCH_TUTOR_LOGIC',
+        type: 'FETCH_TUTORS_LOGIC',
       });
     },
     openAddWindow: () => (
