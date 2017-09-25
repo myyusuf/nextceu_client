@@ -78,8 +78,10 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
     totalInCriteria = <span style={{ color: '#50C14E' }}>B</span>;
   } else if (totalPercentageRound >= 60 && totalPercentageRound <= 69) {
     totalInCriteria = <span style={{ color: 'orange' }}>C</span>;
-  } else if (totalPercentageRound <= 59) {
+  } else if (totalPercentageRound > 0 && totalPercentageRound <= 59) {
     totalInCriteria = <span style={{ color: 'red' }}>E</span>;
+  } else if (totalPercentageRound <= 0) {
+    totalInCriteria = <span style={{ color: 'gray' }}>-</span>;
   }
 
   return (
