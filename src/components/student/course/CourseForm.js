@@ -70,16 +70,16 @@ const CourseForm = ({ courseForm, courseFormChanged, scores }) => {
   const total = score1 + score2 + score3
   + score4 + score5;
 
-  let totalInCriteria = '';
+  let totalInCriteria = null;
   const totalPercentageRound = mathjs.round(totalPercentage, 2);
   if (totalPercentageRound >= 80 && totalPercentageRound <= 100) {
-    totalInCriteria = 'A';
+    totalInCriteria = <span style={{ color: '#5093E1' }}>A</span>;
   } else if (totalPercentageRound >= 70 && totalPercentageRound <= 79) {
-    totalInCriteria = 'B';
+    totalInCriteria = <span style={{ color: '#50C14E' }}>B</span>;
   } else if (totalPercentageRound >= 60 && totalPercentageRound <= 69) {
-    totalInCriteria = 'C';
+    totalInCriteria = <span style={{ color: 'orange' }}>C</span>;
   } else if (totalPercentageRound <= 59) {
-    totalInCriteria = 'E';
+    totalInCriteria = <span style={{ color: 'red' }}>E</span>;
   }
 
   return (
