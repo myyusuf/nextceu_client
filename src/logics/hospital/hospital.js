@@ -32,7 +32,7 @@ const fetchHospitalsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().hospitalReducers.hospitalSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'HOSPITAL_LOADING_START' });
     // axios.get(HOSPITALS_URL, paramameters)
     axios.get(HOSPITAL_SCHEDULES_URL, paramameters)

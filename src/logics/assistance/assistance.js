@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const ASSISTANCES_URL = `${Constant.serverUrl}/api/assistances`;
@@ -32,7 +33,7 @@ const fetchAssistancesLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().assistanceReducers.assistanceSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'ASSISTANCE_LOADING_START' });
     axios.get(ASSISTANCES_URL, paramameters)
       .then(resp => resp.data)
@@ -61,7 +62,7 @@ const fetchStudentAssistancesLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const studentId = getState().studentReducers.student.id;
     dispatch({ type: 'STUDENT_ASSISTANCE_LOADING_START' });
-    axios.get(`${STUDENT_ASSISTANCES_URL}/bystudent/${studentId}`)
+    axios.get(`${STUDENT_ASSISTANCES_URL}/bystudent/${studentId}`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'STUDENT_ASSISTANCE_LOADING_FINISH' });

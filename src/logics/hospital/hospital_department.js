@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist } from '../../utils/validation';
 
 const HOSPITALS_URL = `${Constant.serverUrl}/api/hospitals`;
@@ -27,7 +28,7 @@ const fetchHospitalDepartmentsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().hospitalReducers.hospitalDepartmentSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     const hospitalId = getState().hospitalReducers.hospitalForm.id.value;
     dispatch({ type: 'HOSPITAL_DEPARTMENT_LOADING_START' });
     axios.get(`${HOSPITALS_URL}/${hospitalId}/departments`, paramameters)

@@ -39,7 +39,7 @@ const fetchDepartmentLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().departmentReducers.departmentSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'DEPARTMENT_LOADING_START' });
     axios.get(DEPARTMENTS_URL, paramameters)
       .then(resp => resp.data)

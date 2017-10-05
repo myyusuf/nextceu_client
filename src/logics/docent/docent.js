@@ -62,6 +62,7 @@ const fetchAllDocentsByHDLogic = createLogic({
     const paramameters = { params: {
       hospital: hospitalId,
       department: getState().studentReducers.courseForm.tempDepartment.value,
+      r: mathRandom(),
     } };
     axios.get(DOCENTS_BY_HD_URL, paramameters)
       .then(resp => resp.data)
@@ -89,6 +90,7 @@ const fetchAllDocentsByCDLogic = createLogic({
     const paramameters = { params: {
       hospital: hospitalId,
       department: getState().studentReducers.courseForm.tempDepartment.value,
+      r: mathRandom(),
     } };
     axios.get(DOCENTS_BY_HD_URL, paramameters)
       .then(resp => resp.data)

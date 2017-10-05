@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 
 const HOSPITAL_STUDENTS_URL = `${Constant.serverUrl}/api/hospitalselect/hospitalstudents`;
 
@@ -11,7 +12,7 @@ const fetchHospitalStudentsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().hospitalReducers.hospitalSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     const hospitalId = getState().hospitalReducers.hospitalForm.id.value;
     dispatch({ type: 'HOSPITAL_STUDENT_LOADING_START' });
     axios.get(`${HOSPITAL_STUDENTS_URL}/${hospitalId}`, paramameters)
