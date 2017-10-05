@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateLength } from '../../utils/validation';
 
 const APP_PROPS_URL = `${Constant.serverUrl}/api/appprops`;
@@ -29,7 +30,7 @@ const fetchAppPropsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().settingsReducers.appPropSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'APP_PROP_LOADING_START' });
     axios.get(APP_PROPS_URL, paramameters)
       .then(resp => resp.data)
@@ -54,7 +55,7 @@ const fetchAllAppPropsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_APP_PROPS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(APP_PROPS_URL)
+    axios.get(APP_PROPS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((appProps) => {
         dispatch({ type: 'FETCH_APP_PROPS_SUCCESS', payload: appProps });

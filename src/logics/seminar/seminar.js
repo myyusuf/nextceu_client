@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const SEMINARS_URL = `${Constant.serverUrl}/api/seminars`;
@@ -31,7 +32,7 @@ const fetchSeminarsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().seminarReducers.seminarSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'SEMINAR_LOADING_START' });
     axios.get(SEMINARS_URL, paramameters)
       .then(resp => resp.data)

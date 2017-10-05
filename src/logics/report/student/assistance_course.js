@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 import * as actions from '../../../actions/ActionType';
 
 const ASSISTANCE_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/reports/assistancecourses`;
@@ -12,7 +13,7 @@ const fetchAssistanceCoursesLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.assistanceCourseSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: actions.report.student.assistanceCourse.list.loadingStart });
     axios.get(ASSISTANCE_COURSE_REPORTS_URL, paramameters)
       .then(resp => resp.data)

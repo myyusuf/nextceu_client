@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateExist } from '../../../../utils/validation';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
@@ -32,7 +33,7 @@ const fetchScoresLogic = createLogic({
     // const paramameters = search ? { params: { ...search } } : {};
     const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'SCORE_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/scores`)
+    axios.get(`${COURSES_URL}/${courseId}/scores`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'SCORE_LOADING_FINISH' });
@@ -55,7 +56,7 @@ const fetchScoreTypessLogic = createLogic({
   cancelType: 'CANCEL_FETCH_SCORE_TYPES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(SCORE_TYPES_URL)
+    axios.get(SCORE_TYPES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_SCORE_TYPES_SUCCESS', payload: data });

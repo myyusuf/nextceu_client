@@ -3,6 +3,7 @@ import axios from 'axios';
 // import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 // import { validateExist, validateLength, validateEmail } from '../../../utils/validation';
 
 const COMPLETED_COURSE_REPORTS_URL = `${Constant.serverUrl}/api/reports/completedcourses`;
@@ -13,7 +14,7 @@ const fetchCompletedCoursesLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.completedCourseSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'COMPLETED_COURSE_LOADING_START' });
     axios.get(COMPLETED_COURSE_REPORTS_URL, paramameters)
       .then(resp => resp.data)

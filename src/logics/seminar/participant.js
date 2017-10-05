@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 
 const SEMINARS_URL = `${Constant.serverUrl}/api/seminars`;
 
@@ -12,7 +13,7 @@ const fetchParticipantsLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const seminarId = getState().seminarReducers.seminarSelection.rowKeys[0];
     const search = getState().seminarReducers.participantSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'PARTICIPANT_LOADING_START' });
     axios.get(`${SEMINARS_URL}/${seminarId}/participants`, paramameters)
       .then(resp => resp.data)

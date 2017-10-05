@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateExist } from '../../../../utils/validation';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
@@ -32,7 +33,7 @@ const fetchSglsLogic = createLogic({
     // const paramameters = search ? { params: { ...search } } : {};
     const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'SGL_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/sgls`)
+    axios.get(`${COURSES_URL}/${courseId}/sgls`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'SGL_LOADING_FINISH' });
@@ -55,7 +56,7 @@ const fetchSglTypessLogic = createLogic({
   cancelType: 'CANCEL_FETCH_SGL_TYPES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(SGL_TYPES_URL)
+    axios.get(SGL_TYPES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_SGL_TYPES_SUCCESS', payload: data });

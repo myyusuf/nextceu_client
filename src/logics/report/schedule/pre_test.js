@@ -3,6 +3,7 @@ import axios from 'axios';
 // import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 // import { validateExist, validateLength, validateEmail } from '../../../utils/validation';
 
 const PRE_TEST_REPORTS_URL = `${Constant.serverUrl}/api/reports/pretests`;
@@ -13,7 +14,7 @@ const fetchCompletedCoursesLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.preTestSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'PRE_TEST_LOADING_START' });
     axios.get(PRE_TEST_REPORTS_URL, paramameters)
       .then(resp => resp.data)

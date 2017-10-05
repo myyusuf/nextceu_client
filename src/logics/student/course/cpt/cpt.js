@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateLength } from '../../../../utils/validation';
 
 const CPTS_URL = `${Constant.serverUrl}/api/courseproblemtypes`;
@@ -27,7 +28,7 @@ const fetchCptsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().studentReducers.cptSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'CPT_LOADING_START' });
     axios.get(CPTS_URL, paramameters)
       .then(resp => resp.data)
@@ -52,7 +53,7 @@ const fetchAllCptsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_CPTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(CPTS_URL)
+    axios.get(CPTS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((cpts) => {
         dispatch({ type: 'FETCH_CPTS_SUCCESS', payload: cpts });

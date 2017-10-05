@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 
 const COST_UNITS_URL = `${Constant.serverUrl}/api/reports/costunits`;
 const fetchCostUnitsLogic = createLogic({
@@ -10,7 +11,7 @@ const fetchCostUnitsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().reportReducers.costUnitSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'COST_UNIT_LOADING_START' });
     axios.get(COST_UNITS_URL, paramameters)
       .then(resp => resp.data)

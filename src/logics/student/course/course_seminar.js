@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
 
@@ -18,7 +19,7 @@ const fetchCptsLogic = createLogic({
       startDate,
       endDate,
     };
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'COURSE_SEMINAR_LOADING_START' });
     axios.get(`${COURSES_URL}/${courseId}/courseseminars`, paramameters)

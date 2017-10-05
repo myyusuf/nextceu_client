@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateExist, validateLength } from '../../../../utils/validation';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
@@ -34,7 +35,7 @@ const fetchCourseProblemsLogic = createLogic({
     // const paramameters = search ? { params: { ...search } } : {};
     const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'COURSE_PROBLEM_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/courseproblems`)
+    axios.get(`${COURSES_URL}/${courseId}/courseproblems`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'COURSE_PROBLEM_LOADING_FINISH' });
@@ -57,7 +58,7 @@ const fetchCourseProblemTypessLogic = createLogic({
   cancelType: 'CANCEL_FETCH_COURSE_PROBLEM_TYPES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(COURSE_PROBLEM_TYPES_URL)
+    axios.get(COURSE_PROBLEM_TYPES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_COURSE_PROBLEM_TYPES_SUCCESS', payload: data });

@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const PENGAMPUS_URL = `${Constant.serverUrl}/api/pengampus`;
@@ -30,7 +31,7 @@ const fetchPengampusLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().pengampuReducers.pengampuSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'PENGAMPU_LOADING_START' });
     axios.get(PENGAMPUS_URL, paramameters)
       .then(resp => resp.data)
@@ -60,6 +61,7 @@ const fetchAllPengampusByHDLogic = createLogic({
     const paramameters = { params: {
       hospital: hospitalId,
       department: getState().studentReducers.courseForm.tempDepartment.value,
+      r: mathRandom(),
     } };
     axios.get(PENGAMPUS_BY_DEPARTMENT_URL, paramameters)
       .then(resp => resp.data)

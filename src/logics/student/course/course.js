@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 import { validateLength, validateArrayNotEmpty } from '../../../utils/validation';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
@@ -29,7 +30,7 @@ const fetchCoursesLogic = createLogic({
   cancelType: 'CANCEL_FETCH_COURSES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(`${STUDENTS_URL}/${action.payload.id}/courses`)
+    axios.get(`${STUDENTS_URL}/${action.payload.id}/courses`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then(courses => dispatch({ type: 'FETCH_COURSES_SUCCESS', payload: courses }))
       .catch((err) => {
@@ -49,7 +50,8 @@ const fetchCourseLogic = createLogic({
   cancelType: 'CANCEL_FETCH_COURSE_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(`${STUDENTS_URL}/${getState().studentReducers.student.id}/courses/${action.payload.courseId}`)
+    axios.get(`${STUDENTS_URL}/${getState().studentReducers.student.id}/courses/${action.payload.courseId}`,
+  { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then(course => dispatch({ type: 'FETCH_COURSE_SUCCESS', payload: course }))
       .catch((err) => {

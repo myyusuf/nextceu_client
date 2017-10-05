@@ -3,6 +3,7 @@ import axios from 'axios';
 import notification from 'antd/lib/notification';
 import _ from 'lodash';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateForm } from './student_form';
 import * as actions from '../../actions/ActionType';
 
@@ -14,7 +15,7 @@ const fetchStudentsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().studentReducers.studentSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'STUDENT_LOADING_START' });
     axios.get(STUDENTS_URL, paramameters)
       .then(resp => resp.data)
@@ -40,7 +41,7 @@ const fetchStudentLogic = createLogic({
   cancelType: 'CANCEL_FETCH_STUDENT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(`${STUDENTS_URL}/${action.payload.id}`)
+    axios.get(`${STUDENTS_URL}/${action.payload.id}`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then(student => dispatch({ type: 'FETCH_STUDENT_SUCCESS', payload: student }))
       .catch((err) => {

@@ -2,6 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 
 const HOSPITAL_SCHEDULES_URL = `${Constant.serverUrl}/api/hospitalselect`;
 
@@ -28,7 +29,7 @@ const fetchHospitalSchedulesLogic = createLogic({
       endDate,
       hospitalType,
     };
-    const paramameters = { params: { ...search } };
+    const paramameters = { params: { ...search, r: mathRandom() } };
     dispatch({ type: 'HOSPITAL_SCHEDULE_LOADING_START' });
     axios.get(HOSPITAL_SCHEDULES_URL, paramameters)
       .then(resp => resp.data)

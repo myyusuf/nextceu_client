@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateLength, validateExist } from '../../../../utils/validation';
 
 const PFTS_URL = `${Constant.serverUrl}/api/portofoliotypes`;
@@ -31,7 +32,7 @@ const fetchPftsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().studentReducers.pftSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'PFT_LOADING_START' });
     axios.get(PFTS_URL, paramameters)
       .then(resp => resp.data)
@@ -58,6 +59,7 @@ const fetchPftsByDepartmentLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const paramameters = { params: {
       department: getState().studentReducers.courseForm.tempDepartment.value,
+      r: mathRandom(),
     } };
     axios.get(PFTS_BY_DEPARTMENT_URL, paramameters)
       .then(resp => resp.data)
@@ -80,7 +82,7 @@ const fetchAllPftsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_PFTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(PFTS_URL)
+    axios.get(PFTS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((pfts) => {
         dispatch({ type: 'FETCH_PFTS_SUCCESS', payload: pfts });

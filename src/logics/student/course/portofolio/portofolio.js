@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateExist } from '../../../../utils/validation';
 
 const COURSES_URL = `${Constant.serverUrl}/api/courses`;
@@ -31,7 +32,7 @@ const fetchPortofoliosLogic = createLogic({
     // const paramameters = search ? { params: { ...search } } : {};
     const courseId = getState().studentReducers.courseForm.id.value;
     dispatch({ type: 'PORTOFOLIO_LOADING_START' });
-    axios.get(`${COURSES_URL}/${courseId}/portofolios`)
+    axios.get(`${COURSES_URL}/${courseId}/portofolios`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'PORTOFOLIO_LOADING_FINISH' });
@@ -54,7 +55,7 @@ const fetchPortofolioTypessLogic = createLogic({
   cancelType: 'CANCEL_FETCH_PORTOFOLIO_TYPES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(PORTOFOLIO_TYPES_URL)
+    axios.get(PORTOFOLIO_TYPES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_PORTOFOLIO_TYPES_SUCCESS', payload: data });

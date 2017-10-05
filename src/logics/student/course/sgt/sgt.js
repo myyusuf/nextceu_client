@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../../Constant';
+import { mathRandom } from '../../../../utils/random';
 import { validateLength, validateExist } from '../../../../utils/validation';
 
 const SGTS_URL = `${Constant.serverUrl}/api/sgltypes`;
@@ -31,7 +32,7 @@ const fetchSgtsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().studentReducers.sgtSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'SGT_LOADING_START' });
     axios.get(SGTS_URL, paramameters)
       .then(resp => resp.data)
@@ -58,6 +59,7 @@ const fetchSgtsByDepartmentLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const paramameters = { params: {
       department: getState().studentReducers.courseForm.tempDepartment.value,
+      r: mathRandom(),
     } };
     axios.get(SGTS_BY_DEPARTMENT_URL, paramameters)
       .then(resp => resp.data)
@@ -80,7 +82,7 @@ const fetchAllSgtsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_SGTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(SGTS_URL)
+    axios.get(SGTS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((sgts) => {
         dispatch({ type: 'FETCH_SGTS_SUCCESS', payload: sgts });
