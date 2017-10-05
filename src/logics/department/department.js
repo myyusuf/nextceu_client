@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist, validateLength } from '../../utils/validation';
 
 const DEPARTMENTS_URL = `${Constant.serverUrl}/api/departments`;
@@ -63,7 +64,7 @@ const fetchAllDepartmentLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_DEPARTMENTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(ALL_DEPARTMENTS_URL)
+    axios.get(ALL_DEPARTMENTS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((departments) => {
         dispatch({ type: 'FETCH_ALL_DEPARTMENTS_SUCCESS', payload: departments });
