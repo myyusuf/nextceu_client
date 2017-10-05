@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateLength } from '../../utils/validation';
 
 const TUTORS_URL = `${Constant.serverUrl}/api/tutors`;
@@ -27,7 +28,7 @@ const fetchTutorsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().tutorReducers.tutorSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'TUTOR_LOADING_START' });
     axios.get(TUTORS_URL, paramameters)
       .then(resp => resp.data)
@@ -52,7 +53,7 @@ const fetchTutorsForSelectLogic = createLogic({
   cancelType: 'CANCEL_FETCH_TUTORS_FOR_SELECT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(TUTORS_FOR_SELECT_URL)
+    axios.get(TUTORS_FOR_SELECT_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_TUTORS_FOR_SELECT_SUCCESS', payload: data });

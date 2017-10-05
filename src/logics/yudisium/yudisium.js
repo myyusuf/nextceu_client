@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateForm } from './ysc_form';
 import * as actions from '../../actions/ActionType';
 
@@ -14,7 +15,7 @@ const fetchYscLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const studentId = getState().studentReducers.student.id;
-    axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${studentId}`)
+    axios.get(`${YUDISIUM_CHECKLISTS_URL}/findbystudent/${studentId}`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then(ysc => dispatch({ type: actions.yudisium.yscForm.loadData, payload: ysc }))
       .catch((err) => {
@@ -34,7 +35,7 @@ const fetchPortofolioCompletionsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const studentId = getState().studentReducers.student.id;
-    axios.get(`${YUDISIUM_CHECKLISTS_URL}/portofolios/${studentId}`)
+    axios.get(`${YUDISIUM_CHECKLISTS_URL}/portofolios/${studentId}`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then(portofolioCompletions => dispatch({
         type: actions.yudisium.portofolioCompletion.fetchPortofolioCompletionsSuccess,

@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../../Constant';
+import { mathRandom } from '../../../utils/random';
 import { validateLength } from '../../../utils/validation';
 
 const UPTS_URL = `${Constant.serverUrl}/api/kompretypes`;
@@ -27,7 +28,7 @@ const fetchUptsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().ukmppdReducers.uptSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'UPT_LOADING_START' });
     axios.get(UPTS_URL, paramameters)
       .then(resp => resp.data)
@@ -52,7 +53,7 @@ const fetchAllUptsLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_UPTS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(UPTS_URL)
+    axios.get(UPTS_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((upts) => {
         dispatch({ type: 'FETCH_UPTS_SUCCESS', payload: upts });

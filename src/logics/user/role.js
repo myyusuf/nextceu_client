@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateForm } from './role_form';
 
 const ROLES_URL = `${Constant.serverUrl}/api/roles`;
@@ -13,7 +14,7 @@ const fetchRolesLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().userReducers.roleSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'ROLE_LOADING_START' });
     axios.get(ROLES_URL, paramameters)
       .then(resp => resp.data)
@@ -38,7 +39,7 @@ const fetchAllRolesLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_ROLES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(ROLES_URL)
+    axios.get(ROLES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((roles) => {
         dispatch({ type: 'FETCH_ROLES_SUCCESS', payload: roles });

@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist, validateLength, validateEmail } from '../../utils/validation';
 
 const USERS_URL = `${Constant.serverUrl}/api/users`;
@@ -34,7 +35,7 @@ const fetchUsersLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().userReducers.userSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'USER_LOADING_START' });
     axios.get(USERS_URL, paramameters)
       .then(resp => resp.data)
@@ -59,7 +60,7 @@ const fetchAllUsersByRoleLogic = createLogic({
   cancelType: 'CANCEL_FETCH_ALL_USERS_BY_ROLE_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const paramameters = { params: { role: action.payload } };
+    const paramameters = { params: { role: action.payload, r: mathRandom() } };
     axios.get(USERS_BY_ROLE_URL, paramameters)
       .then(resp => resp.data)
       .then((data) => {

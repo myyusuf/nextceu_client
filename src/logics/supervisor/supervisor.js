@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateLength } from '../../utils/validation';
 
 const SUPERVISORS_URL = `${Constant.serverUrl}/api/supervisors`;
@@ -27,7 +28,7 @@ const fetchSupervisorsLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const search = getState().supervisorReducers.supervisorSearch;
-    const paramameters = search ? { params: { ...search } } : {};
+    const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'SUPERVISOR_LOADING_START' });
     axios.get(SUPERVISORS_URL, paramameters)
       .then(resp => resp.data)
@@ -52,7 +53,7 @@ const fetchSupervisorsForSelectLogic = createLogic({
   cancelType: 'CANCEL_FETCH_SUPERVISORS_FOR_SELECT_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(SUPERVISORS_FOR_SELECT_URL)
+    axios.get(SUPERVISORS_FOR_SELECT_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_SUPERVISORS_FOR_SELECT_SUCCESS', payload: data });

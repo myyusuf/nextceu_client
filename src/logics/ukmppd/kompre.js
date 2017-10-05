@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import notification from 'antd/lib/notification';
 import Constant from '../../Constant';
+import { mathRandom } from '../../utils/random';
 import { validateExist } from '../../utils/validation';
 
 const STUDENTS_URL = `${Constant.serverUrl}/api/students`;
@@ -30,7 +31,7 @@ const fetchKompresLogic = createLogic({
   process({ getState, action }, dispatch, done) {
     const studentId = getState().studentReducers.student.id;
     dispatch({ type: 'KOMPRE_LOADING_START' });
-    axios.get(`${STUDENTS_URL}/${studentId}/kompres`)
+    axios.get(`${STUDENTS_URL}/${studentId}/kompres`, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'KOMPRE_LOADING_FINISH' });
@@ -53,7 +54,7 @@ const fetchKompreTypessLogic = createLogic({
   cancelType: 'CANCEL_FETCH_KOMPRE_TYPES_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    axios.get(KOMPRE_TYPES_URL)
+    axios.get(KOMPRE_TYPES_URL, { params: { r: mathRandom() } })
       .then(resp => resp.data)
       .then((data) => {
         dispatch({ type: 'FETCH_KOMPRE_TYPES_SUCCESS', payload: data });
