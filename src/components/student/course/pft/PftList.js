@@ -159,17 +159,24 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_PFTS_LOGIC',
       })
     ),
-    openAddWindow: () => (
+    openAddWindow: () => {
       dispatch({
         type: 'EDIT_PFT_LOGIC',
-      })
-    ),
-    openEditWindow: record => (
+      });
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
+    },
+    openEditWindow: (record) => {
       dispatch({
         type: 'LOAD_PFT_TO_FORM_LOGIC',
         payload: record,
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
+    },
     searchTextChanged: value => (
       dispatch({
         type: 'PFT_SEARCH_TEXT_CHANGED',

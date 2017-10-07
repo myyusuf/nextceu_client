@@ -159,17 +159,25 @@ const mapDispatchToProps = dispatch => (
         type: 'FETCH_SGTS_LOGIC',
       })
     ),
-    openAddWindow: () => (
+    openAddWindow: () => {
       dispatch({
         type: 'EDIT_SGT_LOGIC',
-      })
-    ),
-    openEditWindow: record => (
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
+    },
+    openEditWindow: (record) => {
       dispatch({
         type: 'LOAD_SGT_TO_FORM_LOGIC',
         payload: record,
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
+    },
     searchTextChanged: value => (
       dispatch({
         type: 'SGT_SEARCH_TEXT_CHANGED',
