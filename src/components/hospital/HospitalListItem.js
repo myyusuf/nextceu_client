@@ -29,6 +29,7 @@ const HospitalListItem = ({ hospital, selectHospital }) => {
 
   return (
     <Card
+      style={{ height: 100 }}
       onClick={() => selectHospital(hospital)}
       className={hospital.selected ? 'HospitalList-item-selected' : 'HospitalList-item'}
     >

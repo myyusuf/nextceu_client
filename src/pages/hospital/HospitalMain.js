@@ -7,7 +7,6 @@ import Select from 'antd/lib/select';
 import DatePicker from 'antd/lib/date-picker';
 import Button from 'antd/lib/button';
 
-import './HospitalMain.css';
 import HospitalList from '../../components/hospital/HospitalList';
 import DepartmentSelect from '../../components/department/DepartmentSelect';
 import HospitalDetailsPage from './HospitalDetailsPage';
@@ -25,12 +24,13 @@ const HospitalMain = ({
 }) => (
   <div>
     <Row gutter={10}>
-      <Col span={4} offset={5}>
+      <Col span={4} offset={0}>
         <RangePicker
           value={hospitalDateRange}
           onChange={(date) => {
             hospitalDateRangeChanged(date);
           }}
+          style={{ marginLeft: 17, marginTop: 17, marginBottom: 17 }}
         />
       </Col>
       <Col span={4}>
@@ -39,7 +39,7 @@ const HospitalMain = ({
           onSelect={(value) => {
             hospitalDepartmentChanged(value);
           }}
-          style={{ width: 200, marginBottom: 20 }}
+          style={{ width: 170, marginTop: 17, marginBottom: 17 }}
         />
       </Col>
       <Col span={2}>
@@ -47,6 +47,7 @@ const HospitalMain = ({
           shape="circle"
           icon="search"
           onClick={() => fetchHospitals()}
+          style={{ marginTop: 17, marginBottom: 17 }}
         />
 
         <Button
