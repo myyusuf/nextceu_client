@@ -1,7 +1,12 @@
 const defaultState = {
   id: {},
   sglType: {},
-  pengampu: {},
+  mainTutor: {},
+  secondTutor: {},
+  thirdTutor: {},
+  mainTutorPresent: {},
+  secondTutorPresent: {},
+  thirdTutorPresent: {},
   sglDate: {},
   completed: {},
 };

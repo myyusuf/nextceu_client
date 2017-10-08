@@ -87,22 +87,125 @@ const SglForm = ({ sglForm, sglFormChanged }) => (
       </TabPane>
       <TabPane tab="Tutors" key="2">
         <Row>
-          <Col span={24}>
+          <Col span={16}>
             <FormItem
-              label="Pengampu"
+              label="Utama"
               colon={false}
-              validateStatus={sglForm.pengampu.validateStatus}
-              help={sglForm.pengampu.errorMsg}
+              validateStatus={sglForm.mainTutor.validateStatus}
+              help={sglForm.mainTutor.errorMsg}
             >
               <PengampuSelect
-                value={sglForm.pengampu.value}
-                onSelect={(value) => {
+                value={sglForm.mainTutor.value}
+                onChange={(value) => {
                   sglFormChanged({
-                    key: 'pengampu',
+                    key: 'mainTutor',
                     value,
                   });
                 }}
               />
+            </FormItem>
+          </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={sglForm.mainTutorPresent.validateStatus}
+              help={sglForm.mainTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={sglForm.mainTutorPresent.value}
+                onChange={(e) => {
+                  sglFormChanged({
+                    key: 'mainTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16}>
+            <FormItem
+              label="Cadangan"
+              colon={false}
+              validateStatus={sglForm.secondTutor.validateStatus}
+              help={sglForm.secondTutor.errorMsg}
+            >
+              <PengampuSelect
+                value={sglForm.secondTutor.value}
+                onChange={(value) => {
+                  sglFormChanged({
+                    key: 'secondTutor',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={sglForm.secondTutorPresent.validateStatus}
+              help={sglForm.secondTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={sglForm.secondTutorPresent.value}
+                onChange={(e) => {
+                  sglFormChanged({
+                    key: 'secondTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16}>
+            <FormItem
+              label="Siaga"
+              colon={false}
+              validateStatus={sglForm.thirdTutor.validateStatus}
+              help={sglForm.thirdTutor.errorMsg}
+            >
+              <PengampuSelect
+                value={sglForm.thirdTutor.value}
+                onChange={(value) => {
+                  sglFormChanged({
+                    key: 'thirdTutor',
+                    value,
+                  });
+                }}
+              />
+            </FormItem>
+          </Col>
+          <Col span={8}>
+            <FormItem
+              label=" "
+              colon={false}
+              validateStatus={sglForm.thirdTutorPresent.validateStatus}
+              help={sglForm.thirdTutorPresent.errorMsg}
+            >
+              <Checkbox
+                style={{ marginLeft: 10 }}
+                checked={sglForm.thirdTutorPresent.value}
+                onChange={(e) => {
+                  sglFormChanged({
+                    key: 'thirdTutorPresent',
+                    value: e.target.checked,
+                  });
+                }}
+              >
+                Present
+              </Checkbox>
             </FormItem>
           </Col>
         </Row>

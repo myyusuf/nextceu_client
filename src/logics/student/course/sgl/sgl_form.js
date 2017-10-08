@@ -7,7 +7,6 @@ const validate = (key, value) => {
   let result = null;
   switch (key) {
     case 'sglType':
-    case 'pengampu':
     case 'sglDate':
       result = validateExist(key, value);
       break;
@@ -40,8 +39,9 @@ const loadSglFormLogic = createLogic({
     const sglTypeId = sgl.SglType ?
     sgl.SglType.id : undefined;
 
-    const pengampuId = sgl.Pengampu ?
-    sgl.Pengampu.id : undefined;
+    const mainTutorId = sgl.mainTutorId ? String(sgl.mainTutorId) : undefined;
+    const secondTutorId = sgl.secondTutorId ? String(sgl.secondTutorId) : undefined;
+    const thirdTutorId = sgl.thirdTutorId ? String(sgl.thirdTutorId) : undefined;
 
     if (sgl.sglDate) {
       sgl.sglDate = moment(sgl.sglDate);
@@ -53,8 +53,23 @@ const loadSglFormLogic = createLogic({
       sglType: {
         value: String(sglTypeId),
       },
-      pengampu: {
-        value: String(pengampuId),
+      mainTutor: {
+        value: mainTutorId,
+      },
+      secondTutor: {
+        value: secondTutorId,
+      },
+      thirdTutor: {
+        value: thirdTutorId,
+      },
+      mainTutorPresent: {
+        value: sgl.mainTutorPresent,
+      },
+      secondTutorPresent: {
+        value: sgl.secondTutorPresent,
+      },
+      thirdTutorPresent: {
+        value: sgl.thirdTutorPresent,
       },
       sglDate: {
         value: sgl.sglDate,
