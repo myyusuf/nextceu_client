@@ -42,7 +42,7 @@ class HospitalList extends Component {
             </Menu>
           </Col>
         </Row>
-        <Row gutter={15} style={{ marginTop: 5 }}>
+        <Row gutter={15} style={{ marginTop: 10 }}>
           {hospitals.filter(hospital => String(hospital.hospitalType) === hospitalType)
             .map(hospital => (
               <Col span={6}>

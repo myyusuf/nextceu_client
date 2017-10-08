@@ -12,7 +12,8 @@ const SettingsTree = ({ selectSettings, selectedKeys }) => (
       borderStyle: 'solid',
       borderColor: '#e9e9e9',
       padding: 15,
-      height: 600,
+      height: 680,
+      marginTop: -1,
     }}
   >
     <Tree

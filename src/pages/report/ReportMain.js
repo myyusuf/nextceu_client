@@ -48,7 +48,7 @@ const ReportMain = ({ selectedMenuKey }) => {
         <Col span={4}>
           <ReportTree />
         </Col>
-        <Col span={20} style={{ backgroundColor: '#fff' }}>
+        <Col span={20} style={{ backgroundColor: '#fff', paddingTop: 20 }}>
           {componentToRender}
         </Col>
       </Row>

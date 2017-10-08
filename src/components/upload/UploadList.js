@@ -57,7 +57,7 @@ const UploadList = ({ showUploadResult }) => {
   };
 
   return (
-    <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+    <div style={{ paddingLeft: 10, paddingRight: 10, marginTop: -20 }}>
       <Row>
         <Col span={24}>
           <Table dataSource={uploads} style={{ marginTop: 20 }} size="middle" rowKey="id">
