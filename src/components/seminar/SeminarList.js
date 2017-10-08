@@ -58,6 +58,7 @@ class SeminarList extends Component {
               onChange={(e) => {
                 searchTextChanged(e.target.value);
               }}
+              style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
               placeholder="Code or Name"
             />
           </Col>
@@ -67,6 +68,7 @@ class SeminarList extends Component {
               onChange={(date) => {
                 dateRangeChanged(date);
               }}
+              style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
             />
           </Col>
           <Col span={5}>
@@ -75,13 +77,14 @@ class SeminarList extends Component {
                 shape="circle"
                 icon="search"
                 onClick={() => fetchSeminars()}
-                style={{ marginRight: 15 }}
+                style={{ marginLeft: 0, marginTop: 20, marginBottom: 20 }}
               />
               <Button
                 type="primary"
                 shape="circle"
                 icon="plus"
                 onClick={() => openAddWindow()}
+                style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
               />
             </span>
           </Col>
@@ -90,7 +93,6 @@ class SeminarList extends Component {
           <Col span={24}>
             <Table
               dataSource={seminars}
-              style={{ marginTop: 20 }}
               rowKey="id"
               loading={loading}
               pagination={{

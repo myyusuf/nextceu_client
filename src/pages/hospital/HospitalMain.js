@@ -30,7 +30,7 @@ const HospitalMain = ({
           onChange={(date) => {
             hospitalDateRangeChanged(date);
           }}
-          style={{ marginLeft: 17, marginTop: 17, marginBottom: 17 }}
+          style={{ marginLeft: 17, marginTop: 20, marginBottom: 20 }}
         />
       </Col>
       <Col span={4}>
@@ -39,7 +39,7 @@ const HospitalMain = ({
           onSelect={(value) => {
             hospitalDepartmentChanged(value);
           }}
-          style={{ width: 170, marginTop: 17, marginBottom: 17 }}
+          style={{ width: 190, marginTop: 20, marginBottom: 20 }}
         />
       </Col>
       <Col span={2}>
@@ -47,7 +47,7 @@ const HospitalMain = ({
           shape="circle"
           icon="search"
           onClick={() => fetchHospitals()}
-          style={{ marginTop: 17, marginBottom: 17 }}
+          style={{ marginTop: 20, marginBottom: 20 }}
         />
 
         <Button

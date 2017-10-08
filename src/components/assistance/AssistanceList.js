@@ -59,6 +59,7 @@ class AssistanceList extends Component {
                 searchTextChanged(e.target.value);
               }}
               placeholder="Code or Name"
+              style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
             />
           </Col>
           <Col span={11}>
@@ -67,6 +68,7 @@ class AssistanceList extends Component {
               onChange={(date) => {
                 dateRangeChanged(date);
               }}
+              style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
             />
           </Col>
           <Col span={5}>
@@ -75,13 +77,14 @@ class AssistanceList extends Component {
                 shape="circle"
                 icon="search"
                 onClick={() => fetchAssistances()}
-                style={{ marginRight: 15 }}
+                style={{ marginLeft: 0, marginTop: 20, marginBottom: 20 }}
               />
               <Button
                 type="primary"
                 shape="circle"
                 icon="plus"
                 onClick={() => openAddWindow()}
+                style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
               />
             </span>
           </Col>
@@ -90,7 +93,7 @@ class AssistanceList extends Component {
           <Col span={24}>
             <Table
               dataSource={assistances}
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 0 }}
               rowKey="id"
               loading={loading}
               pagination={{

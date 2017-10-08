@@ -72,6 +72,7 @@ class ParticipantList extends Component {
                 searchTextChanged(e.target.value);
               }}
               placeholder="SID or Name"
+              style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
             />
           </Col>
           <Col span={16}>
@@ -80,7 +81,7 @@ class ParticipantList extends Component {
                 shape="circle"
                 icon="search"
                 onClick={() => fetchParticipants()}
-                style={{ marginRight: 15 }}
+                style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
                 disabled={buttonDisabled}
               />
               <Upload {...uploadProps}>
@@ -89,6 +90,7 @@ class ParticipantList extends Component {
                   shape="circle"
                   icon="upload"
                   disabled={buttonDisabled}
+                  style={{ marginLeft: 7, marginTop: 20, marginBottom: 20 }}
                 />
               </Upload>
             </span>
@@ -98,7 +100,7 @@ class ParticipantList extends Component {
           <Col span={24}>
             <Table
               dataSource={participants}
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 0 }}
               rowKey="id"
               loading={loading}
               pagination={{
