@@ -58,19 +58,29 @@ const CourseWindow = ({
         <ScheduleForm />
       </TabPane>
       <TabPane tab="Scores" key="3">
-        <ScoreList />
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <ScoreList />
+        </div>
       </TabPane>
       <TabPane tab="Seminars" key="4">
-        <SeminarList />
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <SeminarList />
+        </div>
       </TabPane>
       <TabPane tab="Portofolios" key="5">
-        <PortofolioList />
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <PortofolioList />
+        </div>
       </TabPane>
       <TabPane tab="SGL" key="6">
-        <SglList />
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <SglList />
+        </div>
       </TabPane>
       <TabPane tab="Problems" key="7">
-        <CourseProblemList />
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <CourseProblemList />
+        </div>
       </TabPane>
     </Tabs>
 

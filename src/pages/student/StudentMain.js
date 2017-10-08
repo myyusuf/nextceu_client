@@ -25,12 +25,6 @@ const StudentMain = ({ level, levelChanged }) => (
           <Menu.Item key="2">
             LEVEL 2
           </Menu.Item>
-          <Menu.Item key="3">
-            UKMPPD Test
-          </Menu.Item>
-          <Menu.Item key="4">
-            Graduate
-          </Menu.Item>
         </Menu>
       </Col>
     </Row>

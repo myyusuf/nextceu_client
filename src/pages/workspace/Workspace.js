@@ -49,34 +49,10 @@ const Workspace = ({ children }) => {
           <Link to="/">CEU</Link> | Administration
           <div
             style={{
-              width: 160,
-              height: 60,
-              padding: 14,
-              position: 'absolute',
-              top: -5,
-              right: 100,
-            }}
-          >
-            <Progress percent={70} strokeWidth={7} showInfo={false} />
-          </div>
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              padding: 14,
-              position: 'absolute',
-              top: 0,
-              right: 50,
-            }}
-          >
-            <Icon type="message" style={{ fontSize: 23, color: '#93BDEC' }} />
-          </div>
-          <div
-            style={{
               width: 40,
-              height: 111,
+              height: 64,
               paddingLeft: 9,
-              paddingTop: 23,
+              paddingTop: 3,
               position: 'absolute',
               top: 0,
               right: 0,
@@ -85,7 +61,7 @@ const Workspace = ({ children }) => {
             }}
           >
             <Dropdown overlay={menu}>
-              <Icon type="bulb" style={{ fontSize: 23, color: '#fff' }} />
+              <Icon type="ellipsis" style={{ fontSize: 23, color: '#fff' }} />
             </Dropdown>
           </div>
         </Header>
