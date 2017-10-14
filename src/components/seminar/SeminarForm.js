@@ -14,7 +14,7 @@ import SmtSelect from './smt/SmtSelect';
 
 const FormItem = Form.Item;
 
-const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
+const SeminarForm = ({ seminarForm, seminarFormChanged, departmentChanged }) => (
   <Form>
     <Row>
       <Col span={24}>
@@ -65,8 +65,9 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
           colon={false}
         >
           <DepartmentSelect
+            value={seminarForm.department.value}
             onChange={(value) => {
-              //
+              departmentChanged(value);
             }}
           />
         </FormItem>
@@ -196,6 +197,7 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
 
 SeminarForm.propTypes = {
   seminarFormChanged: PropTypes.func.isRequired,
+  departmentChanged: PropTypes.func.isRequired,
   seminarForm: PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -214,6 +216,12 @@ const mapDispatchToProps = dispatch => (
     seminarFormChanged: (payload) => {
       dispatch({
         type: 'SEMINAR_FORM_CHANGED_LOGIC',
+        payload,
+      });
+    },
+    departmentChanged: (payload) => {
+      dispatch({
+        type: 'FETCH_SMTS_BY_DEPARTMENT_LOGIC',
         payload,
       });
     },

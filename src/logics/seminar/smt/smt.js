@@ -7,7 +7,7 @@ import { mathRandom } from '../../../utils/random';
 import { validateLength, validateExist } from '../../../utils/validation';
 
 const SMTS_URL = `${Constant.serverUrl}/api/seminartypes`;
-const SMTS_BY_DEPARTMENT_URL = `${Constant.serverUrl}/api/smltypesbydepartment`;
+const SMTS_BY_DEPARTMENT_URL = `${Constant.serverUrl}/api/seminartypesbydepartment`;
 
 const validate = (key, value) => {
   let result = null;
@@ -58,7 +58,7 @@ const fetchSmtsByDepartmentLogic = createLogic({
   latest: true,
   process({ getState, action }, dispatch, done) {
     const paramameters = { params: {
-      department: getState().seminarReducers.courseForm.tempDepartment.value,
+      department: action.payload,
       r: mathRandom(),
     } };
     axios.get(SMTS_BY_DEPARTMENT_URL, paramameters)

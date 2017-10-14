@@ -45,6 +45,10 @@ const loadSeminarFormLogic = createLogic({
     const seminarTypeId = seminar.SeminarTypeId ? String(seminar.SeminarTypeId) : undefined;
     const speakerId = seminar.speakerId ? String(seminar.speakerId) : undefined;
     const moderatorId = seminar.moderatorId ? String(seminar.moderatorId) : undefined;
+    let departmentId;
+    if (seminarTypeId) {
+      departmentId = String(seminar.SeminarType.DepartmentId);
+    }
     const seminarForm = {
       id: {
         value: seminar.id,
@@ -54,6 +58,9 @@ const loadSeminarFormLogic = createLogic({
       },
       name: {
         value: seminar.name,
+      },
+      department: {
+        value: departmentId,
       },
       seminarType: {
         value: seminarTypeId,
