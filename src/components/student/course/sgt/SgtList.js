@@ -154,11 +154,15 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchSgts: () => (
+    fetchSgts: () => {
       dispatch({
         type: 'FETCH_SGTS_LOGIC',
-      })
-    ),
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
+    },
     openAddWindow: () => {
       dispatch({
         type: 'EDIT_SGT_LOGIC',
