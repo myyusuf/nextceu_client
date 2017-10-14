@@ -17,6 +17,7 @@ const SeminarWindow = ({
     onOk={onOk}
     confirmLoading={confirmLoading}
     onCancel={onCancel}
+    wrapClassName="vertical-center-modal"
   >
     <SeminarForm />
   </Modal>

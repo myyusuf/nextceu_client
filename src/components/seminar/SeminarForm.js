@@ -7,7 +7,10 @@ import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import DatePicker from 'antd/lib/date-picker';
 import TimePicker from 'antd/lib/time-picker';
+import InputNumber from 'antd/lib/input-number';
 import SupervisorSelect from '../supervisor/SupervisorSelect';
+import DepartmentSelect from '../department/DepartmentSelect';
+import SmtSelect from './smt/SmtSelect';
 
 const FormItem = Form.Item;
 
@@ -58,6 +61,61 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
     <Row gutter={10}>
       <Col span={12}>
         <FormItem
+          label="Department"
+          colon={false}
+        >
+          <DepartmentSelect
+            onChange={(value) => {
+              //
+            }}
+          />
+        </FormItem>
+      </Col>
+      <Col span={12}>
+        <FormItem
+          label="Seminar Type"
+          colon={false}
+          validateStatus={seminarForm.seminarType.validateStatus}
+          help={seminarForm.seminarType.errorMsg}
+        >
+          <SmtSelect
+            value={seminarForm.seminarType.value}
+            onChange={(value) => {
+              seminarFormChanged({
+                key: 'seminarType',
+                value,
+              });
+            }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={12}>
+        <FormItem
+          label="Duration"
+          colon={false}
+          validateStatus={seminarForm.duration.validateStatus}
+          help={seminarForm.duration.errorMsg}
+        >
+          <InputNumber
+            min={1}
+            max={10}
+            value={seminarForm.duration.value}
+            onChange={(value) => {
+              seminarFormChanged({
+                key: 'duration',
+                value,
+              });
+            }}
+            style={{ width: 120 }}
+          />
+        </FormItem>
+      </Col>
+    </Row>
+    <Row gutter={10}>
+      <Col span={12}>
+        <FormItem
           label="Date"
           colon={false}
           validateStatus={seminarForm.eventDate.validateStatus}
@@ -95,8 +153,8 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
         </FormItem>
       </Col>
     </Row>
-    <Row>
-      <Col span={24}>
+    <Row gutter={10}>
+      <Col span={12}>
         <FormItem
           label="Speaker"
           colon={false}
@@ -114,9 +172,7 @@ const SeminarForm = ({ seminarForm, seminarFormChanged }) => (
           />
         </FormItem>
       </Col>
-    </Row>
-    <Row>
-      <Col span={24}>
+      <Col span={12}>
         <FormItem
           label="Moderator"
           colon={false}

@@ -190,10 +190,18 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'FETCH_SEMINARS_LOGIC',
       });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
+      });
     },
     openAddWindow: () => {
       dispatch({
         type: 'EDIT_SEMINAR_LOGIC',
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
       });
 
       dispatch({
@@ -204,6 +212,10 @@ const mapDispatchToProps = dispatch => (
       dispatch({
         type: 'LOAD_SEMINAR_TO_FORM_LOGIC',
         payload: record,
+      });
+
+      dispatch({
+        type: 'FETCH_ALL_DEPARTMENTS_LOGIC',
       });
 
       dispatch({

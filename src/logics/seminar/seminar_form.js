@@ -10,6 +10,8 @@ const validate = (key, value) => {
     case 'name':
       result = validateLength(key, value, 3);
       break;
+    case 'seminarType':
+    case 'duration':
     case 'eventDate':
     case 'eventTime':
       result = validateExist(key, value);
@@ -40,6 +42,7 @@ const loadSeminarFormLogic = createLogic({
   type: 'LOAD_SEMINAR_TO_FORM_LOGIC',
   process({ getState, action }, dispatch, done) {
     const seminar = action.payload;
+    const seminarTypeId = seminar.SeminarTypeId ? String(seminar.SeminarTypeId) : undefined;
     const speakerId = seminar.speakerId ? String(seminar.speakerId) : undefined;
     const moderatorId = seminar.moderatorId ? String(seminar.moderatorId) : undefined;
     const seminarForm = {
@@ -51,6 +54,9 @@ const loadSeminarFormLogic = createLogic({
       },
       name: {
         value: seminar.name,
+      },
+      seminarType: {
+        value: seminarTypeId,
       },
       eventDate: {
         value: moment(seminar.eventDate),

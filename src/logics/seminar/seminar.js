@@ -15,6 +15,8 @@ const validate = (key, value) => {
     case 'name':
       result = validateLength(key, value, 3);
       break;
+    case 'seminarType':
+    case 'duration':
     case 'eventDate':
     case 'eventTime':
       result = validateExist(key, value);

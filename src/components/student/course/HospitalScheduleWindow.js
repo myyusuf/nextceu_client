@@ -16,6 +16,7 @@ const HospitalScheduleWindow = ({
     onOk={onOk}
     onCancel={onCancel}
     width={600}
+    wrapClassName="vertical-center-modal"
   >
     <HospitalScheduleForm />
   </Modal>

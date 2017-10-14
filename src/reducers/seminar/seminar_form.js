@@ -2,6 +2,8 @@ const defaultState = {
   id: {},
   code: {},
   name: {},
+  seminarType: {},
+  duration: {},
   eventDate: {},
   eventTime: {},
   speaker: {},

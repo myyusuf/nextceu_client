@@ -5,12 +5,13 @@ import Select from 'antd/lib/select';
 
 const Option = Select.Option;
 
-const SmtSelect = ({ smts, value, onSelect, style = {} }) => (
+const SmtSelect = ({ smts, value, onChange, style = {} }) => (
   <Select
     placeholder="Select Type"
     style={style}
-    onSelect={onSelect}
+    onChange={onChange}
     value={value}
+    allowClear
   >
     {smts.map(smt => (
       <Option value={String(smt.id)}>{smt.name}</Option>
@@ -26,7 +27,7 @@ SmtSelect.propTypes = {
     }),
   ).isRequired,
   value: PropTypes.number.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   style: PropTypes.shape(),
 };
 
