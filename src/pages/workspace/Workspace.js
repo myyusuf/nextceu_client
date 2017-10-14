@@ -17,6 +17,7 @@ import './Workspace.css';
 import SiderMenu from '../../components/menu/SiderMenu';
 import BakordikSiderMenu from '../../components/menu/BakordikSiderMenu';
 import LoginFormContainer from '../../components/login/LoginFormContainer';
+import PageTitle from '../../components/workspace/PageTitle';
 
 const Workspace = ({ children }) => {
 
@@ -46,7 +47,7 @@ const Workspace = ({ children }) => {
       </Sider>
       <Layout>
         <Header className="Workspace-header">
-          <Link to="/">CEU</Link> | Administration
+          <Link to="/">CEU</Link> | <PageTitle />
           <div
             style={{
               width: 40,

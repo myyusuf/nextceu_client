@@ -8,6 +8,7 @@ class StudentList extends Component {
 
   componentWillMount() {
     this.props.fetchStudents();
+    this.props.setPageTitle();
   }
 
   render() {
@@ -53,6 +54,7 @@ StudentList.propTypes = {
     }).isRequired,
   ).isRequired,
   fetchStudents: PropTypes.func.isRequired,
+  setPageTitle: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -75,6 +77,12 @@ const mapDispatchToProps = dispatch => (
     fetchStudents: () => {
       dispatch({
         type: 'FETCH_STUDENTS_LOGIC',
+      });
+    },
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Student', subTitle: '' },
       });
     },
   }

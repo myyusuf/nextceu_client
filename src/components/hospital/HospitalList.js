@@ -17,6 +17,7 @@ class HospitalList extends Component {
   componentWillMount() {
     this.props.fetchHospitals();
     this.props.fetchHospitalDepartments();
+    this.props.setPageTitle();
   }
 
   render() {
@@ -60,6 +61,7 @@ class HospitalList extends Component {
 }
 
 HospitalList.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchHospitals: PropTypes.func.isRequired,
   fetchHospitalDepartments: PropTypes.func.isRequired,
   hospitalType: PropTypes.string.isRequired,
@@ -82,6 +84,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Hospital', subTitle: '' },
+      });
+    },
     fetchHospitals: () => (
       dispatch({
         type: 'FETCH_HOSPITALS_LOGIC',

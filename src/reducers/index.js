@@ -17,6 +17,7 @@ import supervisorReducers from './supervisor/';
 import yudisiumReducers from './yudisium/';
 import ukmppdReducers from './ukmppd/';
 import bakordikReducers from './bakordik/';
+import workspaceReducers from './workspace/';
 
 const rootReducer = combineReducers({
   studentReducers,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   yudisiumReducers,
   ukmppdReducers,
   bakordikReducers,
+  workspaceReducers,
 });
 
 export default rootReducer;

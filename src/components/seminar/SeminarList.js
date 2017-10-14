@@ -18,6 +18,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class SeminarList extends Component {
   componentWillMount() {
+    this.props.setPageTitle();
     this.props.fetchSeminars();
   }
 
@@ -153,6 +154,7 @@ class SeminarList extends Component {
 }
 
 SeminarList.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchSeminars: PropTypes.func.isRequired,
   openAddWindow: PropTypes.func.isRequired,
   openEditWindow: PropTypes.func.isRequired,
@@ -186,6 +188,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Seminar', subTitle: '' },
+      });
+    },
     fetchSeminars: () => {
       dispatch({
         type: 'FETCH_SEMINARS_LOGIC',
