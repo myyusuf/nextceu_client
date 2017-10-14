@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const PageTitle = ({ pageTitle }) => (<span>{pageTitle.title}</span>);
+const PageTitle = ({ pageTitle }) => {
+  const title = pageTitle.subTitle ? `${pageTitle.title} | ${pageTitle.subTitle}` : pageTitle.title;
+  return <span>{title}</span>
+};
 
 const mapStateToProps = state => (
   {

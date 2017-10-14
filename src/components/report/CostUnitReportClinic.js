@@ -14,6 +14,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class CostUnitClinicReport extends Component {
   componentWillMount() {
+    this.props.setPageTitle();
     this.props.fetchCostUnitsClinic();
   }
 
@@ -139,6 +140,7 @@ class CostUnitClinicReport extends Component {
 }
 
 CostUnitClinicReport.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchCostUnitsClinic: PropTypes.func.isRequired,
   dateRange: PropTypes.string.isRequired,
   dateRangeChanged: PropTypes.func.isRequired,
@@ -163,6 +165,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Report', subTitle: 'Cost Unit Clinic' },
+      });
+    },
     fetchCostUnitsClinic: () => {
       dispatch({
         type: 'FETCH_COST_UNITS_CLINIC_LOGIC',

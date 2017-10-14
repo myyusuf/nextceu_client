@@ -15,6 +15,7 @@ const confirm = Modal.confirm;
 
 class PreTestReport extends Component {
   componentWillMount() {
+    this.props.setPageTitle();
     this.props.fetchPreTests();
   }
 
@@ -134,6 +135,7 @@ class PreTestReport extends Component {
 }
 
 PreTestReport.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchPreTests: PropTypes.func.isRequired,
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
@@ -165,6 +167,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Report', subTitle: 'Pre Test' },
+      });
+    },
     fetchPreTests: () => {
       dispatch({
         type: 'FETCH_PRE_TESTS_LOGIC',

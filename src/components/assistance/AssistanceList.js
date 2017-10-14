@@ -18,6 +18,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class AssistanceList extends Component {
   componentWillMount() {
+    this.props.setPageTitle();
     this.props.fetchAssistances();
   }
 
@@ -154,6 +155,7 @@ class AssistanceList extends Component {
 }
 
 AssistanceList.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchAssistances: PropTypes.func.isRequired,
   openAddWindow: PropTypes.func.isRequired,
   openEditWindow: PropTypes.func.isRequired,
@@ -187,6 +189,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Assistance', subTitle: '' },
+      });
+    },
     fetchAssistances: () => {
       dispatch({
         type: 'FETCH_ASSISTANCES_LOGIC',

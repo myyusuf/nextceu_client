@@ -17,6 +17,7 @@ const RangePicker = DatePicker.RangePicker;
 
 class LevelCourseReport extends Component {
   componentWillMount() {
+    this.props.setPageTitle();
     this.props.fetchCourses();
   }
 
@@ -136,6 +137,7 @@ class LevelCourseReport extends Component {
 }
 
 LevelCourseReport.propTypes = {
+  setPageTitle: PropTypes.func.isRequired,
   fetchCourses: PropTypes.func.isRequired,
   openExportWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
@@ -167,6 +169,12 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
+    setPageTitle: () => {
+      dispatch({
+        type: 'UPDATE_WORKSPACE_PAGE_TITLE',
+        payload: { title: 'Report', subTitle: 'Pre Yudisium' },
+      });
+    },
     fetchCourses: () => {
       dispatch({
         type: actions.report.student.levelCourse.fetchCourses,
