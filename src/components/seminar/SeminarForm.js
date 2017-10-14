@@ -66,7 +66,15 @@ const SeminarForm = ({ seminarForm, seminarFormChanged, departmentChanged }) => 
         >
           <DepartmentSelect
             value={seminarForm.department.value}
-            onChange={(value) => {
+            onSelect={(value) => {
+              seminarFormChanged({
+                key: 'department',
+                value,
+              });
+              seminarFormChanged({
+                key: 'seminarType',
+                value: null,
+              });
               departmentChanged(value);
             }}
           />
