@@ -219,6 +219,11 @@ const mapDispatchToProps = dispatch => (
       });
 
       dispatch({
+        type: 'FETCH_SMTS_BY_DEPARTMENT_LOGIC',
+        payload: record.SeminarType.DepartmentId,
+      });
+
+      dispatch({
         type: 'FETCH_SUPERVISORS_FOR_SELECT_LOGIC',
       });
     },

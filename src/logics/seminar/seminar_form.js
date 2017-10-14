@@ -65,6 +65,9 @@ const loadSeminarFormLogic = createLogic({
       seminarType: {
         value: seminarTypeId,
       },
+      duration: {
+        value: seminar.duration,
+      },
       eventDate: {
         value: moment(seminar.eventDate),
       },
