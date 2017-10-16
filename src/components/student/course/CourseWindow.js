@@ -54,6 +54,11 @@ const CourseWindow = ({
       <TabPane tab="Info" key="1">
         <CourseForm />
       </TabPane>
+      <TabPane tab="SGL" key="6">
+        <div style={{ height: 440, overflow: 'scroll' }}>
+          <SglList />
+        </div>
+      </TabPane>
       <TabPane tab="Schedules" key="2">
         <ScheduleForm />
       </TabPane>
@@ -62,19 +67,14 @@ const CourseWindow = ({
           <ScoreList />
         </div>
       </TabPane>
-      <TabPane tab="Seminars" key="4">
-        <div style={{ height: 440, overflow: 'scroll' }}>
-          <SeminarList />
-        </div>
-      </TabPane>
       <TabPane tab="Portofolios" key="5">
         <div style={{ height: 440, overflow: 'scroll' }}>
           <PortofolioList />
         </div>
       </TabPane>
-      <TabPane tab="SGL" key="6">
+      <TabPane tab="Seminars" key="4">
         <div style={{ height: 440, overflow: 'scroll' }}>
-          <SglList />
+          <SeminarList />
         </div>
       </TabPane>
       <TabPane tab="Problems" key="7">
