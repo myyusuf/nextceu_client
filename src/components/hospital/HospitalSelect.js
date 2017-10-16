@@ -3,27 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from 'antd/lib/select';
 
-const Option = Select.Option;
+const { Option, OptGroup } = Select;
 
-const HospitalSelect = ({ hospitals, value, onSelect, style = {}, hospitalType = null }) => {
-  let options = [];
-  if (hospitalType) {
-    if (hospitalType === 'clinic') {
-      options = hospitals.filter(hospital => (hospital.hospitalType === 2))
-      .map(hospital => (
-        <Option value={String(hospital.id)}>{hospital.name}</Option>
-      ));
-    } else {
-      options = hospitals.filter(hospital => (hospital.hospitalType === 1))
-      .map(hospital => (
-        <Option value={String(hospital.id)}>{hospital.name}</Option>
-      ));
-    }
-  } else {
-    options = hospitals.map(hospital => (
-      <Option value={String(hospital.id)}>{hospital.name}</Option>
-    ));
-  }
+const HospitalSelect = ({ hospitals, value, onSelect, style = {} }) => {
   return (
     <Select
       placeholder="Select Hospital"
@@ -31,7 +13,16 @@ const HospitalSelect = ({ hospitals, value, onSelect, style = {}, hospitalType =
       value={value}
       style={style}
     >
-      {options}
+      <OptGroup label="Hospitals">
+        {hospitals.filter(hospital => hospital.hospitalType === 1).map(hospital => (
+          <Option key={hospital.id} value={String(hospital.id)}>{hospital.name}</Option>
+        ))}
+      </OptGroup>
+      <OptGroup label="Clinics">
+        {hospitals.filter(hospital => hospital.hospitalType === 2).map(hospital => (
+          <Option key={hospital.id} value={String(hospital.id)}>{hospital.name}</Option>
+        ))}
+      </OptGroup>
     </Select>
   );
 };
@@ -40,8 +31,7 @@ HospitalSelect.propTypes = {
   hospitals: PropTypes.arrayOf(PropTypes.shape).isRequired,
   value: PropTypes.number.isRequired,
   onSelect: PropTypes.func.isRequired,
-  style: PropTypes.shape,
-  hospitalType: PropTypes.string,
+  style: PropTypes.shape(),
 };
 
 const mapStateToProps = state => (
