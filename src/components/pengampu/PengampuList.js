@@ -9,6 +9,7 @@ import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
 
 import PengampuWindow from './PengampuWindow';
+import DepartmentSelect from '../department/DepartmentSelect';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -30,13 +31,15 @@ class PengampuList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      searchDepartment,
+      searchDepartmentChanged,
       pageChanged,
       loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={8}>
+          <Col span={6}>
             <Input
               value={searchText}
               onChange={(e) => {
@@ -45,7 +48,17 @@ class PengampuList extends Component {
               placeholder="Code or Name"
             />
           </Col>
-          <Col span={16}>
+          <Col span={4}>
+            <DepartmentSelect
+              value={searchDepartment}
+              onSelect={(value) => {
+                searchDepartmentChanged(value);
+              }}
+              style={{ width: '100%' }}
+              allowClear
+            />
+          </Col>
+          <Col span={14}>
             <span>
               <Button
                 shape="circle"
@@ -126,6 +139,8 @@ PengampuList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  searchDepartment: PropTypes.string.isRequired,
+  searchDepartmentChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   pengampus: PropTypes.arrayOf(PropTypes.shape).isRequired,
@@ -139,6 +154,7 @@ const mapStateToProps = state => (
     pengampus: state.pengampuReducers.pengampus.rows,
     count: state.pengampuReducers.pengampus.count,
     searchText: state.pengampuReducers.pengampuSearch.searchText,
+    searchDepartment: state.pengampuReducers.pengampuSearch.searchDepartment,
     pageSize: state.pengampuReducers.pengampuSearch.pageSize,
     currentPage: state.pengampuReducers.pengampuSearch.currentPage,
     loading: state.pengampuReducers.pengampuSearch.loading,
@@ -174,6 +190,12 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'PENGAMPU_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchDepartmentChanged: value => (
+      dispatch({
+        type: 'PENGAMPU_SEARCH_DEPARTMENT_CHANGED',
         payload: value,
       })
     ),
