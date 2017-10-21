@@ -9,6 +9,8 @@ import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
 
 import DocentWindow from './DocentWindow';
+import DepartmentSelect from '../department/DepartmentSelect';
+import HospitalSelect from '../hospital/HospitalSelect';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -30,13 +32,17 @@ class DocentList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      searchDepartment,
+      searchDepartmentChanged,
+      searchHospital,
+      searchHospitalChanged,
       pageChanged,
       loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={8}>
+          <Col span={6}>
             <Input
               value={searchText}
               onChange={(e) => {
@@ -45,7 +51,27 @@ class DocentList extends Component {
               placeholder="Code or Name"
             />
           </Col>
-          <Col span={16}>
+          <Col span={4}>
+            <HospitalSelect
+              value={searchHospital}
+              onSelect={(value) => {
+                searchHospitalChanged(value);
+              }}
+              style={{ width: '100%' }}
+              allowClear
+            />
+          </Col>
+          <Col span={4}>
+            <DepartmentSelect
+              value={searchDepartment}
+              onSelect={(value) => {
+                searchDepartmentChanged(value);
+              }}
+              style={{ width: '100%' }}
+              allowClear
+            />
+          </Col>
+          <Col span={8}>
             <span>
               <Button
                 shape="circle"
@@ -130,6 +156,10 @@ DocentList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  searchHospital: PropTypes.string.isRequired,
+  searchHospitalChanged: PropTypes.func.isRequired,
+  searchDepartment: PropTypes.string.isRequired,
+  searchDepartmentChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   docents: PropTypes.arrayOf(PropTypes.shape).isRequired,
@@ -143,6 +173,8 @@ const mapStateToProps = state => (
     docents: state.docentReducers.docents.rows,
     count: state.docentReducers.docents.count,
     searchText: state.docentReducers.docentSearch.searchText,
+    searchHospital: state.docentReducers.docentSearch.searchHospital,
+    searchDepartment: state.docentReducers.docentSearch.searchDepartment,
     pageSize: state.docentReducers.docentSearch.pageSize,
     currentPage: state.docentReducers.docentSearch.currentPage,
     loading: state.docentReducers.docentSearch.loading,
@@ -178,6 +210,18 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'DOCENT_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchDepartmentChanged: value => (
+      dispatch({
+        type: 'DOCENT_SEARCH_DEPARTMENT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchHospitalChanged: value => (
+      dispatch({
+        type: 'DOCENT_SEARCH_HOSPITAL_CHANGED',
         payload: value,
       })
     ),
