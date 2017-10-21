@@ -9,6 +9,7 @@ import Input from 'antd/lib/input';
 import Modal from 'antd/lib/modal';
 
 import HospitalUserWindow from './HospitalUserWindow';
+import HospitalSelect from '../hospital/HospitalSelect';
 
 const Column = Table.Column;
 const confirm = Modal.confirm;
@@ -30,13 +31,15 @@ class HospitalUserList extends Component {
       confirmDelete,
       searchText,
       searchTextChanged,
+      searchHospital,
+      searchHospitalChanged,
       pageChanged,
       loading,
     } = this.props;
     return (
       <div style={{ paddingLeft: 10, paddingRight: 10 }}>
         <Row gutter={10}>
-          <Col span={8}>
+          <Col span={6}>
             <Input
               value={searchText}
               onChange={(e) => {
@@ -45,7 +48,17 @@ class HospitalUserList extends Component {
               placeholder="Username or Name"
             />
           </Col>
-          <Col span={16}>
+          <Col span={4}>
+            <HospitalSelect
+              value={searchHospital}
+              onSelect={(value) => {
+                searchHospitalChanged(value);
+              }}
+              style={{ width: '100%' }}
+              allowClear
+            />
+          </Col>
+          <Col span={14}>
             <span>
               <Button
                 shape="circle"
@@ -124,6 +137,8 @@ HospitalUserList.propTypes = {
   confirmDelete: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  searchHospital: PropTypes.string.isRequired,
+  searchHospitalChanged: PropTypes.func.isRequired,
   pageChanged: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   hospitalUsers: PropTypes.arrayOf(PropTypes.shape).isRequired,
@@ -137,6 +152,7 @@ const mapStateToProps = state => (
     hospitalUsers: state.settingsReducers.hospitalUsers.rows,
     count: state.settingsReducers.hospitalUsers.count,
     searchText: state.settingsReducers.hospitalUserSearch.searchText,
+    searchHospital: state.settingsReducers.hospitalUserSearch.searchHospital,
     pageSize: state.settingsReducers.hospitalUserSearch.pageSize,
     currentPage: state.settingsReducers.hospitalUserSearch.currentPage,
     loading: state.settingsReducers.hospitalUserSearch.loading,
@@ -173,6 +189,12 @@ const mapDispatchToProps = dispatch => (
     searchTextChanged: value => (
       dispatch({
         type: 'HOSPITAL_USER_SEARCH_TEXT_CHANGED',
+        payload: value,
+      })
+    ),
+    searchHospitalChanged: value => (
+      dispatch({
+        type: 'HOSPITAL_USER_SEARCH_HOSPITAL_CHANGED',
         payload: value,
       })
     ),

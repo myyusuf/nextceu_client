@@ -27,7 +27,7 @@ const fetchHospitalUsersLogic = createLogic({
   cancelType: 'CANCEL_FETCH_HOSPITAL_USERS_LOGIC',
   latest: true,
   process({ getState, action }, dispatch, done) {
-    const search = getState().settingsReducers.userSearch;
+    const search = getState().settingsReducers.hospitalUserSearch;
     const paramameters = search ? { params: { ...search, r: mathRandom() } } : {};
     dispatch({ type: 'HOSPITAL_USER_LOADING_START' });
     axios.get(HOSPITAL_USERS_URL, paramameters)

@@ -1,5 +1,6 @@
 const defaultState = {
   searchText: '',
+  searchHospital: undefined,
   pageSize: 10,
   currentPage: 1,
   loading: false,
@@ -9,6 +10,9 @@ const hospitalUserSearch = (state = defaultState, action) => {
   switch (action.type) {
     case 'HOSPITAL_USER_SEARCH_TEXT_CHANGED': {
       return { ...state, searchText: action.payload };
+    }
+    case 'HOSPITAL_USER_SEARCH_HOSPITAL_CHANGED': {
+      return { ...state, searchHospital: action.payload };
     }
     case 'HOSPITAL_USER_CURRENT_PAGE_CHANGED': {
       return { ...state, currentPage: action.payload };
