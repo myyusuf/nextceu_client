@@ -19,6 +19,7 @@ const StudentListPage = ({
   openAddWindow,
   searchText,
   searchTextChanged,
+  pageChanged,
 }) => (
   <Row>
     <Col span={24}>
@@ -50,7 +51,7 @@ const StudentListPage = ({
       <Row>
         <Col span={24}>
           <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto', marginTop: 20 }}>
-            <Pagination current={currentPage} total={count} pageSize={pageSize} />
+            <Pagination current={currentPage} total={count} pageSize={pageSize} onChange={page => pageChanged(page)} />
           </div>
         </Col>
       </Row>
@@ -66,6 +67,7 @@ StudentListPage.propTypes = {
   openAddWindow: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
   searchTextChanged: PropTypes.func.isRequired,
+  pageChanged: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -90,6 +92,15 @@ const mapDispatchToProps = dispatch => (
         payload: value,
       })
     ),
+    pageChanged: (currentPage) => {
+      dispatch({
+        type: 'STUDENT_CURRENT_PAGE_CHANGED',
+        payload: currentPage,
+      });
+      dispatch({
+        type: 'FETCH_STUDENTS_LOGIC',
+      });
+    },
     fetchStudents: () => (
       dispatch({
         type: 'FETCH_STUDENTS_LOGIC',
