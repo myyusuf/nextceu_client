@@ -109,7 +109,7 @@ const SeminarForm = ({ seminarForm, seminarFormChanged, departmentChanged }) => 
         >
           <InputNumber
             min={1}
-            max={10}
+            max={600}
             value={seminarForm.duration.value}
             onChange={(value) => {
               seminarFormChanged({
