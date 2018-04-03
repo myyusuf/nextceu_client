@@ -192,7 +192,7 @@ const mapDispatchToProps = dispatch => (
     ),
     pageChanged: currentPage => (
       dispatch({
-        type: actions.bakordik.initiateStudent.list.search.pageChanged,
+        type: actions.bakordik.initiateStudent.list.search.pageChange,
         payload: currentPage,
       })
     ),

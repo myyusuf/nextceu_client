@@ -10,6 +10,7 @@ export default {
       search: {
         textChanged: 'bakordik/initiateCourse/list/search/textChanged',
         dateRangeChanged: 'bakordik/initiateCourse/list/search/dateRangeChanged',
+        pageChange: 'bakordik/initiateCourse/list/search/pageChange',
         pageChanged: 'bakordik/initiateCourse/list/search/pageChanged',
       },
       selection: {
